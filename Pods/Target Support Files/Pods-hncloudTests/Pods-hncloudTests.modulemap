@@ -1,0 +1,6 @@
+framework module Pods_hncloudTests {
+  umbrella header "Pods-hncloudTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

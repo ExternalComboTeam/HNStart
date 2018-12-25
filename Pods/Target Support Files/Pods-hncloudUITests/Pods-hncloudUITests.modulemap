@@ -1,0 +1,6 @@
+framework module Pods_hncloudUITests {
+  umbrella header "Pods-hncloudUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

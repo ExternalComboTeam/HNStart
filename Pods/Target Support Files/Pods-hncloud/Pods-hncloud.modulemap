@@ -1,0 +1,6 @@
+framework module Pods_hncloud {
+  umbrella header "Pods-hncloud-umbrella.h"
+
+  export *
+  module * { export * }
+}
