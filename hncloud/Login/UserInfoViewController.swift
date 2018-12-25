@@ -35,6 +35,14 @@ class UserInfoViewController: UIViewController {
         self.navigationController?.navigationItem.rightBarButtonItems = [self.finishedButton]
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.sexSegment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
+        self.unitSegment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
+        self.sexSegment.layer.borderColor = UIColor.black.cgColor
+        self.unitSegment.layer.borderColor = UIColor.black.cgColor
+    }
+    
     @objc private func finishedEdit() {
         let vc = BMIInfoViewController.fromStoryboard()
         self.push(vc: vc)

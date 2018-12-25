@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Device List View Controller-->
+        <scene sceneID="6dP-Nq-hoq">
+            <objects>
+                <viewController storyboardIdentifier="DeviceListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IT7-O0-ilU" customClass="DeviceListViewController" customModule="hncloud" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="j3E-et-gfY">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="device_list_background" translatesAutoresizingMaskIntoConstraints="NO" id="iBm-tR-1J5">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="請選擇設備類型" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pae-r0-Ukc">
+                                <rect key="frame" x="0.0" y="40" width="375" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="X6i-Z3-gD3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HGo-AZ-B4a">
+                                <rect key="frame" x="0.0" y="75" width="375" height="592"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="iBm-tR-1J5" firstAttribute="leading" secondItem="GAZ-l6-vCC" secondAttribute="leading" id="0PB-xK-2N8"/>
+                            <constraint firstItem="Pae-r0-Ukc" firstAttribute="centerX" secondItem="j3E-et-gfY" secondAttribute="centerX" id="4nS-uZ-BL7"/>
+                            <constraint firstItem="iBm-tR-1J5" firstAttribute="trailing" secondItem="GAZ-l6-vCC" secondAttribute="trailing" id="5Cl-Ty-s6F"/>
+                            <constraint firstItem="Pae-r0-Ukc" firstAttribute="leading" secondItem="GAZ-l6-vCC" secondAttribute="leading" id="BaD-Jr-VhG"/>
+                            <constraint firstItem="HGo-AZ-B4a" firstAttribute="top" secondItem="Pae-r0-Ukc" secondAttribute="bottom" id="LQ0-jA-qbw"/>
+                            <constraint firstItem="iBm-tR-1J5" firstAttribute="bottom" secondItem="GAZ-l6-vCC" secondAttribute="bottom" id="Pzc-BH-PRR"/>
+                            <constraint firstItem="HGo-AZ-B4a" firstAttribute="bottom" secondItem="GAZ-l6-vCC" secondAttribute="bottom" id="ZYS-aB-tgk"/>
+                            <constraint firstItem="HGo-AZ-B4a" firstAttribute="leading" secondItem="GAZ-l6-vCC" secondAttribute="leading" id="cEP-Ay-saK"/>
+                            <constraint firstItem="HGo-AZ-B4a" firstAttribute="trailing" secondItem="GAZ-l6-vCC" secondAttribute="trailing" id="giZ-RO-MDz"/>
+                            <constraint firstItem="iBm-tR-1J5" firstAttribute="top" secondItem="j3E-et-gfY" secondAttribute="top" id="nUt-U5-Bkb"/>
+                            <constraint firstItem="Pae-r0-Ukc" firstAttribute="top" secondItem="GAZ-l6-vCC" secondAttribute="top" constant="20" id="nXZ-RF-pLn"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="GAZ-l6-vCC"/>
+                    </view>
+                    <connections>
+                        <outlet property="myTableView" destination="HGo-AZ-B4a" id="YOV-dV-EyY"/>
+                        <outlet property="titleLabel" destination="Pae-r0-Ukc" id="TIA-fS-4Ki"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cJ8-tY-bTv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1608.8" y="133.5832083958021"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="device_list_background" width="1125" height="1814"/>
+    </resources>
+</document>

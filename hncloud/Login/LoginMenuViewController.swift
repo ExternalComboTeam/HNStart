@@ -22,8 +22,10 @@ class LoginMenuViewController: UIViewController {
     }
     
     @IBAction func ignore(_ sender: Any) {
-        let vc = DeviceListViewController.fromStoryboard()
-        self.push(vc: vc)
+//        let vc = DeviceListViewController.fromStoryboard()
+//        self.push(vc: vc)
+        let vc = MenuViewController.fromStoryboard()
+        self.present(vc, animated: false, completion: nil)
     }
     override func viewDidLoad() {
         super.viewDidLoad()

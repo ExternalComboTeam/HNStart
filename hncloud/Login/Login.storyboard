@@ -228,18 +228,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密碼的長度是 6 到 32 個字元" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DB5-S6-FNA">
-                                <rect key="frame" x="91.5" y="125" width="263.5" height="45"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="密碼" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTK-HD-fv8">
-                                <rect key="frame" x="20" y="138.5" width="61.5" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="帳號" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xIs-8r-wsd">
                                 <rect key="frame" x="20" y="73.5" width="61.5" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -255,8 +243,26 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密碼的長度是 6 到 32 個字元" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ka3-CB-2MD">
-                                <rect key="frame" x="91.5" y="255" width="263.5" height="45"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="密碼" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTK-HD-fv8">
+                                <rect key="frame" x="20" y="138.5" width="61.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密碼的長度是 6 到 32 個字元" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DB5-S6-FNA">
+                                <rect key="frame" x="91.5" y="125" width="263.5" height="45"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="確認密碼" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yr1-SN-SXw">
+                                <rect key="frame" x="20" y="203.5" width="61.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="帳號的長度是 4 到 32 個字元" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DAk-5T-SZ6">
+                                <rect key="frame" x="91.5" y="190" width="263.5" height="45"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -267,14 +273,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="確認密碼" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yr1-SN-SXw">
-                                <rect key="frame" x="20" y="203.5" width="61.5" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="帳號的長度是 4 到 32 個字元" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DAk-5T-SZ6">
-                                <rect key="frame" x="91.5" y="190" width="263.5" height="45"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密碼的長度是 6 到 32 個字元" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ka3-CB-2MD">
+                                <rect key="frame" x="91.5" y="255" width="263.5" height="45"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -367,8 +367,8 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qe8-x7-9UE">
                                 <rect key="frame" x="150" y="55" width="75" height="75"/>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="JlR-xA-RAO">
-                                <rect key="frame" x="37.5" y="160" width="300" height="75.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="JlR-xA-RAO">
+                                <rect key="frame" x="37.5" y="150" width="300" height="70.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OdA-Le-ArT">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="20.5"/>
@@ -377,7 +377,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kPS-JV-oAO">
-                                        <rect key="frame" x="0.0" y="40.5" width="300" height="35"/>
+                                        <rect key="frame" x="0.0" y="35.5" width="300" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="J7d-Di-egs"/>
                                         </constraints>
@@ -393,7 +393,7 @@
                                 </subviews>
                             </stackView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bXG-dc-U3U">
-                                <rect key="frame" x="37.5" y="250.5" width="145" height="29"/>
+                                <rect key="frame" x="37.5" y="235.5" width="145" height="29"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <segments>
                                     <segment title="男性"/>
@@ -401,67 +401,56 @@
                                 </segments>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="edX-F0-eqP">
-                                <rect key="frame" x="192.5" y="250.5" width="145" height="29"/>
+                                <rect key="frame" x="192.5" y="235.5" width="145" height="29"/>
                                 <segments>
                                     <segment title="公制單位"/>
                                     <segment title="英制單位"/>
                                 </segments>
                             </segmentedControl>
                             <textField opaque="NO" contentMode="scaleAspectFit" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bWK-4H-RBl">
-                                <rect key="frame" x="37.5" y="293.5" width="300" height="35"/>
+                                <rect key="frame" x="37.5" y="278.5" width="300" height="35"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rep-iE-4bO">
-                                <rect key="frame" x="37.5" y="343.5" width="300" height="35"/>
+                                <rect key="frame" x="37.5" y="328.5" width="300" height="35"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JU7-xV-8pD">
-                                <rect key="frame" x="37.5" y="393.5" width="300" height="35"/>
+                                <rect key="frame" x="37.5" y="378.5" width="300" height="35"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blood_not_checked" translatesAutoresizingMaskIntoConstraints="NO" id="4kc-2j-BxN">
-                                <rect key="frame" x="37.5" y="453.5" width="34" height="34"/>
+                                <rect key="frame" x="37.5" y="428.5" width="34" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="4kc-2j-BxN" secondAttribute="height" multiplier="1:1" id="He8-YY-QAG"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="校正血壓" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rfZ-gs-hSg">
-                                <rect key="frame" x="86.5" y="460" width="73.5" height="21.5"/>
+                                <rect key="frame" x="86.5" y="435" width="73.5" height="21.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="lNI-On-4CH">
-                                <rect key="frame" x="75" y="496.5" width="225" height="30"/>
+                                <rect key="frame" x="75" y="471.5" width="225" height="30"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mlx-aM-vqh">
-                                        <rect key="frame" x="0.0" y="0.0" width="75" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                <real key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="3"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fcF-Vw-AXy">
-                                        <rect key="frame" x="95" y="14.5" width="35" height="1"/>
+                                        <rect key="frame" x="100" y="14.5" width="25" height="1"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="35" id="SA3-zK-EPH"/>
+                                            <constraint firstAttribute="width" constant="25" id="SA3-zK-EPH"/>
                                             <constraint firstAttribute="height" constant="1" id="ygw-JP-dB7"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -469,21 +458,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ozI-oq-bfm">
-                                        <rect key="frame" x="150" y="0.0" width="75" height="30"/>
+                                        <rect key="frame" x="145" y="0.0" width="80" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="3"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                <real key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                     </textField>
                                 </subviews>
                                 <constraints>
@@ -519,7 +497,7 @@
                             <constraint firstItem="qe8-x7-9UE" firstAttribute="top" secondItem="R5q-yt-VfF" secondAttribute="top" constant="35" id="7kn-WD-lnY"/>
                             <constraint firstItem="edX-F0-eqP" firstAttribute="centerY" secondItem="bXG-dc-U3U" secondAttribute="centerY" id="8it-Wr-AvQ"/>
                             <constraint firstItem="LK9-Os-pXm" firstAttribute="width" secondItem="Dl4-lP-uMY" secondAttribute="width" multiplier="0.35" id="9L8-dd-MXt"/>
-                            <constraint firstItem="4kc-2j-BxN" firstAttribute="top" secondItem="JU7-xV-8pD" secondAttribute="bottom" constant="25" id="AC8-ap-i53"/>
+                            <constraint firstItem="4kc-2j-BxN" firstAttribute="top" secondItem="JU7-xV-8pD" secondAttribute="bottom" constant="15" id="AC8-ap-i53"/>
                             <constraint firstItem="qe8-x7-9UE" firstAttribute="width" secondItem="Dl4-lP-uMY" secondAttribute="width" multiplier="1.1" id="ADQ-6F-jqo"/>
                             <constraint firstItem="bWK-4H-RBl" firstAttribute="centerX" secondItem="JlR-xA-RAO" secondAttribute="centerX" id="Ihr-h0-h9Y"/>
                             <constraint firstItem="JU7-xV-8pD" firstAttribute="height" secondItem="kPS-JV-oAO" secondAttribute="height" id="Ioh-aN-aD6"/>
@@ -536,7 +514,7 @@
                             <constraint firstItem="JlR-xA-RAO" firstAttribute="centerX" secondItem="uz3-5X-L4X" secondAttribute="centerX" id="W1M-ah-fFL"/>
                             <constraint firstItem="Rep-iE-4bO" firstAttribute="centerX" secondItem="JlR-xA-RAO" secondAttribute="centerX" id="XEc-WX-3Df"/>
                             <constraint firstItem="rfZ-gs-hSg" firstAttribute="centerY" secondItem="4kc-2j-BxN" secondAttribute="centerY" id="Xhx-8e-Lnx"/>
-                            <constraint firstItem="JlR-xA-RAO" firstAttribute="top" secondItem="qe8-x7-9UE" secondAttribute="bottom" constant="30" id="Zej-PC-dpn"/>
+                            <constraint firstItem="JlR-xA-RAO" firstAttribute="top" secondItem="qe8-x7-9UE" secondAttribute="bottom" constant="20" id="Zej-PC-dpn"/>
                             <constraint firstItem="qe8-x7-9UE" firstAttribute="centerX" secondItem="uz3-5X-L4X" secondAttribute="centerX" id="bgy-qc-Eio"/>
                             <constraint firstItem="qe8-x7-9UE" firstAttribute="centerX" secondItem="Dl4-lP-uMY" secondAttribute="centerX" id="dHZ-ir-3sS"/>
                             <constraint firstItem="lNI-On-4CH" firstAttribute="top" secondItem="rfZ-gs-hSg" secondAttribute="bottom" constant="15" id="dIS-Gf-6Qi"/>
