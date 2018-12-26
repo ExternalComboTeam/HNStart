@@ -10,6 +10,18 @@ import UIKit
 
 class DeviceCell: UITableViewCell {
 
+    @IBOutlet weak var deviceImage: UIImageView!
+    @IBOutlet weak var deviceSelect: UIImageView!
+    @IBOutlet weak var deviceName: UILabel!
+    
+    var type: DeviceType = .none {
+        didSet {
+            self.deviceName.text = self.type.rawValue
+            self.deviceImage.image = self.type.image
+            self.deviceSelect.isHidden = UserInfo.share.deviceType != self.type
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

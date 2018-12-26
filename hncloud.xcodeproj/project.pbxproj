@@ -24,11 +24,16 @@
 		9D6E271D21D1072C00F22ABD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D6E271B21D1072C00F22ABD /* LaunchScreen.storyboard */; };
 		9D6E272821D1072C00F22ABD /* hncloudTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6E272721D1072C00F22ABD /* hncloudTests.swift */; };
 		9D6E273321D1072D00F22ABD /* hncloudUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6E273221D1072D00F22ABD /* hncloudUITests.swift */; };
+		9DA359B121D3A7020090A7DD /* RSideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA359B021D3A7020090A7DD /* RSideViewController.swift */; };
+		9DA359B321D3C2920090A7DD /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA359B221D3C2920090A7DD /* UIViewExtension.swift */; };
+		9DA359B521D3C42E0090A7DD /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA359B421D3C42E0090A7DD /* AboutViewController.swift */; };
+		9DA359B721D3CB600090A7DD /* DeviceSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA359B621D3CB600090A7DD /* DeviceSettingViewController.swift */; };
+		9DA359B921D3CD830090A7DD /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA359B821D3CD830090A7DD /* UserInfo.swift */; };
+		9DA359BB21D3ECF10090A7DD /* BTListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA359BA21D3ECF10090A7DD /* BTListViewController.swift */; };
 		9DD4CB9121D1A89C00C15430 /* BMIInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD4CB9021D1A89C00C15430 /* BMIInfoViewController.swift */; };
 		9DD4CB9321D1A8CE00C15430 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD4CB9221D1A8CE00C15430 /* UserInfoViewController.swift */; };
 		9DD4CB9621D275D900C15430 /* DeviceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DD4CB9521D275D900C15430 /* DeviceCell.xib */; };
 		9DD4CB9821D2776200C15430 /* DeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD4CB9721D2776200C15430 /* DeviceCell.swift */; };
-		9DD4CB9B21D2783200C15430 /* RSidePanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD4CB9A21D2783200C15430 /* RSidePanelController.swift */; };
 		9DD4CB9D21D278AC00C15430 /* BTDevice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DD4CB9C21D278AC00C15430 /* BTDevice.storyboard */; };
 		9DD4CB9F21D2797700C15430 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD4CB9E21D2797600C15430 /* UITableViewExtension.swift */; };
 		9DD4CBA221D27A9100C15430 /* UIWindowExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD4CBA121D27A9100C15430 /* UIWindowExtension.swift */; };
@@ -86,11 +91,16 @@
 		9D6E272E21D1072D00F22ABD /* hncloudUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hncloudUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D6E273221D1072D00F22ABD /* hncloudUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hncloudUITests.swift; sourceTree = "<group>"; };
 		9D6E273421D1072D00F22ABD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9DA359B021D3A7020090A7DD /* RSideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSideViewController.swift; sourceTree = "<group>"; };
+		9DA359B221D3C2920090A7DD /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		9DA359B421D3C42E0090A7DD /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		9DA359B621D3CB600090A7DD /* DeviceSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSettingViewController.swift; sourceTree = "<group>"; };
+		9DA359B821D3CD830090A7DD /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		9DA359BA21D3ECF10090A7DD /* BTListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTListViewController.swift; sourceTree = "<group>"; };
 		9DD4CB9021D1A89C00C15430 /* BMIInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMIInfoViewController.swift; sourceTree = "<group>"; };
 		9DD4CB9221D1A8CE00C15430 /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
 		9DD4CB9521D275D900C15430 /* DeviceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceCell.xib; sourceTree = "<group>"; };
 		9DD4CB9721D2776200C15430 /* DeviceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCell.swift; sourceTree = "<group>"; };
-		9DD4CB9A21D2783200C15430 /* RSidePanelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSidePanelController.swift; sourceTree = "<group>"; };
 		9DD4CB9C21D278AC00C15430 /* BTDevice.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BTDevice.storyboard; sourceTree = "<group>"; };
 		9DD4CB9E21D2797600C15430 /* UITableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 		9DD4CBA121D27A9100C15430 /* UIWindowExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowExtension.swift; sourceTree = "<group>"; };
@@ -149,6 +159,7 @@
 				9D1F88FC21D11E1B0033721E /* UIImageExtension.swift */,
 				9DD4CB9E21D2797600C15430 /* UITableViewExtension.swift */,
 				9DD4CBA121D27A9100C15430 /* UIWindowExtension.swift */,
+				9DA359B221D3C2920090A7DD /* UIViewExtension.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -250,6 +261,8 @@
 				9DD4CB9421D275BD00C15430 /* SubView */,
 				9DD4CB9C21D278AC00C15430 /* BTDevice.storyboard */,
 				9D1F88F721D116880033721E /* DeviceListViewController.swift */,
+				9DA359B621D3CB600090A7DD /* DeviceSettingViewController.swift */,
+				9DA359BA21D3ECF10090A7DD /* BTListViewController.swift */,
 			);
 			path = BTSetting;
 			sourceTree = "<group>";
@@ -266,7 +279,8 @@
 		9DD4CB9921D2782800C15430 /* Object */ = {
 			isa = PBXGroup;
 			children = (
-				9DD4CB9A21D2783200C15430 /* RSidePanelController.swift */,
+				9DA359B021D3A7020090A7DD /* RSideViewController.swift */,
+				9DA359B821D3CD830090A7DD /* UserInfo.swift */,
 			);
 			path = Object;
 			sourceTree = "<group>";
@@ -276,6 +290,7 @@
 			children = (
 				9DD4CBA321D2936600C15430 /* Menu.storyboard */,
 				9DD4CBA521D2938A00C15430 /* MenuViewController.swift */,
+				9DA359B421D3C42E0090A7DD /* AboutViewController.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -517,21 +532,26 @@
 			files = (
 				9DD4CB9121D1A89C00C15430 /* BMIInfoViewController.swift in Sources */,
 				9DD4CB9321D1A8CE00C15430 /* UserInfoViewController.swift in Sources */,
-				9DD4CB9B21D2783200C15430 /* RSidePanelController.swift in Sources */,
+				9DA359BB21D3ECF10090A7DD /* BTListViewController.swift in Sources */,
 				9DD4CBA821D294D300C15430 /* MainTabBarViewController.swift in Sources */,
 				9D1F890321D14AFE0033721E /* LoginViewController.swift in Sources */,
+				9DA359B121D3A7020090A7DD /* RSideViewController.swift in Sources */,
 				9D1F890B21D157B70033721E /* RegisterViewController.swift in Sources */,
 				9DD4CBA221D27A9100C15430 /* UIWindowExtension.swift in Sources */,
 				9D1F88F821D116880033721E /* DeviceListViewController.swift in Sources */,
 				9DD4CB9F21D2797700C15430 /* UITableViewExtension.swift in Sources */,
 				9DD4CB9821D2776200C15430 /* DeviceCell.swift in Sources */,
 				9D1F88FB21D116F60033721E /* UIViewControllerExtension.swift in Sources */,
+				9DA359B721D3CB600090A7DD /* DeviceSettingViewController.swift in Sources */,
 				9D6E271321D1072B00F22ABD /* AppDelegate.swift in Sources */,
 				9DD4CBA621D2938A00C15430 /* MenuViewController.swift in Sources */,
+				9DA359B321D3C2920090A7DD /* UIViewExtension.swift in Sources */,
 				9D1F88F621D10EBD0033721E /* StartViewController.swift in Sources */,
 				9D1F890721D14BDE0033721E /* LoginMenuViewController.swift in Sources */,
 				9D1F88FD21D11E1B0033721E /* UIImageExtension.swift in Sources */,
 				9D1F890021D13FAE0033721E /* AppDelegate+Basic.swift in Sources */,
+				9DA359B521D3C42E0090A7DD /* AboutViewController.swift in Sources */,
+				9DA359B921D3CD830090A7DD /* UserInfo.swift in Sources */,
 				9D1F890921D1575E0033721E /* FoundPasswordViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -713,7 +733,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F52E4Q5G5P;
 				INFOPLIST_FILE = hncloud/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -733,7 +753,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F52E4Q5G5P;
 				INFOPLIST_FILE = hncloud/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

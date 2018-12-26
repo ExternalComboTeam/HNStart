@@ -11,18 +11,23 @@ import UIKit
 class MainTabBarViewController: UITabBarController {
 
     lazy private var menuButton: UIBarButtonItem = {
-        return UIBarButtonItem(image: UIImage(named: "three_line"), style: .plain, target: self, action: #selector(self.sideMenu))
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
+        button.setImage(UIImage(named: "three_line"), for: .normal)
+        button.addTarget(self, action: #selector(sideMenu), for: .touchUpInside)
+        view.addSubview(button)
+        return UIBarButtonItem(customView: view)
     }()
     
     @objc private func sideMenu() {
-        
-        print("view = \(self.presentedViewController) \(self.presentingViewController)")
+        guard let menu = self.parent?.parent as? RSideViewController else { return }
+        menu.openMenu()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationItem.leftBarButtonItem = menuButton
+        self.navigationItem.leftBarButtonItems = [self.menuButton]
         self.tabBar.items?.forEach({ (item) in
             switch item.tag {
             case 0:
@@ -39,11 +44,11 @@ class MainTabBarViewController: UITabBarController {
                 break
             case 3:
                 item.image = UIImage(named: "blood_not_checked")?.scaled(toHeight: 40)
-                item.selectedImage = UIImage(named: "blood_checked")?.scaled(toHeight: 40)
+                item.selectedImage = UIImage(named: "blood_checked")?.scaled(toHeight: 35)
                 break
             case 4:
-                item.image = UIImage(named: "suger_icon")?.scaled(toHeight: 40)
-                item.selectedImage = UIImage(named: "suger_icon_blue")?.scaled(toHeight: 40)
+                item.image = UIImage(named: "suger_icon")?.scaled(toHeight: 45)
+                item.selectedImage = UIImage(named: "suger_icon_blue")?.scaled(toHeight: 45)
                 break
             default:
                 break

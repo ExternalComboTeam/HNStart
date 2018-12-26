@@ -28,6 +28,14 @@ extension UIViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
+    func pop(toRoot: Bool = false) {
+        if toRoot {
+            self.navigationController?.popToRootViewController(animated: true)
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+    
     func setBackButton(title: String) {
         self.title = title
         let back = UIBarButtonItem()
@@ -35,10 +43,17 @@ extension UIViewController {
         back.setTitlePositionAdjustment(UIOffset(horizontal: -10, vertical: 0), for: .default)
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = back
     }
-    
+    // 至登入頁
     func toLogin() {
         let vc = LoginMenuViewController.fromStoryboard()
         let navigation = UINavigationController(rootViewController: vc)
         self.present(navigation, animated: false, completion: nil)
+    }
+    // 至首頁
+    func toMain() {
+        let left = MenuViewController.fromStoryboard()
+        let main = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainNavigation")
+        let vc = RSideViewController(leftViewController: left, mainViewController: main)
+        self.present(vc, animated: false, completion: nil)
     }
 }

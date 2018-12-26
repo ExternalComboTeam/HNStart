@@ -22,7 +22,9 @@ class LoginViewController: UIViewController {
         self.push(vc: vc)
     }
     @IBAction func loginAction(_ sender: Any) {
-        
+        UserInfo.share.account = "myAccount"
+        let vc = DeviceListViewController.fromStoryboard()
+        self.push(vc: vc)
     }
     @IBAction func registerAction(_ sender: Any) {
         let vc = RegisterViewController.fromStoryboard()

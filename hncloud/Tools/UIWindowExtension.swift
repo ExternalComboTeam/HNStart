@@ -30,10 +30,6 @@ extension UIWindow {
             return topViewController(controller: presented)
         }
         
-        if let menuViewController = controller as? RSidePanelController {
-            return topViewController(controller: menuViewController.centerPanel)
-        }
-        
         return controller
     }
 }

@@ -31,8 +31,8 @@ class UserInfoViewController: UIViewController {
         super.viewDidLoad()
 
         self.setBackButton(title: "個人資料".localized())
+        self.navigationItem.hidesBackButton = !UserInfo.share.isLogin
         self.navigationItem.rightBarButtonItem = self.finishedButton
-        self.navigationController?.navigationItem.rightBarButtonItems = [self.finishedButton]
     }
 
     override func viewDidLayoutSubviews() {

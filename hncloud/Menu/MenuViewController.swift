@@ -8,36 +8,79 @@
 
 import UIKit
 
-class MenuViewController: RSidePanelController {
+class MenuViewController: UIViewController {
 
+    @IBOutlet weak var userView: UIView!
     @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var userNickName: UILabel!
     @IBOutlet weak var btStateLabel: UILabel!
     @IBOutlet weak var batteryLabel: UILabel!
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var menuTableView: UITableView!
+    @IBAction func logoutAction(_ sender: Any) {
+        UserInfo.share.clear()
+        self.dismiss(animated: false, completion: nil)
+    }
+    
+    private lazy var menuArray: [(UIImage?, String)] = {
+        var array: [(UIImage?, String)] = []
+        array.append((UIImage(named: "device_amd"), "設備管理".localized()))
+        array.append((UIImage(named: "capsule"), "用藥管理".localized()))
+        array.append((UIImage(named: "camera"), "遠程拍照".localized()))
+        array.append((UIImage(named: "settings"), "設置".localized()))
+        array.append((UIImage(named: "about"), "關於".localized()))
+        return array
+    }()
+    
+    @objc private func userData() {
+        let vc = UserInfoViewController.fromStoryboard()
+        self.push(vc: vc)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.leftPanel = self
+        self.menuTableView.dataSource = self
+        self.menuTableView.delegate = self
         
-//        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainNavigation")
-        let vc = MainTabBarViewController.fromStoryboard()
-        let na = UINavigationController(rootViewController: vc)
-        self.centerPanel = vc
+        let tap = UITapGestureRecognizer(target: self, action: #selector(userData))
+        self.userView.addGestureRecognizer(tap)
     }
 
+    private func pushed(_ vc: UIViewController) {
+        guard let side = self.parent as? RSideViewController else { return }
+        side.closeMenu()
+        side.push(vc: vc)
+    }
 }
 extension MenuViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return self.menuArray.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath)
+        cell.imageView?.image = self.menuArray[indexPath.row].0?.scaled(toHeight: 30)
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 15)
+        cell.textLabel?.text = self.menuArray[indexPath.row].1
+        return cell
     }
 }
 extension MenuViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        switch indexPath.row {
+        case 0:
+            self.pushed(DeviceSettingViewController.fromStoryboard())
+            break
+        case 1:
+            break
+        case 2:
+            break
+        case 3:
+            break
+        case 4:
+            self.pushed(AboutViewController.fromStoryboard())
+            break
+        default:
+            break
+        }
     }
 }

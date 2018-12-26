@@ -9,6 +9,9 @@
 import UIKit
 
 extension AppDelegate {
+    class var share: AppDelegate {
+        return UIApplication.shared.delegate as! AppDelegate
+    }
     func customizeNavigation() {
         UINavigationBar.appearance().tintColor = #colorLiteral(red: 0.2900782526, green: 0.2851380706, blue: 0.3431323767, alpha: 1)
         let image = UIImage(named: "back_icon_new")?.scaled(toHeight: 1)

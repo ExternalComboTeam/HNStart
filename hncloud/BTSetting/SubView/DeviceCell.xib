@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="DeviceCell" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="DeviceCell" rowHeight="164" id="MKD-oA-3Vi" customClass="DeviceCell" customModule="hncloud" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="DeviceCell" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="DeviceCell" id="MKD-oA-3Vi" customClass="DeviceCell" customModule="hncloud" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="164"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MKD-oA-3Vi" id="k2P-5e-x8D">
@@ -25,7 +25,7 @@
                         <rect key="frame" x="336.5" y="67.5" width="22.5" height="22.5"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手環" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amm-jV-yQm">
-                        <rect key="frame" x="172" y="136" width="31" height="18"/>
+                        <rect key="frame" x="172" y="136" width="31" height="17.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -40,12 +40,18 @@
                     <constraint firstItem="zLm-fB-rYf" firstAttribute="width" secondItem="zLm-fB-rYf" secondAttribute="height" multiplier="1:1" id="Gee-5N-gHX"/>
                     <constraint firstItem="amm-jV-yQm" firstAttribute="top" secondItem="zLm-fB-rYf" secondAttribute="bottom" constant="20" id="Mdh-YY-doF"/>
                     <constraint firstItem="zLm-fB-rYf" firstAttribute="centerX" secondItem="k2P-5e-x8D" secondAttribute="centerX" id="Ruf-yv-aAh"/>
+                    <constraint firstAttribute="bottom" secondItem="amm-jV-yQm" secondAttribute="bottom" constant="10" id="ZrB-U8-DGA"/>
                     <constraint firstAttribute="trailingMargin" secondItem="9AJ-hJ-8yh" secondAttribute="trailing" id="gJ0-DP-TbU"/>
                     <constraint firstItem="9AJ-hJ-8yh" firstAttribute="width" secondItem="9AJ-hJ-8yh" secondAttribute="height" multiplier="1:1" id="lmb-St-MAt"/>
                     <constraint firstItem="zLm-fB-rYf" firstAttribute="top" secondItem="k2P-5e-x8D" secondAttribute="topMargin" constant="30" id="wZr-7f-6le"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="deviceImage" destination="zLm-fB-rYf" id="4AI-pL-J0L"/>
+                <outlet property="deviceName" destination="amm-jV-yQm" id="ax1-h3-hfh"/>
+                <outlet property="deviceSelect" destination="9AJ-hJ-8yh" id="8dR-ZJ-fNp"/>
+            </connections>
             <point key="canvasLocation" x="312.80000000000001" y="24.287856071964018"/>
         </tableViewCell>
     </objects>
