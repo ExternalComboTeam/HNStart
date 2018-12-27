@@ -8,11 +8,12 @@ target 'hncloud' do
   # Pods for hncloud
   pod 'Alamofire'
   pod 'SwifterSwift'
-  pod 'SwiftyJSON'
+  pod 'Alamofire-SwiftyJSON'
   pod 'SDWebImage'
   pod 'KeychainSwift'
   pod 'Localize-Swift'
   pod 'IQKeyboardManagerSwift'
+  pod 'KRProgressHUD'
 
   target 'hncloudTests' do
     inherit! :search_paths

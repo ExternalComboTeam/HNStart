@@ -26,6 +26,24 @@ class AboutViewController: UIViewController {
         self.appVersion.isEnabled = false
         self.deviceVersion.isEnabled = false
         
+        let appVersionLabel: UILabel = UILabel(text: "App版本".localized() + "：")
+        appVersionLabel.sizeToFit()
+        appVersionLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        self.appVersion.leftView = appVersionLabel
+        self.appVersion.leftViewMode = .always
+        
+        let deviceLabel: UILabel = UILabel(text: "韌體版本".localized() + "：")
+        deviceLabel.sizeToFit()
+        deviceLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        self.deviceVersion.leftView = deviceLabel
+        self.deviceVersion.leftViewMode = .always
+        
+        let descriptionLabel: UILabel = UILabel(text: "產品說明")
+        descriptionLabel.sizeToFit()
+        descriptionLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        self.descriptionText.leftView = descriptionLabel
+        self.descriptionText.leftViewMode = .always
+        
         self.appVersion.text = self.version
     }
 

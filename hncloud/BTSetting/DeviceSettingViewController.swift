@@ -61,7 +61,7 @@ class DeviceSettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItems = [self.choseDevice]
-        
+        self.deviceView.gradientColors = [#colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), #colorLiteral(red: 0, green: 0, blue: 1, alpha: 1)]
         self.findTitleLabel.text = "找手環".localized() + "\n" + "讓你的手環震動，方便查找"
         self.resetTitleLabel.text = "恢復原廠設置".localized()
         self.clearTitleLabel.text = "清除本地數據".localized()
@@ -74,6 +74,15 @@ class DeviceSettingViewController: UIViewController {
         self.clearView.addGestureRecognizer(clearTap)
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.deviceView.gradientColors = [#colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), #colorLiteral(red: 0, green: 0, blue: 1, alpha: 1)]
+        
+        self.findView.addBoard(.bottom, color: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), thickness: 1)
+        self.resetView.addBoard(.bottom, color: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), thickness: 1)
+        self.clearView.addBoard(.bottom, color: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), thickness: 1)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setBackButton(title: UserInfo.share.deviceType.rawValue)

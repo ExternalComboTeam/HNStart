@@ -60,12 +60,20 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ETB-qv-TfH">
+                                        <rect key="frame" x="20" y="13" width="60.5" height="60.5"/>
+                                        <connections>
+                                            <action selector="userInfoAction:" destination="qfU-K7-LHk" eventType="touchUpInside" id="pfj-D4-CSd"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="NMy-WN-5If" firstAttribute="centerY" secondItem="NMD-hg-Lrx" secondAttribute="centerY" id="1qe-PE-q2B"/>
                                     <constraint firstItem="cPE-iV-4Oz" firstAttribute="leading" secondItem="LTy-5Y-C41" secondAttribute="trailing" constant="10" id="2Ve-td-3dE"/>
+                                    <constraint firstItem="ETB-qv-TfH" firstAttribute="leading" secondItem="6dl-zA-Ic1" secondAttribute="leading" id="56n-6D-9kp"/>
                                     <constraint firstItem="NMD-hg-Lrx" firstAttribute="height" secondItem="QXi-75-MDC" secondAttribute="height" multiplier="0.25" id="7fE-xO-lez"/>
+                                    <constraint firstItem="ETB-qv-TfH" firstAttribute="trailing" secondItem="6dl-zA-Ic1" secondAttribute="trailing" id="AsJ-Bz-bdx"/>
                                     <constraint firstItem="NMy-WN-5If" firstAttribute="leading" secondItem="NMD-hg-Lrx" secondAttribute="trailing" constant="10" id="BlA-Vq-pa9"/>
                                     <constraint firstItem="6dl-zA-Ic1" firstAttribute="leading" secondItem="QXi-75-MDC" secondAttribute="leading" constant="20" id="FJp-p3-1c6"/>
                                     <constraint firstItem="PsR-vK-j6G" firstAttribute="leading" secondItem="6dl-zA-Ic1" secondAttribute="trailing" constant="20" id="Pus-2J-ZSA"/>
@@ -76,8 +84,10 @@
                                     <constraint firstItem="NMD-hg-Lrx" firstAttribute="leading" secondItem="6dl-zA-Ic1" secondAttribute="trailing" constant="15" id="fiy-rR-1Mb"/>
                                     <constraint firstItem="cPE-iV-4Oz" firstAttribute="centerY" secondItem="LTy-5Y-C41" secondAttribute="centerY" id="gXx-hQ-AJ5"/>
                                     <constraint firstItem="LTy-5Y-C41" firstAttribute="leading" secondItem="NMy-WN-5If" secondAttribute="trailing" constant="20" id="jeV-WF-jaA"/>
+                                    <constraint firstItem="ETB-qv-TfH" firstAttribute="bottom" secondItem="6dl-zA-Ic1" secondAttribute="bottom" id="ksE-Ps-bN3"/>
                                     <constraint firstItem="6dl-zA-Ic1" firstAttribute="centerY" secondItem="QXi-75-MDC" secondAttribute="centerY" id="qkO-EI-2Oe"/>
                                     <constraint firstItem="LTy-5Y-C41" firstAttribute="centerY" secondItem="NMD-hg-Lrx" secondAttribute="centerY" id="sl6-Li-nvG"/>
+                                    <constraint firstItem="ETB-qv-TfH" firstAttribute="top" secondItem="6dl-zA-Ic1" secondAttribute="top" id="yel-mc-ft4"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NXV-sL-Kdy">
@@ -137,7 +147,6 @@
                         <outlet property="menuTableView" destination="sfh-Wa-ZiV" id="l5o-kY-Gnx"/>
                         <outlet property="userImage" destination="6dl-zA-Ic1" id="27T-OY-v2E"/>
                         <outlet property="userNickName" destination="PsR-vK-j6G" id="eY8-Rz-9FJ"/>
-                        <outlet property="userView" destination="QXi-75-MDC" id="gHd-Mc-XOs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pvq-is-QPU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -209,6 +218,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rKf-0J-5Uj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1121" y="1621"/>
+        </scene>
+        <!--Camera View Controller-->
+        <scene sceneID="cAN-x3-QO0">
+            <objects>
+                <viewController storyboardIdentifier="CameraViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xZ8-hf-ea5" customClass="CameraViewController" customModule="hncloud" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eiw-ig-qp4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="SqL-OO-JEg"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g4Y-Pq-8pz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1814" y="1621"/>
         </scene>
     </scenes>
     <resources>

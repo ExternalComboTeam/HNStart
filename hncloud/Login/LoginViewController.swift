@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KRProgressHUD
 
 class LoginViewController: UIViewController {
 
@@ -22,9 +23,14 @@ class LoginViewController: UIViewController {
         self.push(vc: vc)
     }
     @IBAction func loginAction(_ sender: Any) {
-        UserInfo.share.account = "myAccount"
-        let vc = DeviceListViewController.fromStoryboard()
-        self.push(vc: vc)
+        guard let account = self.accountTextField.text, let password = self.passwordTextField.text else { return }
+        KRProgressHUD.show()
+        UserInfoAPI.login(account: account, password: password) { (json) in
+            KRProgressHUD.dismiss()
+            UserInfo.share.update(json: json)
+            let vc = DeviceListViewController.fromStoryboard()
+            self.push(vc: vc)
+        }
     }
     @IBAction func registerAction(_ sender: Any) {
         let vc = RegisterViewController.fromStoryboard()

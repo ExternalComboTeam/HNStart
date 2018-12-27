@@ -26,13 +26,70 @@ class UserInfoViewController: UIViewController {
     lazy private var finishedButton: UIBarButtonItem = {
         return UIBarButtonItem(title: "完成".localized(), style: UIBarButtonItem.Style.plain, target: self, action: #selector(finishedEdit))
     }()
+    lazy private var editButton: UIBarButtonItem = {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 45, height: 45))
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 45, height: 45))
+        let image = UIImage(named: "edit_info")?.scaled(toHeight: 25)
+        button.setImage(image, for: .normal)
+        button.addTarget(self, action: #selector(edit), for: .touchUpInside)
+        view.addSubview(button)
+        return UIBarButtonItem(customView: view)
+    }()
+    
+    var isEdit: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.setBackButton(title: "個人資料".localized())
         self.navigationItem.hidesBackButton = !UserInfo.share.isLogin
-        self.navigationItem.rightBarButtonItem = self.finishedButton
+        self.navigationItem.rightBarButtonItem = self.isEdit ? self.finishedButton : self.editButton
+        self.accountLabel.text = UserInfo.share.account
+        self.accountLabel.isHidden = self.isEdit
+        self.addImage.isHidden = !self.isEdit
+        
+        self.pictureButton.isEnabled = self.isEdit
+        self.nickNameTextField.isEnabled = self.isEdit
+        self.sexSegment.isEnabled = self.isEdit
+        self.unitSegment.isEnabled = self.isEdit
+        self.birthdayTextField.isEnabled = self.isEdit
+        self.heightTextField.isEnabled = self.isEdit
+        self.weightTextField.isEnabled = self.isEdit
+        
+        let imageFrame: CGRect = CGRect(x: 0, y: 0, width: 45, height: 25)
+        let nickImage = UIImageView(frame: imageFrame)
+        nickImage.contentMode = .scaleAspectFit
+        nickImage.image = UIImage(named: "head_icon_small")
+        self.nickNameTextField.leftView = nickImage
+        self.nickNameTextField.leftViewMode = .always
+        self.nickNameTextField.text = UserInfo.share.nickName
+        
+        let birthdayImage = UIImageView(frame: imageFrame)
+        birthdayImage.image = UIImage(named: "birthday_icon")
+        birthdayImage.contentMode = .scaleAspectFit
+        self.birthdayTextField.leftView = birthdayImage
+        self.birthdayTextField.leftViewMode = .always
+        self.birthdayTextField.text = UserInfo.share.birthday
+        
+        let heightImage = UIImageView(frame: imageFrame)
+        heightImage.image = UIImage(named: "height_icon")
+        heightImage.contentMode = .scaleAspectFit
+        self.heightTextField.leftView = heightImage
+        self.heightTextField.leftViewMode = .always
+        self.heightTextField.text = UserInfo.share.height
+        
+        let weightImage = UIImageView(frame: imageFrame)
+        weightImage.image = UIImage(named: "weight_icon")
+        weightImage.contentMode = .scaleAspectFit
+        self.weightTextField.leftView = weightImage
+        self.weightTextField.leftViewMode = .always
+        self.weightTextField.text = UserInfo.share.weight
+        
+        guard !self.isEdit else { return }
+        DispatchQueue.main.async {
+            let vc = UserInfoViewController.fromStoryboard()
+            self.push(vc: vc)
+        }
     }
 
     override func viewDidLayoutSubviews() {
@@ -46,5 +103,20 @@ class UserInfoViewController: UIViewController {
     @objc private func finishedEdit() {
         let vc = BMIInfoViewController.fromStoryboard()
         self.push(vc: vc)
+    }
+    @objc private func edit() {
+        let sheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        sheet.addAction(title: "修改資料".localized(), style: .default, isEnabled: true, handler: { [weak self] (sheet) in
+            guard let `self` = self else { return }
+            let vc = UserInfoViewController.fromStoryboard()
+            self.push(vc: vc)
+        })
+        sheet.addAction(title: "修改密碼".localized(), style: .default, isEnabled: true) { (sheet) in
+            //
+        }
+        sheet.addAction(title: "取消".localized(), style: .cancel, isEnabled: true, handler: { (sheet) in
+            print("cancel")
+        })
+        self.present(sheet, animated: true, completion: nil)
     }
 }

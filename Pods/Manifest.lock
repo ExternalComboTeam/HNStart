@@ -1,7 +1,13 @@
 PODS:
   - Alamofire (4.7.3)
+  - Alamofire-SwiftyJSON (3.0.0):
+    - Alamofire (~> 4.5)
+    - SwiftyJSON (~> 4.0.0)
   - IQKeyboardManagerSwift (6.2.0)
   - KeychainSwift (13.0.0)
+  - KRActivityIndicatorView (3.0.0)
+  - KRProgressHUD (3.4.0):
+    - KRActivityIndicatorView (= 3.0.0)
   - Localize-Swift (2.0.0)
   - SDWebImage (4.4.2):
     - SDWebImage/Core (= 4.4.2)
@@ -23,22 +29,26 @@ PODS:
   - SwifterSwift/SpriteKit (4.6.0)
   - SwifterSwift/SwiftStdlib (4.6.0)
   - SwifterSwift/UIKit (4.6.0)
-  - SwiftyJSON (4.2.0)
+  - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
   - Alamofire
+  - Alamofire-SwiftyJSON
   - IQKeyboardManagerSwift
   - KeychainSwift
+  - KRProgressHUD
   - Localize-Swift
   - SDWebImage
   - SwifterSwift
-  - SwiftyJSON
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - Alamofire-SwiftyJSON
     - IQKeyboardManagerSwift
     - KeychainSwift
+    - KRActivityIndicatorView
+    - KRProgressHUD
     - Localize-Swift
     - SDWebImage
     - SwifterSwift
@@ -46,13 +56,16 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  Alamofire-SwiftyJSON: 2b3649d57dc7bb2880fb8b86f8bb969397666916
   IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
   KeychainSwift: 23d6c16cbc33f20fafa30c3d783241b4b87d998c
+  KRActivityIndicatorView: c414000730a6f4969eeb354bee4f2aebc89c2c2e
+  KRProgressHUD: 79c8703f82179fe34b3602f10b30726f887983fa
   Localize-Swift: c798ec9286494866f7068f85f7c71283ac5bdab4
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
   SwifterSwift: 812ffec6f301922f5430e75be3f2939ea3a80024
-  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 4cae54e02e16168889d96c1336734b90bfaa82aa
+PODFILE CHECKSUM: 8840b7314a143eee6ba819cc90a190d74f9b3b36
 
 COCOAPODS: 1.5.2

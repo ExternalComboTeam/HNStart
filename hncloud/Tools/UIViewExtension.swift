@@ -83,4 +83,30 @@ extension UIView {
                                               attribute: fourthLayout,
                                               multiplier: 1, constant: 0))
     }
+    public var gradientColors: [UIColor] {
+        set {
+            if let gradient = layer.sublayers?.first as? CAGradientLayer {
+                if newValue.isEmpty {
+                    gradient.removeFromSuperlayer()
+                } else {
+                    gradient.frame = bounds
+                    gradient.colors = newValue.cgColors
+                }
+            } else {
+                if !newValue.isEmpty {
+                    let gradient = CAGradientLayer()
+                    gradient.frame = bounds
+                    gradient.colors = newValue.cgColors
+                    layer.insertSublayer(gradient, at: 0)
+                }
+            }
+        }
+        get {
+            return ((layer.sublayers?.first as? CAGradientLayer)?.colors as? [CGColor])?.uiColors ?? []
+        }
+    }
+    func asImage() -> UIImage {
+        let renderer = UIGraphicsImageRenderer(bounds: bounds)
+        return renderer.image { rendererContext in layer.render(in: rendererContext.cgContext) }
+    }
 }

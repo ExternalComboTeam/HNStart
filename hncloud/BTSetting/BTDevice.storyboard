@@ -188,7 +188,7 @@ Label</string>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="find_device" translatesAutoresizingMaskIntoConstraints="NO" id="GHG-56-NcW">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="find_device" translatesAutoresizingMaskIntoConstraints="NO" id="GHG-56-NcW">
                                                 <rect key="frame" x="16" y="18.5" width="30" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="lqr-em-s1W"/>

@@ -9,8 +9,7 @@
 import UIKit
 
 class MenuViewController: UIViewController {
-
-    @IBOutlet weak var userView: UIView!
+    
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userNickName: UILabel!
     @IBOutlet weak var btStateLabel: UILabel!
@@ -20,6 +19,13 @@ class MenuViewController: UIViewController {
     @IBAction func logoutAction(_ sender: Any) {
         UserInfo.share.clear()
         self.dismiss(animated: false, completion: nil)
+    }
+    @IBAction func userInfoAction(_ sender: Any) {
+        let vc = UserInfoViewController.fromStoryboard()
+        vc.isEdit = false
+        guard let side = self.parent as? RSideViewController else { return }
+        side.closeMenu()
+        side.navigationController?.pushViewController(vc, animated: false)
     }
     
     private lazy var menuArray: [(UIImage?, String)] = {
@@ -32,18 +38,10 @@ class MenuViewController: UIViewController {
         return array
     }()
     
-    @objc private func userData() {
-        let vc = UserInfoViewController.fromStoryboard()
-        self.push(vc: vc)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.menuTableView.dataSource = self
         self.menuTableView.delegate = self
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(userData))
-        self.userView.addGestureRecognizer(tap)
     }
 
     private func pushed(_ vc: UIViewController) {
@@ -73,6 +71,7 @@ extension MenuViewController: UITableViewDelegate {
         case 1:
             break
         case 2:
+            self.pushed(CameraViewController.fromStoryboard())
             break
         case 3:
             break
