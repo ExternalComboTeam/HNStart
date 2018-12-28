@@ -1,8 +1,12 @@
 PODS:
+  - ActionSheetPicker-3.0 (2.3.0)
   - Alamofire (4.7.3)
   - Alamofire-SwiftyJSON (3.0.0):
     - Alamofire (~> 4.5)
     - SwiftyJSON (~> 4.0.0)
+  - Charts (3.2.1):
+    - Charts/Core (= 3.2.1)
+  - Charts/Core (3.2.1)
   - IQKeyboardManagerSwift (6.2.0)
   - KeychainSwift (13.0.0)
   - KRActivityIndicatorView (3.0.0)
@@ -30,21 +34,27 @@ PODS:
   - SwifterSwift/SwiftStdlib (4.6.0)
   - SwifterSwift/UIKit (4.6.0)
   - SwiftyJSON (4.0.0)
+  - ZZCircleProgress (0.2.1)
 
 DEPENDENCIES:
+  - ActionSheetPicker-3.0
   - Alamofire
   - Alamofire-SwiftyJSON
+  - Charts
   - IQKeyboardManagerSwift
   - KeychainSwift
   - KRProgressHUD
   - Localize-Swift
   - SDWebImage
   - SwifterSwift
+  - ZZCircleProgress
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - ActionSheetPicker-3.0
     - Alamofire
     - Alamofire-SwiftyJSON
+    - Charts
     - IQKeyboardManagerSwift
     - KeychainSwift
     - KRActivityIndicatorView
@@ -53,10 +63,13 @@ SPEC REPOS:
     - SDWebImage
     - SwifterSwift
     - SwiftyJSON
+    - ZZCircleProgress
 
 SPEC CHECKSUMS:
+  ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   Alamofire-SwiftyJSON: 2b3649d57dc7bb2880fb8b86f8bb969397666916
+  Charts: f122fb70b19847fa5817d018b77d6c5a2296ab25
   IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
   KeychainSwift: 23d6c16cbc33f20fafa30c3d783241b4b87d998c
   KRActivityIndicatorView: c414000730a6f4969eeb354bee4f2aebc89c2c2e
@@ -65,7 +78,8 @@ SPEC CHECKSUMS:
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
   SwifterSwift: 812ffec6f301922f5430e75be3f2939ea3a80024
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
+  ZZCircleProgress: bda14bac390f6c96efcb72f7617bef66c7f2d2d0
 
-PODFILE CHECKSUM: 8840b7314a143eee6ba819cc90a190d74f9b3b36
+PODFILE CHECKSUM: c2ca9e7a820ee2dc47bf6c5a2a1a68cb1279b5b5
 
 COCOAPODS: 1.5.2

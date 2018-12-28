@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ActionSheetPicker_3_0
 
 class MainTabBarViewController: UITabBarController {
 
@@ -39,18 +40,31 @@ class MainTabBarViewController: UITabBarController {
     
     lazy private var titleView: UIView = {
         let view = UITextField(frame: CGRect(x: 0, y: 0, width: 100, height: 44))
+        let leftButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         let leftImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 10, height: 15))
+        leftImage.center = CGPoint(x: 15, y: 15)
         leftImage.image = UIImage(named: "provios")
-        view.leftView = leftImage
+        leftButton.addSubview(leftImage)
+        view.leftView = leftButton
         view.leftViewMode = .always
+        let rightButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         let rightImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 10, height: 15))
+        rightImage.center = CGPoint(x: 15, y: 15)
         rightImage.image = UIImage(named: "next")
-        view.rightView = rightImage
+        rightButton.addSubview(rightImage)
+        view.rightView = rightButton
         view.rightViewMode = .always
         view.text = "12.25 週四"
         view.textAlignment = .center
+        view.delegate = self
         return view
     }()
+    
+    lazy var sugerViewController: SugerViewController = {
+        return SugerViewController.fromStoryboard()
+    }()
+    
+    private var observe: NSKeyValueObservation?
     
     // 側拉選單
     @objc private func sideMenu() {
@@ -91,6 +105,15 @@ class MainTabBarViewController: UITabBarController {
         self.navigationItem.titleView = self.titleView
         self.navigationItem.leftBarButtonItems = [self.menuButton]
         self.navigationItem.rightBarButtonItems = [self.shareButton, self.curveButton]
+        
+        self.setIcon()
+        
+        self.observe = UserInfo.share.observe(\.deviceChange) { (user, _) in
+            print("百變金剛 = \(self.selectedIndex)")
+        }
+    }
+    
+    private func setIcon() {
         self.tabBar.items?.forEach({ (item) in
             switch item.tag {
             case 0:
@@ -120,4 +143,21 @@ class MainTabBarViewController: UITabBarController {
         })
     }
 
+}
+extension MainTabBarViewController: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        let selectDate = textField.text?.date(withFormat: "yyyy-MM-dd") ?? Date()
+        ActionSheetDatePicker.init(title: "",
+                                   datePickerMode: .date,
+                                   selectedDate: selectDate,
+                                   doneBlock: { (picker, date, origin) in
+                                    //textField.text = (date as? Date)?.dateString("yyyy-MM-dd")
+        },
+                                   cancel: { (picker) in
+                                    
+        },
+                                   origin: textField).show()
+        return false
+    }
 }

@@ -34,7 +34,7 @@ class DeviceSettingViewController: UIViewController {
         if UserInfo.share.isConnect {
             // 解除綁定
             UserInfo.share.deviceToken = "未綁定".localized()
-            sender.setTitle("綁定設備".localized(), for: .normal)
+            self.setDeviceStatus()
         } else {
             let vc = BTListViewController.fromStoryboard()
             self.push(vc: vc)
@@ -56,6 +56,12 @@ class DeviceSettingViewController: UIViewController {
     // 清除資料
     @objc private func clearLocalData() {
         print("清除資料")
+    }
+    
+    private func setDeviceStatus() {
+        self.deviceImage.image = UIImage(named: UserInfo.share.isConnect ? "device_connect" : "device_disconnect")
+        self.deviceName.text = UserInfo.share.deviceToken
+        self.connectButton.setTitle(UserInfo.share.isConnect ? "解除綁定".localized() : "綁定設備".localized(), for: .normal)
     }
     
     override func viewDidLoad() {
@@ -86,7 +92,6 @@ class DeviceSettingViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setBackButton(title: UserInfo.share.deviceType.rawValue)
-        self.deviceImage.image = UIImage(named: UserInfo.share.isConnect ? "device_connect" : "device_disconnect")
-        self.connectButton.setTitle(UserInfo.share.isConnect ? "綁定設備".localized() : "解除綁定".localized(), for: .normal)
+        self.setDeviceStatus()
     }
 }

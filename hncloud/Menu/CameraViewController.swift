@@ -13,7 +13,9 @@ class CameraViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.setBackButton(title: "")
+        let back = UIBarButtonItem()
+        back.title = "取消".localized()
+        self.navigationController?.navigationBar.topItem?.backBarButtonItem = back
     }
     
     override func viewWillAppear(_ animated: Bool) {

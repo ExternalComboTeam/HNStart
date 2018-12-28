@@ -167,9 +167,12 @@ class UserInfo: NSObject {
             return self.keychain.get("unit") ?? ""
         }
     }
+    @objc dynamic var deviceChange: Bool = false
     var deviceType: DeviceType {
         set {
+            guard DeviceType.getType(by: self.keychain.get("choseType") ?? "") != newValue else { return }
             self.keychain.set(newValue.setType, forKey: "choseType")
+            self.deviceChange = !self.deviceChange
         }
         get {
             return DeviceType.getType(by: self.keychain.get("choseType") ?? "")

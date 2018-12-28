@@ -26,6 +26,12 @@
 		9D6E271D21D1072C00F22ABD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D6E271B21D1072C00F22ABD /* LaunchScreen.storyboard */; };
 		9D6E272821D1072C00F22ABD /* hncloudTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6E272721D1072C00F22ABD /* hncloudTests.swift */; };
 		9D6E273321D1072D00F22ABD /* hncloudUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6E273221D1072D00F22ABD /* hncloudUITests.swift */; };
+		9D86988021D64AEC00892773 /* WalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D86987F21D64AEC00892773 /* WalkViewController.swift */; };
+		9D86988221D64AFD00892773 /* SportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D86988121D64AFD00892773 /* SportViewController.swift */; };
+		9D86988421D64B0700892773 /* SleepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D86988321D64B0700892773 /* SleepViewController.swift */; };
+		9D86988621D64B4E00892773 /* HeartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D86988521D64B4E00892773 /* HeartViewController.swift */; };
+		9D86988821D64B8700892773 /* SugerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D86988721D64B8700892773 /* SugerViewController.swift */; };
+		9D86988B21D65FD200892773 /* SugerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D86988A21D65FD200892773 /* SugerData.swift */; };
 		9D8E868721D4F53B00C0034D /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8E868621D4F53B00C0034D /* API.swift */; };
 		9DA359B121D3A7020090A7DD /* RSideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA359B021D3A7020090A7DD /* RSideViewController.swift */; };
 		9DA359B321D3C2920090A7DD /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA359B221D3C2920090A7DD /* UIViewExtension.swift */; };
@@ -100,6 +106,12 @@
 		9D6E272E21D1072D00F22ABD /* hncloudUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hncloudUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D6E273221D1072D00F22ABD /* hncloudUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hncloudUITests.swift; sourceTree = "<group>"; };
 		9D6E273421D1072D00F22ABD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9D86987F21D64AEC00892773 /* WalkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkViewController.swift; sourceTree = "<group>"; };
+		9D86988121D64AFD00892773 /* SportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportViewController.swift; sourceTree = "<group>"; };
+		9D86988321D64B0700892773 /* SleepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepViewController.swift; sourceTree = "<group>"; };
+		9D86988521D64B4E00892773 /* HeartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartViewController.swift; sourceTree = "<group>"; };
+		9D86988721D64B8700892773 /* SugerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SugerViewController.swift; sourceTree = "<group>"; };
+		9D86988A21D65FD200892773 /* SugerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SugerData.swift; sourceTree = "<group>"; };
 		9D8E868621D4F53B00C0034D /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		9DA359B021D3A7020090A7DD /* RSideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSideViewController.swift; sourceTree = "<group>"; };
 		9DA359B221D3C2920090A7DD /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
@@ -270,6 +282,14 @@
 			path = hncloudUITests;
 			sourceTree = "<group>";
 		};
+		9D86988921D65FBA00892773 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				9D86988A21D65FD200892773 /* SugerData.swift */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
 		9D8E868821D4F56000C0034D /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -327,8 +347,14 @@
 		9DD4CBA921D294F300C15430 /* Start */ = {
 			isa = PBXGroup;
 			children = (
+				9D86988921D65FBA00892773 /* DataModel */,
 				9D1F88F521D10EBD0033721E /* StartViewController.swift */,
 				9DD4CBA721D294D300C15430 /* MainTabBarViewController.swift */,
+				9D86987F21D64AEC00892773 /* WalkViewController.swift */,
+				9D86988121D64AFD00892773 /* SportViewController.swift */,
+				9D86988321D64B0700892773 /* SleepViewController.swift */,
+				9D86988521D64B4E00892773 /* HeartViewController.swift */,
+				9D86988721D64B8700892773 /* SugerViewController.swift */,
 			);
 			path = Start;
 			sourceTree = "<group>";
@@ -494,8 +520,10 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-hncloud/Pods-hncloud-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ActionSheetPicker-3.0/ActionSheetPicker_3_0.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-SwiftyJSON/Alamofire_SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/KRActivityIndicatorView/KRActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/KRProgressHUD/KRProgressHUD.framework",
@@ -504,11 +532,14 @@
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SwifterSwift/SwifterSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/ZZCircleProgress/ZZCircleProgress.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActionSheetPicker_3_0.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire_SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KRActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KRProgressHUD.framework",
@@ -517,6 +548,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwifterSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZZCircleProgress.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -575,15 +607,21 @@
 				9DED548721D500E30060B4B8 /* HealthAPI.swift in Sources */,
 				9DED548521D4FD050060B4B8 /* MedicineAPI.swift in Sources */,
 				9DED548321D4F9640060B4B8 /* UserInfoAPI.swift in Sources */,
+				9D86988821D64B8700892773 /* SugerViewController.swift in Sources */,
+				9D86988B21D65FD200892773 /* SugerData.swift in Sources */,
 				9DA359B121D3A7020090A7DD /* RSideViewController.swift in Sources */,
 				9D1F890B21D157B70033721E /* RegisterViewController.swift in Sources */,
+				9D86988221D64AFD00892773 /* SportViewController.swift in Sources */,
+				9D86988421D64B0700892773 /* SleepViewController.swift in Sources */,
 				9DD4CBA221D27A9100C15430 /* UIWindowExtension.swift in Sources */,
 				9D1F88F821D116880033721E /* DeviceListViewController.swift in Sources */,
 				9DD4CB9F21D2797700C15430 /* UITableViewExtension.swift in Sources */,
 				9DED548B21D544600060B4B8 /* CameraViewController.swift in Sources */,
 				9DD4CB9821D2776200C15430 /* DeviceCell.swift in Sources */,
 				9D1F88FB21D116F60033721E /* UIViewControllerExtension.swift in Sources */,
+				9D86988021D64AEC00892773 /* WalkViewController.swift in Sources */,
 				9DA359B721D3CB600090A7DD /* DeviceSettingViewController.swift in Sources */,
+				9D86988621D64B4E00892773 /* HeartViewController.swift in Sources */,
 				9D6E271321D1072B00F22ABD /* AppDelegate.swift in Sources */,
 				9DD4CBA621D2938A00C15430 /* MenuViewController.swift in Sources */,
 				9DA359B321D3C2920090A7DD /* UIViewExtension.swift in Sources */,

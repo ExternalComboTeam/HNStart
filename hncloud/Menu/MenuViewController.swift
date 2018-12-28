@@ -28,20 +28,76 @@ class MenuViewController: UIViewController {
         side.navigationController?.pushViewController(vc, animated: false)
     }
     
-    private lazy var menuArray: [(UIImage?, String)] = {
-        var array: [(UIImage?, String)] = []
-        array.append((UIImage(named: "device_amd"), "設備管理".localized()))
-        array.append((UIImage(named: "capsule"), "用藥管理".localized()))
-        array.append((UIImage(named: "camera"), "遠程拍照".localized()))
-        array.append((UIImage(named: "settings"), "設置".localized()))
-        array.append((UIImage(named: "about"), "關於".localized()))
-        return array
-    }()
+    enum MenuType {
+        case device
+        case capsule
+        case camera
+        case setting
+        case about
+        
+        var title: String {
+            switch self {
+            case .device:
+                return "設備管理".localized()
+            case .capsule:
+                return "用藥管理".localized()
+            case .camera:
+                return "遠程拍照".localized()
+            case .setting:
+                return "設置".localized()
+            case .about:
+                return "關於".localized()
+            }
+        }
+        var image: UIImage? {
+            switch self {
+            case .device:
+                return UIImage(named: "device_amd")
+            case .capsule:
+                return UIImage(named: "capsule")
+            case .camera:
+                return UIImage(named: "camera")
+            case .setting:
+                return UIImage(named: "settings")
+            case .about:
+                return UIImage(named: "about")
+            }
+        }
+    }
+    
+    private var menuArray: [MenuType] = []
+    private var observe: NSKeyValueObservation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.menuTableView.dataSource = self
         self.menuTableView.delegate = self
+        self.setMenuArray(with: UserInfo.share.deviceType)
+        self.observe = UserInfo.share.observe(\.deviceChange) { (user, _) in
+            self.setMenuArray(with: user.deviceType)
+        }
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.userNickName.text = UserInfo.share.nickName
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.observe?.invalidate()
+    }
+    /// 設定目錄選項
+    private func setMenuArray(with device: DeviceType) {
+        switch device {
+        case .Watch:
+            self.menuArray = [.device, .capsule, .camera, .setting, .about]
+            break
+        case .Wristband:
+            self.menuArray = [.device, .camera, .setting, .about]
+            break
+        default:
+            break
+        }
+        self.menuTableView.reloadData()
     }
 
     private func pushed(_ vc: UIViewController) {
@@ -56,30 +112,25 @@ extension MenuViewController: UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath)
-        cell.imageView?.image = self.menuArray[indexPath.row].0?.scaled(toHeight: 30)
+        cell.imageView?.image = self.menuArray[indexPath.row].image?.scaled(toHeight: 30)
         cell.textLabel?.font = UIFont.systemFont(ofSize: 15)
-        cell.textLabel?.text = self.menuArray[indexPath.row].1
+        cell.textLabel?.text = self.menuArray[indexPath.row].title
         return cell
     }
 }
 extension MenuViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.row {
-        case 0:
+        switch self.menuArray[indexPath.row] {
+        case .device:
             self.pushed(DeviceSettingViewController.fromStoryboard())
+        case .capsule:
             break
-        case 1:
-            break
-        case 2:
+        case .camera:
             self.pushed(CameraViewController.fromStoryboard())
+        case .setting:
             break
-        case 3:
-            break
-        case 4:
+        case .about:
             self.pushed(AboutViewController.fromStoryboard())
-            break
-        default:
-            break
         }
     }
 }

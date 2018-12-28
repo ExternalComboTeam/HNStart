@@ -14,6 +14,9 @@ target 'hncloud' do
   pod 'Localize-Swift'
   pod 'IQKeyboardManagerSwift'
   pod 'KRProgressHUD'
+  pod 'ZZCircleProgress'
+  pod 'Charts'
+  pod 'ActionSheetPicker-3.0'
 
   target 'hncloudTests' do
     inherit! :search_paths

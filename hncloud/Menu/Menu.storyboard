@@ -31,7 +31,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PsR-vK-j6G">
-                                        <rect key="frame" x="100.5" y="13" width="52" height="21.5"/>
+                                        <rect key="frame" x="100.5" y="19.5" width="52" height="21.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -78,7 +78,7 @@
                                     <constraint firstItem="6dl-zA-Ic1" firstAttribute="leading" secondItem="QXi-75-MDC" secondAttribute="leading" constant="20" id="FJp-p3-1c6"/>
                                     <constraint firstItem="PsR-vK-j6G" firstAttribute="leading" secondItem="6dl-zA-Ic1" secondAttribute="trailing" constant="20" id="Pus-2J-ZSA"/>
                                     <constraint firstAttribute="bottom" secondItem="NMD-hg-Lrx" secondAttribute="bottom" constant="10" id="XCw-eJ-zdS"/>
-                                    <constraint firstItem="PsR-vK-j6G" firstAttribute="top" secondItem="6dl-zA-Ic1" secondAttribute="top" id="XWB-d5-lcB"/>
+                                    <constraint firstItem="PsR-vK-j6G" firstAttribute="top" secondItem="6dl-zA-Ic1" secondAttribute="top" multiplier="1.5" id="XWB-d5-lcB"/>
                                     <constraint firstItem="LTy-5Y-C41" firstAttribute="height" secondItem="QXi-75-MDC" secondAttribute="height" multiplier="0.18" id="Xta-RU-p8C"/>
                                     <constraint firstItem="6dl-zA-Ic1" firstAttribute="height" secondItem="QXi-75-MDC" secondAttribute="height" multiplier="0.7" id="d4A-Bu-pTL"/>
                                     <constraint firstItem="NMD-hg-Lrx" firstAttribute="leading" secondItem="6dl-zA-Ic1" secondAttribute="trailing" constant="15" id="fiy-rR-1Mb"/>
