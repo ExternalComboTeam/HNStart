@@ -69,12 +69,12 @@ enum SexType {
         case .male:
             return "Male"
         default:
-            return ""
+            return "Female"
         }
     }
     static func get(api: String) -> SexType {
         switch api {
-        case "":
+        case "Female":
             return .women
         default:
             return .male
@@ -167,6 +167,25 @@ class UserInfo: NSObject {
             return self.keychain.get("unit") ?? ""
         }
     }
+    
+    var sys: Int {
+        set {
+            self.keychain.set("\(newValue)", forKey: "sys")
+        }
+        get {
+            return Int(self.keychain.get("sys") ?? "") ?? 0
+        }
+    }
+    
+    var dia: Int {
+        set {
+            self.keychain.set("\(newValue)", forKey: "dia")
+        }
+        get {
+            return Int(self.keychain.get("dia") ?? "") ?? 0
+        }
+    }
+    
     @objc dynamic var deviceChange: Bool = false
     var deviceType: DeviceType {
         set {
@@ -191,15 +210,29 @@ class UserInfo: NSObject {
     }
     
     func update(json: JSON) {
-        self.sid = json["sid"].string ?? ""
-        self.gender = SexType.get(api: json["gender"].string ?? "")
-        self.account = json["account"].string ?? ""
-        self.nickName = json["nickname"].string ?? ""
-        self.height = json["height"].string ?? ""
-        self.weight = json["weight"].string ?? ""
-        self.email = json["email"].string ?? ""
+        self.sid = json["data"]["sid"].string ?? ""
+        self.gender = SexType.get(api: json["data"]["gender"].string ?? "")
+        self.nickName = json["data"]["nickname"].string ?? ""
+        self.height = json["data"]["height"].string ?? ""
+        self.weight = json["data"]["weight"].string ?? ""
         self.birthday = json["birthday"].string ?? ""
         self.unit = json["unit"].string ?? ""
+        self.sys = json["sys"].int ?? 0
+        self.dia = json["dia"].int ?? 0
+    }
+    
+    func login(json: JSON) {
+        self.sid = json["data"]["sid"].string ?? ""
+        self.gender = SexType.get(api: json["data"]["gender"].string ?? "")
+        self.account = json["data"]["account"].string ?? ""
+        self.nickName = json["data"]["nickname"].string ?? ""
+        self.height = json["data"]["height"].string ?? ""
+        self.weight = json["data"]["weight"].string ?? ""
+        self.email = json["data"]["email"].string ?? ""
+        self.birthday = json["data"]["birthday"].string ?? ""
+        self.unit = json["data"]["unit"].string ?? ""
+        self.sys = json["data"]["sys"].int ?? 0
+        self.dia = json["data"]["dia"].int ?? 0
     }
     
     func clear() {

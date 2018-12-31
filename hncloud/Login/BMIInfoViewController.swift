@@ -18,7 +18,6 @@ class BMIInfoViewController: UIViewController {
         if UserInfo.share.isLogin {
             self.pop(toRoot: true)
         } else {
-            UserInfo.share.account = "myAccount"
             let vc = DeviceListViewController.fromStoryboard()
             self.push(vc: vc)
         }
@@ -26,7 +25,7 @@ class BMIInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationItem.hidesBackButton = true
         self.navigationItem.rightBarButtonItems = [self.finishedButton]
         self.setBackButton(title: "個人資訊")
     }

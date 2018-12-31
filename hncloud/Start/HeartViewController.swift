@@ -18,6 +18,10 @@ class HeartViewController: UIViewController {
     @IBOutlet weak var diaLabel: UILabel!
     @IBOutlet weak var ratLabel: UILabel!
     
+    @IBAction func curveAction(_ sender: Any) {
+        let vc = HeartCurveViewController.fromStoryboard()
+        self.push(vc: vc)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

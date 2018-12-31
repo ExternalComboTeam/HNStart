@@ -153,6 +153,126 @@
             </objects>
             <point key="canvasLocation" x="1120.8" y="907.1964017991005"/>
         </scene>
+        <!--Setting View Controller-->
+        <scene sceneID="25U-g6-0an">
+            <objects>
+                <viewController storyboardIdentifier="SettingViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="YvQ-uQ-je0" customClass="SettingViewController" customModule="hncloud" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VX3-Uw-uZr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="rIW-Dt-BQV">
+                                <rect key="frame" x="0.0" y="20" width="64" height="647"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v9N-e5-J61">
+                                        <rect key="frame" x="0.0" y="0.0" width="64" height="81"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="clock"/>
+                                        <state key="selected" image="clock_check"/>
+                                        <connections>
+                                            <action selector="clockAction:" destination="YvQ-uQ-je0" eventType="touchUpInside" id="VsR-9l-c0u"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QRL-E1-H84">
+                                        <rect key="frame" x="0.0" y="81" width="64" height="81"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="phone"/>
+                                        <state key="selected" image="phone_check"/>
+                                        <connections>
+                                            <action selector="phoneAction:" destination="YvQ-uQ-je0" eventType="touchUpInside" id="0E8-Hy-eSG"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hBC-x3-0oe">
+                                        <rect key="frame" x="0.0" y="162" width="64" height="80.5"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="info"/>
+                                        <state key="selected" image="info_check"/>
+                                        <connections>
+                                            <action selector="messageAction:" destination="YvQ-uQ-je0" eventType="touchUpInside" id="SRc-Aw-uPU"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QWb-Gj-jUh">
+                                        <rect key="frame" x="0.0" y="242.5" width="64" height="81"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="sitting"/>
+                                        <state key="selected" image="sit_icon_check"/>
+                                        <connections>
+                                            <action selector="sitAction:" destination="YvQ-uQ-je0" eventType="touchUpInside" id="L7C-gn-m3R"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hua-0G-3dS">
+                                        <rect key="frame" x="0.0" y="323.5" width="64" height="81"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="heartwarning"/>
+                                        <state key="selected" image="heart_icon_check"/>
+                                        <connections>
+                                            <action selector="heartAction:" destination="YvQ-uQ-je0" eventType="touchUpInside" id="AoC-jM-Vdt"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kTe-D6-sV6">
+                                        <rect key="frame" x="0.0" y="404.5" width="64" height="81"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="lost"/>
+                                        <state key="selected" image="lost_check"/>
+                                        <connections>
+                                            <action selector="forgetAction:" destination="YvQ-uQ-je0" eventType="touchUpInside" id="UMu-1W-mBP"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0aL-PN-Zdm">
+                                        <rect key="frame" x="0.0" y="485.5" width="64" height="80.5"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="hand_up"/>
+                                        <state key="selected" image="hand_up_check"/>
+                                        <connections>
+                                            <action selector="deviceAction:" destination="YvQ-uQ-je0" eventType="touchUpInside" id="xme-RY-CeT"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fk7-Q3-Bc9">
+                                        <rect key="frame" x="0.0" y="566" width="64" height="81"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="check_device_menu_checked"/>
+                                        <state key="selected" image="device_menu_not_checked"/>
+                                        <connections>
+                                            <action selector="settingAction:" destination="YvQ-uQ-je0" eventType="touchUpInside" id="1BD-ie-yl2"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pCT-GA-kl7">
+                                <rect key="frame" x="64" y="20" width="311" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="rIW-Dt-BQV" firstAttribute="top" secondItem="sh6-t2-0wZ" secondAttribute="top" id="0lO-do-tJB"/>
+                            <constraint firstItem="rIW-Dt-BQV" firstAttribute="width" secondItem="VX3-Uw-uZr" secondAttribute="width" multiplier="0.17" id="0v5-Zp-Kvw"/>
+                            <constraint firstItem="pCT-GA-kl7" firstAttribute="top" secondItem="sh6-t2-0wZ" secondAttribute="top" id="6AJ-j5-BcO"/>
+                            <constraint firstItem="pCT-GA-kl7" firstAttribute="leading" secondItem="rIW-Dt-BQV" secondAttribute="trailing" id="QN5-Bq-vum"/>
+                            <constraint firstItem="rIW-Dt-BQV" firstAttribute="bottom" secondItem="sh6-t2-0wZ" secondAttribute="bottom" id="e4R-Pa-vp7"/>
+                            <constraint firstItem="pCT-GA-kl7" firstAttribute="trailing" secondItem="sh6-t2-0wZ" secondAttribute="trailing" id="kmj-hP-7xJ"/>
+                            <constraint firstItem="rIW-Dt-BQV" firstAttribute="leading" secondItem="sh6-t2-0wZ" secondAttribute="leading" id="pB2-pq-Fsf"/>
+                            <constraint firstItem="pCT-GA-kl7" firstAttribute="bottom" secondItem="sh6-t2-0wZ" secondAttribute="bottom" id="zb1-09-ZA0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="sh6-t2-0wZ"/>
+                    </view>
+                    <connections>
+                        <outlet property="clockButton" destination="v9N-e5-J61" id="q7f-Pr-x8q"/>
+                        <outlet property="deviceButton" destination="0aL-PN-Zdm" id="dBA-OD-s3s"/>
+                        <outlet property="deviceSettingButton" destination="fk7-Q3-Bc9" id="TMf-6B-RQ2"/>
+                        <outlet property="forgetButton" destination="kTe-D6-sV6" id="0aR-X4-8EJ"/>
+                        <outlet property="heartButton" destination="Hua-0G-3dS" id="x2F-oW-LJt"/>
+                        <outlet property="messageButton" destination="hBC-x3-0oe" id="1hL-7X-uIB"/>
+                        <outlet property="myTableView" destination="pCT-GA-kl7" id="pQX-2e-mhq"/>
+                        <outlet property="phoneButton" destination="QRL-E1-H84" id="y6t-3d-7QV"/>
+                        <outlet property="settingStackView" destination="rIW-Dt-BQV" id="pCS-US-NV4"/>
+                        <outlet property="sitButton" destination="QWb-Gj-jUh" id="WFs-4g-Mc8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JCL-qt-Bxn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1813.5999999999999" y="907.1964017991005"/>
+        </scene>
         <!--About View Controller-->
         <scene sceneID="uWU-La-BzF">
             <objects>
@@ -238,8 +358,24 @@
     <resources>
         <image name="blood_background" width="1089" height="813"/>
         <image name="bluetooth" width="48" height="64"/>
+        <image name="check_device_menu_checked" width="66" height="69"/>
+        <image name="clock" width="100" height="100"/>
+        <image name="clock_check" width="100" height="100"/>
+        <image name="device_menu_not_checked" width="66" height="69"/>
         <image name="ele100" width="74" height="46"/>
+        <image name="hand_up" width="100" height="100"/>
+        <image name="hand_up_check" width="100" height="100"/>
         <image name="head_portrait" width="285" height="285"/>
+        <image name="heart_icon_check" width="100" height="100"/>
+        <image name="heartwarning" width="100" height="100"/>
         <image name="hnlogo" width="473" height="393"/>
+        <image name="info" width="100" height="100"/>
+        <image name="info_check" width="100" height="100"/>
+        <image name="lost" width="100" height="100"/>
+        <image name="lost_check" width="100" height="100"/>
+        <image name="phone" width="100" height="100"/>
+        <image name="phone_check" width="100" height="100"/>
+        <image name="sit_icon_check" width="100" height="100"/>
+        <image name="sitting" width="100" height="100"/>
     </resources>
 </document>

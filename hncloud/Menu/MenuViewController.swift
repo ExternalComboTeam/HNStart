@@ -23,9 +23,12 @@ class MenuViewController: UIViewController {
     @IBAction func userInfoAction(_ sender: Any) {
         let vc = UserInfoViewController.fromStoryboard()
         vc.isEdit = false
+        self.pushed(vc)
+        /*
         guard let side = self.parent as? RSideViewController else { return }
         side.closeMenu()
-        side.navigationController?.pushViewController(vc, animated: false)
+        side.navigationController?.pushViewController(vc, animated: true)
+        */
     }
     
     enum MenuType {
@@ -128,7 +131,7 @@ extension MenuViewController: UITableViewDelegate {
         case .camera:
             self.pushed(CameraViewController.fromStoryboard())
         case .setting:
-            break
+            self.pushed(SettingViewController.fromStoryboard())
         case .about:
             self.pushed(AboutViewController.fromStoryboard())
         }

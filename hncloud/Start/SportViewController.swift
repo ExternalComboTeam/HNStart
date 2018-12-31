@@ -12,9 +12,28 @@ import ActionSheetPicker_3_0
 import SwifterSwift
 
 class SportViewController: UIViewController {
-    @IBOutlet weak var progressView: ZZCircleProgress!
+    @IBOutlet weak var progressContainer: UIView!
     
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var statusButton: UIButton!
+    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var sportTableView: UITableView!
+    
+    private lazy var progressView: ZZCircleProgress? = {
+        let width: CGFloat = UIScreen.main.bounds.width * 0.5
+        let frame = CGRect(x: 0, y: 0, width: width, height: width)
+        let view = ZZCircleProgress(frame: frame, pathBack: #colorLiteral(red: 0.06107305735, green: 0.07715373486, blue: 0.2354443967, alpha: 1), pathFill: #colorLiteral(red: 0, green: 0.9932600856, blue: 0.7853906751, alpha: 1), startAngle: 135, strokeWidth: 15)
+        view?.pointImage.image = UIImage(named: "pointer_active")
+        view?.pointImage.size = CGSize(width: 35, height: 35)
+        view?.showProgressText = false
+        view?.reduceAngle = 90
+        return view
+    }()
+    
+    @IBAction func statusAction(_ sender: UIButton) {
+        sender.isSelected.toggle()
+        self.statusLabel.text = sender.isSelected ? "Pause" : "Start"
+    }
     @IBAction func timeButton(_ sender: UIButton) {
         let selectDate = Date(timeIntervalSinceNow: self.second)
         ActionSheetDatePicker.init(title: "",
@@ -37,24 +56,34 @@ class SportViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.setProgress()
-    }
-
-    private func setProgress() {
-        
-        self.progressView.startAngle = 135
-        self.progressView.reduceAngle = 90
-        self.progressView.strokeWidth = 15
-        self.progressView.pointImage.image = UIImage(named: "pointer_active")
-        self.progressView.pointImage.size = CGSize(width: 35, height: 35)
-        self.progressView.pathBackColor = #colorLiteral(red: 0.05523516983, green: 0.1226971373, blue: 0.2389225662, alpha: 1)
-        self.progressView.pathFillColor = #colorLiteral(red: 0.03700235445, green: 1, blue: 1, alpha: 1)
-        self.progressView.showProgressText = false
-        self.progressView.progress = 0.75
+        self.sportTableView.dataSource = self
+        self.sportTableView.delegate = self
+//        movement_restart_icon
+//        pause_movement_icon
+        guard let progressView = self.progressView else { return }
+        self.progressContainer.addSubview(progressView)
+        progressView.prepareToShow = true
+        progressView.progress = 0.75
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+    }
+}
+extension SportViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SportCell", for: indexPath) as! SportCell
+        
+        return cell
+    }
+}
+extension SportViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = SportRecordViewController.fromStoryboard()
+        self.push(vc: vc)
     }
 }

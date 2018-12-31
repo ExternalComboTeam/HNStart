@@ -49,7 +49,7 @@ class API {
                     #endif
                     if let success = json["success"].int, let msg = json["message"].string {
                         if success == 1 {
-                            completionHandler?(json["data"])
+                            completionHandler?(json)
                         } else {
                             let userinfo:[String:Any] = [
                                 NSLocalizedDescriptionKey : "",

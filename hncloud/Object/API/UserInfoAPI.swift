@@ -24,7 +24,7 @@ class UserInfoAPI: API {
                                  "password": password], completionHandler)
     }
     /// 忘記密碼
-    class func forget(password account: String, email: String, _ completionHandler: ((JSON) -> Void)?) {
+    class func forget(account: String, email: String, _ completionHandler: ((JSON) -> Void)?) {
         let url = domain + "set_newpassword.php"
         baseRequest(url, .post, ["account": account,
                                  "email": email], completionHandler)
@@ -38,11 +38,10 @@ class UserInfoAPI: API {
                                  "sid": UserInfo.share.sid], completionHandler)
     }
     /// 更新個人資料
-    class func update(nickName: String, gender: String, birthday: String, height: Int, width: Int, unit: String, _ completionHandler: ((JSON) -> Void)?) {
-        UserInfo.share.gender = SexType.get(api: gender)
+    class func update(nickName: String, gender: SexType, birthday: String, height: Int, width: Int, unit: String, _ completionHandler: ((JSON) -> Void)?) {
         let url = domain + "set_account.php"
         baseRequest(url, .post, ["nickname": nickName,
-                                 "gender": UserInfo.share.gender.apiValue,
+                                 "gender": gender.apiValue,
                                  "birthday": birthday,
                                  "sid": UserInfo.share.sid,
                                  "height": height,

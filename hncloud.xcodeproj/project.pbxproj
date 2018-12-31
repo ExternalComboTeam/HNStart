@@ -20,6 +20,9 @@
 		9D1F890B21D157B70033721E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1F890A21D157B70033721E /* RegisterViewController.swift */; };
 		9D297A1321D4AAC600E34260 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D297A1221D4AAC600E34260 /* ArrayExtension.swift */; };
 		9D297A1521D4AF4E00E34260 /* DS-DIGIB.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 9D297A1421D4AF4E00E34260 /* DS-DIGIB.TTF */; };
+		9D2B806721D7B39600F63685 /* SportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2B806621D7B39600F63685 /* SportCell.swift */; };
+		9D616CAB21DA7C3D00BB1C26 /* ModifyPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D616CAA21DA7C3D00BB1C26 /* ModifyPasswordViewController.swift */; };
+		9D651FC121D9ADB500C47536 /* SportRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D651FC021D9ADB500C47536 /* SportRecordViewController.swift */; };
 		9D6E271321D1072B00F22ABD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6E271221D1072B00F22ABD /* AppDelegate.swift */; };
 		9D6E271821D1072B00F22ABD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D6E271621D1072B00F22ABD /* Main.storyboard */; };
 		9D6E271A21D1072C00F22ABD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D6E271921D1072C00F22ABD /* Assets.xcassets */; };
@@ -39,6 +42,10 @@
 		9DA359B721D3CB600090A7DD /* DeviceSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA359B621D3CB600090A7DD /* DeviceSettingViewController.swift */; };
 		9DA359B921D3CD830090A7DD /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA359B821D3CD830090A7DD /* UserInfo.swift */; };
 		9DA359BB21D3ECF10090A7DD /* BTListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA359BA21D3ECF10090A7DD /* BTListViewController.swift */; };
+		9DC3B7D621D72D3B001DD0E4 /* BloodPressureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC3B7D521D72D3B001DD0E4 /* BloodPressureViewController.swift */; };
+		9DC3B7D921D73C6F001DD0E4 /* Health.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DC3B7D821D73C6F001DD0E4 /* Health.storyboard */; };
+		9DC3B7DB21D73C95001DD0E4 /* HeartCurveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC3B7DA21D73C95001DD0E4 /* HeartCurveViewController.swift */; };
+		9DC3B7DD21D76618001DD0E4 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC3B7DC21D76618001DD0E4 /* SettingViewController.swift */; };
 		9DD4CB9121D1A89C00C15430 /* BMIInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD4CB9021D1A89C00C15430 /* BMIInfoViewController.swift */; };
 		9DD4CB9321D1A8CE00C15430 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD4CB9221D1A8CE00C15430 /* UserInfoViewController.swift */; };
 		9DD4CB9621D275D900C15430 /* DeviceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DD4CB9521D275D900C15430 /* DeviceCell.xib */; };
@@ -94,6 +101,9 @@
 		9D1F890A21D157B70033721E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		9D297A1221D4AAC600E34260 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		9D297A1421D4AF4E00E34260 /* DS-DIGIB.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DS-DIGIB.TTF"; sourceTree = "<group>"; };
+		9D2B806621D7B39600F63685 /* SportCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportCell.swift; sourceTree = "<group>"; };
+		9D616CAA21DA7C3D00BB1C26 /* ModifyPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyPasswordViewController.swift; sourceTree = "<group>"; };
+		9D651FC021D9ADB500C47536 /* SportRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportRecordViewController.swift; sourceTree = "<group>"; };
 		9D6E270F21D1072B00F22ABD /* hncloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hncloud.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D6E271221D1072B00F22ABD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9D6E271721D1072B00F22ABD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -119,6 +129,10 @@
 		9DA359B621D3CB600090A7DD /* DeviceSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSettingViewController.swift; sourceTree = "<group>"; };
 		9DA359B821D3CD830090A7DD /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		9DA359BA21D3ECF10090A7DD /* BTListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTListViewController.swift; sourceTree = "<group>"; };
+		9DC3B7D521D72D3B001DD0E4 /* BloodPressureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodPressureViewController.swift; sourceTree = "<group>"; };
+		9DC3B7D821D73C6F001DD0E4 /* Health.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Health.storyboard; sourceTree = "<group>"; };
+		9DC3B7DA21D73C95001DD0E4 /* HeartCurveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartCurveViewController.swift; sourceTree = "<group>"; };
+		9DC3B7DC21D76618001DD0E4 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		9DD4CB9021D1A89C00C15430 /* BMIInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMIInfoViewController.swift; sourceTree = "<group>"; };
 		9DD4CB9221D1A8CE00C15430 /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
 		9DD4CB9521D275D900C15430 /* DeviceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceCell.xib; sourceTree = "<group>"; };
@@ -210,8 +224,18 @@
 				9D1F890A21D157B70033721E /* RegisterViewController.swift */,
 				9DD4CB9021D1A89C00C15430 /* BMIInfoViewController.swift */,
 				9DD4CB9221D1A8CE00C15430 /* UserInfoViewController.swift */,
+				9DC3B7D521D72D3B001DD0E4 /* BloodPressureViewController.swift */,
+				9D616CAA21DA7C3D00BB1C26 /* ModifyPasswordViewController.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		9D2B806521D7B37300F63685 /* SubView */ = {
+			isa = PBXGroup;
+			children = (
+				9D2B806621D7B39600F63685 /* SportCell.swift */,
+			);
+			path = SubView;
 			sourceTree = "<group>";
 		};
 		9D5680117C82023491467B70 /* Frameworks */ = {
@@ -249,6 +273,7 @@
 		9D6E271121D1072B00F22ABD /* hncloud */ = {
 			isa = PBXGroup;
 			children = (
+				9DC3B7D721D73BA9001DD0E4 /* Health */,
 				9DD4CBA921D294F300C15430 /* Start */,
 				9DD4CBA021D27A3600C15430 /* Menu */,
 				9DD4CB8F21D1A76400C15430 /* BTSetting */,
@@ -301,6 +326,16 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		9DC3B7D721D73BA9001DD0E4 /* Health */ = {
+			isa = PBXGroup;
+			children = (
+				9DC3B7D821D73C6F001DD0E4 /* Health.storyboard */,
+				9DC3B7DA21D73C95001DD0E4 /* HeartCurveViewController.swift */,
+				9D651FC021D9ADB500C47536 /* SportRecordViewController.swift */,
+			);
+			path = Health;
+			sourceTree = "<group>";
+		};
 		9DD4CB8F21D1A76400C15430 /* BTSetting */ = {
 			isa = PBXGroup;
 			children = (
@@ -340,6 +375,7 @@
 				9DD4CBA521D2938A00C15430 /* MenuViewController.swift */,
 				9DA359B421D3C42E0090A7DD /* AboutViewController.swift */,
 				9DED548A21D544600060B4B8 /* CameraViewController.swift */,
+				9DC3B7DC21D76618001DD0E4 /* SettingViewController.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -347,6 +383,7 @@
 		9DD4CBA921D294F300C15430 /* Start */ = {
 			isa = PBXGroup;
 			children = (
+				9D2B806521D7B37300F63685 /* SubView */,
 				9D86988921D65FBA00892773 /* DataModel */,
 				9D1F88F521D10EBD0033721E /* StartViewController.swift */,
 				9DD4CBA721D294D300C15430 /* MainTabBarViewController.swift */,
@@ -473,6 +510,7 @@
 				9D297A1521D4AF4E00E34260 /* DS-DIGIB.TTF in Resources */,
 				9D6E271A21D1072C00F22ABD /* Assets.xcassets in Resources */,
 				9D6E271821D1072B00F22ABD /* Main.storyboard in Resources */,
+				9DC3B7D921D73C6F001DD0E4 /* Health.storyboard in Resources */,
 				9DD4CB9D21D278AC00C15430 /* BTDevice.storyboard in Resources */,
 				9DD4CB9621D275D900C15430 /* DeviceCell.xib in Resources */,
 			);
@@ -598,10 +636,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D651FC121D9ADB500C47536 /* SportRecordViewController.swift in Sources */,
 				9DD4CB9121D1A89C00C15430 /* BMIInfoViewController.swift in Sources */,
+				9D2B806721D7B39600F63685 /* SportCell.swift in Sources */,
 				9DD4CB9321D1A8CE00C15430 /* UserInfoViewController.swift in Sources */,
 				9DA359BB21D3ECF10090A7DD /* BTListViewController.swift in Sources */,
 				9D297A1321D4AAC600E34260 /* ArrayExtension.swift in Sources */,
+				9DC3B7D621D72D3B001DD0E4 /* BloodPressureViewController.swift in Sources */,
 				9DD4CBA821D294D300C15430 /* MainTabBarViewController.swift in Sources */,
 				9D1F890321D14AFE0033721E /* LoginViewController.swift in Sources */,
 				9DED548721D500E30060B4B8 /* HealthAPI.swift in Sources */,
@@ -619,8 +660,10 @@
 				9DED548B21D544600060B4B8 /* CameraViewController.swift in Sources */,
 				9DD4CB9821D2776200C15430 /* DeviceCell.swift in Sources */,
 				9D1F88FB21D116F60033721E /* UIViewControllerExtension.swift in Sources */,
+				9DC3B7DB21D73C95001DD0E4 /* HeartCurveViewController.swift in Sources */,
 				9D86988021D64AEC00892773 /* WalkViewController.swift in Sources */,
 				9DA359B721D3CB600090A7DD /* DeviceSettingViewController.swift in Sources */,
+				9D616CAB21DA7C3D00BB1C26 /* ModifyPasswordViewController.swift in Sources */,
 				9D86988621D64B4E00892773 /* HeartViewController.swift in Sources */,
 				9D6E271321D1072B00F22ABD /* AppDelegate.swift in Sources */,
 				9DD4CBA621D2938A00C15430 /* MenuViewController.swift in Sources */,
@@ -631,6 +674,7 @@
 				9D1F88FD21D11E1B0033721E /* UIImageExtension.swift in Sources */,
 				9D1F890021D13FAE0033721E /* AppDelegate+Basic.swift in Sources */,
 				9DA359B521D3C42E0090A7DD /* AboutViewController.swift in Sources */,
+				9DC3B7DD21D76618001DD0E4 /* SettingViewController.swift in Sources */,
 				9DA359B921D3CD830090A7DD /* UserInfo.swift in Sources */,
 				9D1F890921D1575E0033721E /* FoundPasswordViewController.swift in Sources */,
 			);

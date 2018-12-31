@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import SwifterSwift
+import KRProgressHUD
+import ActionSheetPicker_3_0
 
 class UserInfoViewController: UIViewController {
 
@@ -22,6 +25,8 @@ class UserInfoViewController: UIViewController {
     @IBOutlet weak var birthdayTextField: UITextField!
     @IBOutlet weak var heightTextField: UITextField!
     @IBOutlet weak var weightTextField: UITextField!
+    @IBOutlet weak var sysTextField: UITextField!
+    @IBOutlet weak var diaTextField: UITextField!
     
     lazy private var finishedButton: UIBarButtonItem = {
         return UIBarButtonItem(title: "完成".localized(), style: UIBarButtonItem.Style.plain, target: self, action: #selector(finishedEdit))
@@ -40,7 +45,6 @@ class UserInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.setBackButton(title: "個人資料".localized())
         self.navigationItem.hidesBackButton = !UserInfo.share.isLogin
         self.navigationItem.rightBarButtonItem = self.isEdit ? self.finishedButton : self.editButton
@@ -51,10 +55,17 @@ class UserInfoViewController: UIViewController {
         self.pictureButton.isEnabled = self.isEdit
         self.nickNameTextField.isEnabled = self.isEdit
         self.sexSegment.isEnabled = self.isEdit
+        self.sexSegment.selectedSegmentIndex = UserInfo.share.gender == .male ? 0 : 1
         self.unitSegment.isEnabled = self.isEdit
+        self.unitSegment.selectedSegmentIndex = UserInfo.share.unit == "0" ? 0 : 1
         self.birthdayTextField.isEnabled = self.isEdit
+        self.birthdayTextField.delegate = self
         self.heightTextField.isEnabled = self.isEdit
         self.weightTextField.isEnabled = self.isEdit
+        self.sysTextField.isEnabled = self.isEdit
+        self.diaTextField.isEnabled = self.isEdit
+        self.sysTextField.delegate = self
+        self.diaTextField.delegate = self
         
         let imageFrame: CGRect = CGRect(x: 0, y: 0, width: 45, height: 25)
         let nickImage = UIImageView(frame: imageFrame)
@@ -84,14 +95,14 @@ class UserInfoViewController: UIViewController {
         self.weightTextField.leftView = weightImage
         self.weightTextField.leftViewMode = .always
         self.weightTextField.text = UserInfo.share.weight
-        
+        /*
         guard !self.isEdit else { return }
         DispatchQueue.main.async {
             let vc = UserInfoViewController.fromStoryboard()
             self.push(vc: vc)
         }
+        */
     }
-
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.sexSegment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
@@ -101,8 +112,15 @@ class UserInfoViewController: UIViewController {
     }
     
     @objc private func finishedEdit() {
-        let vc = BMIInfoViewController.fromStoryboard()
-        self.push(vc: vc)
+        guard let name = self.nickNameTextField.text, let birthday = self.birthdayTextField.text,
+            let width = self.weightTextField.text, let height = self.heightTextField.text else { return }
+        KRProgressHUD.show()
+        UserInfoAPI.update(nickName: name, gender: sexSegment.selectedSegmentIndex == 0 ? .male : .women, birthday: birthday, height: Int(height) ?? 0, width: Int(width) ?? 0, unit: unitSegment.selectedSegmentIndex == 0 ? "0" : "1") { (json) in
+            KRProgressHUD.dismiss()
+            UserInfo.share.update(json: json)
+            let vc = BMIInfoViewController.fromStoryboard()
+            self.push(vc: vc)
+        }
     }
     @objc private func edit() {
         let sheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -112,11 +130,39 @@ class UserInfoViewController: UIViewController {
             self.push(vc: vc)
         })
         sheet.addAction(title: "修改密碼".localized(), style: .default, isEnabled: true) { (sheet) in
-            //
+            let vc = ModifyPasswordViewController.fromStoryboard()
+            self.push(vc: vc)
         }
         sheet.addAction(title: "取消".localized(), style: .cancel, isEnabled: true, handler: { (sheet) in
             print("cancel")
         })
         self.present(sheet, animated: true, completion: nil)
+    }
+}
+extension UserInfoViewController: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        switch textField {
+        case sysTextField, diaTextField:
+            textField.resignFirstResponder()
+            let vc = BloodPressureViewController.fromStoryboard()
+            self.present(vc, animated: false, completion: nil)
+            return false
+        case birthdayTextField:
+            textField.resignFirstResponder()
+            let selectDate = textField.text?.date(withFormat: "yyyy-MM-dd") ?? Date()
+            ActionSheetDatePicker.init(title: "",
+                                       datePickerMode: .date,
+                                       selectedDate: selectDate,
+                                       doneBlock: { (picker, date, origin) in
+                                        //textField.text = (date as? Date)?.dateString("yyyy-MM-dd")
+            },
+                                       cancel: { (picker) in
+                                        
+            },
+                                       origin: textField).show()
+            return false
+        default:
+            return true
+        }
     }
 }

@@ -27,7 +27,7 @@ class LoginViewController: UIViewController {
         KRProgressHUD.show()
         UserInfoAPI.login(account: account, password: password) { (json) in
             KRProgressHUD.dismiss()
-            UserInfo.share.update(json: json)
+            UserInfo.share.login(json: json)
             let vc = DeviceListViewController.fromStoryboard()
             self.push(vc: vc)
         }

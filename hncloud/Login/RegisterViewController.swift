@@ -30,6 +30,8 @@ class RegisterViewController: UIViewController {
         KRProgressHUD.show()
         UserInfoAPI.register(account: account, password: password, email: mail) { (json) in
             KRProgressHUD.dismiss()
+            UserInfo.share.account = account
+            UserInfo.share.email = mail
             let vc = UserInfoViewController.fromStoryboard()
             self.push(vc: vc)
         }

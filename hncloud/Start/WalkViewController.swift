@@ -12,7 +12,7 @@ import ZZCircleProgress
 
 class WalkViewController: UIViewController {
 
-    @IBOutlet weak var progressView: ZZCircleProgress!
+    @IBOutlet weak var progressContainer: UIView!
     @IBOutlet weak var progressContentView: UIView!
     @IBOutlet weak var setpsLabel: UILabel!
     @IBOutlet weak var finishedLabel: UILabel!
@@ -21,6 +21,16 @@ class WalkViewController: UIViewController {
     @IBOutlet weak var calLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
+    
+    private lazy var progressView: ZZCircleProgress? = {
+        let width: CGFloat = UIScreen.main.bounds.width * 0.55
+        let frame = CGRect(x: 0, y: 0, width: width, height: width)
+        let view = ZZCircleProgress(frame: frame, pathBack: #colorLiteral(red: 0.06107305735, green: 0.07715373486, blue: 0.2354443967, alpha: 1), pathFill: #colorLiteral(red: 0, green: 0.9932600856, blue: 0.7853906751, alpha: 1), startAngle: -90, strokeWidth: 15)
+        view?.pointImage.image = UIImage(named: "pointer_active")
+        view?.pointImage.size = CGSize(width: 35, height: 35)
+        view?.showProgressText = false
+        return view
+    }()
     
     @IBAction func targetAction(_ sender: UIButton) {
         // 目標記錄
@@ -36,19 +46,18 @@ class WalkViewController: UIViewController {
         self.setDistance(value: "0")
         self.setTime(hour: 0, min: 0)
         
-        self.progressView.startAngle = -90
-        self.progressView.strokeWidth = 15
-        self.progressView.pointImage.image = UIImage(named: "pointer_active")
-        self.progressView.pointImage.size = CGSize(width: 35, height: 35)
-        self.progressView.pathBackColor = #colorLiteral(red: 0.06107305735, green: 0.07715373486, blue: 0.2354443967, alpha: 1)
-        self.progressView.pathFillColor = #colorLiteral(red: 0, green: 0.9932600856, blue: 0.7853906751, alpha: 1)
-        self.progressView.showProgressText = false
-        self.progressView.progress = 0.75
+        guard let progressView = self.progressView else { return }
+        self.progressContainer.addSubview(progressView)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.progressContentView.layer.cornerRadius = self.progressContentView.bounds.height / 2
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.progressView?.progress = 0.75
     }
 
     /// 設定心律
