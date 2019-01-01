@@ -27,7 +27,7 @@ class BMIInfoViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
         self.navigationItem.rightBarButtonItems = [self.finishedButton]
-        self.setBackButton(title: "個人資訊")
+        self.setBackButton(title: "個人資訊".localized())
     }
 
 }

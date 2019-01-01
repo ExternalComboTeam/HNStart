@@ -41,12 +41,28 @@ class UserInfoViewController: UIViewController {
         return UIBarButtonItem(customView: view)
     }()
     
+    lazy private var heightUnit: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.text = UserInfo.share.unit == "0" ? "  cm  " : " inch "
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.sizeToFit()
+        return label
+    }()
+    
+    lazy private var weightUnit: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.text = UserInfo.share.unit == "0" ? "  kg  " : "  lb  "
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.sizeToFit()
+        return label
+    }()
+    
     var isEdit: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setBackButton(title: "個人資料".localized())
-        self.navigationItem.hidesBackButton = !UserInfo.share.isLogin
+        self.navigationItem.hidesBackButton = UserInfo.share.unit.isEmpty
         self.navigationItem.rightBarButtonItem = self.isEdit ? self.finishedButton : self.editButton
         self.accountLabel.text = UserInfo.share.account
         self.accountLabel.isHidden = self.isEdit
@@ -58,6 +74,7 @@ class UserInfoViewController: UIViewController {
         self.sexSegment.selectedSegmentIndex = UserInfo.share.gender == .male ? 0 : 1
         self.unitSegment.isEnabled = self.isEdit
         self.unitSegment.selectedSegmentIndex = UserInfo.share.unit == "0" ? 0 : 1
+        self.unitSegment.addTarget(self, action: #selector(unitAction(_:)), for: .valueChanged)
         self.birthdayTextField.isEnabled = self.isEdit
         self.birthdayTextField.delegate = self
         self.heightTextField.isEnabled = self.isEdit
@@ -65,7 +82,9 @@ class UserInfoViewController: UIViewController {
         self.sysTextField.isEnabled = self.isEdit
         self.diaTextField.isEnabled = self.isEdit
         self.sysTextField.delegate = self
+        self.sysTextField.text = "\(UserInfo.share.sys)"
         self.diaTextField.delegate = self
+        self.diaTextField.text = "\(UserInfo.share.dia)"
         
         let imageFrame: CGRect = CGRect(x: 0, y: 0, width: 45, height: 25)
         let nickImage = UIImageView(frame: imageFrame)
@@ -88,6 +107,8 @@ class UserInfoViewController: UIViewController {
         self.heightTextField.leftView = heightImage
         self.heightTextField.leftViewMode = .always
         self.heightTextField.text = UserInfo.share.height
+        self.heightTextField.rightView = self.heightUnit
+        self.heightTextField.rightViewMode = .always
         
         let weightImage = UIImageView(frame: imageFrame)
         weightImage.image = UIImage(named: "weight_icon")
@@ -95,6 +116,8 @@ class UserInfoViewController: UIViewController {
         self.weightTextField.leftView = weightImage
         self.weightTextField.leftViewMode = .always
         self.weightTextField.text = UserInfo.share.weight
+        self.weightTextField.rightView = self.weightUnit
+        self.weightTextField.rightViewMode = .always
         /*
         guard !self.isEdit else { return }
         DispatchQueue.main.async {
@@ -109,6 +132,11 @@ class UserInfoViewController: UIViewController {
         self.unitSegment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
         self.sexSegment.layer.borderColor = UIColor.black.cgColor
         self.unitSegment.layer.borderColor = UIColor.black.cgColor
+    }
+    
+    @objc private func unitAction(_ sender: UISegmentedControl) {
+        self.weightUnit.text = sender.selectedSegmentIndex == 0 ? "kg" : "lb"
+        self.heightUnit.text = sender.selectedSegmentIndex == 0 ? "cm" : "inch"
     }
     
     @objc private func finishedEdit() {
@@ -129,7 +157,8 @@ class UserInfoViewController: UIViewController {
             let vc = UserInfoViewController.fromStoryboard()
             self.push(vc: vc)
         })
-        sheet.addAction(title: "修改密碼".localized(), style: .default, isEnabled: true) { (sheet) in
+        sheet.addAction(title: "修改密碼".localized(), style: .default, isEnabled: true) { [weak self] (sheet) in
+            guard let `self` = self else { return }
             let vc = ModifyPasswordViewController.fromStoryboard()
             self.push(vc: vc)
         }
@@ -145,6 +174,7 @@ extension UserInfoViewController: UITextFieldDelegate {
         case sysTextField, diaTextField:
             textField.resignFirstResponder()
             let vc = BloodPressureViewController.fromStoryboard()
+            vc.delegate = self
             self.present(vc, animated: false, completion: nil)
             return false
         case birthdayTextField:
@@ -154,6 +184,7 @@ extension UserInfoViewController: UITextFieldDelegate {
                                        datePickerMode: .date,
                                        selectedDate: selectDate,
                                        doneBlock: { (picker, date, origin) in
+                                        textField.text = (date as? Date)?.string(withFormat: "yyyy-MM-dd")
                                         //textField.text = (date as? Date)?.dateString("yyyy-MM-dd")
             },
                                        cancel: { (picker) in
@@ -164,5 +195,13 @@ extension UserInfoViewController: UITextFieldDelegate {
         default:
             return true
         }
+    }
+}
+extension UserInfoViewController: PressureDelegate {
+    func savePressure(sys: Int, dia: Int) {
+        UserInfo.share.sys = sys
+        UserInfo.share.dia = dia
+        self.sysTextField.text = "\(sys)"
+        self.diaTextField.text = "\(dia)"
     }
 }

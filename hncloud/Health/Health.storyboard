@@ -37,7 +37,7 @@
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="risk_activity_background" translatesAutoresizingMaskIntoConstraints="NO" id="olL-26-Zfb">
                                                 <rect key="frame" x="0.0" y="30" width="375" height="185.5"/>
                                             </imageView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FMN-2X-26B">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FMN-2X-26B" customClass="LineChartView" customModule="Charts">
                                                 <rect key="frame" x="0.0" y="30" width="375" height="185.5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
@@ -81,7 +81,7 @@
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="risk_activity_background" translatesAutoresizingMaskIntoConstraints="NO" id="nsg-ta-SQm">
                                                 <rect key="frame" x="0.0" y="30" width="375" height="186"/>
                                             </imageView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UTG-t3-PK4">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UTG-t3-PK4" customClass="LineChartView" customModule="Charts">
                                                 <rect key="frame" x="0.0" y="30" width="375" height="186"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
@@ -125,7 +125,7 @@
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="risk_activity_background" translatesAutoresizingMaskIntoConstraints="NO" id="vrX-8M-Wex">
                                                 <rect key="frame" x="0.0" y="30" width="375" height="185.5"/>
                                             </imageView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yeY-8O-T8m">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yeY-8O-T8m" customClass="LineChartView" customModule="Charts">
                                                 <rect key="frame" x="0.0" y="30" width="375" height="185.5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
@@ -165,6 +165,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YRZ-Ql-v0B"/>
                     </view>
+                    <connections>
+                        <outlet property="bloodChartView" destination="UTG-t3-PK4" id="lhq-qX-dE3"/>
+                        <outlet property="heartBeatChartView" destination="yeY-8O-T8m" id="rLD-TG-8lV"/>
+                        <outlet property="heartChartView" destination="FMN-2X-26B" id="ZJw-Su-bbg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OY6-yN-LU9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -720,8 +725,80 @@
             </objects>
             <point key="canvasLocation" x="4480.8000000000002" y="876.61169415292363"/>
         </scene>
+        <!--Sport Selected View Controller-->
+        <scene sceneID="Y0B-WR-CNj">
+            <objects>
+                <viewController storyboardIdentifier="SportSelectedViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LAz-aP-enC" customClass="SportSelectedViewController" customModule="hncloud" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dVy-0B-bef">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bh7-RX-Wsp">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="SportItemCell" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="sportItemCell" rowHeight="76" id="qa9-gg-oOa" customClass="SportItemCell" customModule="hncloud" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="76"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qa9-gg-oOa" id="pym-Ca-CIr">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="75.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NIy-yf-S8s">
+                                                    <rect key="frame" x="15" y="11" width="45" height="45.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="45" id="kVX-Pf-WfZ"/>
+                                                        <constraint firstAttribute="width" secondItem="NIy-yf-S8s" secondAttribute="height" multiplier="1:1" id="uMl-3F-9RL"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rhf-dM-02K">
+                                                    <rect key="frame" x="75" y="39.5" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="edit_ok" translatesAutoresizingMaskIntoConstraints="NO" id="mI2-Vt-c1C">
+                                                    <rect key="frame" x="330" y="21" width="30" height="35"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="mI2-Vt-c1C" secondAttribute="height" id="53l-fW-AbQ"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="rhf-dM-02K" firstAttribute="leading" secondItem="NIy-yf-S8s" secondAttribute="trailing" constant="15" id="3hW-x8-65O"/>
+                                                <constraint firstItem="mI2-Vt-c1C" firstAttribute="centerY" secondItem="pym-Ca-CIr" secondAttribute="centerY" id="EDu-a6-P74"/>
+                                                <constraint firstItem="NIy-yf-S8s" firstAttribute="top" secondItem="pym-Ca-CIr" secondAttribute="topMargin" id="GDV-MO-eFl"/>
+                                                <constraint firstItem="rhf-dM-02K" firstAttribute="centerY" secondItem="pym-Ca-CIr" secondAttribute="centerY" id="IYV-4l-WlX"/>
+                                                <constraint firstItem="NIy-yf-S8s" firstAttribute="bottom" secondItem="pym-Ca-CIr" secondAttribute="bottomMargin" id="Z6A-bj-zBo"/>
+                                                <constraint firstItem="NIy-yf-S8s" firstAttribute="leading" secondItem="pym-Ca-CIr" secondAttribute="leadingMargin" id="ooM-uT-BDi"/>
+                                                <constraint firstItem="mI2-Vt-c1C" firstAttribute="top" secondItem="pym-Ca-CIr" secondAttribute="topMargin" constant="10" id="uqd-hP-PaB"/>
+                                                <constraint firstItem="mI2-Vt-c1C" firstAttribute="trailing" secondItem="pym-Ca-CIr" secondAttribute="trailingMargin" id="zal-KR-iEr"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="bh7-RX-Wsp" firstAttribute="trailing" secondItem="wBl-Nv-nG2" secondAttribute="trailing" id="4lF-3Q-pR3"/>
+                            <constraint firstItem="bh7-RX-Wsp" firstAttribute="leading" secondItem="wBl-Nv-nG2" secondAttribute="leading" id="RiM-BT-tmb"/>
+                            <constraint firstItem="bh7-RX-Wsp" firstAttribute="top" secondItem="wBl-Nv-nG2" secondAttribute="top" id="TO5-lb-ABw"/>
+                            <constraint firstItem="bh7-RX-Wsp" firstAttribute="bottom" secondItem="wBl-Nv-nG2" secondAttribute="bottom" id="gNT-d4-RWF"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="wBl-Nv-nG2"/>
+                    </view>
+                    <connections>
+                        <outlet property="sportTableView" destination="bh7-RX-Wsp" id="jL9-BC-1cm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gaF-NX-CXT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4480.8000000000002" y="1580.0599700149926"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="edit_ok" width="57" height="56"/>
         <image name="movement_aer" width="83" height="68"/>
         <image name="movement_ana" width="83" height="68"/>
         <image name="movement_burn" width="83" height="68"/>

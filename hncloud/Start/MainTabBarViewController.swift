@@ -38,13 +38,14 @@ class MainTabBarViewController: UITabBarController {
         return UIBarButtonItem(customView: view)
     }()
     
-    lazy private var titleView: UIView = {
-        let view = UITextField(frame: CGRect(x: 0, y: 0, width: 100, height: 44))
+    lazy private var titleView: UITextField = {
+        let view = UITextField(frame: CGRect(x: 0, y: 0, width: 150, height: 44))
         let leftButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         let leftImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 10, height: 15))
         leftImage.center = CGPoint(x: 15, y: 15)
         leftImage.image = UIImage(named: "provios")
         leftButton.addSubview(leftImage)
+        leftButton.addTarget(self, action: #selector(lessDate), for: .touchUpInside)
         view.leftView = leftButton
         view.leftViewMode = .always
         let rightButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
@@ -52,9 +53,10 @@ class MainTabBarViewController: UITabBarController {
         rightImage.center = CGPoint(x: 15, y: 15)
         rightImage.image = UIImage(named: "next")
         rightButton.addSubview(rightImage)
+        rightButton.addTarget(self, action: #selector(addDate), for: .touchUpInside)
         view.rightView = rightButton
         view.rightViewMode = .always
-        view.text = "12.25 週四"
+        view.text = UserInfo.share.selectedDate.localDate()
         view.textAlignment = .center
         view.delegate = self
         return view
@@ -72,7 +74,18 @@ class MainTabBarViewController: UITabBarController {
     }()
     
     private var observe: NSKeyValueObservation?
-    
+    //
+    @objc private func lessDate() {
+        let less = UserInfo.share.selectedDate.adding(.day, value: -1)
+        self.titleView.text = less.localDate()
+        UserInfo.share.selectedDate = less
+    }
+    @objc private func addDate() {
+        guard !UserInfo.share.selectedDate.isInToday else { return }
+        let add = UserInfo.share.selectedDate.adding(.day, value: 1)
+        self.titleView.text = add.localDate()
+        UserInfo.share.selectedDate = add
+    }
     // 側拉選單
     @objc private func sideMenu() {
         guard let menu = self.parent?.parent as? RSideViewController else { return }
@@ -120,6 +133,12 @@ class MainTabBarViewController: UITabBarController {
             self.checkViewControllers()
             self.setIcon()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.titleView.text = UserInfo.share.selectedDate.localDate()
     }
     
     private func checkViewControllers() {
@@ -172,17 +191,9 @@ class MainTabBarViewController: UITabBarController {
 extension MainTabBarViewController: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        let selectDate = textField.text?.date(withFormat: "yyyy-MM-dd") ?? Date()
-        ActionSheetDatePicker.init(title: "",
-                                   datePickerMode: .date,
-                                   selectedDate: selectDate,
-                                   doneBlock: { (picker, date, origin) in
-                                    //textField.text = (date as? Date)?.dateString("yyyy-MM-dd")
-        },
-                                   cancel: { (picker) in
-                                    
-        },
-                                   origin: textField).show()
+        textField.selectDate(date: UserInfo.share.selectedDate) { (date) in
+            UserInfo.share.selectedDate = date
+        }
         return false
     }
 }

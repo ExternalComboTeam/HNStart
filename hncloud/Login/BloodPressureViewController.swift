@@ -7,6 +7,11 @@
 //
 
 import UIKit
+import KRProgressHUD
+
+protocol PressureDelegate {
+    func savePressure(sys: Int, dia: Int)
+}
 
 class BloodPressureViewController: UIViewController {
 
@@ -20,6 +25,9 @@ class BloodPressureViewController: UIViewController {
     @IBOutlet weak var disTextField: UITextField!
     @IBOutlet weak var enterButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
+    
+    var delegate: PressureDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,7 +46,14 @@ class BloodPressureViewController: UIViewController {
         self.cancelButton.addTarget(self, action: #selector(cancelAction), for: .touchUpInside)
     }
     @objc private func enterAction() {
-        
+        guard let sys = self.sysTextField.text, let dia = self.disTextField.text else { return }
+        guard let sysValue = Int(sys), let diaValue = Int(dia) else { return }
+        KRProgressHUD.show()
+        HealthAPI.update(pressure: sysValue, dia: diaValue) { (json) in
+            KRProgressHUD.dismiss()
+            self.delegate?.savePressure(sys: sysValue, dia: diaValue)
+            self.dismiss(animated: false, completion: nil)
+        }
     }
     @objc private func cancelAction() {
         self.dismiss(animated: false, completion: nil)

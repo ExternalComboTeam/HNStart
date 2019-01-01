@@ -32,6 +32,7 @@ class RegisterViewController: UIViewController {
             KRProgressHUD.dismiss()
             UserInfo.share.account = account
             UserInfo.share.email = mail
+            UserInfo.share.sid = json["sid"].string ?? ""
             let vc = UserInfoViewController.fromStoryboard()
             self.push(vc: vc)
         }

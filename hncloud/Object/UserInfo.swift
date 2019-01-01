@@ -209,12 +209,16 @@ class UserInfo: NSObject {
         return (self.keychain.get("deviceToken") ?? "") != "未綁定".localized()
     }
     
+    var selectedDate: Date = Date()
+    
     func update(json: JSON) {
-        self.sid = json["data"]["sid"].string ?? ""
-        self.gender = SexType.get(api: json["data"]["gender"].string ?? "")
-        self.nickName = json["data"]["nickname"].string ?? ""
-        self.height = json["data"]["height"].string ?? ""
-        self.weight = json["data"]["weight"].string ?? ""
+        self.sid = json["sid"].string ?? ""
+        print("show sid = \(json["sid"])")
+        print("show sid = \(json)")
+        self.gender = SexType.get(api: json["gender"].string ?? "")
+        self.nickName = json["nickname"].string ?? ""
+        self.height = json["height"].string ?? ""
+        self.weight = json["weight"].string ?? ""
         self.birthday = json["birthday"].string ?? ""
         self.unit = json["unit"].string ?? ""
         self.sys = json["sys"].int ?? 0
@@ -231,8 +235,8 @@ class UserInfo: NSObject {
         self.email = json["data"]["email"].string ?? ""
         self.birthday = json["data"]["birthday"].string ?? ""
         self.unit = json["data"]["unit"].string ?? ""
-        self.sys = json["data"]["sys"].int ?? 0
-        self.dia = json["data"]["dia"].int ?? 0
+        self.sys = json["data"]["sys"].int ?? json["data"]["sys"].string?.int ?? 0
+        self.dia = json["data"]["dia"].int ?? json["data"]["dia"].string?.int ?? 0
     }
     
     func clear() {
