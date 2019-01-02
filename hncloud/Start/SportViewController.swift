@@ -14,10 +14,12 @@ import SwifterSwift
 class SportViewController: UIViewController {
     @IBOutlet weak var progressContainer: UIView!
     
+    @IBOutlet weak var statusStackView: UIStackView!
+    @IBOutlet weak var timingLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var statusButton: UIButton!
-    @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var sportTableView: UITableView!
+    
+    private var sportType: SportType = .walk
     
     private lazy var progressView: ZZCircleProgress? = {
         let width: CGFloat = UIScreen.main.bounds.width * 0.5
@@ -27,43 +29,91 @@ class SportViewController: UIViewController {
         view?.pointImage.size = CGSize(width: 35, height: 35)
         view?.showProgressText = false
         view?.reduceAngle = 90
+        view?.showPoint = false
+        view?.increaseFromLast = true
+        view?.duration = 0
         return view
     }()
     
     @IBAction func statusAction(_ sender: UIButton) {
-        sender.isSelected.toggle()
-        self.statusLabel.text = sender.isSelected ? "Pause" : "Start"
+        let vc = SportSelectedViewController.fromStoryboard()
+        vc.sportType = self.sportType
+        vc.delegate = self
+        self.push(vc: vc)
+    }
+    @IBAction func stopAction(_ sender: Any) {
+        let alert = UIAlertController(title: "是否保存運動".localized(), message: nil, preferredStyle: .alert)
+        alert.addAction(title: "確定".localized(), style: .default, isEnabled: true) { (sender) in
+            self.isStart = false
+            self.progressView?.progress = 0
+            // 保存運動
+            
+            let vc = SportRecordViewController.fromStoryboard()
+            self.push(vc: vc)
+        }
+        alert.addAction(title: "取消".localized(), style: .cancel, isEnabled: true) { (sender) in
+            self.isStart = false
+            self.progressView?.progress = 0
+        }
+        self.present(alert, animated: true, completion: nil)
     }
     @IBAction func timeButton(_ sender: UIButton) {
-        let selectDate = Date(timeIntervalSinceNow: self.second)
-        ActionSheetDatePicker.init(title: "",
-                                   datePickerMode: .countDownTimer,
-                                   selectedDate: selectDate,
-                                   doneBlock: { (picker, date, origin) in
-                                    guard let sec = date as? TimeInterval else { return }
-                                    self.second = sec
-                                    let min = Int(sec / 60)
-                                    self.timeLabel.text = "\(min/60)h\(min%60)min"
-        },
-                                   cancel: { (picker) in
-                                    
-        },
-                                   origin: sender).show()
+        let picker = ActionSheetDatePicker(title: "", datePickerMode: .countDownTimer, selectedDate: Date(), doneBlock: { (picker, date, origin) in
+            guard let sec = date as? TimeInterval else { return }
+            self.second = sec
+        }, cancel: { (picker) in
+            
+        }, origin: sender)
+        picker?.countDownDuration = self.second
+        picker?.show()
+    }
+    private var isStart: Bool = false {
+        didSet {
+            self.statusStackView.arrangedSubviews[0].isHidden = self.isStart
+            self.statusStackView.arrangedSubviews[1].isHidden = !self.isStart
+            self.progressView?.showPoint = self.isStart
+            self.progressView?.prepareToShow = true
+        }
+    }
+    private var second: TimeInterval = 1800 {
+        didSet {
+            let min = Int(second / 60)
+            self.timeLabel.text = (min / 60) == 0 ? "\(min%60)min" : "\(min/60)h\(min%60)min"
+        }
+    }
+    private var timing: TimeInterval = 0 {
+        didSet {
+            guard self.timing >= 0 && self.isStart else { return }
+            let value = Int(self.timing)
+            let sce = value % 60
+            let min = value / 60
+            let hour = min / 60
+            self.timingLabel.text = "\(hour < 10 ? "0\(hour)" : "\(hour)"):\(min < 10 ? "0\(min)" : "\(min)"):\(sce < 10 ? "0\(sce)" : "\(sce)")"
+            self.progressView?.progress = CGFloat(self.timing / self.second)
+        }
     }
     
-    private var second: TimeInterval = 1800
+    private func runTiming() {
+        guard self.isStart else { return }
+        self.timing = self.timing + 1
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.runTiming()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.isStart = false
+        self.second = 60
         self.sportTableView.dataSource = self
         self.sportTableView.delegate = self
 //        movement_restart_icon
 //        pause_movement_icon
         guard let progressView = self.progressView else { return }
         self.progressContainer.addSubview(progressView)
+        progressView.progress = 0
         progressView.prepareToShow = true
-        progressView.progress = 0.75
     }
     
     override func viewDidLayoutSubviews() {
@@ -85,5 +135,13 @@ extension SportViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = SportRecordViewController.fromStoryboard()
         self.push(vc: vc)
+    }
+}
+extension SportViewController: SportSelectedDelegate {
+    func didSelected(_ type: SportType) {
+        self.timing = -1
+        self.isStart = true
+        self.sportType = type
+        self.runTiming()
     }
 }

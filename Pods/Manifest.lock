@@ -16,6 +16,7 @@ PODS:
   - SDWebImage (4.4.2):
     - SDWebImage/Core (= 4.4.2)
   - SDWebImage/Core (4.4.2)
+  - StepSlider (1.3.0)
   - SwifterSwift (4.6.0):
     - SwifterSwift/AppKit (= 4.6.0)
     - SwifterSwift/CoreGraphics (= 4.6.0)
@@ -46,6 +47,7 @@ DEPENDENCIES:
   - KRProgressHUD
   - Localize-Swift
   - SDWebImage
+  - StepSlider
   - SwifterSwift
   - ZZCircleProgress
 
@@ -61,6 +63,7 @@ SPEC REPOS:
     - KRProgressHUD
     - Localize-Swift
     - SDWebImage
+    - StepSlider
     - SwifterSwift
     - SwiftyJSON
     - ZZCircleProgress
@@ -76,10 +79,11 @@ SPEC CHECKSUMS:
   KRProgressHUD: 79c8703f82179fe34b3602f10b30726f887983fa
   Localize-Swift: c798ec9286494866f7068f85f7c71283ac5bdab4
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
+  StepSlider: c54e471186f29c6535260c9866178a3900f787e9
   SwifterSwift: 812ffec6f301922f5430e75be3f2939ea3a80024
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   ZZCircleProgress: bda14bac390f6c96efcb72f7617bef66c7f2d2d0
 
-PODFILE CHECKSUM: c2ca9e7a820ee2dc47bf6c5a2a1a68cb1279b5b5
+PODFILE CHECKSUM: 4e5b578d39120f680f8c7896b538e4abe9252158
 
 COCOAPODS: 1.5.2

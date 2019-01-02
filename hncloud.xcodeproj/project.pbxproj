@@ -23,6 +23,8 @@
 		9D2B806721D7B39600F63685 /* SportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2B806621D7B39600F63685 /* SportCell.swift */; };
 		9D616CAB21DA7C3D00BB1C26 /* ModifyPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D616CAA21DA7C3D00BB1C26 /* ModifyPasswordViewController.swift */; };
 		9D651FC121D9ADB500C47536 /* SportRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D651FC021D9ADB500C47536 /* SportRecordViewController.swift */; };
+		9D694E6321DD142B004D66DC /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D694E6221DD142B004D66DC /* CustomSlider.swift */; };
+		9D694E6521DD2E21004D66DC /* TargetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D694E6421DD2E21004D66DC /* TargetViewController.swift */; };
 		9D6E271321D1072B00F22ABD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6E271221D1072B00F22ABD /* AppDelegate.swift */; };
 		9D6E271821D1072B00F22ABD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D6E271621D1072B00F22ABD /* Main.storyboard */; };
 		9D6E271A21D1072C00F22ABD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D6E271921D1072C00F22ABD /* Assets.xcassets */; };
@@ -110,6 +112,8 @@
 		9D2B806621D7B39600F63685 /* SportCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportCell.swift; sourceTree = "<group>"; };
 		9D616CAA21DA7C3D00BB1C26 /* ModifyPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyPasswordViewController.swift; sourceTree = "<group>"; };
 		9D651FC021D9ADB500C47536 /* SportRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportRecordViewController.swift; sourceTree = "<group>"; };
+		9D694E6221DD142B004D66DC /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
+		9D694E6421DD2E21004D66DC /* TargetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetViewController.swift; sourceTree = "<group>"; };
 		9D6E270F21D1072B00F22ABD /* hncloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hncloud.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D6E271221D1072B00F22ABD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9D6E271721D1072B00F22ABD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -357,6 +361,7 @@
 				9DC3B7DA21D73C95001DD0E4 /* HeartCurveViewController.swift */,
 				9D651FC021D9ADB500C47536 /* SportRecordViewController.swift */,
 				9DAF143821DBE235009EDB72 /* SportSelectedViewController.swift */,
+				9D694E6421DD2E21004D66DC /* TargetViewController.swift */,
 			);
 			path = Health;
 			sourceTree = "<group>";
@@ -390,6 +395,7 @@
 				9DA359B021D3A7020090A7DD /* RSideViewController.swift */,
 				9DA359B821D3CD830090A7DD /* UserInfo.swift */,
 				9DAF143621DBDEF7009EDB72 /* SoprtType.swift */,
+				9D694E6221DD142B004D66DC /* CustomSlider.swift */,
 			);
 			path = Object;
 			sourceTree = "<group>";
@@ -594,6 +600,7 @@
 				"${BUILT_PRODUCTS_DIR}/KeychainSwift/KeychainSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Localize-Swift/Localize_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/StepSlider/StepSlider.framework",
 				"${BUILT_PRODUCTS_DIR}/SwifterSwift/SwifterSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/ZZCircleProgress/ZZCircleProgress.framework",
@@ -610,6 +617,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Localize_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StepSlider.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwifterSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZZCircleProgress.framework",
@@ -705,7 +713,9 @@
 				9D1F88FD21D11E1B0033721E /* UIImageExtension.swift in Sources */,
 				9DAF143921DBE235009EDB72 /* SportSelectedViewController.swift in Sources */,
 				9D1F890021D13FAE0033721E /* AppDelegate+Basic.swift in Sources */,
+				9D694E6321DD142B004D66DC /* CustomSlider.swift in Sources */,
 				9DA359B521D3C42E0090A7DD /* AboutViewController.swift in Sources */,
+				9D694E6521DD2E21004D66DC /* TargetViewController.swift in Sources */,
 				9DC3B7DD21D76618001DD0E4 /* SettingViewController.swift in Sources */,
 				9DA359B921D3CD830090A7DD /* UserInfo.swift in Sources */,
 				9D1F890921D1575E0033721E /* FoundPasswordViewController.swift in Sources */,

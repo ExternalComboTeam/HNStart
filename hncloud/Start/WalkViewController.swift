@@ -34,6 +34,8 @@ class WalkViewController: UIViewController {
     
     @IBAction func targetAction(_ sender: UIButton) {
         // 目標記錄
+        let vc = TargetViewController.fromStoryboard()
+        self.push(vc: vc)
     }
     @IBAction func walkRecord(_ sender: Any) {
     }
