@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KRProgressHUD
 
 class DeviceSettingViewController: UIViewController {
 
@@ -43,6 +44,7 @@ class DeviceSettingViewController: UIViewController {
     // 選擇設備
     @objc private func chose() {
         let vc = DeviceListViewController.fromStoryboard()
+        vc.delegate = self
         self.push(vc: vc)
     }
     // 尋找設備
@@ -68,7 +70,7 @@ class DeviceSettingViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItems = [self.choseDevice]
         self.deviceView.gradientColors = [#colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), #colorLiteral(red: 0, green: 0, blue: 1, alpha: 1)]
-        self.findTitleLabel.text = "找手環".localized() + "\n" + "讓你的手環震動，方便查找"
+        self.findTitleLabel.text = "找手環".localized() + "\n" + "讓你的手環震動，方便查找".localized()
         self.resetTitleLabel.text = "恢復原廠設置".localized()
         self.clearTitleLabel.text = "清除本地數據".localized()
         
@@ -94,4 +96,41 @@ class DeviceSettingViewController: UIViewController {
         self.setBackButton(title: UserInfo.share.deviceType.rawValue)
         self.setDeviceStatus()
     }
+}
+
+
+// MARK: - DeviceListViewControllerDelegate.
+
+extension DeviceSettingViewController: DeviceListViewControllerDelegate {
+    
+    func deviceisChange(_ change: Bool) {
+        
+        var title: String {
+            
+            switch UserInfo.share.deviceType {
+            case .Wristband:
+                
+                if change {
+                    return "設備類型已切換為手環"
+                } else {
+                    return "設備類型已經是手環，無需切換"
+                }
+                
+            case .Watch:
+                
+                if change {
+                    return "設備類型已切換為手錶"
+                } else {
+                    return "設備類型已經是手錶，無需切換"
+                }
+                
+            case .none:
+                return ""
+            }
+            
+        }
+        
+        KRProgressHUD.showMessage(title.localized())
+    }
+    
 }

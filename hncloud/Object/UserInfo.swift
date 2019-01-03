@@ -58,6 +58,17 @@ enum DeviceType {
             return .none
         }
     }
+    
+    var typeNumber: Int {
+        switch self {
+        case .Wristband:
+            return 2
+        case .Watch:
+            return 1
+        case .none:
+            return 0
+        }
+    }
 }
 
 enum SexType {
