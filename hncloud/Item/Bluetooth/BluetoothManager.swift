@@ -221,6 +221,7 @@ class BlueToothManager: NSObject {
             let peripheralArray = cbCenterManger?.retrievePeripherals(withIdentifiers: [nsUUID])
             var devPerpheral: CBPeripheral?
             if let peripherals = peripheralArray, peripherals.count > 0 {
+                print("🥜 peripheralArray = \(peripheralArray)")
                 for item in peripherals {
                     devPerpheral = item
                 }
@@ -2078,12 +2079,12 @@ class BlueToothManager: NSObject {
 
     func appendingCheckNumData(_ data: Data, isNeedResponse response: Bool) {
         let transData = [UInt8](data)
-        var checkNum: UInt8 = 0
+        var checkNum: UInt32 = 0
         for i in 0..<data.count {
-            checkNum += transData[i]
+            checkNum += UInt32(transData[i])
         }
-        checkNum = checkNum % UInt8(256)
-        var tempData = [checkNum, 0x16]
+        checkNum = checkNum % UInt32(256)
+        var tempData = [UInt8(checkNum), 0x16]
         var lData: Data? = nil
         lData = Data(base64Encoded: data)
         lData?.append(&tempData, count: ArraySize(tempData))

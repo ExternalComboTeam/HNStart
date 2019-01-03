@@ -129,12 +129,62 @@ extension BTListViewController: UITableViewDataSource {
 extension BTListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if UserInfo.share.deviceToken.isEmpty {
-            UserInfo.share.deviceToken = "77乳加巧克力"
-            self.dismiss(animated: false, completion: nil)
-        } else {
-            UserInfo.share.deviceToken = "77乳加巧克力"
-            self.pop()
+        
+        guard let model = self.deviceArray?.item(at: indexPath.row) else {
+            return
         }
+        
+        let llString = model.peripheral.identifier.uuidString
+        
+        if let macAddress = model.macAddress {
+            
+            UserDefaults.standard.set(macAddress, forKey: GlobalProperty.kLastDeviceMACADDRESS)
+            
+        } else {
+            
+            if ToolBox.setMacaddress(llString) {
+                #if DEBUG
+                print("\(#function)\nsetMacaddress success.")
+                #endif
+            } else {
+                #if DEBUG
+                print("\(#function)\nsetMacaddress fail.")
+                #endif
+            }
+        }
+            
+        KRProgressHUD.showMessage("正在連接...")
+        
+        CositeaBlueTooth.instance.connect(withUUID: llString)
+        if ToolBox.savePeripheral(model) {
+            
+            print("""
+                🍾🍾
+                deviceID = \(model.deviceID ?? "no id")
+                deviceName = \(model.deviceName ?? "no name")
+                macAddress = \(model.macAddress ?? "no macAddr")
+                peripheral = \(model.peripheral)
+                """)
+            
+            let userInfo = UserInfo.share
+            
+            userInfo.deviceToken = model.deviceName ?? "未知裝置"
+            
+            KRProgressHUD.showSuccess(withMessage: "連接成功".localized())
+            self.pop()
+        } else {
+            KRProgressHUD.showError(withMessage: "錯誤")
+        }
+        
+//
+//
+//
+//        if UserInfo.share.deviceToken.isEmpty {
+//            UserInfo.share.deviceToken = "77乳加巧克力"
+//            self.dismiss(animated: false, completion: nil)
+//        } else {
+//            UserInfo.share.deviceToken = "77乳加巧克力"
+//            self.pop()
+//        }
     }
 }

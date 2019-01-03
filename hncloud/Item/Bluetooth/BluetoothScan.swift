@@ -125,13 +125,13 @@ class BluetoothScan: NSObject, CBPeripheralDelegate {
         guard var uuidArray = uuidArray else {
             return false
         }
-        print("addDevList: - uuidArray = \(uuidArray)")
+//        print("addDevList: - uuidArray = \(uuidArray)")
         var isUpdate = true
         
         for model in uuidArray {
             
             let peripheralInArray = model.peripheral
-            print("addDevList: - uuidArray.models.peripheral = \(peripheralInArray)")
+            print("🍎  addDevList: - models.peripheral.name = \(peripheralInArray.name ?? "未知")")
             if peripheral.identifier.uuidString == peripheralInArray.identifier.uuidString {
                 isUpdate = false
                 break
@@ -146,11 +146,17 @@ class BluetoothScan: NSObject, CBPeripheralDelegate {
             
             if let _data = data, _data.length != 0 {
                 
-                let count = _data.length / MemoryLayout<UInt8>.size
-                var array = [UInt8](repeating: 0, count: count)
-                _data.getBytes(&array, length: count)
-                #warning("取得 TYPE 方式疑似有問題")
-                type = Int(array[1])
+                let byte = [UInt8](Data(referencing: _data))
+                
+                type = Int(byte[1])
+                print("            type = \(type)")
+//                let count = _data.length / MemoryLayout<UInt8>.size
+//                var array = [UInt8](repeating: 0, count: count)
+//                print("array0 = \(array)")
+//                _data.getBytes(&array, length: count)
+//                #warning("取得 TYPE 方式疑似有問題")
+//                print("array1 = \(array)")
+//                type = Int(array[1])
             
             } else {
                 
@@ -194,6 +200,8 @@ class BluetoothScan: NSObject, CBPeripheralDelegate {
         self.uuidArray = uuidArray
         return isUpdate
     }
+    
+    
 }
     
 

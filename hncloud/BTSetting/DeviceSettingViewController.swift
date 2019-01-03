@@ -8,6 +8,7 @@
 
 import UIKit
 import KRProgressHUD
+import CoreBluetooth
 
 class DeviceSettingViewController: UIViewController {
 
@@ -33,9 +34,24 @@ class DeviceSettingViewController: UIViewController {
     
     @IBAction func connectAction(_ sender: UIButton) {
         if UserInfo.share.isConnect {
-            // 解除綁定
-            UserInfo.share.deviceToken = "未綁定".localized()
-            self.setDeviceStatus()
+            
+            quickShowAlert(title: "解除綁定當前設備".localized(),
+                           message: "繼續？".localized(),
+                           okTitle: "確定".localized(),
+                           cancelTitle: "取消".localized()) { (_) in
+                
+                
+                CositeaBlueTooth.instance.disConnected(withUUID: CositeaBlueTooth.instance.connectUUID)
+                let ud = UserDefaults.standard
+                ud.set(nil, forKey: GlobalProperty.kLastDeviceUUID)
+                ud.removeObject(forKey: GlobalProperty.kLastDeviceNAME)
+                ud.removeObject(forKey: GlobalProperty.SUPPORTPAGEMANAGER)
+                
+                // 解除綁定
+                UserInfo.share.deviceToken = "未綁定".localized()
+                self.setDeviceStatus()
+            }
+            
         } else {
             let vc = BTListViewController.fromStoryboard()
             self.push(vc: vc)
@@ -53,17 +69,64 @@ class DeviceSettingViewController: UIViewController {
     }
     // 恢復設備
     @objc private func resetDevice() {
+        
         print("恢復設備")
+        
+        quickShowAlert(title: "注意！".localized(),
+                       message: "當前操作將清除裝置內所有數據，是否繼續？".localized(),
+                       okTitle: "確定".localized(),
+                       cancelTitle: "取消".localized()) { (＿) in
+                        CositeaBlueTooth.instance.resetBind(with: nil)
+        }
+        
+        
     }
     // 清除資料
     @objc private func clearLocalData() {
+        
         print("清除資料")
+        
+        quickShowAlert(title: "注意！",
+                       message: "當前操作將清除本應用所有歷史數據，是否繼續？".localized(),
+                       okTitle: "確定".localized(),
+                       cancelTitle: "取消".localized()) { (_) in
+                        
+                        #warning("SQLdataManger & CoreDataManage 尚未建立")
+                        /*
+                         SQLdataManger.getInstance().deleteTabel()
+                         SQLdataManger.getInstance().createTable()
+                         SQLdataManger.getInstance().createTableTwo()
+                         CoreDataManage.shareInstance().deleteData()
+                         */
+
+                        //数据全部清除了。要重新请求全天心率
+                        HCHCommonManager.instance.queryHearRateSeconed = 0
+
+        }
     }
     
     private func setDeviceStatus() {
         self.deviceImage.image = UIImage(named: UserInfo.share.isConnect ? "device_connect" : "device_disconnect")
         self.deviceName.text = UserInfo.share.deviceToken
         self.connectButton.setTitle(UserInfo.share.isConnect ? "解除綁定".localized() : "綁定設備".localized(), for: .normal)
+    }
+    
+    // Quick show Alert.
+    func quickShowAlert(title: String?, message: String?, okTitle: String?, cancelTitle: String?, okHandler: ((UIAlertAction) -> Void)?) {
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        if let okTitle = okTitle {
+            let ok = UIAlertAction(title: okTitle, style: .default, handler: okHandler)
+            alert.addAction(ok)
+        }
+        
+        if let cancelTitle = cancelTitle {
+            let cancel = UIAlertAction(title: cancelTitle, style: .cancel, handler: nil)
+            alert.addAction(cancel)
+        }
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -127,10 +190,10 @@ extension DeviceSettingViewController: DeviceListViewControllerDelegate {
             case .none:
                 return ""
             }
-            
         }
         
         KRProgressHUD.showMessage(title.localized())
     }
     
 }
+

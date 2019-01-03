@@ -19,3 +19,13 @@ extension Date {
         return self.isInToday ? "今日".localized() : formater.string(from: self)
     }
 }
+
+
+extension NSData {
+    
+    var uint8Byte: [UInt8] {
+        get {
+            return [UInt8](Data(referencing: self))
+        }
+    }
+}

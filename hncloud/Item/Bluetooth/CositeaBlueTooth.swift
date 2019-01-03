@@ -236,7 +236,7 @@ class CositeaBlueTooth: NSObject {
      *清除手环数据
      *
      */
-    func resetBind(with resetBindBlock: @escaping intBlock) {
+    func resetBind(with resetBindBlock: intBlock?) {
         cositeaBlueToothManager?.resetBind(with: resetBindBlock)
     }
 

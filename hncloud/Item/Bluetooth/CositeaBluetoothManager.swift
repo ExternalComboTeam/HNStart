@@ -363,7 +363,7 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
      *  清除手环数据
      *  @param 返回的整数 1：成功 0：失败
      */
-    func resetBind(with resetBindBlock: @escaping intBlock) {
+    func resetBind(with resetBindBlock: intBlock?) {
         //if resetBindBlock
         
         self.resetBindBlock = resetBindBlock

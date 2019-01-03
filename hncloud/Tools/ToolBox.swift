@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KRProgressHUD
 
 class ToolBox {
     
@@ -29,7 +30,18 @@ class ToolBox {
     /// - Parameter macString: mac地址
     /// - Returns: 是否正確
     class func checkMacAddressCorrect(_ macString: String?) -> Bool {
+        
+//        guard let macString = macString else { return false }
+        
         var correct = true
+        
+//        let b7Range = macString.range(of: "B7")
+//        let b6Range = macString.range(of: "B6")
+        
+        
+        print("🍌 \(#function) macString = \(macString ?? "nil")")
+        
+        
         let b7Range: NSRange? = (macString as NSString?)?.range(of: "B7", options: .caseInsensitive)
         let b6Range: NSRange? = (macString as NSString?)?.range(of: "B6", options: .caseInsensitive)
         if Int(b7Range?.location ?? 0) == NSNotFound {
@@ -44,7 +56,11 @@ class ToolBox {
         if ((macString?.count ?? 0) - Int(b6Range?.location ?? 0)) < 6 {
             correct = false
         }
+        
+ 
+ 
         return correct
+ 
     }
 
 
@@ -58,22 +74,35 @@ class ToolBox {
             return nil
         }
         
-        let count = data.length / MemoryLayout<UInt8>.size
-        var bytes = [UInt8](repeating: 0, count: count)
-        data.getBytes(&bytes, length: count)
-
+        let byte = data.uint8Byte
         var string: String? = ""
+//        var string: String? = String(format: "%X", byte[0])
         
-        for byte in bytes {
-            
-            let string1 = String(format: "%X", byte)
-            
-            if string1.count == 1 {
-                string = string ?? "" + ("0\(string1)")
+        for i in 0..<data.length {
+            let tempString = String(format: "%X", byte[i])
+            if tempString.count == 1 {
+                string = string?.appendingFormat("0%@", tempString)
             } else {
-                string = string ?? "" + string1
+                string = string?.appending(tempString)
             }
         }
+        
+//        let count = data.length / MemoryLayout<UInt8>.size
+//        var bytes = [UInt8](repeating: 0, count: count)
+//        data.getBytes(&bytes, length: count)
+//
+//        var string: String? = ""
+//
+//        for byte in bytes {
+//
+//            let string1 = String(format: "%X", byte)
+//
+//            if string1.count == 1 {
+//                string = string ?? "" + ("0\(string1)")
+//            } else {
+//                string = string ?? "" + string1
+//            }
+//        }
         
         let correct = self.checkMacAddressCorrect(string)
         if !correct {
@@ -291,7 +320,9 @@ class ToolBox {
         var tempArray: [PerModel] = []
         
         for model in deviceArray {
-            if model.type != 1000 {
+            print("🌮 model.name = \(model.deviceName), model.type = \(model.type)")
+            
+            if model.type != 4 {
                 tempArray.append(model)
             }
         }
@@ -306,7 +337,7 @@ class ToolBox {
         
         for model in deviceArray {
             print("🌮 model.name = \(model.deviceName), model.type = \(model.type)")
-            if model.type == 1000 {
+            if model.type == 4 {
                 tempArray.append(model)
             }
         }
@@ -314,7 +345,105 @@ class ToolBox {
     }
 
     
+    /**
+     *
+     检查到设置中的外设。没有收到广播。就从数据库中取得macAddress  保存本地
+     */
+    class func setMacaddress(_ uuid: String?) -> Bool {
+        // if (!uuid) {
+        //    return NO;
+        //}
+        
+        
+        #warning("SQLdataManger 尚未建立")
+        print("🍺🍺  \(#function)  🍺🍺")
+//        let dictionary = SQLdataManger.getInstance().getPeripheralWith(uuid)
+        let dictionary: [String]? = []
+        
+        
+        
+        if let dic = dictionary{
+            
+            // TODO: - 尚未儲存
+//            UserDefaults.standard.set(dic[GlobalProperty.macAddress_per], forKey: GlobalProperty.kLastDeviceMACADDRESS)
+            
+            return true
+        } else {
+            return false
+        }
+        
+        
+        
+        return true
+    }
+
+    
+    /**
+     *
+     macToString    data  mac地址转化为字符串
+     */
+    class func savePeripheral(_ model: PerModel) -> Bool {
+        if model.macAddress == nil {
+            return false
+        }
+        
+        
+        
+        #warning("SQLdataManger 尚未建立")
+        print("🍺🍺  #1 \(#function)  🍺🍺")
+//        let peripheralArray = SQLdataManger.getInstance().queryALLData(withTable: Peripheral_Table)
+        let peripheralArray = [[AnyHashable : Any]]()
+        
+        
+        
+        
+        var isHave = false
+        for dict: [AnyHashable : Any] in peripheralArray{
+            if (dict[GlobalProperty.macAddress_per] as? String == model.macAddress) {
+                isHave = true
+            }
+        }
+        if isHave {
+            return false
+        }
+        var dict: [AnyHashable : Any] = [:]
+        var rssiStr = ""
+        var deviceNameTemp = ""
+        var deviceIdTemp = ""
+        if abs(model.rssi) > 0 {
+            rssiStr = "\(model.rssi)"
+        } else {
+            rssiStr = "0"
+        }
+        if model.deviceName != nil {
+            deviceNameTemp = model.deviceName ?? ""
+        } else {
+            deviceNameTemp = "0"
+        }
+        
+        
+        #warning("SQLdataManger 尚未建立")
+        print("🍺🍺  #2 \(#function)  🍺🍺")
+//        deviceIdTemp = String(format: "%ld", SQLdataManger.getInstance().queryPeripheralALL())
+        deviceIdTemp = ""
+        
+        
+        dict[GlobalProperty.deviceId_per] = deviceIdTemp
+        dict[GlobalProperty.macAddress_per] = model.macAddress
+        dict[GlobalProperty.UUIDString_per] = model.uuid
+        dict[GlobalProperty.RSSI_per] = rssiStr
+        dict[GlobalProperty.deviceName_per] = deviceNameTemp
+        
+        
+        
+        #warning("SQLdataManger 尚未建立")
+        print("🍺🍺  #3 \(#function)  🍺🍺")
+//        let insert = SQLdataManger.getInstance().insertSignalData(toTable: Peripheral_Table, withData: dict)
+        let insert = true
+        
+        
+        
+        return insert
+    }
+
 }
-
-
-
