@@ -210,6 +210,8 @@ class UserInfo: NSObject {
     }
     
     var selectedDate: Date = Date()
+    var walkTarget: Int = 10000
+    var sleepTarget: Int = 8
     
     func update(json: JSON) {
         self.sid = json["sid"].string ?? ""

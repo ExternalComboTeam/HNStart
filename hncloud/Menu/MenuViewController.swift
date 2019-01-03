@@ -127,7 +127,7 @@ extension MenuViewController: UITableViewDelegate {
         case .device:
             self.pushed(DeviceSettingViewController.fromStoryboard())
         case .capsule:
-            break
+            self.pushed(CalendarViewController.fromStoryboard())
         case .camera:
             self.pushed(CameraViewController.fromStoryboard())
         case .setting:

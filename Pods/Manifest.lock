@@ -7,6 +7,7 @@ PODS:
   - Charts (3.2.1):
     - Charts/Core (= 3.2.1)
   - Charts/Core (3.2.1)
+  - CVCalendar (1.6.1)
   - IQKeyboardManagerSwift (6.2.0)
   - KeychainSwift (13.0.0)
   - KRActivityIndicatorView (3.0.0)
@@ -42,6 +43,7 @@ DEPENDENCIES:
   - Alamofire
   - Alamofire-SwiftyJSON
   - Charts
+  - CVCalendar
   - IQKeyboardManagerSwift
   - KeychainSwift
   - KRProgressHUD
@@ -57,6 +59,7 @@ SPEC REPOS:
     - Alamofire
     - Alamofire-SwiftyJSON
     - Charts
+    - CVCalendar
     - IQKeyboardManagerSwift
     - KeychainSwift
     - KRActivityIndicatorView
@@ -73,6 +76,7 @@ SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   Alamofire-SwiftyJSON: 2b3649d57dc7bb2880fb8b86f8bb969397666916
   Charts: f122fb70b19847fa5817d018b77d6c5a2296ab25
+  CVCalendar: 505c11b11a088b43f159806e791eba1c2540853b
   IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
   KeychainSwift: 23d6c16cbc33f20fafa30c3d783241b4b87d998c
   KRActivityIndicatorView: c414000730a6f4969eeb354bee4f2aebc89c2c2e
@@ -84,6 +88,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   ZZCircleProgress: bda14bac390f6c96efcb72f7617bef66c7f2d2d0
 
-PODFILE CHECKSUM: 4e5b578d39120f680f8c7896b538e4abe9252158
+PODFILE CHECKSUM: b1e7ec1338e0278beeeb1803f364514ea9b5ceeb
 
 COCOAPODS: 1.5.2

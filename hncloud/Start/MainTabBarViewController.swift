@@ -117,7 +117,8 @@ class MainTabBarViewController: UITabBarController {
     }
     // 曲線圖
     @objc private func curve() {
-        
+        let vc = CurveViewController.fromStoryboard()
+        self.push(vc: vc)
     }
     
     override func viewDidLoad() {

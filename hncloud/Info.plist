@@ -30,6 +30,10 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>NSCameraUsageDescription</key>
+	<string>拍攝個人相片</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>顯示您的照片</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

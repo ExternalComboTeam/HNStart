@@ -105,11 +105,9 @@ class SportViewController: UIViewController {
         super.viewDidLoad()
         
         self.isStart = false
-        self.second = 60
+        self.second = 1800
         self.sportTableView.dataSource = self
         self.sportTableView.delegate = self
-//        movement_restart_icon
-//        pause_movement_icon
         guard let progressView = self.progressView else { return }
         self.progressContainer.addSubview(progressView)
         progressView.progress = 0

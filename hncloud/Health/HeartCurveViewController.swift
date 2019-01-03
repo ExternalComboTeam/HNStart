@@ -96,7 +96,8 @@ class HeartCurveViewController: UIViewController {
     }
     // 曲線圖
     @objc private func curve() {
-        
+        let vc = CurveViewController.fromStoryboard()
+        self.push(vc: vc)
     }
     
     private func setChart(_ view: LineChartView) {

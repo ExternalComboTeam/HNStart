@@ -59,6 +59,7 @@ class WalkViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.targetLabel.text = "\(UserInfo.share.walkTarget)"
         self.progressView?.progress = 0.75
     }
 

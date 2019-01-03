@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "28A1845CF6E6CA50A3B5B8F71421B37B"
+               BlueprintIdentifier = "F6A4AECA95694CD4A727013D1E719402"
                BlueprintName = "ZZCircleProgress"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "ZZCircleProgress.framework">

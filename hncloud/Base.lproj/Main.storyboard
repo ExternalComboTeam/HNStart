@@ -1239,6 +1239,14 @@
             </objects>
             <point key="canvasLocation" x="1126" y="629"/>
         </scene>
+        <!--日曆管理-->
+        <scene sceneID="4pm-od-DtS">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="CalendarViewController" storyboardName="Menu" referencedIdentifier="CalendarViewController" id="Lwa-eH-sXm" userLabel="日曆管理" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uT8-6u-4bp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1146" y="665"/>
+        </scene>
         <!--運動紀錄-->
         <scene sceneID="7NF-Mc-mQn">
             <objects>
@@ -1262,6 +1270,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Gi-zT-I8Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1357" y="629"/>
+        </scene>
+        <!--曲線-->
+        <scene sceneID="qrh-8K-xGD">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="CurveViewController" storyboardName="Health" referencedIdentifier="CurveViewController" id="1uN-4m-9sU" userLabel="曲線" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ptS-aA-qTz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1337" y="665"/>
+        </scene>
+        <!--曲線子畫面-->
+        <scene sceneID="RHR-mn-z3t">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="CurveChildViewController" storyboardName="Health" referencedIdentifier="CurveChildViewController" id="xy1-ck-qyL" userLabel="曲線子畫面" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nBL-XO-vRK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1368" y="702"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KZO-yX-LHd">
