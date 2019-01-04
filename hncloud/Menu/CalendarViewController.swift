@@ -8,6 +8,7 @@
 
 import UIKit
 import CVCalendar
+import JMDropMenu
 
 class CalendarViewController: UIViewController {
 
@@ -24,11 +25,31 @@ class CalendarViewController: UIViewController {
         self.calendarView.loadNextView()
     }
     
+    lazy private var useButton: UIBarButtonItem = {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
+        button.setImage(UIImage(named: "menu_icon"), for: .normal)
+        button.addTarget(self, action: #selector(add(_:)), for: .touchUpInside)
+        view.addSubview(button)
+        return UIBarButtonItem(customView: view)
+    }()
+    lazy private var menuFrame: CGRect = {
+        let statusHeight = UIApplication.shared.statusBarFrame.height
+        let navigationHeight = self.navigationController?.navigationBar.bounds.height ?? 0
+        let height: CGFloat = statusHeight + navigationHeight
+        let frame = CGRect(x: self.view.width - 128, y: height, width: 120, height: 95)
+        return frame
+    }()
+    
+    @objc private func add(_ sender: UIButton) {
+        JMDropMenu.showFrame(self.menuFrame, arrowOffset: 90, titleArr: ["新增用藥".localized(), "管理用藥".localized()], imageArr: ["qr_icon", "medicine_manager_icon"], type: .QQ, layoutType: .normal, rowHeight: 45, delegate: self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.setBackButton(title: "用藥管理".localized())
-        
+        self.navigationItem.rightBarButtonItems = [self.useButton]
         self.currentCalendar = Calendar(identifier: .gregorian)
         currentCalendar?.locale = Locale(identifier: Locale.appLanguage)
         
@@ -92,6 +113,16 @@ extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDele
             }
             
             self.view.insertSubview(updatedMonthLabel, aboveSubview: self.calendarTitle)
+        }
+    }
+}
+extension CalendarViewController: JMDropMenuDelegate {
+    func didSelectRow(at index: Int, title: String!, image: String!) {
+        if index == 0 {
+            let vc = SearchMedicineViewController.fromStoryboard()
+            self.push(vc: vc)
+        } else {
+            
         }
     }
 }

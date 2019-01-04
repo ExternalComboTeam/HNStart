@@ -51,7 +51,8 @@ class CurveViewController: RPagingViewController {
         self.navigationItem.rightBarButtonItems = [self.shareButton]
         self.dataSource = self
         
-        self.automaticallyAdjustsScrollViewInsets = false
+//        self.automaticallyAdjustsScrollViewInsets = false
+        self.scrollView.contentInsetAdjustmentBehavior = .never
     }
 
 }

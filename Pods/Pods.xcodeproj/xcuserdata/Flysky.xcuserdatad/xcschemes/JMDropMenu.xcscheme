@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "20016A16FD5E7CD636D1BEE4E9018E5C"
-               BlueprintName = "StepSlider"
+               BlueprintIdentifier = "21B2B666C8578F266FB9C849604770BA"
+               BlueprintName = "JMDropMenu"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "StepSlider.framework">
+               BuildableName = "JMDropMenu.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

@@ -1287,6 +1287,14 @@
             </objects>
             <point key="canvasLocation" x="1368" y="702"/>
         </scene>
+        <!--搜尋藥品-->
+        <scene sceneID="vBP-oI-KmX">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="SearchMedicineViewController" storyboardName="Health" referencedIdentifier="SearchMedicineViewController" id="faP-iv-7Nh" userLabel="搜尋藥品" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="trT-vl-Tnd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1358" y="742"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="KZO-yX-LHd">
             <objects>

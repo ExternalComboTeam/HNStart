@@ -50,6 +50,8 @@
 		9D6E271D21D1072C00F22ABD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D6E271B21D1072C00F22ABD /* LaunchScreen.storyboard */; };
 		9D6E272821D1072C00F22ABD /* hncloudTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6E272721D1072C00F22ABD /* hncloudTests.swift */; };
 		9D6E273321D1072D00F22ABD /* hncloudUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6E273221D1072D00F22ABD /* hncloudUITests.swift */; };
+		9D7D474221DF9DB900613C05 /* SearchMedicineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7D474121DF9DB900613C05 /* SearchMedicineViewController.swift */; };
+		9D7D474421DFA17200613C05 /* MedicineCellCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7D474321DFA17200613C05 /* MedicineCellCell.swift */; };
 		9D86988021D64AEC00892773 /* WalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D86987F21D64AEC00892773 /* WalkViewController.swift */; };
 		9D86988221D64AFD00892773 /* SportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D86988121D64AFD00892773 /* SportViewController.swift */; };
 		9D86988421D64B0700892773 /* SleepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D86988321D64B0700892773 /* SleepViewController.swift */; };
@@ -164,6 +166,8 @@
 		9D6E272E21D1072D00F22ABD /* hncloudUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hncloudUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D6E273221D1072D00F22ABD /* hncloudUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hncloudUITests.swift; sourceTree = "<group>"; };
 		9D6E273421D1072D00F22ABD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9D7D474121DF9DB900613C05 /* SearchMedicineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMedicineViewController.swift; sourceTree = "<group>"; };
+		9D7D474321DFA17200613C05 /* MedicineCellCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineCellCell.swift; sourceTree = "<group>"; };
 		9D86987F21D64AEC00892773 /* WalkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkViewController.swift; sourceTree = "<group>"; };
 		9D86988121D64AFD00892773 /* SportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportViewController.swift; sourceTree = "<group>"; };
 		9D86988321D64B0700892773 /* SleepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepViewController.swift; sourceTree = "<group>"; };
@@ -293,6 +297,13 @@
 				9D2B806621D7B39600F63685 /* SportCell.swift */,
 			);
 			path = SubView;
+			sourceTree = "<group>";
+		};
+		9D46B05F21DF8ECD00A9BE3B /* ChildViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ChildViewController;
 			sourceTree = "<group>";
 		};
 		9D5680117C82023491467B70 /* Frameworks */ = {
@@ -432,6 +443,7 @@
 			isa = PBXGroup;
 			children = (
 				9DAF143D21DBE411009EDB72 /* SportItemCell.swift */,
+				9D7D474321DFA17200613C05 /* MedicineCellCell.swift */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
@@ -447,6 +459,7 @@
 				9D694E6421DD2E21004D66DC /* TargetViewController.swift */,
 				9D5F396A21DE8E2E0089C423 /* CurveViewController.swift */,
 				9D5F396C21DE8EBD0089C423 /* CurveChildViewController.swift */,
+				9D7D474121DF9DB900613C05 /* SearchMedicineViewController.swift */,
 			);
 			path = Health;
 			sourceTree = "<group>";
@@ -490,6 +503,7 @@
 		9DD4CBA021D27A3600C15430 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				9D46B05F21DF8ECD00A9BE3B /* ChildViewController */,
 				9D5F394421DE49DC0089C423 /* SubView */,
 				9DD4CBA321D2936600C15430 /* Menu.storyboard */,
 				9DD4CBA521D2938A00C15430 /* MenuViewController.swift */,
@@ -688,6 +702,7 @@
 				"${BUILT_PRODUCTS_DIR}/CVCalendar/CVCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/JMDropMenu/JMDropMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/KRActivityIndicatorView/KRActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/KRProgressHUD/KRProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainSwift/KeychainSwift.framework",
@@ -707,6 +722,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CVCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JMDropMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KRActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KRProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainSwift.framework",
@@ -772,6 +788,7 @@
 				9DD4CB9121D1A89C00C15430 /* BMIInfoViewController.swift in Sources */,
 				9D2B806721D7B39600F63685 /* SportCell.swift in Sources */,
 				9DD4CB9321D1A8CE00C15430 /* UserInfoViewController.swift in Sources */,
+				9D7D474221DF9DB900613C05 /* SearchMedicineViewController.swift in Sources */,
 				9DA359BB21D3ECF10090A7DD /* BTListViewController.swift in Sources */,
 				9D5F395021DE831E0089C423 /* CalendarViewController.swift in Sources */,
 				9D297A1321D4AAC600E34260 /* ArrayExtension.swift in Sources */,
@@ -830,6 +847,7 @@
 				9DA359B921D3CD830090A7DD /* UserInfo.swift in Sources */,
 				9D1F890921D1575E0033721E /* FoundPasswordViewController.swift in Sources */,
 				9D5F394E21DE755A0089C423 /* CameraController.swift in Sources */,
+				9D7D474421DFA17200613C05 /* MedicineCellCell.swift in Sources */,
 				9D5F394821DE4B5D0089C423 /* SwitchCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1012,7 +1030,10 @@
 				DEVELOPMENT_TEAM = F52E4Q5G5P;
 				INFOPLIST_FILE = hncloud/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = cloud.hncare.hncloud.testt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -1029,7 +1050,10 @@
 				DEVELOPMENT_TEAM = F52E4Q5G5P;
 				INFOPLIST_FILE = hncloud/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = cloud.hncare.hncloud.testt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -1045,7 +1069,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = hncloudTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = cloud.hncare.hncloudTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -1062,7 +1090,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = hncloudTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = cloud.hncare.hncloudTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -1078,7 +1110,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = hncloudUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = cloud.hncare.hncloudUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -1094,7 +1130,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = hncloudUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = cloud.hncare.hncloudUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

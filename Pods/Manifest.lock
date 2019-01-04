@@ -9,6 +9,7 @@ PODS:
   - Charts/Core (3.2.1)
   - CVCalendar (1.6.1)
   - IQKeyboardManagerSwift (6.2.0)
+  - JMDropMenu (0.1.1)
   - KeychainSwift (13.0.0)
   - KRActivityIndicatorView (3.0.0)
   - KRProgressHUD (3.4.0):
@@ -48,6 +49,7 @@ DEPENDENCIES:
   - Charts
   - CVCalendar
   - IQKeyboardManagerSwift
+  - JMDropMenu
   - KeychainSwift
   - KRProgressHUD
   - Localize-Swift
@@ -58,13 +60,14 @@ DEPENDENCIES:
   - ZZCircleProgress
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - ActionSheetPicker-3.0
     - Alamofire
     - Alamofire-SwiftyJSON
     - Charts
     - CVCalendar
     - IQKeyboardManagerSwift
+    - JMDropMenu
     - KeychainSwift
     - KRActivityIndicatorView
     - KRProgressHUD
@@ -83,6 +86,7 @@ SPEC CHECKSUMS:
   Charts: f122fb70b19847fa5817d018b77d6c5a2296ab25
   CVCalendar: 505c11b11a088b43f159806e791eba1c2540853b
   IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
+  JMDropMenu: 91bc440a85a7a9aa546283b4d16a0134d9fe261c
   KeychainSwift: 23d6c16cbc33f20fafa30c3d783241b4b87d998c
   KRActivityIndicatorView: c414000730a6f4969eeb354bee4f2aebc89c2c2e
   KRProgressHUD: 79c8703f82179fe34b3602f10b30726f887983fa
@@ -94,6 +98,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   ZZCircleProgress: bda14bac390f6c96efcb72f7617bef66c7f2d2d0
 
-PODFILE CHECKSUM: 9e7a251ba13f9f83df154048ba89f76b5f7a1a39
+PODFILE CHECKSUM: 4c4960eb390424c210ceea3eac7c850439c57d98
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.2

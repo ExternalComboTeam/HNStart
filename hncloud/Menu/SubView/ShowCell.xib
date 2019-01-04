@@ -40,6 +40,10 @@
                     <constraint firstItem="4MC-KU-B4K" firstAttribute="leading" secondItem="WDX-mo-7QE" secondAttribute="trailing" constant="30" id="u5S-re-00Q"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="firstLabel" destination="WDX-mo-7QE" id="ENn-UB-cN7"/>
+                <outlet property="secondLabel" destination="4MC-KU-B4K" id="pbH-Ze-pbo"/>
+            </connections>
             <point key="canvasLocation" x="-26" y="62"/>
         </tableViewCell>
     </objects>

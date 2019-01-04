@@ -68,7 +68,7 @@ class SettingViewController: UIViewController {
         self.setButtonIcon()
         self.myTableView.tableFooterView = UIView()
         self.buttonSet(self.clockButton, isSelected: true)
-        self.myTableView.register(xib: SwitchCell.xib)
+        self.myTableView.register(xib: SwitchCell.xib, ShowCell.xib)
         self.myTableView.dataSource = self
         self.myTableView.delegate = self
     }
@@ -102,9 +102,9 @@ extension SettingViewController: UITableViewDataSource {
         case .forget:
             return 1
         case .device:
-            return 0
+            return 1
         case .setting:
-            return 0
+            return 8
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -121,18 +121,61 @@ extension SettingViewController: UITableViewDataSource {
         case .heart:
             break
         case .forget:
+            let cell = SwitchCell.use(table: tableView, for: indexPath)
             cell.titleLabel.text = "防丟提醒".localized()
+            return cell
         case .device:
-            break
+            let cell = SwitchCell.use(table: tableView, for: indexPath)
+            cell.titleLabel.text = "抬腕喚醒".localized()
+            return cell
         case .setting:
-            break
+            switch indexPath.row {
+            case 0:
+                let cell = ShowCell.use(table: tableView, for: indexPath)
+                cell.firstLabel.text = "選擇開關設備功能".localized()
+                cell.secondLabel.text = ""
+                return cell
+            case 1:
+                let cell = SwitchCell.use(table: tableView, for: indexPath)
+                cell.titleLabel.text = "離線運動".localized()
+                return cell
+            case 2:
+                let cell = SwitchCell.use(table: tableView, for: indexPath)
+                cell.titleLabel.text = "里程".localized()
+                return cell
+            case 3:
+                let cell = SwitchCell.use(table: tableView, for: indexPath)
+                cell.titleLabel.text = "卡路里".localized()
+                return cell
+            case 4:
+                let cell = SwitchCell.use(table: tableView, for: indexPath)
+                cell.titleLabel.text = "睡眠".localized()
+                return cell
+            case 5:
+                let cell = SwitchCell.use(table: tableView, for: indexPath)
+                cell.titleLabel.text = "設置".localized()
+                return cell
+            case 6:
+                let cell = SwitchCell.use(table: tableView, for: indexPath)
+                cell.titleLabel.text = "血壓".localized()
+                return cell
+            case 7:
+                let cell = SwitchCell.use(table: tableView, for: indexPath)
+                cell.titleLabel.text = "未讀消息".localized()
+                return cell
+            default:
+                let cell = ShowCell.use(table: tableView, for: indexPath)
+                cell.firstLabel.text = ""
+                cell.secondLabel.text = ""
+                return cell
+            }
         }
         return cell
     }
 }
 extension SettingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard !(tableView.cellForRow(at: indexPath) is SwitchCell) else { return }
+        guard !(tableView.cellForRow(at: indexPath) is SwitchCell) || !(tableView.cellForRow(at: indexPath) is ShowCell) else { return }
         
     }
 }

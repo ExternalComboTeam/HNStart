@@ -20,6 +20,7 @@ target 'hncloud' do
   pod 'StepSlider'
   pod 'CVCalendar'
   pod 'SwiftMessages'
+  pod 'JMDropMenu'
 
   target 'hncloudTests' do
     inherit! :search_paths
