@@ -7,20 +7,105 @@
 //
 
 import UIKit
+import Charts
+import SwifterSwift
 
 class CurveChildViewController: UIViewController {
 
     var index: Int = 0
-    @IBOutlet weak var curveView: UIView!
+    @IBOutlet weak var chartBackView: UIView!
+    @IBOutlet weak var stepsChartView: BarChartView!
+    @IBOutlet weak var sleepChartView: BarChartView!
+    
+    private var isLoad: Bool = false
+    
+    private lazy var monthDay: Double = {
+        guard let day = Date().end(of: .month)?.string(withFormat: "dd") else { return 0 }
+        let total = Double(day) ?? 0
+        return total + 1
+    }()
+    private lazy var dayArray: [String] = {
+        guard let start = Date().beginning(of: self.index == 0 ? .weekOfMonth : .month) else { return [] }
+        let dayCount = self.index == 0 ? 7 : Int(self.monthDay) - 1
+        return (0...dayCount).map({ start.adding(.day, value: $0).string(withFormat: "MM/dd") })
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
+        self.setChart(self.stepsChartView)
+        self.setChart(self.sleepChartView)
     }
-
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.chartBackView.gradientColors = [#colorLiteral(red: 0.4179144204, green: 0.683541894, blue: 0.6642404795, alpha: 1), #colorLiteral(red: 0.734546721, green: 0.4212638736, blue: 0.7398764491, alpha: 1)]
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.curveView.backgroundColor = self.index == 0 ? .blue : .red
+        
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.setData(self.stepsChartView)
+        self.setData(self.sleepChartView)
+        
+        guard !self.isLoad else { return }
+        self.isLoad = true
+        self.chartBackView.gradientColors = [#colorLiteral(red: 0.4179144204, green: 0.683541894, blue: 0.6642404795, alpha: 1), #colorLiteral(red: 0.734546721, green: 0.4212638736, blue: 0.7398764491, alpha: 1)]
+    }
+    
+    private func setChart(_ chartView: BarChartView) {
+        
+        let leftAxis = chartView.leftAxis
+        leftAxis.removeAllLimitLines()
+        leftAxis.axisMinimum = 0
+        leftAxis.enabled = false
+        // 不畫中間的線
+        leftAxis.drawGridLinesEnabled = false
+        
+        let xAxis = chartView.xAxis
+        xAxis.labelFont = .systemFont(ofSize: 11)
+        xAxis.labelPosition = .bottom
+        xAxis.valueFormatter = self
+        xAxis.drawAxisLineEnabled = false
+        xAxis.axisMinimum = 0
+        xAxis.granularity = 1
+        xAxis.axisMaximum = self.index == 0 ? 8 : self.monthDay
+        xAxis.gridColor = .clear
+        chartView.rightAxis.enabled = false
+        
+        // 隱藏文字
+        chartView.legend.enabled = false
+        // 縮放
+        chartView.scaleXEnabled = true
+        chartView.scaleYEnabled = false
+        
+//        self.setData(chartView)
+    }
+    private func setData(_ chartView: BarChartView) {
+        let count = self.index == 0 ? 8 : Int(self.monthDay)
+        let yVals1 = (0..<count).map { (i) -> BarChartDataEntry in
+            let val = Double(arc4random_uniform(140) + 60)
+            return BarChartDataEntry(x: Double(i), y: i == 0 ? 0 : val)
+        }
+        let barSet = BarChartDataSet(values: yVals1, label: "")
+        barSet.setColor(#colorLiteral(red: 0, green: 0, blue: 0.8981388211, alpha: 1))
+        let data = BarChartData(dataSet: nil/*barSet*/)
+        data.barWidth = 0.2
+        
+        data.groupBars(fromX: 0.5, groupSpace: 0.6, barSpace: 0)
+        data.dataSets.forEach({ $0.drawValuesEnabled = false; $0.highlightEnabled = false })
+        chartView.data = data
+        chartView.animate(yAxisDuration: 1.5)
+    }
+}
+extension CurveChildViewController: IAxisValueFormatter {
+    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+        let row = Int(value)
+        guard row != 0 && row != self.dayArray.count else { return "" }
+        return self.dayArray[row - 1]
     }
 }

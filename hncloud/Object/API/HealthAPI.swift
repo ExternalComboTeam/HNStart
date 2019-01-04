@@ -11,23 +11,23 @@ import KRProgressHUD
 
 class HealthAPI: API {
     /// 上傳血糖
-    class func bloodsugar(date: String, fpg_a: String, ppg_a: String, fpg_p: String, ppg_p: String, fpg_n: String, ppg_n: String, before_sleep: String, _ completionHandler: ((JSON) -> Void)?) {
+    class func bloodsugar(date: String, sugar: SugerData, _ completionHandler: ((JSON) -> Void)?) {
         let url = domain + "add_bloodsugar.php"
         baseRequest(url, .post, ["date": date,
-                                 "fpg_a": fpg_a,
-                                 "ppg_a": ppg_a,
-                                 "fpg_p": fpg_p,
-                                 "ppg_p": ppg_p,
-                                 "fpg_n": fpg_n,
-                                 "ppg_n": ppg_n,
-                                 "before_sleep": before_sleep,
+                                 "fpg_a": sugar.mFasting,
+                                 "ppg_a": sugar.mAfer,
+                                 "fpg_p": sugar.lFasting,
+                                 "ppg_p": sugar.lAfer,
+                                 "fpg_n": sugar.dFasting,
+                                 "ppg_n": sugar.dAfer,
+                                 "before_sleep": sugar.sBefore,
                                  "sid": UserInfo.share.sid], completionHandler)
     }
     /// 血糖查詢
-    class func search(bloodsugar date: String, _ completionHandler: ((JSON) -> Void)?) {
+    class func search(bloodsugar date: String, _ completionHandler: ((JSON) -> Void)?, error: ((NSError) -> Void)?) {
         let url = domain + "search_bloodsugar.php"
         baseRequest(url, .post, ["date": date,
-                                 "sid": UserInfo.share.sid], completionHandler)
+                                 "sid": UserInfo.share.sid], completionHandler, error)
     }
     /// 上傳血壓、心率、血氧
     class func pressure(sys: String, dia: String, heartrate: String, spo: String, _ completionHandler: ((JSON) -> Void)?) {

@@ -209,7 +209,7 @@ class UserInfo: NSObject {
         return (self.keychain.get("deviceToken") ?? "") != "未綁定".localized()
     }
     
-    var selectedDate: Date = Date()
+    @objc dynamic var selectedDate: Date = Date()
     var walkTarget: Int = 10000
     var sleepTarget: Int = 8
     

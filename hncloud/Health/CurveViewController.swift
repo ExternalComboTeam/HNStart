@@ -19,6 +19,21 @@ class CurveViewController: RPagingViewController {
         return UIBarButtonItem(customView: view)
     }()
     
+    lazy private var titleView: UISegmentedControl = {
+        let view = UISegmentedControl(frame: CGRect(x: 0, y: 0, width: 130, height: 30))
+        view.segmentTitles = ["周", "月"]
+        view.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
+        view.layer.borderColor = UIColor.black.cgColor
+        view.tintColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
+        view.addTarget(self, action: #selector(self.selected(_:)), for: .valueChanged)
+        view.selectedSegmentIndex = 0
+        return view
+    }()
+    
+    @objc private func selected(_ sender: UISegmentedControl) {
+        self.scroll(to: sender.selectedSegmentIndex)
+    }
+    
     // 分享
     @objc private func share(_ sender: UIButton) {
         guard let window = UIApplication.shared.keyWindow else { return }
@@ -47,11 +62,11 @@ class CurveViewController: RPagingViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationItem.titleView = self.titleView
         self.setBackButton(title: "")
         self.navigationItem.rightBarButtonItems = [self.shareButton]
         self.dataSource = self
         
-//        self.automaticallyAdjustsScrollViewInsets = false
         self.scrollView.contentInsetAdjustmentBehavior = .never
     }
 
