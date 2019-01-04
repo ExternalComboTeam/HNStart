@@ -19,6 +19,7 @@ target 'hncloud' do
   pod 'ActionSheetPicker-3.0'
   pod 'StepSlider'
   pod 'CVCalendar'
+  pod 'SwiftMessages'
 
   target 'hncloudTests' do
     inherit! :search_paths

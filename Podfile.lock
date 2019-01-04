@@ -35,6 +35,9 @@ PODS:
   - SwifterSwift/SpriteKit (4.6.0)
   - SwifterSwift/SwiftStdlib (4.6.0)
   - SwifterSwift/UIKit (4.6.0)
+  - SwiftMessages (6.0.1):
+    - SwiftMessages/App (= 6.0.1)
+  - SwiftMessages/App (6.0.1)
   - SwiftyJSON (4.0.0)
   - ZZCircleProgress (0.2.1)
 
@@ -51,10 +54,11 @@ DEPENDENCIES:
   - SDWebImage
   - StepSlider
   - SwifterSwift
+  - SwiftMessages
   - ZZCircleProgress
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - ActionSheetPicker-3.0
     - Alamofire
     - Alamofire-SwiftyJSON
@@ -68,6 +72,7 @@ SPEC REPOS:
     - SDWebImage
     - StepSlider
     - SwifterSwift
+    - SwiftMessages
     - SwiftyJSON
     - ZZCircleProgress
 
@@ -85,9 +90,10 @@ SPEC CHECKSUMS:
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
   StepSlider: c54e471186f29c6535260c9866178a3900f787e9
   SwifterSwift: 812ffec6f301922f5430e75be3f2939ea3a80024
+  SwiftMessages: 42ed7b6e1f2f1ead9ee667dc61a0ae87e4f49570
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   ZZCircleProgress: bda14bac390f6c96efcb72f7617bef66c7f2d2d0
 
-PODFILE CHECKSUM: b1e7ec1338e0278beeeb1803f364514ea9b5ceeb
+PODFILE CHECKSUM: 9e7a251ba13f9f83df154048ba89f76b5f7a1a39
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.5.0
