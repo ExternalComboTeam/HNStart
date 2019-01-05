@@ -49,6 +49,7 @@ class BloodPressureViewController: UIViewController {
         guard let sys = self.sysTextField.text, let dia = self.disTextField.text else { return }
         guard let sysValue = Int(sys), let diaValue = Int(dia) else { return }
         KRProgressHUD.show()
+        #warning("血壓值於 UserInfoAPI.update 回傳值並未更動")
         HealthAPI.update(pressure: sysValue, dia: diaValue) { (json) in
             KRProgressHUD.dismiss()
             self.delegate?.savePressure(sys: sysValue, dia: diaValue)

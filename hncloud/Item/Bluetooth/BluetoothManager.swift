@@ -30,9 +30,6 @@ let Notiify_Charatic = "FFF1"
 let HeartRate_Notify_Charatic = "2A37"
 let BodySensor_Charatic = "2A38"
 
-
-let kState = UserDefaults.standard.integer(forKey: GlobalProperty.kUnitStateKye)
-
 enum UnitState : Int {
     case none = 1
     case britishSystem
@@ -83,7 +80,13 @@ class BlueToothManager: NSObject {
     var cbCharacteristcs: CBCharacteristic?
     //    CBPeripheral *cbPeripheral;
     
-    var rdCharactic1: CBCharacteristic?
+    var rdCharactic1: CBCharacteristic? {
+        didSet {
+            if rdCharactic1 != nil {
+                print("🍱🍔  rdCharactic1 did set.")
+            }
+        }
+    }
     var notifyCharactic: CBCharacteristic?
     var heartRateNotifyCharactic: CBCharacteristic?
     var PairCharactic: CBCharacteristic?
@@ -221,7 +224,7 @@ class BlueToothManager: NSObject {
             let peripheralArray = cbCenterManger?.retrievePeripherals(withIdentifiers: [nsUUID])
             var devPerpheral: CBPeripheral?
             if let peripherals = peripheralArray, peripherals.count > 0 {
-                print("🥜 peripheralArray = \(peripheralArray)")
+                print("🥜 peripheralArray = \(peripheralArray ?? [])")
                 for item in peripherals {
                     devPerpheral = item
                 }
@@ -264,8 +267,10 @@ class BlueToothManager: NSObject {
             cbPeripheral?.setNotifyValue(false, for: notifyCharactic!)
         }
         if cbPeripheral != nil && cbCenterManger != nil {
+//            cbPeripheral?.writeValue(<#T##data: Data##Data#>, for: <#T##CBCharacteristic#>, type: <#T##CBCharacteristicWriteType#>)
             cbCenterManger?.cancelPeripheralConnection(cbPeripheral!)
             cbCenterManger?.stopScan()
+            
         }
         isPersonOper = true
         connectUUID = ""
@@ -331,10 +336,8 @@ class BlueToothManager: NSObject {
      */
     @objc func setLanguage() {
         
-        #warning("BLETool 尚未建立")
-        
-//        var langage: Int = BleTool.setLanguage()
-//        setLanguageByte(langage)
+        let langage: Int = BLETool.setLanguageTool()
+        setLanguageByte(langage)
 
     }
     
@@ -371,7 +374,7 @@ class BlueToothManager: NSObject {
      */
     func setUnitStateWithState(_ state: Bool) {
         var transData = [0x68, 0x02, 0x03, 0x00, 0x01, 0x01, state.int]
-        var data = NSData(bytes: &transData, length: ArraySize(transData))
+        let data = NSData(bytes: &transData, length: ArraySize(transData))
         appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
 
     }
@@ -383,12 +386,13 @@ class BlueToothManager: NSObject {
      */
     @objc func setBindDateStateWithState(_ state: Bool) {
         
-//        var formatStringForHours = DateFormatter.dateFormat(fromTemplate: "j", options: 0, locale: NSLocale.current)
-//        var containsA: NSRange? = (formatStringForHours as NSString?)?.range(of: "a")
-//        var hasAMPM: Bool = Int(containsA?.location ?? 0) != NSNotFound
-        #warning("CositeaBlueTooth 還未建立")
-        // app设置手环的时间是12小时制或24小时制
-//        CositeaBlueTooth.sharedInstance().setBindDateStateWithState(!hasAMPM)
+//        let stateValue = UInt8(state.int)
+        var transData = [0x68, 0x02, 0x03, 0x00, 0x01, 0x00, state.int]
+        let data = Data(bytes: &transData, count: transData.count)
+//        var data = Data(bytes: &transData, length: ArraySize(transData))
+        appendingCheckNumData(data, isNeedResponse: false)
+
+        
     }
     
     /**
@@ -398,10 +402,15 @@ class BlueToothManager: NSObject {
      */
     @objc func checkPower() {
 
-        var transData = [0x68, BlueToothFunctionIndexEnum.checkPower.rawValue, 0x00, 0x00, 0x6b, 0x16]
-        let lData = NSData(bytes: &transData, length: ArraySize(transData))
-        blueToothWhriteTransData(Data(referencing: lData), isNeedResponse: false)
+        var transData = [0x68, BlueToothFunctionIndexEnum.checkPower.rawValue, 0x00, 0x00, 0x6b, 0x16].map { UInt8($0) }
+        
+        let data = Data(bytes: transData, count: transData.count)
+        blueToothWhriteTransData(data, isNeedResponse: false)
+        
+//        let lData = NSData(bytes: &transData, length: ArraySize(transData))
+//        blueToothWhriteTransData(Data(referencing: lData), isNeedResponse: false)
 
+        
     }
     
     /**
@@ -411,7 +420,7 @@ class BlueToothManager: NSObject {
      */
     func setPhotoWithState(_ state: Bool) {
         var transData = [0x68, 0x0d, 0x01, 0x00, (!state).int]
-        var data = NSData(bytes: &transData, length: ArraySize(transData))
+        let data = NSData(bytes: &transData, length: ArraySize(transData))
         appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
     }
     
@@ -525,16 +534,19 @@ class BlueToothManager: NSObject {
                         #if DEBUG
                         print("cache = \(cache)")
                         #endif
+                        print("📝 \(#function) #1 writeValue")
                         cbPeripheral?.writeValue(cache.subdata(in: 0..<20), for: rdCharactic1!, type: .withoutResponse)
                         cache = cache.subdata(in: 20..<cache.count)
                     } else {
                         #if DEBUG
                         print("cache = \(cache)")
                         #endif
+                        print("📝 \(#function) #2 writeValue")
                         cbPeripheral?.writeValue(cache, for: rdCharactic1!, type: .withoutResponse)
                     }
                 }
             } else {
+                print("📝 \(#function) #3 writeValue")
                 cbPeripheral?.writeValue(Data(referencing: lData), for: rdCharactic1!, type: .withoutResponse)
             }
         }
@@ -793,7 +805,7 @@ class BlueToothManager: NSObject {
         if UserDefaults.standard.integer(forKey: GlobalProperty.COMPLETIONDEGREESUPPORT) != 1 {
             return
         }
-        #warning("TimeCallManager has not been created.")
+        #warning("SQLdataManger has not been created.")
 //        var timeSeconds: Int = TimeCallManager.getInstance().getSecondsOfCurDay()
 //        var dic = SQLdataManger.getInstance().getTotalData(with: timeSeconds)
 //        var sleepPlan: Int = 0
@@ -906,7 +918,7 @@ class BlueToothManager: NSObject {
      */
     @objc func getCurDayTotalHeartData() {
         
-        var queue = DispatchQueue.global(qos: .default)
+        let queue = DispatchQueue.global(qos: .default)
         queue.async(execute: {
             
             let calendar = Calendar(identifier: .gregorian)
@@ -1008,7 +1020,7 @@ class BlueToothManager: NSObject {
      */
     func setJiuzuoAlarmWithTag(_ tag: Int, isOpen: Bool, beginHour: Int, minite beginMinite: Int, endHour: Int, minite endMinite: Int, duration: Int) {
         var transData = [0x68, 0x14, 0x08, 0x00, 0x01, tag, isOpen.int, beginMinite, beginHour, endMinite, endHour, duration]
-        var data = NSData(bytes: &transData, length: ArraySize(transData))
+        let data = NSData(bytes: &transData, length: ArraySize(transData))
         appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
 
     }
@@ -1020,7 +1032,7 @@ class BlueToothManager: NSObject {
      */
     func deleteJiuzuoAlarm(withTag tag: Int) {
         var transData = [0x68, 0x14, 0x02, 0x00, 0x02, tag]
-        var data = NSData(bytes: &transData, length: ArraySize(transData))
+        let data = NSData(bytes: &transData, length: ArraySize(transData))
         appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
     }
     
@@ -1046,6 +1058,7 @@ class BlueToothManager: NSObject {
         let lData = NSData(bytes: &transData, length: ArraySize(transData))
         //    [self appendingCheckNumData:lData isNeedResponse:NO];
         if rdCharactic1 != nil {
+            print("📝 \(#function) #1 writeValue")
             cbPeripheral?.writeValue(Data(referencing: lData), for: rdCharactic1!, type: .withoutResponse)
         }
     }
@@ -1092,7 +1105,7 @@ class BlueToothManager: NSObject {
     func answerReadyReceive(_ number: Int) {
         //    Byte transData[] = {0x68,0x2a,0x02,0x00,0x02,number};//不想接收原始数据
         var transData = [0x68, BlueToothFunctionIndexEnum.bloodPressure.rawValue, 0x02, 0x00, 0x02, 0x00] //不想接收原始数据
-        var lData = NSData(bytes: &transData, length: ArraySize(transData))
+        let lData = NSData(bytes: &transData, length: ArraySize(transData))
         appendingCheckNumData(Data(referencing: lData), isNeedResponse: false)
         
         //     interfaceLog(@"准备好接收血压原始数据  app answer %@",lData);
@@ -1136,10 +1149,15 @@ class BlueToothManager: NSObject {
      *
      */
     @objc func setupCorrectNumber() {
-        let diya = UserDefaults.standard.integer(forKey: GlobalProperty.BLOODPRESSURELOW)
-        let gaoya = UserDefaults.standard.integer(forKey: GlobalProperty.BLOODPRESSUREHIGH)
-        if diya > 0 && gaoya > 0 {
-            var transData = [0x68, BlueToothFunctionIndexEnum.bloodPressure.rawValue, 0x03, 0x00, 0x05, gaoya, diya]
+        
+        /// 收縮壓（高）
+        let dia = UserInfo.share.dia
+        
+        /// 舒張壓（低）
+        let sys = UserInfo.share.sys
+        
+        if dia > 0 && sys > 0 {
+            var transData = [0x68, BlueToothFunctionIndexEnum.bloodPressure.rawValue, 0x03, 0x00, 0x05, dia, sys]
             let lData = NSData(bytes: &transData, length: ArraySize(transData))
             appendingCheckNumData(Data(referencing: lData), isNeedResponse: false)
         } else {
@@ -1671,7 +1689,7 @@ class BlueToothManager: NSObject {
             return
         }
         
-        guard var data = NSData(contentsOfFile: romURL) else {
+        guard let data = NSData(contentsOfFile: romURL) else {
             #if DEBUG
             print("\(#function)")
             print("Can't get data.")
@@ -1679,18 +1697,18 @@ class BlueToothManager: NSObject {
             return
         }
         
-        var totalPack: Int = data.length / 200 + 1
+        let totalPack: Int = data.length / 200 + 1
         var length: Int = 200
         if index == totalPack {
             length = data.length % 200
         }
         
-        let startIndex = (index - 1) * 200
-        var romData = data.subdata(with: NSRange(location: (index - 1) * 200, length: length))
+//        let startIndex = (index - 1) * 200
+        let romData = data.subdata(with: NSRange(location: (index - 1) * 200, length: length))
         
         var transDate = [0x68, BlueToothFunctionIndexEnum.updateHardWare.rawValue, (length + 5) & 0xff, (length + 5) >> 8 & 0xff, 0x01, totalPack & 0xff, totalPack >> 8 & 0xff, index & 0xff, index >> 8 & 0xff]
         
-        var lData = NSMutableData(bytes: &transDate, length: ArraySize(transDate))
+        let lData = NSMutableData(bytes: &transDate, length: ArraySize(transDate))
         lData.append(romData)
         
         var beginTansDate = [UInt8](Data(referencing: lData))
@@ -1704,16 +1722,18 @@ class BlueToothManager: NSObject {
         lData.append(&tempData, length: ArraySize(tempData))
         
         if lData.length > 20 {
-            var subData = lData.subdata(with: NSRange(location: 0, length: 20))
-            var lostData = lData.subdata(with: NSRange(location: 20, length: lData.length - 20))
+            let subData = lData.subdata(with: NSRange(location: 0, length: 20))
+            let lostData = lData.subdata(with: NSRange(location: 20, length: lData.length - 20))
             //adaLog(@"update = %@",subData);
             if let cbPeripheral = cbPeripheral, let rdCharactic1 = rdCharactic1 {
+                print("📝 \(#function) #1 writeValue")
                 cbPeripheral.writeValue(subData, for: rdCharactic1, type: .withoutResponse)
             }
             
             perform(#selector(self.sendupdateData(_:)), with: lostData, afterDelay: 0)
         } else {
             if let cbPeripheral = cbPeripheral, let rdCharactic1 = rdCharactic1 {
+                print("📝 \(#function) #2 writeValue")
                 cbPeripheral.writeValue(Data(referencing: lData), for: rdCharactic1, type: .withoutResponse)
             }
         }
@@ -1762,7 +1782,7 @@ class BlueToothManager: NSObject {
      *
      */
     func returnCompletionDegree() {
-        #warning("TimeCallManager has not been created.")
+        #warning("SQLdataManger has not been created.")
 //        var timeSeconds: Int = TimeCallManager.getInstance().getSecondsOfCurDay()
 //        var dic = SQLdataManger.getInstance().getTotalData(with: timeSeconds)
 //        var sleepPlan: Int = 0
@@ -1793,7 +1813,7 @@ class BlueToothManager: NSObject {
      */
     func answerTakePhoto() {
         var transData: [UInt8] = [0x68, 0x0e, 0x00, 0x00]
-        var data = NSData(bytes: &transData, length: ArraySize(transData))
+        let data = NSData(bytes: &transData, length: ArraySize(transData))
         appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
         
     }
@@ -1949,31 +1969,39 @@ class BlueToothManager: NSObject {
 
     
     @objc func setBindDateMa() {
-//        let unitState = kState
-        #warning("CositeaBlueTooth 還未建立")
-//        CositeaBlueTooth.instance.setUnitStateWithState(unitState == 2)
+
+        CositeaBlueTooth.instance.setUnitStateWithState(UserInfo.share.unitState)
         //    [self sendUserInfoToBind];
     }
 
     
     @objc func sendUserInfoToBind() {
         
+        
+//            adaLog(@"身高体重 = %@",dic);
 //        guard let dic = UserDefaults.standard.dictionary(forKey: "loginCache") else { return }
-        
-        //    adaLog(@"身高体重 = %@",dic);
-        
 //        let height = dic["height"] as? Int ?? 0
 //        let weight = dic["weight"] as? Int ?? 0
 //        let male = dic["gender"] as? Int ?? 0
-//        var age: Int = 25
-//        let formates = DateFormatter()
-//        formates.dateFormat = "yyyy-MM-dd"
-//        let assignDate: Date? = formates.date(from: dic["birthdate"] as? String ?? "")
-//        let time = Int(fabs(Float(assignDate?.timeIntervalSinceNow ?? 0.0)))
-//        age = Int(trunc(Double(time / (60 * 60 * 24))) / 365)
+
         
-        #warning("CositeaBlueTooth 還未建立")
-//        CositeaBlueTooth.sharedInstance().sendUserInfoToBind(withHeight: height, weight: weight, male: male - 1, age: age)
+        let user = UserInfo.share
+        
+        let height = Int(user.height) ?? 0
+        let weight = Int(user.weight) ?? 0
+        let male = user.gender.maleBool
+
+
+        let birthday = user.birthday
+        
+        var age: Int = 25
+        let formates = DateFormatter()
+        formates.dateFormat = "yyyy-MM-dd"
+        let assignDate: Date? = formates.date(from: birthday)
+        let time = Int(abs(Float(assignDate?.timeIntervalSinceNow ?? 0.0)))
+        age = Int(trunc(Double(time / (60 * 60 * 24))) / 365)
+        
+        CositeaBlueTooth.instance.sendUserInfoToBind(withHeight: height, weight: weight, male: male, age: age)
     }
 
     
@@ -2026,11 +2054,11 @@ class BlueToothManager: NSObject {
                 if let _length = reviceData?.length, _length >= len + 6 {
                     
                     let end = Int(tempData[len + 5])
-                    var checkNum: UInt8 = 0
+                    var checkNum: UInt32 = 0
                     for i in 0..<len + 4 {
-                        checkNum += tempData[i]
+                        checkNum += UInt32(tempData[i])
                     }
-                    checkNum = checkNum % UInt8(256)
+                    checkNum = checkNum % UInt32(256)
                     if end == 0x16 && checkNum == tempData[len + 4] {
                         let toSendData = reviceData!.subdata(with: NSRange(location: 0, length: len + 6))
                         reviceData!.replaceBytes(in: NSRange(location: 0, length: len + 6), withBytes: nil, length: 0)
@@ -2096,8 +2124,9 @@ class BlueToothManager: NSObject {
         if cbCenterManger == nil, cbPeripheral == nil, cbCenterManger?.state != .poweredOn {
             return
         }
+        print("🤬🤬  rdCharactic1 = \(rdCharactic1)")
         if rdCharactic1 != nil {
-            
+            print("🤬🤬🤬🤬🤬🤬🤬🤬")
             if lData != nil && (lData?.count ?? 0) != 0 {
                 //            adaLog(@"self.dataArray = %@",self.dataArray);
                 if response {
@@ -2111,25 +2140,27 @@ class BlueToothManager: NSObject {
                 } else {
                     //                adaLog(@"shotSendData  - -- %@",lData);
                     if let data = lData, rdCharactic1 != nil {
+                        print("📝 \(#function) #1 writeValue")
                         cbPeripheral?.writeValue(data, for: rdCharactic1!, type: .withoutResponse)
                     }
                     return
                 }
             }
+            print("📌 \(#function) dataArray = \(dataArray), sendingData = \(sendingData)")
             if dataArray.count != 0, sendingData == nil {
                 let data = dataArray[0]
                 //                adaLog(@"longSendData = %@",data);
                 if rdCharactic1 != nil {
+                    print("📝 \(#function) #2 writeValue")
                     cbPeripheral?.writeValue(data, for: rdCharactic1!, type: .withoutResponse)
                 }
                 sendingData = data
                 
-                #warning("BLETool 尚未建立")
-//                let outimeInterver = BleTool.countSendtimeOut(with: (data?.count ?? 0), andReceive: 10.0)
+                let outimeInterver = BLETool.countSendtimeOut(with: (CGFloat(data.count )), andReceive: 10.0)
                 
                 //410 + arc4random()%75+24;
                 
-//                perform(#selector(self.resendSendingData(_:)), with: data, afterDelay: TimeInterval(outimeInterver))
+                perform(#selector(self.resendSending(_:)), with: data, afterDelay: TimeInterval(outimeInterver))
                 
                 dataArray.remove(at: 0)
             }
@@ -2158,13 +2189,13 @@ class BlueToothManager: NSObject {
                 #endif
                 
                 if let aData = data {
+                    print("📝 \(#function) #1 writeValue")
                     cbPeripheral?.writeValue(aData, for: rdCharactic1!, type: .withoutResponse)
                 }
                 resendCount += 1
                 
-                #warning("BLETool 尚未建立")
-//                let outimeInterver = BleTool.countSendtimeOut(with: (data?.count ?? 0), andReceive: 10.0)
-//                perform(#selector(self.resendSending(_:)), with: data, afterDelay: TimeInterval(outimeInterver))
+                let outimeInterver = BLETool.countSendtimeOut(with: (CGFloat(data?.count ?? 0)), andReceive: 10.0)
+                perform(#selector(self.resendSending(_:)), with: data, afterDelay: TimeInterval(outimeInterver))
             }
         }
     }
@@ -2174,9 +2205,7 @@ class BlueToothManager: NSObject {
 
     func updateLog(_ s: CBManagerState) {
         //adaLog(@"s--蓝牙状态--%ld",s);
-        if delegate != nil, delegate?.responds(to: #selector(self.delegate?.callbackCBCentralManagerState(_:))) ?? false {
-            self.delegate?.callbackCBCentralManagerState?(s)
-        }
+        self.delegate?.callbackCBCentralManagerState?(s)
     }
     
     func delayCallback() {
@@ -2290,12 +2319,12 @@ class BlueToothManager: NSObject {
     
     func setBindDateStateWithS() {
         
-//        let formatStringForHours = DateFormatter.dateFormat(fromTemplate: "j", options: 0, locale: NSLocale.current)
-//        let containsA: NSRange? = (formatStringForHours as NSString?)?.range(of: "a")
-//        let hasAMPM: Bool = Int(containsA?.location ?? 0) != NSNotFound
+        let formatStringForHours = DateFormatter.dateFormat(fromTemplate: "j", options: 0, locale: NSLocale.current)
+        let containsA: NSRange? = (formatStringForHours as NSString?)?.range(of: "a")
+        let hasAMPM: Bool = Int(containsA?.location ?? 0) != NSNotFound
         
-        #warning("CositeaBlueTooth has not been created.")
-//        CositeaBlueTooth.sharedInstance().setBindDateStateWithState(!hasAMPM) //app设置手环的时间是12小时制或24小时制
+        //app设置手环的时间是12小时制或24小时制
+        CositeaBlueTooth.instance.setBindDateStateWithState(!hasAMPM)
         
     }
     
@@ -2336,12 +2365,14 @@ class BlueToothManager: NSObject {
             print("subData = \(subData)")
             #endif
             
+            print("📝 \(#function) #1 writeValue")
             cbPeripheral.writeValue(subData, for: rdCharactic1, type: .withoutResponse)
             
             perform(#selector(self.sendupdateData(_:)), with: lostData, afterDelay: 0)
             
         } else {
             //adaLog(@"update = %@",lData);
+            print("📝 \(#function) #2 writeValue")
             cbPeripheral.writeValue(lData, for: rdCharactic1, type: .withoutResponse)
         }
     }
@@ -2400,9 +2431,13 @@ extension BlueToothManager: CBCentralManagerDelegate {
         
         let llString = peripheral.identifier.uuidString
         
-        if connectUUID == nil {
+        let lastUUID = UserDefaults.standard.string(forKey: GlobalProperty.kLastDeviceUUID)
+        print("llString = \(llString)")
+        print("lastUUID = \(lastUUID)")
+        print("isConnecting = \(isConnecting)")
+        if lastUUID == nil {
             return
-        } else if (connectUUID == llString) && !isConnecting {
+        } else if (lastUUID == llString) && !isConnecting {
             cbPeripheral = peripheral
             cbCenterManger?.connect(cbPeripheral!, options: nil)
             isConnecting = true
@@ -2433,7 +2468,7 @@ extension BlueToothManager: CBCentralManagerDelegate {
         cbPeripheral?.discoverServices(nil)
         
         // 不可用
-        UserDefaults.standard.set(GlobalProperty.CALLBACKFORTY, forKey: "1")
+        UserDefaults.standard.set("1", forKey: GlobalProperty.CALLBACKFORTY)
         
         if let isValid = myTimer?.isValid, isValid {
             myTimer?.invalidate()
@@ -2623,6 +2658,7 @@ extension BlueToothManager: CBPeripheralDelegate {
             if count > 20 {
 
                 if let range: Range<Data.Index> = Range(NSRange(location: 0, length: 20)), let data = sendData?.subdata(in: range), rdCharactic1 != nil {
+                    print("📝 \(#function) #1 writeValue")
                     cbPeripheral?.writeValue(data, for: rdCharactic1!, type: .withoutResponse)
                 }
 //                cbPeripheral?.writeValue(, for: rdCharactic1!, type: .withoutResponse)
@@ -2634,6 +2670,7 @@ extension BlueToothManager: CBPeripheralDelegate {
                 
             } else if sendData!.count > 0, let range = Range<Data.Index>(NSRange(location: 0, length: count)), let rangeZero = Range<Data.Index>(NSRange(location: 0, length: 0)) {
                 if let data = sendData?.subdata(in: range), rdCharactic1 != nil {
+                    print("📝 \(#function) #2 writeValue")
                     cbPeripheral?.writeValue(data, for: rdCharactic1!, type: .withoutResponse)
                 }
                 

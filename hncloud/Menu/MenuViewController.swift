@@ -16,6 +16,9 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var batteryLabel: UILabel!
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var menuTableView: UITableView!
+    
+    @IBOutlet weak var batteryImageView: UIImageView!
+    
     @IBAction func logoutAction(_ sender: Any) {
         UserInfo.share.clear()
         self.dismiss(animated: false, completion: nil)
@@ -79,6 +82,10 @@ class MenuViewController: UIViewController {
         self.observe = UserInfo.share.observe(\.deviceChange) { (user, _) in
             self.setMenuArray(with: user.deviceType)
         }
+        (self.parent as? RSideViewController)?.open({
+            self.checkBandPower()
+            self.bandConnecticCheck()
+        })
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -107,6 +114,24 @@ class MenuViewController: UIViewController {
         guard let side = self.parent as? RSideViewController else { return }
         side.closeMenu()
         side.push(vc: vc)
+    }
+    
+    func checkBandPower() {
+        PZBlueToothManager.instance.checkBandPower { (power) in
+            print("🔋🔋🔋  bandPower = \(power)")
+            
+            guard let batteryState = BatteryState(power) else { return }
+            
+            self.batteryImageView.image = batteryState.image
+            self.batteryLabel.text = "\(power)%"
+        }
+    }
+    func bandConnecticCheck() {
+        var btState = "未連接".localized()
+        if CositeaBlueTooth.instance.isConnected {
+            btState = "已連接".localized()
+        }
+        self.btStateLabel.text = btState
     }
 }
 extension MenuViewController: UITableViewDataSource {

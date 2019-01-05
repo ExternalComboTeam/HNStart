@@ -140,23 +140,44 @@ class BluetoothScan: NSObject, CBPeripheralDelegate {
         
         if isUpdate {
             
-            let data = advertisementData?[CBAdvertisementDataManufacturerDataKey] as? NSData
-            
             var type = 0
             
+            let data = advertisementData?[CBAdvertisementDataManufacturerDataKey] as? NSData
+            
+            if let name = advertisementData?[CBAdvertisementDataLocalNameKey] as? String {
+                
+                let model = name.components(separatedBy: "_")[0]
+                
+                if model == "R5S" {
+                    type = 4
+                }
+                
+            } else {
+                if  let name = peripheral.name,
+                    let typeString = UserDefaults.standard.object(forKey: name) as? NSString {
+                    
+                    type = Int(typeString.intValue)
+                    
+                } else {
+                    
+                    type = 1000
+                }
+            }
+            
+            
+            
+            
+            
+            
+            /*
+             
+            let data = advertisementData?[CBAdvertisementDataManufacturerDataKey] as? NSData
+             
             if let _data = data, _data.length != 0 {
                 
-                let byte = [UInt8](Data(referencing: _data))
-                
+                let byte = _data.uint8Byte
+            
                 type = Int(byte[1])
-                print("            type = \(type)")
-//                let count = _data.length / MemoryLayout<UInt8>.size
-//                var array = [UInt8](repeating: 0, count: count)
-//                print("array0 = \(array)")
-//                _data.getBytes(&array, length: count)
-//                #warning("取得 TYPE 方式疑似有問題")
-//                print("array1 = \(array)")
-//                type = Int(array[1])
             
             } else {
                 
@@ -170,7 +191,7 @@ class BluetoothScan: NSObject, CBPeripheralDelegate {
                     type = 1000
                 }
             }
-            
+            */
             let model = PerModel(peripheral: peripheral, rssi: RSSI.intValue, type: type, macAddress: ToolBox.macData(toString: data))
             
             if model.macAddress == "B60421" {

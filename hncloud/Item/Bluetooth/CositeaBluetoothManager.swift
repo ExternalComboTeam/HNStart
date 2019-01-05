@@ -1027,7 +1027,7 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
         }
         
         var transDat = dat.bytes
-        var flag: Bool = check(dat)
+        let flag: Bool = check(dat)
         if !flag {
             return
         }
@@ -1181,7 +1181,7 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
             }
         } else if transDat[4] == 2 {
             if transDat[5] == 16 && transDat[6] == 137 {
-                UserDefaults.standard.set(GlobalProperty.SUPPORTINFORMATION, forKey: "2") //支持Line信息提醒
+                UserDefaults.standard.set("2", forKey: GlobalProperty.SUPPORTINFORMATION) //支持Line信息提醒
             }
         }
     }
@@ -1982,13 +1982,13 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
             //           interfaceLog(@"page 读取设备页面的配置 bra answer %@",data);
             
             let numberTwo: UInt32 = combineData(withAddr: ToolBox.byte(&byteout, add: 5), andLength: 4)
-            UserDefaults.standard.set(GlobalProperty.SHOWPAGEMANAGER, forKey: "\(numberTwo)")
+            UserDefaults.standard.set("\(numberTwo)", forKey: GlobalProperty.SHOWPAGEMANAGER)
             
             pageManager?(numberTwo)
         } else if byteout[4] == 3 {
             //         interfaceLog(@"page  APP读取设备支持的页面配置 answer %@",data);
             let number: UInt32 = combineData(withAddr: ToolBox.byte(&byteout, add: 5), andLength: 4)
-            UserDefaults.standard.set(GlobalProperty.SHOWPAGEMANAGER, forKey: "\(number)")
+            UserDefaults.standard.set("\(number)", forKey: GlobalProperty.SHOWPAGEMANAGER)
             supportPage?(number)
         } else if byteout[4] == 1 {
             //        interfaceLog(@"page 333 bra answer %@",data);
@@ -2062,7 +2062,7 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
             
             //        adaLog(@"target == bra ask  %@",data);
             blueToothManager?.returnCompletionDegree()
-            UserDefaults.standard.set(GlobalProperty.COMPLETIONDEGREESUPPORT, forKey: "1")
+            UserDefaults.standard.set("1", forKey: GlobalProperty.COMPLETIONDEGREESUPPORT)
         } else if Int(code) == 2 {
             #if DEBUG
             print("\(#function)\ntarget == app set 目标发送成功 \(data)")
@@ -2107,22 +2107,22 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
             let remindLength: UInt32 = combineData(withAddr: ToolBox.byte(&byteout, add: 5), andLength: 1)
             if Int(remindLength) == 1 {
                 let remind: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 6), andLength: 1)
-                UserDefaults.standard.set(GlobalProperty.REMINDLENGTH, forKey: "\(remind)")
+                UserDefaults.standard.set("\(remind)", forKey: GlobalProperty.REMINDLENGTH)
 //                ADASaveDefaluts[REMINDLENGTH] = "\(remind)"
             } else if Int(remindLength) == 2 {
                 let remind: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 6), andLength: 1)
-                UserDefaults.standard.set(GlobalProperty.CUSTOMREMINDLENGTH, forKey: "\(remind)")
+                UserDefaults.standard.set("\(remind)", forKey: GlobalProperty.CUSTOMREMINDLENGTH)
 //                ADASaveDefaluts[CUSTOMREMINDLENGTH] = "\(remind)"
             }
             
             let customRemindLength: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 7), andLength: 1)
             if Int(customRemindLength) == 1 {
                 let customRemind: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 8), andLength: 1)
-                UserDefaults.standard.set(GlobalProperty.REMINDLENGTH, forKey: "\(customRemind)")
+                UserDefaults.standard.set("\(customRemind)", forKey: GlobalProperty.REMINDLENGTH)
 //                ADASaveDefaluts[REMINDLENGTH] = "\(customRemind)"
             } else if Int(customRemindLength) == 2 {
                 let customRemind: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 8), andLength: 1)
-                UserDefaults.standard.set(GlobalProperty.CUSTOMREMINDLENGTH, forKey: "\(customRemind)")
+                UserDefaults.standard.set("\(customRemind)", forKey: GlobalProperty.CUSTOMREMINDLENGTH)
 //                ADASaveDefaluts[CUSTOMREMINDLENGTH] = "\(customRemind)"
             }
         }
@@ -2132,14 +2132,14 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
     func supportQuery(_ code: Int, support supportNum: Int) {
         if code == 4 {
             //        int supportCode = [self combineDataWithAddr:byteout + 6 andLength:1];
-            UserDefaults.standard.set(GlobalProperty.HEARTCONTINUITY, forKey: "\(supportNum)")
+            UserDefaults.standard.set("\(supportNum)", forKey: GlobalProperty.HEARTCONTINUITY)
 //            ADASaveDefaluts[HEARTCONTINUITY] = "\(supportNum)"
         } else if code == 5 {
             //        int supportCode = [self combineDataWithAddr:byteout + 6 andLength:1];
-            UserDefaults.standard.set(GlobalProperty.NEWALARM, forKey: "\(supportNum)")
+            UserDefaults.standard.set("\(supportNum)", forKey: GlobalProperty.NEWALARM)
 //            ADASaveDefaluts[NEWALARM] = "\(supportNum)"
         } else if code == 3 {
-            UserDefaults.standard.set(GlobalProperty.WEATHERSUPPORT, forKey: "\(supportNum)")
+            UserDefaults.standard.set("\(supportNum)", forKey: GlobalProperty.WEATHERSUPPORT)
 //            ADASaveDefaluts[WEATHERSUPPORT] = "\(supportNum)"
             blueToothManager?.weatherRefresh()
         }
@@ -2169,12 +2169,12 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
         let code: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 4), andLength: 1)
         let remind: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 5), andLength: 1)
         if Int(code) == 1 {
-            UserDefaults.standard.set(GlobalProperty.REMINDLENGTH, forKey: "\(remind)")
+            UserDefaults.standard.set("\(remind)", forKey: GlobalProperty.REMINDLENGTH)
 //            ADASaveDefaluts[REMINDLENGTH] = "\(remind)"
             //查询设备支持的消息提醒最大长度
             blueToothManager?.answerBraceletSetParam(Int(code))
         } else if Int(code) == 2 {
-            UserDefaults.standard.set(GlobalProperty.CUSTOMREMINDLENGTH, forKey: "\(remind)")
+            UserDefaults.standard.set("\(remind)", forKey: GlobalProperty.CUSTOMREMINDLENGTH)
 //            ADASaveDefaluts[CUSTOMREMINDLENGTH] = "\(remind)"
             //查询设备支持的自定义提醒的最大长度
             blueToothManager?.answerBraceletSetParam(Int(code))

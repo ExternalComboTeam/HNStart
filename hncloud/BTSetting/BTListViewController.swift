@@ -96,6 +96,21 @@ class BTListViewController: UIViewController {
         self.actionButton.setTitle("取消搜尋".localized(), for: .normal)
     }
     
+    @objc private func connectSuccessTimeOut() {
+        KRProgressHUD.showSuccess(withMessage: "連接成功".localized())
+        KRProgressHUD.set(duration: 0.75)
+        if self.parent?.parent is RSideViewController {
+            self.pop()
+        } else {
+            let left = MenuViewController.fromStoryboard()
+            let main = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainNavigation")
+            let vc = RSideViewController(leftViewController: left, mainViewController: main)
+            self.present(vc, animated: false, completion: nil)
+        }
+        
+        
+    }
+    
     private func TestAnimation() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.stopSearch()
@@ -108,10 +123,12 @@ class BTListViewController: UIViewController {
     }
 }
 extension BTListViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("🍕 deviceArray = \(deviceArray)")
         return deviceArray?.count ?? 1
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "bluetoothCell", for: indexPath)
         
@@ -122,11 +139,11 @@ extension BTListViewController: UITableViewDataSource {
             cell.textLabel?.text = "找不到裝置"
         }
         
-        
         return cell
     }
 }
 extension BTListViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
@@ -152,8 +169,14 @@ extension BTListViewController: UITableViewDelegate {
                 #endif
             }
         }
-            
-        KRProgressHUD.showMessage("正在連接...")
+        
+        if let name = model.peripheral.name {
+            UserDefaults.standard.set(model.type, forKey: name)
+        }
+
+        KRProgressHUD.set(duration: 5)
+        KRProgressHUD.show(withMessage: "正在連接...", completion: nil)
+        
         
         CositeaBlueTooth.instance.connect(withUUID: llString)
         if ToolBox.savePeripheral(model) {
@@ -170,8 +193,8 @@ extension BTListViewController: UITableViewDelegate {
             
             userInfo.deviceToken = model.deviceName ?? "未知裝置"
             
-            KRProgressHUD.showSuccess(withMessage: "連接成功".localized())
-            self.pop()
+            perform(#selector(self.connectSuccessTimeOut), with: nil, afterDelay: 5.0)
+            
         } else {
             KRProgressHUD.showError(withMessage: "錯誤")
         }
@@ -188,3 +211,7 @@ extension BTListViewController: UITableViewDelegate {
 //        }
     }
 }
+
+
+
+

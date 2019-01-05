@@ -141,6 +141,7 @@
                         <viewLayoutGuide key="safeArea" id="dBs-Zx-fum"/>
                     </view>
                     <connections>
+                        <outlet property="batteryImageView" destination="LTy-5Y-C41" id="yUH-Se-mgA"/>
                         <outlet property="batteryLabel" destination="cPE-iV-4Oz" id="ulA-VS-eea"/>
                         <outlet property="btStateLabel" destination="NMy-WN-5If" id="cvF-kE-O4Q"/>
                         <outlet property="logoutButton" destination="NXV-sL-Kdy" id="lzR-ta-jJl"/>

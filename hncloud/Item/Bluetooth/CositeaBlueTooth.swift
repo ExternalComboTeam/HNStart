@@ -28,8 +28,8 @@ class CositeaBlueTooth: NSObject {
             if isConnect, let deviceName = peripheral?.name, let connectUUID = peripheral?.identifier.uuidString {
                 self?.deviceName = deviceName
                 self?.connectUUID = connectUUID
-                UserDefaults.standard.set(GlobalProperty.kLastDeviceNAME, forKey: deviceName)
-                UserDefaults.standard.set(GlobalProperty.kLastDeviceUUID, forKey: connectUUID)
+                UserDefaults.standard.set(deviceName, forKey: GlobalProperty.kLastDeviceNAME)
+                UserDefaults.standard.set(connectUUID, forKey: GlobalProperty.kLastDeviceUUID)
             } else {
                 self?.deviceName = nil
                 self?.connectUUID = nil

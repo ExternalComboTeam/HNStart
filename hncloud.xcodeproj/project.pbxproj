@@ -494,13 +494,13 @@
 		B302546F21DD092400A2AB89 /* Bluetooth */ = {
 			isa = PBXGroup;
 			children = (
-				B302547021DD092400A2AB89 /* BluetoothManager.swift */,
-				B302547121DD092400A2AB89 /* CositeaBluetoothManager.swift */,
 				B302547221DD092400A2AB89 /* BluetoothScan.swift */,
+				B302547021DD092400A2AB89 /* BluetoothManager.swift */,
 				B302547321DD092400A2AB89 /* CositeaBlueTooth.swift */,
+				B302547121DD092400A2AB89 /* CositeaBluetoothManager.swift */,
+				B302547C21DD092400A2AB89 /* PZBlueToothManager.swift */,
 				B302547421DD092400A2AB89 /* ddd.swift */,
 				B302547521DD092400A2AB89 /* Model */,
-				B302547C21DD092400A2AB89 /* PZBlueToothManager.swift */,
 			);
 			path = Bluetooth;
 			sourceTree = "<group>";

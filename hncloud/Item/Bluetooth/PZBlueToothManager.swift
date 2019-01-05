@@ -254,8 +254,8 @@ class PZBlueToothManager: NSObject {
     }
 
     func setBindDatepz() {
-        let unitState = kState
-        CositeaBlueTooth.instance.setUnitStateWithState(unitState == 2)
+        
+        CositeaBlueTooth.instance.setUnitStateWithState(UserInfo.share.unitState)
         
         let formatStringForHours = DateFormatter.dateFormat(fromTemplate: "j", options: 0, locale: NSLocale.current)
         let containsA: NSRange? = (formatStringForHours as NSString?)?.range(of: "a")
@@ -280,22 +280,41 @@ class PZBlueToothManager: NSObject {
     // MARK: -- 内部方法
     func sendUserInfoToBind() {
         
-        let dic = UserDefaults.standard.object(forKey: "loginCache") as? [String : Any]
-        //    adaLog(@"pz 身高体重 = %@",dic);
-        if let dic = dic {
-            let height = dic["height"] as? Int ?? 0
-            let weight = dic["weight"] as? Int ?? 0
-            let male = dic["gender"] as? Int ?? 0
-            var age: Int = 25
-            let formates = DateFormatter()
-            formates.dateFormat = "yyyy-MM-dd"
-            let assignDate: Date? = formates.date(from: dic["birthdate"] as? String ?? "")
-            let time = Int(abs(Float(assignDate?.timeIntervalSinceNow ?? 0.0)))
-            age = Int(trunc(Double(time / (60 * 60 * 24))) / 365)
-            
-            
-            CositeaBlueTooth.instance.sendUserInfoToBind(withHeight: height, weight: weight, male: Bool(truncating: NSNumber(integerLiteral: male - 1)), age: age)
-        }
+//        let dic = UserDefaults.standard.object(forKey: "loginCache") as? [String : Any]
+//        //    adaLog(@"pz 身高体重 = %@",dic);
+//        if let dic = dic {
+//            let height = dic["height"] as? Int ?? 0
+//            let weight = dic["weight"] as? Int ?? 0
+//            let male = dic["gender"] as? Int ?? 0
+//            var age: Int = 25
+//            let formates = DateFormatter()
+//            formates.dateFormat = "yyyy-MM-dd"
+//            let assignDate: Date? = formates.date(from: dic["birthdate"] as? String ?? "")
+//            let time = Int(abs(Float(assignDate?.timeIntervalSinceNow ?? 0.0)))
+//            age = Int(trunc(Double(time / (60 * 60 * 24))) / 365)
+//
+//
+//            CositeaBlueTooth.instance.sendUserInfoToBind(withHeight: height, weight: weight, male: Bool(truncating: NSNumber(integerLiteral: male - 1)), age: age)
+//        }
+        
+        
+        let user = UserInfo.share
+        
+        let height = Int(user.height) ?? 0
+        let weight = Int(user.weight) ?? 0
+        let male = user.gender.maleBool
+        
+        
+        let birthday = user.birthday
+        
+        var age: Int = 25
+        let formates = DateFormatter()
+        formates.dateFormat = "yyyy-MM-dd"
+        let assignDate: Date? = formates.date(from: birthday)
+        let time = Int(abs(Float(assignDate?.timeIntervalSinceNow ?? 0.0)))
+        age = Int(trunc(Double(time / (60 * 60 * 24))) / 365)
+        
+        CositeaBlueTooth.instance.sendUserInfoToBind(withHeight: height, weight: weight, male: male, age: age)
     }
 
     func checkHeartRateAlarm(with heartRateAlarmBlock: @escaping heartRateAlarmBlock) {

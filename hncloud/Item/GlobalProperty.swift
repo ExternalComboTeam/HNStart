@@ -65,7 +65,7 @@ struct GlobalProperty {
     
     static let LastLoginUser_Info = "LastLoginUser_Info"
     
-    static let kUnitStateKye = "unitState"
+//    static let kUnitStateKye = "unitState"
     
     static let CurrentUserName_HCH = "CurrentUserName"
     
@@ -356,5 +356,63 @@ enum BlueToothFunctionIndexEnum : Int {
     case checkNewLength = 0x33 //查询设备支持 长度
     case pilaoData = 0x65 //疲劳值不支持
     //CustomAlarm_None = 0x49,//手环请求天气
+    
+}
+
+
+enum BatteryState: Int {
+    
+    case full = 100
+    case eighty = 80
+    case sixty = 60
+    case forty = 40
+    case twenty = 20
+    
+    init?(_ ele: Int) {
+        
+        if ele >= 100 {
+            self.init(rawValue: 100)
+        } else if ele >= 80 {
+            self.init(rawValue: 80)
+        } else if ele >= 60 {
+            self.init(rawValue: 60)
+        } else if ele >= 40 {
+            self.init(rawValue: 40)
+        } else if ele >= 20 {
+            self.init(rawValue: 20)
+        } else {
+            return nil
+        }
+    }
+    
+    var image: UIImage {
+        switch self {
+        case .full:
+            return #imageLiteral(resourceName: "ele100")
+        case .eighty:
+            return #imageLiteral(resourceName: "ele80")
+        case .sixty:
+            return #imageLiteral(resourceName: "ele60")
+        case .forty:
+            return #imageLiteral(resourceName: "ele40")
+        case .twenty:
+            return #imageLiteral(resourceName: "ele20")
+        }
+    }
+    
+    var stringValue: String {
+        switch self {
+        case .full:
+            return "100%"
+        case .eighty:
+            return "80%"
+        case .sixty:
+            return "60%"
+        case .forty:
+            return "40%"
+        case .twenty:
+            return "20%"
+        }
+    }
     
 }

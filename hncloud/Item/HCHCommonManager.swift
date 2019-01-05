@@ -38,7 +38,7 @@ class HCHCommonManager: NSObject {
     var curSportDic: [String : Any] = [:]
     var eventCount: Int = 0
     var isLogin = false
-    var state: Int = 0
+//    var state: Int = 0
     var lanuguageIndex_SRK: Int = 0
     var active = false
     var isThirdPartLogin = false
@@ -84,10 +84,9 @@ class HCHCommonManager: NSObject {
         sleepPlan = UserDefaults.standard.integer(forKey: GlobalProperty.Sleep_PlanTo_HCH)
         stepsPlan = UserDefaults.standard.integer(forKey:  GlobalProperty.Steps_PlanTo_HCH)
         antilossIsOn = UserDefaults.standard.bool(forKey: GlobalProperty.AntiLoss_Status_HCH)
-        state = UserDefaults.standard.integer(forKey: GlobalProperty.kUnitStateKye)
+//        state = UserDefaults.standard.integer(forKey: GlobalProperty.kUnitStateKye)
         
-        #warning("TimeCallManager has not been created.")
-//        todayTimeSeconds = TimeCallManager.getInstance().getSecondsOfCurDay()
+        todayTimeSeconds = Int(TimeCallManager.instance.getSecondsOfCurDay())
         
         selectTimeSeconds = todayTimeSeconds
         pilaoValue = true
@@ -223,17 +222,15 @@ class HCHCommonManager: NSObject {
     
     
     func getLanguageNum() -> Int {
-//        LanguageNum = BleTool.setLanguage()
-//        return LanguageNum
-        #warning("BLETool 尚未建立")
-        return 0
+        languageNum = BLETool.setLanguageTool()
+        return languageNum
     }
     
     //监测系统时间的方法
     @objc func systemTimeChange() {
         
-        #warning("TimeCallManager 尚未建立")
-//        todayTimeSeconds = TimeCallManager.getInstance().getSecondsOfCurDay()
+        
+        todayTimeSeconds = Int(TimeCallManager.instance.getSecondsOfCurDay())
         
         //    //adaLog(@"todayTimeSeconds = %d",_todayTimeSeconds);
         //    //adaLog(@"todayTimeSeconds = %@",[[TimeCallManager getInstance] timeAdditionWithTimeString:@"yyyy-MM-dd HH:mm:ss" andSeconed:_todayTimeSeconds]);

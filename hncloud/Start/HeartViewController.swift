@@ -21,6 +21,8 @@ class HeartViewController: UIViewController {
     @IBOutlet weak var ratLabel: UILabel!
     @IBOutlet weak var spoLabel: UILabel!
     
+    @IBOutlet weak var bluetoothStateBtn: UIButton!
+    
     @IBAction func curveAction(_ sender: Any) {
         let vc = HeartCurveViewController.fromStoryboard()
         self.push(vc: vc)
@@ -38,7 +40,14 @@ class HeartViewController: UIViewController {
         self.setChart()
         self.setData()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        connectedBand()
+    }
 
+    @IBAction func bluetoothStateAction(_ sender: Any) {
+    }
     
     private func setChart() {
         let leftAxis = chartView.leftAxis
@@ -111,5 +120,52 @@ class HeartViewController: UIViewController {
                                           attributes: [.font: UIFont.systemFont(ofSize: 17),
                                                        .foregroundColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)])
         self.spoLabel.attributedText = u + " " + v
+    }
+    
+    func connectedBand() {
+        
+        bluetoothStateBtn.isEnabled = false
+        
+        if CositeaBlueTooth.instance.isConnected {
+            print("CositeaBlueTooth.instance.isConnected = \(CositeaBlueTooth.instance.isConnected)")
+            hideBluetoothStateBtn()
+            return
+        } else {
+            self.bluetoothStateBtn.isHidden = false
+        }
+        
+        CositeaBlueTooth.instance.checkCBCentralManagerState { (state) in
+            
+            switch state {
+                
+            case .poweredOn:
+                self.bluetoothStateBtn.setTitle("連接中...", for: .normal)
+                
+                guard let uuid = UserDefaults.standard.string(forKey: GlobalProperty.kLastDeviceUUID) else {
+                    
+                    self.bluetoothStateBtn.isEnabled = true
+                    self.bluetoothStateBtn.setTitle("未綁定", for: .normal)
+                    return
+                }
+                
+                CositeaBlueTooth.instance.connect(withUUID: uuid)
+                
+                CositeaBlueTooth.instance.connectedStateChanged(with: { (stateNum) in
+                    if stateNum == 1 {
+                        self.bluetoothStateBtn.setTitle("已連接", for: .normal)
+                        self.perform(#selector(self.hideBluetoothStateBtn), with: nil, afterDelay: 1.0)
+                    }
+                })
+            default:
+                self.bluetoothStateBtn.isEnabled = true
+                self.bluetoothStateBtn.setTitle("未綁定", for: .normal)
+                
+            }
+        }
+    }
+    
+    @objc func hideBluetoothStateBtn() {
+        self.bluetoothStateBtn.isEnabled = false
+        self.bluetoothStateBtn.isHidden = true
     }
 }
