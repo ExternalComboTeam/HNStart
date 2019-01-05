@@ -7,7 +7,9 @@ PODS:
   - Charts (3.2.1):
     - Charts/Core (= 3.2.1)
   - Charts/Core (3.2.1)
+  - CVCalendar (1.6.1)
   - IQKeyboardManagerSwift (6.2.0)
+  - JMDropMenu (0.1.1)
   - KeychainSwift (13.0.0)
   - KRActivityIndicatorView (3.0.0)
   - KRProgressHUD (3.4.0):
@@ -16,6 +18,7 @@ PODS:
   - SDWebImage (4.4.2):
     - SDWebImage/Core (= 4.4.2)
   - SDWebImage/Core (4.4.2)
+  - StepSlider (1.3.0)
   - SwifterSwift (4.6.0):
     - SwifterSwift/AppKit (= 4.6.0)
     - SwifterSwift/CoreGraphics (= 4.6.0)
@@ -33,6 +36,9 @@ PODS:
   - SwifterSwift/SpriteKit (4.6.0)
   - SwifterSwift/SwiftStdlib (4.6.0)
   - SwifterSwift/UIKit (4.6.0)
+  - SwiftMessages (6.0.1):
+    - SwiftMessages/App (= 6.0.1)
+  - SwiftMessages/App (6.0.1)
   - SwiftyJSON (4.0.0)
   - ZZCircleProgress (0.2.1)
 
@@ -41,12 +47,16 @@ DEPENDENCIES:
   - Alamofire
   - Alamofire-SwiftyJSON
   - Charts
+  - CVCalendar
   - IQKeyboardManagerSwift
+  - JMDropMenu
   - KeychainSwift
   - KRProgressHUD
   - Localize-Swift
   - SDWebImage
+  - StepSlider
   - SwifterSwift
+  - SwiftMessages
   - ZZCircleProgress
 
 SPEC REPOS:
@@ -55,13 +65,17 @@ SPEC REPOS:
     - Alamofire
     - Alamofire-SwiftyJSON
     - Charts
+    - CVCalendar
     - IQKeyboardManagerSwift
+    - JMDropMenu
     - KeychainSwift
     - KRActivityIndicatorView
     - KRProgressHUD
     - Localize-Swift
     - SDWebImage
+    - StepSlider
     - SwifterSwift
+    - SwiftMessages
     - SwiftyJSON
     - ZZCircleProgress
 
@@ -70,16 +84,20 @@ SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   Alamofire-SwiftyJSON: 2b3649d57dc7bb2880fb8b86f8bb969397666916
   Charts: f122fb70b19847fa5817d018b77d6c5a2296ab25
+  CVCalendar: 505c11b11a088b43f159806e791eba1c2540853b
   IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
+  JMDropMenu: 91bc440a85a7a9aa546283b4d16a0134d9fe261c
   KeychainSwift: 23d6c16cbc33f20fafa30c3d783241b4b87d998c
   KRActivityIndicatorView: c414000730a6f4969eeb354bee4f2aebc89c2c2e
   KRProgressHUD: 79c8703f82179fe34b3602f10b30726f887983fa
   Localize-Swift: c798ec9286494866f7068f85f7c71283ac5bdab4
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
+  StepSlider: c54e471186f29c6535260c9866178a3900f787e9
   SwifterSwift: 812ffec6f301922f5430e75be3f2939ea3a80024
+  SwiftMessages: 42ed7b6e1f2f1ead9ee667dc61a0ae87e4f49570
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   ZZCircleProgress: bda14bac390f6c96efcb72f7617bef66c7f2d2d0
 
-PODFILE CHECKSUM: c2ca9e7a820ee2dc47bf6c5a2a1a68cb1279b5b5
+PODFILE CHECKSUM: 4c4960eb390424c210ceea3eac7c850439c57d98
 
 COCOAPODS: 1.5.2

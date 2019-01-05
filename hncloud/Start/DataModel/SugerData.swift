@@ -31,50 +31,43 @@ class SugerData {
     /// 早上飯前
     var mFasting: String = "" {
         didSet {
-            guard let value = Double(self.mFasting) else { return }
-            self.fpg.values[0].y = value
+            self.fpg.values[0].y = Double(self.mFasting) ?? 0
         }
     }
     /// 早上飯後
     var mAfer: String = "" {
         didSet {
-            guard let value = Double(self.mAfer) else { return }
-            self.pfg.values[0].y = value
+            self.pfg.values[0].y = Double(self.mAfer) ?? 0
         }
     }
     /// 中午飯前
     var lFasting: String = "" {
         didSet {
-            guard let value = Double(self.lFasting) else { return }
-            self.fpg.values[1].y = value
+            self.fpg.values[1].y = Double(self.lFasting) ?? 0
         }
     }
     /// 中午飯後
     var lAfer: String = "" {
         didSet {
-            guard let value = Double(self.lAfer) else { return }
-            self.pfg.values[1].y = value
+            self.pfg.values[1].y = Double(self.lAfer) ?? 0
         }
     }
     /// 晚上飯前
     var dFasting: String = "" {
         didSet {
-            guard let value = Double(self.dFasting) else { return }
-            self.fpg.values[2].y = value
+            self.fpg.values[2].y = Double(self.dFasting) ?? 0
         }
     }
     /// 晚上飯後
     var dAfer: String = "" {
         didSet {
-            guard let value = Double(self.dAfer) else { return }
-            self.pfg.values[2].y = value
+            self.pfg.values[2].y = Double(self.dAfer) ?? 0
         }
     }
     /// 睡前
     var sBefore: String = "" {
         didSet {
-            guard let value = Double(self.sBefore) else { return }
-            self.fpg.values[3].y = value
+            self.fpg.values[3].y = Double(self.sBefore) ?? 0
         }
     }
 }

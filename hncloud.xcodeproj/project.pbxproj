@@ -21,14 +21,37 @@
 		9D297A1321D4AAC600E34260 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D297A1221D4AAC600E34260 /* ArrayExtension.swift */; };
 		9D297A1521D4AF4E00E34260 /* DS-DIGIB.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 9D297A1421D4AF4E00E34260 /* DS-DIGIB.TTF */; };
 		9D2B806721D7B39600F63685 /* SportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2B806621D7B39600F63685 /* SportCell.swift */; };
+		9D5F394621DE4A030089C423 /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D5F394521DE4A030089C423 /* SwitchCell.xib */; };
+		9D5F394821DE4B5D0089C423 /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5F394721DE4B5D0089C423 /* SwitchCell.swift */; };
+		9D5F394A21DE57890089C423 /* ShowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D5F394921DE57890089C423 /* ShowCell.xib */; };
+		9D5F394C21DE58360089C423 /* ShowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5F394B21DE58360089C423 /* ShowCell.swift */; };
+		9D5F394E21DE755A0089C423 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5F394D21DE755A0089C423 /* CameraController.swift */; };
+		9D5F395021DE831E0089C423 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5F394F21DE831E0089C423 /* CalendarViewController.swift */; };
+		9D5F395F21DE8E080089C423 /* RPagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5F395221DE8E070089C423 /* RPagingViewController.swift */; };
+		9D5F396021DE8E080089C423 /* PagingProtocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5F395321DE8E070089C423 /* PagingProtocal.swift */; };
+		9D5F396121DE8E080089C423 /* RSegmentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D5F395521DE8E070089C423 /* RSegmentCell.xib */; };
+		9D5F396221DE8E080089C423 /* RSegmentOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5F395621DE8E070089C423 /* RSegmentOption.swift */; };
+		9D5F396321DE8E080089C423 /* RSegmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5F395721DE8E070089C423 /* RSegmentCell.swift */; };
+		9D5F396421DE8E080089C423 /* RSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5F395821DE8E070089C423 /* RSegment.swift */; };
+		9D5F396521DE8E080089C423 /* RSegmentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5F395921DE8E070089C423 /* RSegmentProtocol.swift */; };
+		9D5F396621DE8E080089C423 /* RPluginHeaderScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5F395B21DE8E070089C423 /* RPluginHeaderScroll.swift */; };
+		9D5F396721DE8E080089C423 /* RPluginTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5F395C21DE8E070089C423 /* RPluginTabBar.swift */; };
+		9D5F396821DE8E080089C423 /* PagingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5F395D21DE8E070089C423 /* PagingExtension.swift */; };
+		9D5F396921DE8E080089C423 /* RPagingViewControllerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5F395E21DE8E070089C423 /* RPagingViewControllerPlugin.swift */; };
+		9D5F396B21DE8E2E0089C423 /* CurveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5F396A21DE8E2E0089C423 /* CurveViewController.swift */; };
+		9D5F396D21DE8EBD0089C423 /* CurveChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5F396C21DE8EBD0089C423 /* CurveChildViewController.swift */; };
 		9D616CAB21DA7C3D00BB1C26 /* ModifyPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D616CAA21DA7C3D00BB1C26 /* ModifyPasswordViewController.swift */; };
 		9D651FC121D9ADB500C47536 /* SportRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D651FC021D9ADB500C47536 /* SportRecordViewController.swift */; };
+		9D694E6321DD142B004D66DC /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D694E6221DD142B004D66DC /* CustomSlider.swift */; };
+		9D694E6521DD2E21004D66DC /* TargetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D694E6421DD2E21004D66DC /* TargetViewController.swift */; };
 		9D6E271321D1072B00F22ABD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6E271221D1072B00F22ABD /* AppDelegate.swift */; };
 		9D6E271821D1072B00F22ABD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D6E271621D1072B00F22ABD /* Main.storyboard */; };
 		9D6E271A21D1072C00F22ABD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D6E271921D1072C00F22ABD /* Assets.xcassets */; };
 		9D6E271D21D1072C00F22ABD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D6E271B21D1072C00F22ABD /* LaunchScreen.storyboard */; };
 		9D6E272821D1072C00F22ABD /* hncloudTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6E272721D1072C00F22ABD /* hncloudTests.swift */; };
 		9D6E273321D1072D00F22ABD /* hncloudUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6E273221D1072D00F22ABD /* hncloudUITests.swift */; };
+		9D7D474221DF9DB900613C05 /* SearchMedicineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7D474121DF9DB900613C05 /* SearchMedicineViewController.swift */; };
+		9D7D474421DFA17200613C05 /* MedicineCellCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7D474321DFA17200613C05 /* MedicineCellCell.swift */; };
 		9D86988021D64AEC00892773 /* WalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D86987F21D64AEC00892773 /* WalkViewController.swift */; };
 		9D86988221D64AFD00892773 /* SportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D86988121D64AFD00892773 /* SportViewController.swift */; };
 		9D86988421D64B0700892773 /* SleepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D86988321D64B0700892773 /* SleepViewController.swift */; };
@@ -133,8 +156,29 @@
 		9D297A1221D4AAC600E34260 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		9D297A1421D4AF4E00E34260 /* DS-DIGIB.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DS-DIGIB.TTF"; sourceTree = "<group>"; };
 		9D2B806621D7B39600F63685 /* SportCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportCell.swift; sourceTree = "<group>"; };
+		9D5F394521DE4A030089C423 /* SwitchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchCell.xib; sourceTree = "<group>"; };
+		9D5F394721DE4B5D0089C423 /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
+		9D5F394921DE57890089C423 /* ShowCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShowCell.xib; sourceTree = "<group>"; };
+		9D5F394B21DE58360089C423 /* ShowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCell.swift; sourceTree = "<group>"; };
+		9D5F394D21DE755A0089C423 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
+		9D5F394F21DE831E0089C423 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		9D5F395221DE8E070089C423 /* RPagingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RPagingViewController.swift; sourceTree = "<group>"; };
+		9D5F395321DE8E070089C423 /* PagingProtocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingProtocal.swift; sourceTree = "<group>"; };
+		9D5F395521DE8E070089C423 /* RSegmentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RSegmentCell.xib; sourceTree = "<group>"; };
+		9D5F395621DE8E070089C423 /* RSegmentOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSegmentOption.swift; sourceTree = "<group>"; };
+		9D5F395721DE8E070089C423 /* RSegmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSegmentCell.swift; sourceTree = "<group>"; };
+		9D5F395821DE8E070089C423 /* RSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSegment.swift; sourceTree = "<group>"; };
+		9D5F395921DE8E070089C423 /* RSegmentProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSegmentProtocol.swift; sourceTree = "<group>"; };
+		9D5F395B21DE8E070089C423 /* RPluginHeaderScroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RPluginHeaderScroll.swift; sourceTree = "<group>"; };
+		9D5F395C21DE8E070089C423 /* RPluginTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RPluginTabBar.swift; sourceTree = "<group>"; };
+		9D5F395D21DE8E070089C423 /* PagingExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingExtension.swift; sourceTree = "<group>"; };
+		9D5F395E21DE8E070089C423 /* RPagingViewControllerPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RPagingViewControllerPlugin.swift; sourceTree = "<group>"; };
+		9D5F396A21DE8E2E0089C423 /* CurveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurveViewController.swift; sourceTree = "<group>"; };
+		9D5F396C21DE8EBD0089C423 /* CurveChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurveChildViewController.swift; sourceTree = "<group>"; };
 		9D616CAA21DA7C3D00BB1C26 /* ModifyPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyPasswordViewController.swift; sourceTree = "<group>"; };
 		9D651FC021D9ADB500C47536 /* SportRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportRecordViewController.swift; sourceTree = "<group>"; };
+		9D694E6221DD142B004D66DC /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
+		9D694E6421DD2E21004D66DC /* TargetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetViewController.swift; sourceTree = "<group>"; };
 		9D6E270F21D1072B00F22ABD /* hncloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hncloud.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D6E271221D1072B00F22ABD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9D6E271721D1072B00F22ABD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -147,6 +191,8 @@
 		9D6E272E21D1072D00F22ABD /* hncloudUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hncloudUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D6E273221D1072D00F22ABD /* hncloudUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hncloudUITests.swift; sourceTree = "<group>"; };
 		9D6E273421D1072D00F22ABD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9D7D474121DF9DB900613C05 /* SearchMedicineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMedicineViewController.swift; sourceTree = "<group>"; };
+		9D7D474321DFA17200613C05 /* MedicineCellCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineCellCell.swift; sourceTree = "<group>"; };
 		9D86987F21D64AEC00892773 /* WalkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkViewController.swift; sourceTree = "<group>"; };
 		9D86988121D64AFD00892773 /* SportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportViewController.swift; sourceTree = "<group>"; };
 		9D86988321D64B0700892773 /* SleepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepViewController.swift; sourceTree = "<group>"; };
@@ -306,6 +352,13 @@
 			path = SubView;
 			sourceTree = "<group>";
 		};
+		9D46B05F21DF8ECD00A9BE3B /* ChildViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ChildViewController;
+			sourceTree = "<group>";
+		};
 		9D5680117C82023491467B70 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -314,6 +367,51 @@
 				D90FFE7834698DED6988CFE5 /* Pods_hncloudUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9D5F394421DE49DC0089C423 /* SubView */ = {
+			isa = PBXGroup;
+			children = (
+				9D5F394521DE4A030089C423 /* SwitchCell.xib */,
+				9D5F394721DE4B5D0089C423 /* SwitchCell.swift */,
+				9D5F394921DE57890089C423 /* ShowCell.xib */,
+				9D5F394B21DE58360089C423 /* ShowCell.swift */,
+			);
+			path = SubView;
+			sourceTree = "<group>";
+		};
+		9D5F395121DE8E070089C423 /* SegmentController */ = {
+			isa = PBXGroup;
+			children = (
+				9D5F395221DE8E070089C423 /* RPagingViewController.swift */,
+				9D5F395321DE8E070089C423 /* PagingProtocal.swift */,
+				9D5F395421DE8E070089C423 /* Segment */,
+				9D5F395A21DE8E070089C423 /* Plugin */,
+				9D5F395D21DE8E070089C423 /* PagingExtension.swift */,
+				9D5F395E21DE8E070089C423 /* RPagingViewControllerPlugin.swift */,
+			);
+			path = SegmentController;
+			sourceTree = "<group>";
+		};
+		9D5F395421DE8E070089C423 /* Segment */ = {
+			isa = PBXGroup;
+			children = (
+				9D5F395521DE8E070089C423 /* RSegmentCell.xib */,
+				9D5F395621DE8E070089C423 /* RSegmentOption.swift */,
+				9D5F395721DE8E070089C423 /* RSegmentCell.swift */,
+				9D5F395821DE8E070089C423 /* RSegment.swift */,
+				9D5F395921DE8E070089C423 /* RSegmentProtocol.swift */,
+			);
+			path = Segment;
+			sourceTree = "<group>";
+		};
+		9D5F395A21DE8E070089C423 /* Plugin */ = {
+			isa = PBXGroup;
+			children = (
+				9D5F395B21DE8E070089C423 /* RPluginHeaderScroll.swift */,
+				9D5F395C21DE8E070089C423 /* RPluginTabBar.swift */,
+			);
+			path = Plugin;
 			sourceTree = "<group>";
 		};
 		9D6E270621D1072B00F22ABD = {
@@ -399,6 +497,7 @@
 			isa = PBXGroup;
 			children = (
 				9DAF143D21DBE411009EDB72 /* SportItemCell.swift */,
+				9D7D474321DFA17200613C05 /* MedicineCellCell.swift */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
@@ -411,6 +510,10 @@
 				9DC3B7DA21D73C95001DD0E4 /* HeartCurveViewController.swift */,
 				9D651FC021D9ADB500C47536 /* SportRecordViewController.swift */,
 				9DAF143821DBE235009EDB72 /* SportSelectedViewController.swift */,
+				9D694E6421DD2E21004D66DC /* TargetViewController.swift */,
+				9D5F396A21DE8E2E0089C423 /* CurveViewController.swift */,
+				9D5F396C21DE8EBD0089C423 /* CurveChildViewController.swift */,
+				9D7D474121DF9DB900613C05 /* SearchMedicineViewController.swift */,
 			);
 			path = Health;
 			sourceTree = "<group>";
@@ -439,11 +542,14 @@
 		9DD4CB9921D2782800C15430 /* Object */ = {
 			isa = PBXGroup;
 			children = (
+				9D5F395121DE8E070089C423 /* SegmentController */,
 				9D8E868821D4F56000C0034D /* API */,
 				9D297A1421D4AF4E00E34260 /* DS-DIGIB.TTF */,
 				9DA359B021D3A7020090A7DD /* RSideViewController.swift */,
 				9DA359B821D3CD830090A7DD /* UserInfo.swift */,
 				9DAF143621DBDEF7009EDB72 /* SoprtType.swift */,
+				9D694E6221DD142B004D66DC /* CustomSlider.swift */,
+				9D5F394D21DE755A0089C423 /* CameraController.swift */,
 			);
 			path = Object;
 			sourceTree = "<group>";
@@ -451,11 +557,14 @@
 		9DD4CBA021D27A3600C15430 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				9D46B05F21DF8ECD00A9BE3B /* ChildViewController */,
+				9D5F394421DE49DC0089C423 /* SubView */,
 				9DD4CBA321D2936600C15430 /* Menu.storyboard */,
 				9DD4CBA521D2938A00C15430 /* MenuViewController.swift */,
 				9DA359B421D3C42E0090A7DD /* AboutViewController.swift */,
 				9DED548A21D544600060B4B8 /* CameraViewController.swift */,
 				9DC3B7DC21D76618001DD0E4 /* SettingViewController.swift */,
+				9D5F394F21DE831E0089C423 /* CalendarViewController.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -651,9 +760,12 @@
 				9D297A1521D4AF4E00E34260 /* DS-DIGIB.TTF in Resources */,
 				9D6E271A21D1072C00F22ABD /* Assets.xcassets in Resources */,
 				9D6E271821D1072B00F22ABD /* Main.storyboard in Resources */,
+				9D5F396121DE8E080089C423 /* RSegmentCell.xib in Resources */,
 				9DC3B7D921D73C6F001DD0E4 /* Health.storyboard in Resources */,
 				9DD4CB9D21D278AC00C15430 /* BTDevice.storyboard in Resources */,
 				9DD4CB9621D275D900C15430 /* DeviceCell.xib in Resources */,
+				9D5F394621DE4A030089C423 /* SwitchCell.xib in Resources */,
+				9D5F394A21DE57890089C423 /* ShowCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -702,13 +814,17 @@
 				"${BUILT_PRODUCTS_DIR}/ActionSheetPicker-3.0/ActionSheetPicker_3_0.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-SwiftyJSON/Alamofire_SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/CVCalendar/CVCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/JMDropMenu/JMDropMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/KRActivityIndicatorView/KRActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/KRProgressHUD/KRProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainSwift/KeychainSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Localize-Swift/Localize_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/StepSlider/StepSlider.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftMessages/SwiftMessages.framework",
 				"${BUILT_PRODUCTS_DIR}/SwifterSwift/SwifterSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/ZZCircleProgress/ZZCircleProgress.framework",
@@ -718,13 +834,17 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActionSheetPicker_3_0.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire_SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CVCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JMDropMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KRActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KRProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Localize_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StepSlider.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMessages.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwifterSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZZCircleProgress.framework",
@@ -778,8 +898,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D651FC121D9ADB500C47536 /* SportRecordViewController.swift in Sources */,
+<<<<<<< HEAD
 				B302549521DD092400A2AB89 /* BloodPressureModel.swift in Sources */,
 				B302549921DD092400A2AB89 /* PZWeatherModel.swift in Sources */,
+=======
+				9D5F396721DE8E080089C423 /* RPluginTabBar.swift in Sources */,
+>>>>>>> f44aae4c31629f75b0985ae554d246c651950590
 				9DAF143121DBCDC3009EDB72 /* LocalExtension.swift in Sources */,
 				B302548F21DD092400A2AB89 /* CustomAlarmModel.swift in Sources */,
 				B302549621DD092400A2AB89 /* SportModelMap.swift in Sources */,
@@ -788,7 +912,9 @@
 				9D2B806721D7B39600F63685 /* SportCell.swift in Sources */,
 				B302546721DD090F00A2AB89 /* BLETool.swift in Sources */,
 				9DD4CB9321D1A8CE00C15430 /* UserInfoViewController.swift in Sources */,
+				9D7D474221DF9DB900613C05 /* SearchMedicineViewController.swift in Sources */,
 				9DA359BB21D3ECF10090A7DD /* BTListViewController.swift in Sources */,
+				9D5F395021DE831E0089C423 /* CalendarViewController.swift in Sources */,
 				9D297A1321D4AAC600E34260 /* ArrayExtension.swift in Sources */,
 				9DC3B7D621D72D3B001DD0E4 /* BloodPressureViewController.swift in Sources */,
 				B302548921DD092400A2AB89 /* BluetoothManager.swift in Sources */,
@@ -804,6 +930,7 @@
 				B302549321DD092400A2AB89 /* DayOverViewDataModel.swift in Sources */,
 				B302548721DD092400A2AB89 /* TimeCallManager.swift in Sources */,
 				9D86988B21D65FD200892773 /* SugerData.swift in Sources */,
+				9D5F394C21DE58360089C423 /* ShowCell.swift in Sources */,
 				9DA359B121D3A7020090A7DD /* RSideViewController.swift in Sources */,
 				9D1F890B21D157B70033721E /* RegisterViewController.swift in Sources */,
 				9DAF143521DBD69C009EDB72 /* DateExtension.swift in Sources */,
@@ -811,12 +938,19 @@
 				9D86988421D64B0700892773 /* SleepViewController.swift in Sources */,
 				9DD4CBA221D27A9100C15430 /* UIWindowExtension.swift in Sources */,
 				9D1F88F821D116880033721E /* DeviceListViewController.swift in Sources */,
+<<<<<<< HEAD
 				B302548B21DD092400A2AB89 /* BluetoothScan.swift in Sources */,
 				B302549421DD092400A2AB89 /* PZBlueToothManager.swift in Sources */,
+=======
+				9D5F396321DE8E080089C423 /* RSegmentCell.swift in Sources */,
+>>>>>>> f44aae4c31629f75b0985ae554d246c651950590
 				9DD4CB9F21D2797700C15430 /* UITableViewExtension.swift in Sources */,
+				9D5F396921DE8E080089C423 /* RPagingViewControllerPlugin.swift in Sources */,
 				9DED548B21D544600060B4B8 /* CameraViewController.swift in Sources */,
 				9DD4CB9821D2776200C15430 /* DeviceCell.swift in Sources */,
+				9D5F395F21DE8E080089C423 /* RPagingViewController.swift in Sources */,
 				9D1F88FB21D116F60033721E /* UIViewControllerExtension.swift in Sources */,
+				9D5F396221DE8E080089C423 /* RSegmentOption.swift in Sources */,
 				9DC3B7DB21D73C95001DD0E4 /* HeartCurveViewController.swift in Sources */,
 				9D86988021D64AEC00892773 /* WalkViewController.swift in Sources */,
 				B302548421DD092400A2AB89 /* GlobalProperty.swift in Sources */,
@@ -825,15 +959,24 @@
 				9D616CAB21DA7C3D00BB1C26 /* ModifyPasswordViewController.swift in Sources */,
 				9D86988621D64B4E00892773 /* HeartViewController.swift in Sources */,
 				9D6E271321D1072B00F22ABD /* AppDelegate.swift in Sources */,
+<<<<<<< HEAD
 				B302549821DD092400A2AB89 /* WeatherDay.swift in Sources */,
 				9DAF143E21DBE411009EDB72 /* SportItemCell.swift in Sources */,
 				9DD4CBA621D2938A00C15430 /* MenuViewController.swift in Sources */,
 				B302548E21DD092400A2AB89 /* OffLineDataModel.swift in Sources */,
+=======
+				9D5F396521DE8E080089C423 /* RSegmentProtocol.swift in Sources */,
+				9DAF143E21DBE411009EDB72 /* SportItemCell.swift in Sources */,
+				9DD4CBA621D2938A00C15430 /* MenuViewController.swift in Sources */,
+				9D5F396621DE8E080089C423 /* RPluginHeaderScroll.swift in Sources */,
+>>>>>>> f44aae4c31629f75b0985ae554d246c651950590
 				9DA359B321D3C2920090A7DD /* UIViewExtension.swift in Sources */,
 				9D1F88F621D10EBD0033721E /* StartViewController.swift in Sources */,
+				9D5F396421DE8E080089C423 /* RSegment.swift in Sources */,
 				9D1F890721D14BDE0033721E /* LoginMenuViewController.swift in Sources */,
 				9D8E868721D4F53B00C0034D /* API.swift in Sources */,
 				9DAF143721DBDEF7009EDB72 /* SoprtType.swift in Sources */,
+<<<<<<< HEAD
 				B302549721DD092400A2AB89 /* WeatherDays.swift in Sources */,
 				9D1F88FD21D11E1B0033721E /* UIImageExtension.swift in Sources */,
 				9DAF143921DBE235009EDB72 /* SportSelectedViewController.swift in Sources */,
@@ -841,14 +984,30 @@
 				B302548A21DD092400A2AB89 /* CositeaBluetoothManager.swift in Sources */,
 				B302549221DD092400A2AB89 /* PerModel.swift in Sources */,
 				B302548C21DD092400A2AB89 /* CositeaBlueTooth.swift in Sources */,
+=======
+				9D5F396021DE8E080089C423 /* PagingProtocal.swift in Sources */,
+				9D1F88FD21D11E1B0033721E /* UIImageExtension.swift in Sources */,
+				9DAF143921DBE235009EDB72 /* SportSelectedViewController.swift in Sources */,
+				9D5F396D21DE8EBD0089C423 /* CurveChildViewController.swift in Sources */,
+>>>>>>> f44aae4c31629f75b0985ae554d246c651950590
 				9D1F890021D13FAE0033721E /* AppDelegate+Basic.swift in Sources */,
+				9D5F396821DE8E080089C423 /* PagingExtension.swift in Sources */,
+				9D694E6321DD142B004D66DC /* CustomSlider.swift in Sources */,
+				9D5F396B21DE8E2E0089C423 /* CurveViewController.swift in Sources */,
 				9DA359B521D3C42E0090A7DD /* AboutViewController.swift in Sources */,
+				9D694E6521DD2E21004D66DC /* TargetViewController.swift in Sources */,
 				9DC3B7DD21D76618001DD0E4 /* SettingViewController.swift in Sources */,
 				9DA359B921D3CD830090A7DD /* UserInfo.swift in Sources */,
 				B302546821DD090F00A2AB89 /* AllTool.swift in Sources */,
 				9D1F890921D1575E0033721E /* FoundPasswordViewController.swift in Sources */,
+<<<<<<< HEAD
 				B302548621DD092400A2AB89 /* HCHCommonManager.swift in Sources */,
 				B302546621DD090F00A2AB89 /* ToolBox.swift in Sources */,
+=======
+				9D5F394E21DE755A0089C423 /* CameraController.swift in Sources */,
+				9D7D474421DFA17200613C05 /* MedicineCellCell.swift in Sources */,
+				9D5F394821DE4B5D0089C423 /* SwitchCell.swift in Sources */,
+>>>>>>> f44aae4c31629f75b0985ae554d246c651950590
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

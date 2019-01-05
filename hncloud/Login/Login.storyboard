@@ -406,6 +406,7 @@
                                     <segment title="公制單位"/>
                                     <segment title="英制單位"/>
                                 </segments>
+                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </segmentedControl>
                             <textField opaque="NO" contentMode="scaleAspectFit" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bWK-4H-RBl">
                                 <rect key="frame" x="37.5" y="278.5" width="300" height="35"/>
@@ -878,6 +879,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VCQ-pG-Tch"/>
                     </view>
+                    <connections>
+                        <outlet property="BMILabel" destination="Jwh-dX-BUI" id="dny-CD-rCM"/>
+                        <outlet property="statusLabel" destination="CjT-b0-InV" id="YNe-F2-Xig"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dcy-oB-yrS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

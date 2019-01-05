@@ -69,6 +69,7 @@ class UserInfoViewController: UIViewController {
         self.addImage.isHidden = !self.isEdit
         
         self.pictureButton.isEnabled = self.isEdit
+        self.pictureButton.addTarget(self, action: #selector(selectPicket), for: .touchUpInside)
         self.nickNameTextField.isEnabled = self.isEdit
         self.sexSegment.isEnabled = self.isEdit
         self.sexSegment.selectedSegmentIndex = UserInfo.share.gender == .male ? 0 : 1
@@ -128,6 +129,8 @@ class UserInfoViewController: UIViewController {
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        self.userImage.layer.cornerRadius = self.userImage.bounds.height / 2
+        self.userImage.layer.masksToBounds = true
         self.sexSegment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
         self.unitSegment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
         self.sexSegment.layer.borderColor = UIColor.black.cgColor
@@ -137,6 +140,37 @@ class UserInfoViewController: UIViewController {
     @objc private func unitAction(_ sender: UISegmentedControl) {
         self.weightUnit.text = sender.selectedSegmentIndex == 0 ? "kg" : "lb"
         self.heightUnit.text = sender.selectedSegmentIndex == 0 ? "cm" : "inch"
+    }
+    @objc private func selectPicket() {
+        let picketActionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        picketActionSheet.addAction(title: "相簿".localized()) { (sender) in
+            self.initPhotoPicker()
+        }
+        picketActionSheet.addAction(title: "相機".localized()) { (sender) in
+            self.initCameraPicker()
+        }
+        picketActionSheet.addAction(title: "取消", style: .cancel)
+        self.present(picketActionSheet, animated: true, completion: nil)
+    }
+    private func initPhotoPicker() {
+        let photoPicker =  UIImagePickerController()
+        photoPicker.delegate = self
+        photoPicker.allowsEditing = true
+        photoPicker.sourceType = .photoLibrary
+        self.present(photoPicker, animated: true, completion: nil)
+    }
+    private func initCameraPicker(){
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera){
+            let  cameraPicker = UIImagePickerController()
+            cameraPicker.delegate = self
+            cameraPicker.allowsEditing = true
+            cameraPicker.sourceType = .camera
+            self.present(cameraPicker, animated: true, completion: nil)
+        } else {
+            print("不支持拍照")
+        }
+        
     }
     
     @objc private func finishedEdit() {
@@ -188,7 +222,6 @@ extension UserInfoViewController: UITextFieldDelegate {
                                        selectedDate: selectDate,
                                        doneBlock: { (picker, date, origin) in
                                         textField.text = (date as? Date)?.string(withFormat: "yyyy-MM-dd")
-                                        //textField.text = (date as? Date)?.dateString("yyyy-MM-dd")
             },
                                        cancel: { (picker) in
                                         
@@ -207,5 +240,13 @@ extension UserInfoViewController: PressureDelegate {
         self.sysTextField.text = "\(sys)"
         self.diaTextField.text = "\(dia)"
         CositeaBlueTooth.instance.setupCorrectNumber()
+    }
+}
+extension UserInfoViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image:UIImage = info[UIImagePickerController.InfoKey.editedImage] as! UIImage
+        userImage.image = image
+        
+        self.dismiss(animated: true, completion: nil)
     }
 }

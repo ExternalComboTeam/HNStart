@@ -8,6 +8,7 @@
 
 import UIKit
 import Charts
+import SwiftyJSON
 
 class SugerViewController: UIViewController {
 
@@ -24,20 +25,65 @@ class SugerViewController: UIViewController {
     @IBOutlet weak var bluetoothStateBtn: UIButton!
     
     private var suger: SugerData = SugerData()
+    private var observeDate: NSKeyValueObservation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.setChart()
+        self.getSugur()
         self.recordButton.addTarget(self, action: #selector(update), for: .touchUpInside)
     }
     
+<<<<<<< HEAD
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         connectedBand()
     }
     
     @IBAction func bluetoothStateAction(_ sender: Any) {
+=======
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.observeDate = UserInfo.share.observe(\.selectedDate, changeHandler: { (user, date) in
+            self.getSugur()
+        })
+    }
+    
+    private func getSugur() {
+        HealthAPI.search(bloodsugar: UserInfo.share.selectedDate.string(withFormat: "yyyy-MM-dd"), { (json) in
+            self.setValue(json["data"])
+        }, error: { (error) in
+            self.setValue(.null)
+        })
+    }
+    
+    private func setValue(_ json: JSON) {
+        self.suger.mFasting = json["fpg_a"].stringValue
+        self.suger.mAfer = json["ppg_a"].stringValue
+        self.suger.lFasting = json["fpg_p"].stringValue
+        self.suger.lAfer = json["ppg_p"].stringValue
+        self.suger.dFasting = json["fpg_n"].stringValue
+        self.suger.dAfer = json["ppg_n"].stringValue
+        self.suger.sBefore = json["before_sleep"].stringValue
+        
+        self.mFastingTextField.text = self.suger.mFasting
+        self.mAfterTextField.text = self.suger.mAfer
+        self.lFastingTextField.text = self.suger.lFasting
+        self.lAfterTextField.text = self.suger.lAfer
+        self.dFastingTextField.text = self.suger.dFasting
+        self.dAfterTextField.text = self.suger.dAfer
+        self.sBeforeTextField.text = self.suger.sBefore
+        
+        self.setData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.observeDate?.invalidate()
+        self.observeDate = nil
+>>>>>>> f44aae4c31629f75b0985ae554d246c651950590
     }
     
     @objc private func update() {
@@ -49,6 +95,7 @@ class SugerViewController: UIViewController {
         self.suger.dAfer = self.dAfterTextField.text ?? ""
         self.suger.sBefore = self.sBeforeTextField.text ?? ""
         self.setData()
+        HealthAPI.bloodsugar(date: UserInfo.share.selectedDate.string(withFormat: "yyyy-MM-dd"), sugar: self.suger, nil)
     }
 
     private func setChart() {
@@ -96,7 +143,6 @@ class SugerViewController: UIViewController {
         // 縮放
         chartView.scaleXEnabled = false
         chartView.scaleYEnabled = false
-        self.setData()
     }
     
     private func setData() {

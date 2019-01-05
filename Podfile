@@ -17,6 +17,10 @@ target 'hncloud' do
   pod 'ZZCircleProgress'
   pod 'Charts'
   pod 'ActionSheetPicker-3.0'
+  pod 'StepSlider'
+  pod 'CVCalendar'
+  pod 'SwiftMessages'
+  pod 'JMDropMenu'
 
   target 'hncloudTests' do
     inherit! :search_paths

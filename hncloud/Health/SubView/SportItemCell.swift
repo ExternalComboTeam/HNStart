@@ -10,6 +10,9 @@ import UIKit
 
 class SportItemCell: UITableViewCell {
 
+    @IBOutlet weak var typeImage: UIImageView!
+    @IBOutlet weak var typeTitle: UILabel!
+    @IBOutlet weak var selectedCheck: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

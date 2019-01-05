@@ -8,6 +8,17 @@
 
 import UIKit
 
+enum SettingType: Int {
+    case clock = 11
+    case phone = 12
+    case message = 13
+    case sit = 14
+    case heart = 15
+    case forget = 16
+    case device = 17
+    case setting = 18
+}
+
 class SettingViewController: UIViewController {
 
     @IBOutlet weak var settingStackView: UIStackView!
@@ -21,38 +32,13 @@ class SettingViewController: UIViewController {
     @IBOutlet weak var deviceButton: UIButton!
     @IBOutlet weak var deviceSettingButton: UIButton!
     
+    private var type: SettingType = .clock
     
-    @IBAction func clockAction(_ sender: UIButton) {
+    @IBAction func buttonAction(_ sender: UIButton) {
         self.settingStackView.arrangedSubviews.forEach({ self.buttonSet($0 as! UIButton, isSelected: false) })
+        self.type = SettingType.init(rawValue: sender.tag) ?? .clock
         self.buttonSet(sender, isSelected: true)
-    }
-    @IBAction func phoneAction(_ sender: UIButton) {
-        self.settingStackView.arrangedSubviews.forEach({ self.buttonSet($0 as! UIButton, isSelected: false) })
-        self.buttonSet(sender, isSelected: true)
-    }
-    @IBAction func messageAction(_ sender: UIButton) {
-        self.settingStackView.arrangedSubviews.forEach({ self.buttonSet($0 as! UIButton, isSelected: false) })
-        self.buttonSet(sender, isSelected: true)
-    }
-    @IBAction func sitAction(_ sender: UIButton) {
-        self.settingStackView.arrangedSubviews.forEach({ self.buttonSet($0 as! UIButton, isSelected: false) })
-        self.buttonSet(sender, isSelected: true)
-    }
-    @IBAction func heartAction(_ sender: UIButton) {
-        self.settingStackView.arrangedSubviews.forEach({ self.buttonSet($0 as! UIButton, isSelected: false) })
-        self.buttonSet(sender, isSelected: true)
-    }
-    @IBAction func forgetAction(_ sender: UIButton) {
-        self.settingStackView.arrangedSubviews.forEach({ self.buttonSet($0 as! UIButton, isSelected: false) })
-        self.buttonSet(sender, isSelected: true)
-    }
-    @IBAction func deviceAction(_ sender: UIButton) {
-        self.settingStackView.arrangedSubviews.forEach({ self.buttonSet($0 as! UIButton, isSelected: false) })
-        self.buttonSet(sender, isSelected: true)
-    }
-    @IBAction func settingAction(_ sender: UIButton) {
-        self.settingStackView.arrangedSubviews.forEach({ self.buttonSet($0 as! UIButton, isSelected: false) })
-        self.buttonSet(sender, isSelected: true)
+        self.myTableView.reloadData()
     }
     
     private func buttonSet(_ button: UIButton, isSelected: Bool) {
@@ -82,6 +68,9 @@ class SettingViewController: UIViewController {
         self.setButtonIcon()
         self.myTableView.tableFooterView = UIView()
         self.buttonSet(self.clockButton, isSelected: true)
+        self.myTableView.register(xib: SwitchCell.xib, ShowCell.xib)
+        self.myTableView.dataSource = self
+        self.myTableView.delegate = self
     }
 
     override func viewDidLayoutSubviews() {
@@ -95,5 +84,98 @@ class SettingViewController: UIViewController {
         self.deviceButton.addBoard(.bottom, color: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), thickness: 1)
         self.deviceSettingButton.addBoard(.bottom, color: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), thickness: 1)
         self.settingStackView.addBoard(.right, color: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), thickness: 1)
+    }
+}
+extension SettingViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch self.type {
+        case .clock:
+            return 0
+        case .phone:
+            return 0
+        case .message:
+            return 0
+        case .sit:
+            return 0
+        case .heart:
+            return 0
+        case .forget:
+            return 1
+        case .device:
+            return 1
+        case .setting:
+            return 8
+        }
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = SwitchCell.use(table: tableView, for: indexPath)
+        switch self.type {
+        case .clock:
+            break
+        case .phone:
+            break
+        case .message:
+            break
+        case .sit:
+            break
+        case .heart:
+            break
+        case .forget:
+            let cell = SwitchCell.use(table: tableView, for: indexPath)
+            cell.titleLabel.text = "防丟提醒".localized()
+            return cell
+        case .device:
+            let cell = SwitchCell.use(table: tableView, for: indexPath)
+            cell.titleLabel.text = "抬腕喚醒".localized()
+            return cell
+        case .setting:
+            switch indexPath.row {
+            case 0:
+                let cell = ShowCell.use(table: tableView, for: indexPath)
+                cell.firstLabel.text = "選擇開關設備功能".localized()
+                cell.secondLabel.text = ""
+                return cell
+            case 1:
+                let cell = SwitchCell.use(table: tableView, for: indexPath)
+                cell.titleLabel.text = "離線運動".localized()
+                return cell
+            case 2:
+                let cell = SwitchCell.use(table: tableView, for: indexPath)
+                cell.titleLabel.text = "里程".localized()
+                return cell
+            case 3:
+                let cell = SwitchCell.use(table: tableView, for: indexPath)
+                cell.titleLabel.text = "卡路里".localized()
+                return cell
+            case 4:
+                let cell = SwitchCell.use(table: tableView, for: indexPath)
+                cell.titleLabel.text = "睡眠".localized()
+                return cell
+            case 5:
+                let cell = SwitchCell.use(table: tableView, for: indexPath)
+                cell.titleLabel.text = "設置".localized()
+                return cell
+            case 6:
+                let cell = SwitchCell.use(table: tableView, for: indexPath)
+                cell.titleLabel.text = "血壓".localized()
+                return cell
+            case 7:
+                let cell = SwitchCell.use(table: tableView, for: indexPath)
+                cell.titleLabel.text = "未讀消息".localized()
+                return cell
+            default:
+                let cell = ShowCell.use(table: tableView, for: indexPath)
+                cell.firstLabel.text = ""
+                cell.secondLabel.text = ""
+                return cell
+            }
+        }
+        return cell
+    }
+}
+extension SettingViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard !(tableView.cellForRow(at: indexPath) is SwitchCell) || !(tableView.cellForRow(at: indexPath) is ShowCell) else { return }
+        
     }
 }

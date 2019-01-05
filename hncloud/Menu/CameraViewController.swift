@@ -7,15 +7,52 @@
 //
 
 import UIKit
+import Photos
 
 class CameraViewController: UIViewController {
 
+    @IBOutlet weak var capturePreview: UIView!
+    private let cameraController = CameraController()
+    @IBAction func captureAction(_ sender: UIButton) {
+        cameraController.captureImage {(image, error) in
+            guard let image = image else {
+                print(error ?? "Image capture error")
+                return
+            }
+            print("show image")
+            try? PHPhotoLibrary.shared().performChangesAndWait {
+                PHAssetChangeRequest.creationRequestForAsset(from: image)
+            }
+        }
+    }
+    @IBAction func toggleCamera(_ sender: UIButton) {
+        do {
+            try cameraController.switchCameras()
+        } catch {
+            print(error)
+        }
+    }
+    
+    override var prefersStatusBarHidden: Bool { return true }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let back = UIBarButtonItem()
         back.title = "取消".localized()
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = back
+        
+        func configureCameraController() {
+            cameraController.prepare {(error) in
+                if let error = error {
+                    print(error)
+                }
+                
+                try? self.cameraController.displayPreview(on: self.capturePreview)
+            }
+        }
+        
+        configureCameraController()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -28,5 +65,9 @@ class CameraViewController: UIViewController {
         super.viewWillDisappear(animated)
         self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         self.navigationController?.navigationBar.shadowImage = nil
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.cameraController.stop()
     }
 }
