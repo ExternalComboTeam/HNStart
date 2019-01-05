@@ -114,6 +114,7 @@
 		B302549721DD092400A2AB89 /* WeatherDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = B302548121DD092400A2AB89 /* WeatherDays.swift */; };
 		B302549821DD092400A2AB89 /* WeatherDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = B302548221DD092400A2AB89 /* WeatherDay.swift */; };
 		B302549921DD092400A2AB89 /* PZWeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B302548321DD092400A2AB89 /* PZWeatherModel.swift */; };
+		B322199A21E0D3F9000BF41B /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B322199921E0D3F9000BF41B /* StringExtension.swift */; };
 		C3AE5E9795ADE7C7E338C963 /* Pods_hncloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 161B2F5FB10DFE3167099D5D /* Pods_hncloud.framework */; };
 		E61EC6C206348E36F10E557A /* Pods_hncloudUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D90FFE7834698DED6988CFE5 /* Pods_hncloudUITests.framework */; };
 /* End PBXBuildFile section */
@@ -255,6 +256,7 @@
 		B302548121DD092400A2AB89 /* WeatherDays.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherDays.swift; sourceTree = "<group>"; };
 		B302548221DD092400A2AB89 /* WeatherDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherDay.swift; sourceTree = "<group>"; };
 		B302548321DD092400A2AB89 /* PZWeatherModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PZWeatherModel.swift; sourceTree = "<group>"; };
+		B322199921E0D3F9000BF41B /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		D90FFE7834698DED6988CFE5 /* Pods_hncloudUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hncloudUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDD6C5804E0659E8E99BB9C8 /* Pods_hncloudTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hncloudTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -315,6 +317,7 @@
 				9DAF143021DBCDC3009EDB72 /* LocalExtension.swift */,
 				9DAF143221DBCF81009EDB72 /* UITextFieldExtension.swift */,
 				9DAF143421DBD69C009EDB72 /* DateExtension.swift */,
+				B322199921E0D3F9000BF41B /* StringExtension.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -898,12 +901,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D651FC121D9ADB500C47536 /* SportRecordViewController.swift in Sources */,
-<<<<<<< HEAD
 				B302549521DD092400A2AB89 /* BloodPressureModel.swift in Sources */,
 				B302549921DD092400A2AB89 /* PZWeatherModel.swift in Sources */,
-=======
 				9D5F396721DE8E080089C423 /* RPluginTabBar.swift in Sources */,
->>>>>>> f44aae4c31629f75b0985ae554d246c651950590
 				9DAF143121DBCDC3009EDB72 /* LocalExtension.swift in Sources */,
 				B302548F21DD092400A2AB89 /* CustomAlarmModel.swift in Sources */,
 				B302549621DD092400A2AB89 /* SportModelMap.swift in Sources */,
@@ -932,18 +932,16 @@
 				9D86988B21D65FD200892773 /* SugerData.swift in Sources */,
 				9D5F394C21DE58360089C423 /* ShowCell.swift in Sources */,
 				9DA359B121D3A7020090A7DD /* RSideViewController.swift in Sources */,
+				B322199A21E0D3F9000BF41B /* StringExtension.swift in Sources */,
 				9D1F890B21D157B70033721E /* RegisterViewController.swift in Sources */,
 				9DAF143521DBD69C009EDB72 /* DateExtension.swift in Sources */,
 				9D86988221D64AFD00892773 /* SportViewController.swift in Sources */,
 				9D86988421D64B0700892773 /* SleepViewController.swift in Sources */,
 				9DD4CBA221D27A9100C15430 /* UIWindowExtension.swift in Sources */,
 				9D1F88F821D116880033721E /* DeviceListViewController.swift in Sources */,
-<<<<<<< HEAD
 				B302548B21DD092400A2AB89 /* BluetoothScan.swift in Sources */,
 				B302549421DD092400A2AB89 /* PZBlueToothManager.swift in Sources */,
-=======
 				9D5F396321DE8E080089C423 /* RSegmentCell.swift in Sources */,
->>>>>>> f44aae4c31629f75b0985ae554d246c651950590
 				9DD4CB9F21D2797700C15430 /* UITableViewExtension.swift in Sources */,
 				9D5F396921DE8E080089C423 /* RPagingViewControllerPlugin.swift in Sources */,
 				9DED548B21D544600060B4B8 /* CameraViewController.swift in Sources */,
@@ -959,37 +957,27 @@
 				9D616CAB21DA7C3D00BB1C26 /* ModifyPasswordViewController.swift in Sources */,
 				9D86988621D64B4E00892773 /* HeartViewController.swift in Sources */,
 				9D6E271321D1072B00F22ABD /* AppDelegate.swift in Sources */,
-<<<<<<< HEAD
 				B302549821DD092400A2AB89 /* WeatherDay.swift in Sources */,
-				9DAF143E21DBE411009EDB72 /* SportItemCell.swift in Sources */,
-				9DD4CBA621D2938A00C15430 /* MenuViewController.swift in Sources */,
 				B302548E21DD092400A2AB89 /* OffLineDataModel.swift in Sources */,
-=======
 				9D5F396521DE8E080089C423 /* RSegmentProtocol.swift in Sources */,
 				9DAF143E21DBE411009EDB72 /* SportItemCell.swift in Sources */,
 				9DD4CBA621D2938A00C15430 /* MenuViewController.swift in Sources */,
 				9D5F396621DE8E080089C423 /* RPluginHeaderScroll.swift in Sources */,
->>>>>>> f44aae4c31629f75b0985ae554d246c651950590
 				9DA359B321D3C2920090A7DD /* UIViewExtension.swift in Sources */,
 				9D1F88F621D10EBD0033721E /* StartViewController.swift in Sources */,
 				9D5F396421DE8E080089C423 /* RSegment.swift in Sources */,
 				9D1F890721D14BDE0033721E /* LoginMenuViewController.swift in Sources */,
 				9D8E868721D4F53B00C0034D /* API.swift in Sources */,
 				9DAF143721DBDEF7009EDB72 /* SoprtType.swift in Sources */,
-<<<<<<< HEAD
 				B302549721DD092400A2AB89 /* WeatherDays.swift in Sources */,
-				9D1F88FD21D11E1B0033721E /* UIImageExtension.swift in Sources */,
-				9DAF143921DBE235009EDB72 /* SportSelectedViewController.swift in Sources */,
 				B302549021DD092400A2AB89 /* SleepModel.swift in Sources */,
 				B302548A21DD092400A2AB89 /* CositeaBluetoothManager.swift in Sources */,
 				B302549221DD092400A2AB89 /* PerModel.swift in Sources */,
 				B302548C21DD092400A2AB89 /* CositeaBlueTooth.swift in Sources */,
-=======
 				9D5F396021DE8E080089C423 /* PagingProtocal.swift in Sources */,
 				9D1F88FD21D11E1B0033721E /* UIImageExtension.swift in Sources */,
 				9DAF143921DBE235009EDB72 /* SportSelectedViewController.swift in Sources */,
 				9D5F396D21DE8EBD0089C423 /* CurveChildViewController.swift in Sources */,
->>>>>>> f44aae4c31629f75b0985ae554d246c651950590
 				9D1F890021D13FAE0033721E /* AppDelegate+Basic.swift in Sources */,
 				9D5F396821DE8E080089C423 /* PagingExtension.swift in Sources */,
 				9D694E6321DD142B004D66DC /* CustomSlider.swift in Sources */,
@@ -1000,14 +988,11 @@
 				9DA359B921D3CD830090A7DD /* UserInfo.swift in Sources */,
 				B302546821DD090F00A2AB89 /* AllTool.swift in Sources */,
 				9D1F890921D1575E0033721E /* FoundPasswordViewController.swift in Sources */,
-<<<<<<< HEAD
 				B302548621DD092400A2AB89 /* HCHCommonManager.swift in Sources */,
 				B302546621DD090F00A2AB89 /* ToolBox.swift in Sources */,
-=======
 				9D5F394E21DE755A0089C423 /* CameraController.swift in Sources */,
 				9D7D474421DFA17200613C05 /* MedicineCellCell.swift in Sources */,
 				9D5F394821DE4B5D0089C423 /* SwitchCell.swift in Sources */,
->>>>>>> f44aae4c31629f75b0985ae554d246c651950590
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1227,6 +1212,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F52E4Q5G5P;
 				INFOPLIST_FILE = hncloudTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1248,6 +1234,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F52E4Q5G5P;
 				INFOPLIST_FILE = hncloudTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1268,6 +1255,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F52E4Q5G5P;
 				INFOPLIST_FILE = hncloudUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1288,6 +1276,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F52E4Q5G5P;
 				INFOPLIST_FILE = hncloudUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

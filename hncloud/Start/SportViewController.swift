@@ -19,11 +19,11 @@ class SportViewController: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var sportTableView: UITableView!
     
-<<<<<<< HEAD
+
     @IBOutlet weak var bluetoothStateBtn: UIButton!
-=======
+
     private var sportType: SportType = .walk
->>>>>>> f44aae4c31629f75b0985ae554d246c651950590
+
     
     private lazy var progressView: ZZCircleProgress? = {
         let width: CGFloat = UIScreen.main.bounds.width * 0.5
@@ -97,7 +97,7 @@ class SportViewController: UIViewController {
         }
     }
     
-<<<<<<< HEAD
+
     @IBAction func bluetoothStateAction(_ sender: Any) {
         connectedBand()
     }
@@ -148,9 +148,7 @@ class SportViewController: UIViewController {
         self.bluetoothStateBtn.isEnabled = false
         self.bluetoothStateBtn.isHidden = true
     }
-    
-    private var second: TimeInterval = 1800
-=======
+
     private func runTiming() {
         guard self.isStart else { return }
         self.timing = self.timing + 1
@@ -158,7 +156,7 @@ class SportViewController: UIViewController {
             self.runTiming()
         }
     }
->>>>>>> f44aae4c31629f75b0985ae554d246c651950590
+
     
     override func viewDidLoad() {
         super.viewDidLoad()

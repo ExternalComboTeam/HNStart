@@ -370,18 +370,16 @@ enum BatteryState: Int {
     
     init?(_ ele: Int) {
         
-        if ele >= 100 {
+        if ele >= 80 {
             self.init(rawValue: 100)
-        } else if ele >= 80 {
-            self.init(rawValue: 80)
         } else if ele >= 60 {
-            self.init(rawValue: 60)
+            self.init(rawValue: 80)
         } else if ele >= 40 {
-            self.init(rawValue: 40)
+            self.init(rawValue: 60)
         } else if ele >= 20 {
-            self.init(rawValue: 20)
+            self.init(rawValue: 40)
         } else {
-            return nil
+            self.init(rawValue: 20)
         }
     }
     

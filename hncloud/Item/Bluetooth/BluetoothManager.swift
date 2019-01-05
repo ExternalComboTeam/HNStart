@@ -324,8 +324,10 @@ class BlueToothManager: NSObject {
         var checkNum: UInt32 = 0x68 + UInt32(BlueToothFunctionIndexEnum.timeSync.rawValue) + (seconds & 255) + ((seconds >> 8) & 255) + ((seconds >> 16) & 255) + ((seconds >> 24) & 255) + 0x04
         checkNum = checkNum % 256
         var transData: [UInt32] = [0x68, UInt32(BlueToothFunctionIndexEnum.timeSync.rawValue), 0x04, 0x00, seconds, seconds >> 8, seconds >> 16, seconds >> 24, checkNum, 0x16]
-        let lData = NSData(bytes: &transData, length: ArraySize(transData))
-        blueToothWhriteTransData(Data(referencing: lData), isNeedResponse: false)
+        let lData = Data(bytes: transData, count: transData.count)
+        blueToothWhriteTransData(lData, isNeedResponse: false)
+//        let lData = NSData(bytes: &transData, length: ArraySize(transData))
+//        blueToothWhriteTransData(Data(referencing: lData), isNeedResponse: false)
         
     }
     
@@ -348,8 +350,10 @@ class BlueToothManager: NSObject {
      */
     @objc func sendBraMMDDformat() {
         var transData = [0x68, BlueToothFunctionIndexEnum.unitSet.rawValue, 0x03, 0x00, 0x01, 0x05, (BLETool.getMMDDformat() - 1)]
-        let lData = NSData(bytes: &transData, length: ArraySize(transData))
-        appendingCheckNumData(Data(referencing: lData), isNeedResponse: false)
+        let lData = Data(bytes: transData, count: transData.count)
+        appendingCheckNumData(lData, isNeedResponse: false)
+//        let lData = NSData(bytes: &transData, length: ArraySize(transData))
+//        appendingCheckNumData(Data(referencing: lData), isNeedResponse: false)
     }
     
     /**
@@ -360,10 +364,12 @@ class BlueToothManager: NSObject {
     @objc func checkInformation() {
         
         var transData = [0x68, BlueToothFunctionIndexEnum.openAntiLoss.rawValue, 0x02, 0x00, 0x02, 0x10]
-        let lData = NSData(bytes: &transData, length: ArraySize(transData))
-        //adaLog(@"checkInformation - -%@",lData);
-        
-        appendingCheckNumData(Data(referencing: lData), isNeedResponse: false)
+        let lData = Data(bytes: transData, count: transData.count)
+        appendingCheckNumData(lData, isNeedResponse: false)
+//        let lData = NSData(bytes: &transData, length: ArraySize(transData))
+//        //adaLog(@"checkInformation - -%@",lData);
+//
+//        appendingCheckNumData(Data(referencing: lData), isNeedResponse: false)
 
     }
     
@@ -374,9 +380,10 @@ class BlueToothManager: NSObject {
      */
     func setUnitStateWithState(_ state: Bool) {
         var transData = [0x68, 0x02, 0x03, 0x00, 0x01, 0x01, state.int]
-        let data = NSData(bytes: &transData, length: ArraySize(transData))
-        appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
-
+        let data = Data(bytes: transData, count: transData.count)
+        appendingCheckNumData(data, isNeedResponse: false)
+//        let data = NSData(bytes: &transData, length: ArraySize(transData))
+//        appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
     }
     
     /**
@@ -420,8 +427,10 @@ class BlueToothManager: NSObject {
      */
     func setPhotoWithState(_ state: Bool) {
         var transData = [0x68, 0x0d, 0x01, 0x00, (!state).int]
-        let data = NSData(bytes: &transData, length: ArraySize(transData))
-        appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
+        let data = Data(bytes: transData, count: transData.count)
+        appendingCheckNumData(data, isNeedResponse: false)
+//        let data = NSData(bytes: &transData, length: ArraySize(transData))
+//        appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
     }
     
     /**
@@ -432,8 +441,10 @@ class BlueToothManager: NSObject {
     func findBindState(_ state: Bool) {
         let state = !state
         var transData = [0x68, 0x13, 0x01, 0x00, state.int]
-        let data = NSData(bytes: &transData, length: ArraySize(transData))
-        appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
+        let data = Data(bytes: transData, count: transData.count)
+        appendingCheckNumData(data, isNeedResponse: false)
+//        let data = NSData(bytes: &transData, length: ArraySize(transData))
+//        appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
     }
 
     
@@ -444,8 +455,10 @@ class BlueToothManager: NSObject {
      */
     func resetDevice() {
         var transData = [0x68, BlueToothFunctionIndexEnum.resetDevice.rawValue, 0x01, 0x00, 0x01, 0x7b, 0x16]
-        let lData = NSData(bytes: &transData, length: ArraySize(transData))
-        blueToothWhriteTransData(Data(referencing: lData), isNeedResponse: false)
+        let lData = Data(bytes: transData, count: transData.count)
+        blueToothWhriteTransData(lData, isNeedResponse: false)
+//        let lData = NSData(bytes: &transData, length: ArraySize(transData))
+//        blueToothWhriteTransData(Data(referencing: lData), isNeedResponse: false)
         perform(#selector(self.synsCurTime), with: nil, afterDelay: 0.6)
 
     }
@@ -457,8 +470,10 @@ class BlueToothManager: NSObject {
      */
     func checkVersion() {
         var transData = [0x68, BlueToothFunctionIndexEnum.checkVersion.rawValue, 0x00, 0x00, 0x6f, 0x16]
-        let lData = NSData(bytes: &transData, length: ArraySize(transData))
-        blueToothWhriteTransData(Data(referencing: lData), isNeedResponse: false)
+        let lData = Data(bytes: transData, count: transData.count)
+        blueToothWhriteTransData(lData, isNeedResponse: false)
+//        let lData = NSData(bytes: &transData, length: ArraySize(transData))
+//        blueToothWhriteTransData(Data(referencing: lData), isNeedResponse: false)
     }
     
     /**
@@ -590,8 +605,10 @@ class BlueToothManager: NSObject {
             queryCustomAlarmNum += 1
             for i in 0..<8 {
                 var transData = [0x68, BlueToothFunctionIndexEnum.customAlarm.rawValue, 0x02, 0x00, 0x00, i]
-                let lData = NSData(bytes: &transData, length: ArraySize(transData))
-                appendingCheckNumData(Data(referencing: lData), isNeedResponse: true)
+                let lData = Data(bytes: transData, count: transData.count)
+                appendingCheckNumData(lData, isNeedResponse: true)
+//                let lData = NSData(bytes: &transData, length: ArraySize(transData))
+//                appendingCheckNumData(Data(referencing: lData), isNeedResponse: true)
             }
             perform(#selector(self.queryCustomAlarmNumber), with: nil, afterDelay: 1.0)
         }
@@ -604,8 +621,10 @@ class BlueToothManager: NSObject {
      */
     func closeCustomAlarm(with index: Int) {
         var transData = [0x68, BlueToothFunctionIndexEnum.customAlarm.rawValue, 0x02, 0x00, 0x02, index]
-        let data = NSData(bytes: &transData, length: ArraySize(transData))
-        appendingCheckNumData(Data(referencing: data), isNeedResponse: true)
+        let data = Data(bytes: transData, count: transData.count)
+        appendingCheckNumData(data, isNeedResponse: true)
+//        let data = NSData(bytes: &transData, length: ArraySize(transData))
+//        appendingCheckNumData(Data(referencing: data), isNeedResponse: true)
     }
 
     /**
@@ -620,8 +639,10 @@ class BlueToothManager: NSObject {
         //    if(self.queryHeartAndtiredNum<=0)
         //    {
         var transData = [0x68, 0x02, 0x03, 0x00, 0x00, 0x02, 0x04]
-        let data = NSData(bytes: &transData, length: ArraySize(transData))
-        appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
+        let data = Data(bytes: transData, count: transData.count)
+        appendingCheckNumData(data, isNeedResponse: false)
+//        let data = NSData(bytes: &transData, length: ArraySize(transData))
+//        appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
         
         //        self.queryHeartAndtiredNum++;
         //        [self performSelector:@selector(queryHeartAndtiredNumber) withObject:nil afterDelay:1.0f];
@@ -635,8 +656,10 @@ class BlueToothManager: NSObject {
      */
     func setHeartHZState(_ state: Int) {
         var transData = [0x68, 0x02, 0x03, 0x00, 0x01, 0x04, state]
-        let data = NSData(bytes: &transData, length: ArraySize(transData))
-        appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
+        let data = Data(bytes: transData, count: transData.count)
+        appendingCheckNumData(data, isNeedResponse: false)
+//        let data = NSData(bytes: &transData, length: ArraySize(transData))
+//        appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
     }
     
     /**
@@ -648,13 +671,17 @@ class BlueToothManager: NSObject {
         
         if state == GlobalProperty.continuityMonitorNumber {
             var transData = [0x68, 0x02, 0x03, 0x00, 0x01, 0x02, 0x01]
-            let data = NSData(bytes: &transData, length: ArraySize(transData))
-            appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
+            let data = Data(bytes: transData, count: transData.count)
+            appendingCheckNumData(data, isNeedResponse: false)
+//            let data = NSData(bytes: &transData, length: ArraySize(transData))
+//            appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
             //        interfaceLog(@"连续心率监测 APP set %@",data);
         } else {
             var transData = [0x68, 0x02, 0x03, 0x00, 0x01, 0x02, state]
-            let data = NSData(bytes: &transData, length: ArraySize(transData))
-            appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
+            let data = Data(bytes: transData, count: transData.count)
+            appendingCheckNumData(data, isNeedResponse: false)
+//            let data = NSData(bytes: &transData, length: ArraySize(transData))
+//            appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
         }
         
     }
@@ -666,8 +693,10 @@ class BlueToothManager: NSObject {
      */
     @objc func queryHeartAlarm() {
         var transData = [0x68, BlueToothFunctionIndexEnum.heartRateAlarm.rawValue, 0x01, 0x00, 0x02, 0x7b, 0x16]
-        let lData = NSData(bytes: &transData, length: ArraySize(transData))
-        blueToothWhriteTransData(Data(referencing: lData), isNeedResponse: false)
+        let data = Data(bytes: transData, count: transData.count)
+        blueToothWhriteTransData(data, isNeedResponse: false)
+//        let lData = NSData(bytes: &transData, length: ArraySize(transData))
+//        blueToothWhriteTransData(Data(referencing: lData), isNeedResponse: false)
     }
     
     /**
@@ -690,8 +719,10 @@ class BlueToothManager: NSObject {
         
         let checkNum: Int = 0x68 + BlueToothFunctionIndexEnum.heartRateAlarm.rawValue + 0x04 + 0x01 + newState + maxHeart + minHeart
         var transData = [0x68, BlueToothFunctionIndexEnum.heartRateAlarm.rawValue, 0x04, 0x00, 0x01, newState, maxHeart, minHeart, checkNum, 0x16]
-        let lData = NSData(bytes: &transData, length: ArraySize(transData))
-        blueToothWhriteTransData(Data(referencing: lData), isNeedResponse: false)
+        let lData = Data(bytes: transData, count: transData.count)
+        blueToothWhriteTransData(lData, isNeedResponse: false)
+//        let lData = NSData(bytes: &transData, length: ArraySize(transData))
+//        blueToothWhriteTransData(Data(referencing: lData), isNeedResponse: false)
     }
     
     /**
@@ -711,9 +742,11 @@ class BlueToothManager: NSObject {
         var checkNum: Int = 0x68 + BlueToothFunctionIndexEnum.setStepPram.rawValue + 0x04 + height + weight + age + sexIndex
         checkNum = checkNum % 256
         var transData = [0x68, BlueToothFunctionIndexEnum.setStepPram.rawValue, 0x04, 0x00, height, weight, sexIndex, age, checkNum, 0x16]
-        let lData = NSData(bytes: &transData, length: ArraySize(transData))
-        //    adaLog(@"设置计步参数 app set %@",lData);
-        blueToothWhriteTransData(Data(referencing: lData), isNeedResponse: false)
+        let lData = Data(bytes: transData, count: transData.count)
+        blueToothWhriteTransData(lData, isNeedResponse: false)
+//        let lData = NSData(bytes: &transData, length: ArraySize(transData))
+//        //    adaLog(@"设置计步参数 app set %@",lData);
+//        blueToothWhriteTransData(Data(referencing: lData), isNeedResponse: false)
     }
     
     /**
@@ -729,9 +762,11 @@ class BlueToothManager: NSObject {
         //    Byte transData[] = {0x68,0x32,0x04,0x00,0x01,0x01,0x02,0x03};注意： 原来的0x01,0x02暂时保留不用。
         
         var transData = [0x68, BlueToothFunctionIndexEnum.checkAction.rawValue, 0x04, 0x00, 0x01, 0x03, 0x04, 0x05]
-        let data = NSData(bytes: &transData, length: ArraySize(transData))
-        //    interfaceLog(@" APP查询功能支持码 ask%@",data);
-        appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
+        let data = Data(bytes: transData, count: transData.count)
+        appendingCheckNumData(data, isNeedResponse: false)
+//        let data = NSData(bytes: &transData, length: ArraySize(transData))
+//        //    interfaceLog(@" APP查询功能支持码 ask%@",data);
+//        appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
 
     }
     
@@ -743,10 +778,12 @@ class BlueToothManager: NSObject {
     @objc func checkParameter() {
     
         var transData = [0x68, BlueToothFunctionIndexEnum.checkAction.rawValue, 0x03, 0x00, 0x02, 0x01, 0x02]
-        let data = NSData(bytes: &transData, length: ArraySize(transData))
-        
-        //     interfaceLog(@"  APP查询设备能支持的参数 ask%@",data);
-        appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
+        let data = Data(bytes: transData, count: transData.count)
+        appendingCheckNumData(data, isNeedResponse: false)
+//        let data = NSData(bytes: &transData, length: ArraySize(transData))
+//
+//        //     interfaceLog(@"  APP查询设备能支持的参数 ask%@",data);
+//        appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
 
     }
     
@@ -758,8 +795,10 @@ class BlueToothManager: NSObject {
      */
     func querySystemAlarm(with index: Int) {
         var transData = [0x68, BlueToothFunctionIndexEnum.openAntiLoss.rawValue, 0x02, 0x00, 0x01, index]
-        let lData = NSData(bytes: &transData, length: ArraySize(transData))
-        blueToothWhriteTransData(Data(referencing: lData), isNeedResponse: false)
+        let lData = Data(bytes: transData, count: transData.count)
+        blueToothWhriteTransData(lData, isNeedResponse: false)
+//        let lData = NSData(bytes: &transData, length: ArraySize(transData))
+//        blueToothWhriteTransData(Data(referencing: lData), isNeedResponse: false)
     }
     
     /**
@@ -769,8 +808,10 @@ class BlueToothManager: NSObject {
      */
     func setSystemAlarmWith(_ index: Int, status: Int) {
         var transData = [0x68, BlueToothFunctionIndexEnum.openAntiLoss.rawValue, 0x03, 0x00, 0x00, index, status]
-        let lData = NSData(bytes: &transData, length: ArraySize(transData))
-        blueToothWhriteTransData(Data(referencing: lData), isNeedResponse: false)
+        let lData = Data(bytes: transData, count: transData.count)
+        blueToothWhriteTransData(lData, isNeedResponse: false)
+//        let lData = NSData(bytes: &transData, length: ArraySize(transData))
+//        blueToothWhriteTransData(Data(referencing: lData), isNeedResponse: false)
     }
     
     /**
@@ -780,8 +821,10 @@ class BlueToothManager: NSObject {
      */
     func queryPhoneDelay() {
         var transData = [0x68, BlueToothFunctionIndexEnum.phoneDelay.rawValue, 0x01, 0x00, 0x02, 0x7d, 0x16]
-        let lData = NSData(bytes: &transData, length: ArraySize(transData))
-        blueToothWhriteTransData(Data(referencing: lData), isNeedResponse: false)
+        let lData = Data(bytes: transData, count: transData.count)
+        blueToothWhriteTransData(lData, isNeedResponse: false)
+//        let lData = NSData(bytes: &transData, length: ArraySize(transData))
+//        blueToothWhriteTransData(Data(referencing: lData), isNeedResponse: false)
     }
     
     /**
@@ -791,8 +834,10 @@ class BlueToothManager: NSObject {
      */
     func setPhoneDelay(_ seconds: Int) {
         var transData = [0x68, BlueToothFunctionIndexEnum.phoneDelay.rawValue, 0x02, 0x00, 0x01, seconds]
-        let lData = NSData(bytes: &transData, length: ArraySize(transData))
-        blueToothWhriteTransData(Data(referencing: lData), isNeedResponse: false)
+        let lData = Data(bytes: transData, count: transData.count)
+        blueToothWhriteTransData(lData, isNeedResponse: false)
+//        let lData = NSData(bytes: &transData, length: ArraySize(transData))
+//        blueToothWhriteTransData(Data(referencing: lData), isNeedResponse: false)
     }
     
     /**
@@ -843,8 +888,10 @@ class BlueToothManager: NSObject {
         let comps = calendar.dateComponents([.year, .month, .day], from: now)
         if let day = comps.day, let month = comps.month, let year = comps.year {
             var transData = [0x68, BlueToothFunctionIndexEnum.updateTotalData.rawValue, 0x04, 0x00, day, month, year % 100, 0x00]
-            let data = NSData(bytes: &transData, length: ArraySize(transData))
-            appendingCheckNumData(Data(referencing: data), isNeedResponse: true)
+            let data = Data(bytes: transData, count: transData.count)
+            appendingCheckNumData(data, isNeedResponse: true)
+//            let data = NSData(bytes: &transData, length: ArraySize(transData))
+//            appendingCheckNumData(Data(referencing: data), isNeedResponse: true)
         }
     }
 
@@ -864,8 +911,10 @@ class BlueToothManager: NSObject {
         let comps = calendar.dateComponents([.year, .month, .day], from: now)
         if let day = comps.day, let month = comps.month, let year = comps.year {
             var transData = [0x68, BlueToothFunctionIndexEnum.updateTotalData.rawValue, 0x04, 0x00, day, month, year % 100, type]
-            let data = NSData(bytes: &transData, length: ArraySize(transData))
-            appendingCheckNumData(Data(referencing: data), isNeedResponse: true)
+            let data = Data(bytes: transData, count: transData.count)
+            appendingCheckNumData(data, isNeedResponse: true)
+//            let data = NSData(bytes: &transData, length: ArraySize(transData))
+//            appendingCheckNumData(Data(referencing: data), isNeedResponse: true)
         }
     }
     
@@ -901,9 +950,12 @@ class BlueToothManager: NSObject {
                 }
                 if let day = comps.day, let month = comps.month, let year = comps.year {
                     var transData = [0x68, BlueToothFunctionIndexEnum.updateTotalData.rawValue, 0x06, 0x00, day, month, year % 100, 0x03, 0x08, HCHCommonManager.instance.requestIndex]
-                    let data = NSData(bytes: &transData, length: self.ArraySize(transData))
+                    let data = Data(bytes: transData, count: transData.count)
+                    
+//                    let data = NSData(bytes: &transData, length: self.ArraySize(transData))
                     DispatchQueue.main.async(execute: {
-                        self.appendingCheckNumData(Data(referencing: data), isNeedResponse: true)
+                        self.appendingCheckNumData(data, isNeedResponse: true)
+//                        self.appendingCheckNumData(Data(referencing: data), isNeedResponse: true)
                     })
                 }
             }
@@ -955,9 +1007,11 @@ class BlueToothManager: NSObject {
                 }
                 if let day = comps.day, let month = comps.month, let year = comps.year {
                     var transData = [0x68, BlueToothFunctionIndexEnum.updateTotalData.rawValue, 0x06, 0x00, day, month, year % 100, 0x03, 0x08, HCHCommonManager.instance.requestIndex]
-                    let data = NSData(bytes: &transData, length: self.ArraySize(transData))
+                    let data = Data(bytes: transData, count: transData.count)
+//                    let data = NSData(bytes: &transData, length: self.ArraySize(transData))
                     DispatchQueue.main.async(execute: {
-                        self.appendingCheckNumData(Data(referencing: data), isNeedResponse: true)
+                        self.appendingCheckNumData(data, isNeedResponse: true)
+//                        self.appendingCheckNumData(Data(referencing: data), isNeedResponse: true)
                     })
                 }
             }
@@ -984,9 +1038,11 @@ class BlueToothManager: NSObject {
             
             if let year = comps.year, let month = comps.month, let day = comps.day {
                 var transData = [0x68, BlueToothFunctionIndexEnum.updateTiredData.rawValue, 0x03, 0x00, day, month, year % 100]
-                let data = NSData(bytes: &transData, length: self.ArraySize(transData))
+                let data = Data(bytes: transData, count: transData.count)
+//                let data = NSData(bytes: &transData, length: self.ArraySize(transData))
                 DispatchQueue.main.async(execute: {
-                    self.appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
+                    self.appendingCheckNumData(data, isNeedResponse: false)
+//                    self.appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
                 })
             }
         })
@@ -1000,8 +1056,10 @@ class BlueToothManager: NSObject {
     func queryJiuzuoAlarm() {
         if queryJiuzuoAlarmNum <= 0 {
             var transData = [0x68, 0x14, 0x02, 0x00, 0x00, 0xff]
-            let data = NSData(bytes: &transData, length: ArraySize(transData))
-            appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
+            let data = Data(bytes: transData, count: transData.count)
+            appendingCheckNumData(data, isNeedResponse: false)
+//            let data = NSData(bytes: &transData, length: ArraySize(transData))
+//            appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
             queryJiuzuoAlarmNum += 1
             perform(#selector(self.queryJiuzuoAlarmNumber), with: nil, afterDelay: 1.0)
         }
@@ -1020,8 +1078,10 @@ class BlueToothManager: NSObject {
      */
     func setJiuzuoAlarmWithTag(_ tag: Int, isOpen: Bool, beginHour: Int, minite beginMinite: Int, endHour: Int, minite endMinite: Int, duration: Int) {
         var transData = [0x68, 0x14, 0x08, 0x00, 0x01, tag, isOpen.int, beginMinite, beginHour, endMinite, endHour, duration]
-        let data = NSData(bytes: &transData, length: ArraySize(transData))
-        appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
+        let data = Data(bytes: transData, count: transData.count)
+        appendingCheckNumData(data, isNeedResponse: false)
+//        let data = NSData(bytes: &transData, length: ArraySize(transData))
+//        appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
 
     }
     
@@ -1032,8 +1092,10 @@ class BlueToothManager: NSObject {
      */
     func deleteJiuzuoAlarm(withTag tag: Int) {
         var transData = [0x68, 0x14, 0x02, 0x00, 0x02, tag]
-        let data = NSData(bytes: &transData, length: ArraySize(transData))
-        appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
+        let data = Data(bytes: transData, count: transData.count)
+        appendingCheckNumData(data, isNeedResponse: false)
+//        let data = NSData(bytes: &transData, length: ArraySize(transData))
+//        appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
     }
     
     // MARK: -- ada 写
@@ -1044,8 +1106,10 @@ class BlueToothManager: NSObject {
      */
     @objc func openHeartRate() {
         var transData = [0x68, BlueToothFunctionIndexEnum.getActualData.rawValue, 0x01, 0x00, 0x01]
-        let lData = NSData(bytes: &transData, length: ArraySize(transData))
-        appendingCheckNumData(Data(referencing: lData), isNeedResponse: false)
+        let lData = Data(bytes: transData, count: transData.count)
+        appendingCheckNumData(lData, isNeedResponse: false)
+//        let lData = NSData(bytes: &transData, length: ArraySize(transData))
+//        appendingCheckNumData(Data(referencing: lData), isNeedResponse: false)
     }
     
     /**
@@ -1055,11 +1119,13 @@ class BlueToothManager: NSObject {
      */
     func timerGetHeartRateData() {
         var transData = [0x68, BlueToothFunctionIndexEnum.getActualData.rawValue, 0x01, 0x00, 0x00, 0x6f, 0x16]
-        let lData = NSData(bytes: &transData, length: ArraySize(transData))
+        let lData = Data(bytes: transData, count: transData.count)
+//        let lData = NSData(bytes: &transData, length: ArraySize(transData))
         //    [self appendingCheckNumData:lData isNeedResponse:NO];
         if rdCharactic1 != nil {
             print("📝 \(#function) #1 writeValue")
-            cbPeripheral?.writeValue(Data(referencing: lData), for: rdCharactic1!, type: .withoutResponse)
+            cbPeripheral?.writeValue(lData, for: rdCharactic1!, type: .withoutResponse)
+//            cbPeripheral?.writeValue(Data(referencing: lData), for: rdCharactic1!, type: .withoutResponse)
         }
     }
     
@@ -1070,8 +1136,10 @@ class BlueToothManager: NSObject {
      */
     func closeHeartRate() {
         var transData = [0x68, BlueToothFunctionIndexEnum.getActualData.rawValue, 0x01, 0x00, 0x02]
-        let lData = NSData(bytes: &transData, length: ArraySize(transData))
-        appendingCheckNumData(Data(referencing: lData), isNeedResponse: false)
+        let lData = Data(bytes: transData, count: transData.count)
+        appendingCheckNumData(lData, isNeedResponse: false)
+//        let lData = NSData(bytes: &transData, length: ArraySize(transData))
+//        appendingCheckNumData(Data(referencing: lData), isNeedResponse: false)
     }
     
     /**
@@ -1081,8 +1149,10 @@ class BlueToothManager: NSObject {
      */
     func answerBloodPressure() {
         var transData = [0x68, BlueToothFunctionIndexEnum.bloodPressure.rawValue, 0x01, 0x00, 0x00] //{0x68,0x06,0x01,0x00,0x02};
-        let lData = NSData(bytes: &transData, length: ArraySize(transData))
-        appendingCheckNumData(Data(referencing: lData), isNeedResponse: false)
+        let lData = Data(bytes: transData, count: transData.count)
+        appendingCheckNumData(lData, isNeedResponse: false)
+//        let lData = NSData(bytes: &transData, length: ArraySize(transData))
+//        appendingCheckNumData(Data(referencing: lData), isNeedResponse: false)
     }
     
     /**
@@ -1093,8 +1163,10 @@ class BlueToothManager: NSObject {
     func readyReceive(_ number: Int) {
         //    Byte transData[] = {0x68,0x2a,0x02,0x00,0x01,number};
         var transData = [0x68, BlueToothFunctionIndexEnum.bloodPressure.rawValue, 0x02, 0x00, 0x01, 0x00] //不想接收原始数据
-        let lData = NSData(bytes: &transData, length: ArraySize(transData))
-        appendingCheckNumData(Data(referencing: lData), isNeedResponse: false)
+        let lData = Data(bytes: transData, count: transData.count)
+        appendingCheckNumData(lData, isNeedResponse: false)
+//        let lData = NSData(bytes: &transData, length: ArraySize(transData))
+//        appendingCheckNumData(Data(referencing: lData), isNeedResponse: false)
     }
     
     /**
@@ -1105,8 +1177,10 @@ class BlueToothManager: NSObject {
     func answerReadyReceive(_ number: Int) {
         //    Byte transData[] = {0x68,0x2a,0x02,0x00,0x02,number};//不想接收原始数据
         var transData = [0x68, BlueToothFunctionIndexEnum.bloodPressure.rawValue, 0x02, 0x00, 0x02, 0x00] //不想接收原始数据
-        let lData = NSData(bytes: &transData, length: ArraySize(transData))
-        appendingCheckNumData(Data(referencing: lData), isNeedResponse: false)
+        let lData = Data(bytes: transData, count: transData.count)
+        appendingCheckNumData(lData, isNeedResponse: false)
+//        let lData = NSData(bytes: &transData, length: ArraySize(transData))
+//        appendingCheckNumData(Data(referencing: lData), isNeedResponse: false)
         
         //     interfaceLog(@"准备好接收血压原始数据  app answer %@",lData);
     }
@@ -1124,8 +1198,10 @@ class BlueToothManager: NSObject {
         //    40-100，收缩压90-180
         if diya >= 40 && gaoya >= 90 {
             var transData = [0x68, BlueToothFunctionIndexEnum.bloodPressure.rawValue, 0x03, 0x00, 0x04, gaoya, diya]
-            let lData = NSData(bytes: &transData, length: ArraySize(transData))
-            appendingCheckNumData(Data(referencing: lData), isNeedResponse: false)
+            let lData = Data(bytes: transData, count: transData.count)
+            appendingCheckNumData(lData, isNeedResponse: false)
+//            let lData = NSData(bytes: &transData, length: ArraySize(transData))
+//            appendingCheckNumData(Data(referencing: lData), isNeedResponse: false)
         } else {
             
         }
@@ -1138,9 +1214,11 @@ class BlueToothManager: NSObject {
      */
     func answerBraceletSetParam(_ code: Int) {
         var transData = [0x68, BlueToothFunctionIndexEnum.checkNewLength.rawValue, 0x02, 0x00, code, 0x00]
-        let lData = NSData(bytes: &transData, length: ArraySize(transData))
-        //     interfaceLog(@"手环设置APP参数 app answer %@",lData);
-        appendingCheckNumData(Data(referencing: lData), isNeedResponse: false)
+        let lData = Data(bytes: transData, count: transData.count)
+        appendingCheckNumData(lData, isNeedResponse: false)
+//        let lData = NSData(bytes: &transData, length: ArraySize(transData))
+//        //     interfaceLog(@"手环设置APP参数 app answer %@",lData);
+//        appendingCheckNumData(Data(referencing: lData), isNeedResponse: false)
     }
     
     /**
@@ -1158,8 +1236,10 @@ class BlueToothManager: NSObject {
         
         if dia > 0 && sys > 0 {
             var transData = [0x68, BlueToothFunctionIndexEnum.bloodPressure.rawValue, 0x03, 0x00, 0x05, dia, sys]
-            let lData = NSData(bytes: &transData, length: ArraySize(transData))
-            appendingCheckNumData(Data(referencing: lData), isNeedResponse: false)
+            let lData = Data(bytes: transData, count: transData.count)
+            appendingCheckNumData(lData, isNeedResponse: false)
+//            let lData = NSData(bytes: &transData, length: ArraySize(transData))
+//            appendingCheckNumData(Data(referencing: lData), isNeedResponse: false)
         } else {
         }
         
@@ -1176,8 +1256,10 @@ class BlueToothManager: NSObject {
         let b3 = (pageString >> 16) & 0xff
         let b4 = (pageString >> 24) & 0xff
         var transData = [0x68, UInt32(BlueToothFunctionIndexEnum.pageManager_None.rawValue), 0x05, 0x00, 0x01, b1, b2, b3, b4]
-        let lData = NSData(bytes: &transData, length: ArraySize(transData))
-        appendingCheckNumData(Data(referencing: lData), isNeedResponse: false)
+        let lData = Data(bytes: transData, count: transData.count)
+        appendingCheckNumData(lData, isNeedResponse: false)
+//        let lData = NSData(bytes: &transData, length: ArraySize(transData))
+//        appendingCheckNumData(Data(referencing: lData), isNeedResponse: false)
         
         //    interfaceLog(@"page 333 APP ask %@",lData);
     }
@@ -1453,21 +1535,27 @@ class BlueToothManager: NSObject {
     // MARK:
     // MARK: OAD operate
     func revDataAck(with dataFunctionNum: Int, andDat data: Data) {
-        var checkNum: Int = 0x68 + dataFunctionNum
+        var checkNum: UInt32 = 0x68 + UInt32(dataFunctionNum)
         let dataByte = [UInt8](data)
         for index in 0..<data.count {
-            checkNum += Int(dataByte[index])
+            checkNum += UInt32(dataByte[index])
         }
-        checkNum += data.count
+        checkNum += UInt32(data.count)
         checkNum = checkNum % 256
         var transData = [0x68, dataFunctionNum, data.count, 0x00]
-        let lData = NSMutableData(bytes: &transData, length: ArraySize(transData))
-            
+        var lData = Data(bytes: transData, count: transData.count)
         lData.append(data)
-            
-        var endData = [checkNum, 0x16]
-        lData.append(&endData, length: ArraySize(endData))
-        blueToothWhriteTransData(Data(referencing: lData), isNeedResponse: false)
+        let endData = [UInt8(checkNum), 0x16]
+        lData.append(endData, count: endData.count)
+        blueToothWhriteTransData(lData, isNeedResponse: false)
+        
+//        let lData = NSMutableData(bytes: &transData, length: ArraySize(transData))
+//
+//        lData.append(data)
+//
+//        var endData = [checkNum, 0x16]
+//        lData.append(&endData, length: ArraySize(endData))
+//        blueToothWhriteTransData(Data(referencing: lData), isNeedResponse: false)
     }
 
     
@@ -1568,8 +1656,10 @@ class BlueToothManager: NSObject {
      */
     func getActualData() {
         var transData = [0x68, BlueToothFunctionIndexEnum.getActualData.rawValue, 0x01, 0x00, 0x00, 0x6f, 0x16]
-        let lData = NSData(bytes: &transData, length: ArraySize(transData))
-        blueToothWhriteTransData(Data(referencing: lData), isNeedResponse: false)
+        let lData = Data(bytes: transData, count: transData.count)
+        blueToothWhriteTransData(lData, isNeedResponse: false)
+//        let lData = NSData(bytes: &transData, length: ArraySize(transData))
+//        blueToothWhriteTransData(Data(referencing: lData), isNeedResponse: false)
     }
     
     /**
@@ -1581,8 +1671,10 @@ class BlueToothManager: NSObject {
         
         if checkPageManagerNum <= 0 {
             var transData = [0x68, BlueToothFunctionIndexEnum.pageManager_None.rawValue, 0x01, 0x00, 0x02]
-            let lData = NSData(bytes: &transData, length: ArraySize(transData))
-            appendingCheckNumData(Data(referencing: lData), isNeedResponse: false)
+            let lData = Data(bytes: transData, count: transData.count)
+            appendingCheckNumData(lData, isNeedResponse: false)
+//            let lData = NSData(bytes: &transData, length: ArraySize(transData))
+//            appendingCheckNumData(Data(referencing: lData), isNeedResponse: false)
             //    [self blueToothWhriteTransData:lData isNeedResponse:NO];
             //        //adaLog(@"sendPageManager - -%@",lData);
             //        interfaceLog(@"page  读取设备页面的配置 ask %@",lData);
@@ -1612,8 +1704,10 @@ class BlueToothManager: NSObject {
      */
     @objc func supportPageManager() {
         var transData = [0x68, BlueToothFunctionIndexEnum.pageManager_None.rawValue, 0x01, 0x00, 0x03]
-        let lData = NSData(bytes: &transData, length: ArraySize(transData))
-        appendingCheckNumData(Data(referencing: lData), isNeedResponse: false)
+        let data = Data(bytes: transData, count: transData.count)
+        appendingCheckNumData(data, isNeedResponse: false)
+//        let lData = NSData(bytes: &transData, length: ArraySize(transData))
+//        appendingCheckNumData(Data(referencing: lData), isNeedResponse: false)
         
         //    //adaLog(@"supportPageManager - -%@",lData);
         //   interfaceLog(@"page  APP读取设备支持的页面配置 ask %@",lData);
@@ -1627,8 +1721,11 @@ class BlueToothManager: NSObject {
     func openAntiLoss() {
         
         var transData = [0x68, BlueToothFunctionIndexEnum.openAntiLoss.rawValue, 0x01, 0x00, 0x01, 0x6f, 0x16]
-        let lData = NSData(bytes: &transData, length: ArraySize(transData))
-        blueToothWhriteTransData(Data(referencing: lData), isNeedResponse: false)
+        
+        let lData = Data(bytes: transData, count: transData.count)
+        blueToothWhriteTransData(lData, isNeedResponse: false)
+//        let lData = NSData(bytes: &transData, length: ArraySize(transData))
+//        blueToothWhriteTransData(Data(referencing: lData), isNeedResponse: false)
 
     }
     
@@ -1640,8 +1737,11 @@ class BlueToothManager: NSObject {
     func closeAntiLoss() {
         
         var transData = [0x68, BlueToothFunctionIndexEnum.openAntiLoss.rawValue, 0x01, 0x00, 0x00, 0x6e, 0x16]
-        let lData = NSData(bytes: &transData, length: ArraySize(transData))
-        blueToothWhriteTransData(Data(referencing: lData), isNeedResponse: false)
+        
+        let lData = Data(bytes: transData, count: transData.count)
+        blueToothWhriteTransData(lData, isNeedResponse: false)
+//        let lData = NSData(bytes: &transData, length: ArraySize(transData))
+//        blueToothWhriteTransData(Data(referencing: lData), isNeedResponse: false)
 
     }
     
@@ -1657,8 +1757,10 @@ class BlueToothManager: NSObject {
         var checkNum: Int = 0x68 + dataFunctionNum
         checkNum = checkNum % 256
         var transData = [0x68, dataFunctionNum, 0x00, 0x00, checkNum, 0x16]
-        let lData = NSData(bytes: &transData, length: ArraySize(transData))
-        blueToothWhriteTransData(Data(referencing: lData), isNeedResponse: false)
+        let lData = Data(bytes: transData, count: transData.count)
+        blueToothWhriteTransData(lData, isNeedResponse: false)
+//        let lData = NSData(bytes: &transData, length: ArraySize(transData))
+//        blueToothWhriteTransData(Data(referencing: lData), isNeedResponse: false)
     }
     
     /**
@@ -1708,6 +1810,40 @@ class BlueToothManager: NSObject {
         
         var transDate = [0x68, BlueToothFunctionIndexEnum.updateHardWare.rawValue, (length + 5) & 0xff, (length + 5) >> 8 & 0xff, 0x01, totalPack & 0xff, totalPack >> 8 & 0xff, index & 0xff, index >> 8 & 0xff]
         
+        var lData = Data(bytes: transDate, count: transDate.count)
+        lData.append(romData)
+        
+        var beginTansDate = lData.bytes
+        
+        var checkNum: UInt32 = 0
+        for i in 0..<lData.count {
+            checkNum += UInt32(beginTansDate[i])
+        }
+        
+        checkNum = checkNum % 256
+        var tempData = [UInt8(checkNum), 0x16]
+        lData.append(&tempData, count: tempData.count)
+        
+        if lData.count > 20 {
+            
+            let subData = lData.subdata(in: 0..<20)
+            let lostData = lData.subdata(in: 20..<lData.count)
+            
+            //adaLog(@"update = %@",subData);
+            if let cbPeripheral = cbPeripheral, let rdCharactic1 = rdCharactic1 {
+                print("📝 \(#function) #1 writeValue")
+                cbPeripheral.writeValue(subData, for: rdCharactic1, type: .withoutResponse)
+            }
+            
+            perform(#selector(self.sendupdateData(_:)), with: lostData, afterDelay: 0)
+        } else {
+            if let cbPeripheral = cbPeripheral, let rdCharactic1 = rdCharactic1 {
+                print("📝 \(#function) #2 writeValue")
+                cbPeripheral.writeValue(lData, for: rdCharactic1, type: .withoutResponse)
+            }
+        }
+        
+        /*
         let lData = NSMutableData(bytes: &transDate, length: ArraySize(transDate))
         lData.append(romData)
         
@@ -1737,6 +1873,7 @@ class BlueToothManager: NSObject {
                 cbPeripheral.writeValue(Data(referencing: lData), for: rdCharactic1, type: .withoutResponse)
             }
         }
+    */
     }
     
     /**
@@ -1746,8 +1883,10 @@ class BlueToothManager: NSObject {
      */
     func updatehardwaerComplete() {
         var transData = [0x68, BlueToothFunctionIndexEnum.updateHardWare.rawValue, 0x01, 0x00, 0x02]
-        let data = NSData(bytes: &transData, length: ArraySize(transData))
-        appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
+        let data = Data(bytes: transData, count: transData.count)
+        appendingCheckNumData(data, isNeedResponse: false)
+//        let data = NSData(bytes: &transData, length: ArraySize(transData))
+//        appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
     }
     
     /**
@@ -1813,8 +1952,10 @@ class BlueToothManager: NSObject {
      */
     func answerTakePhoto() {
         var transData: [UInt8] = [0x68, 0x0e, 0x00, 0x00]
-        let data = NSData(bytes: &transData, length: ArraySize(transData))
-        appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
+        let data = Data(bytes: transData, count: transData.count)
+        appendingCheckNumData(data, isNeedResponse: false)
+//        let data = NSData(bytes: &transData, length: ArraySize(transData))
+//        appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
         
     }
     
@@ -1825,8 +1966,10 @@ class BlueToothManager: NSObject {
      */
     func responseExceptionData() {
         var transData = [0x68, BlueToothFunctionIndexEnum.exceptioncodeData.rawValue, 0x02, 0x00, 0x01, 0x00]
-        let lData = NSData(bytes: &transData, length: ArraySize(transData))
-        appendingCheckNumData(Data(referencing: lData), isNeedResponse: false)
+        let lData = Data(bytes: transData, count: transData.count)
+        appendingCheckNumData(lData, isNeedResponse: false)
+//        let lData = NSData(bytes: &transData, length: ArraySize(transData))
+//        appendingCheckNumData(Data(referencing: lData), isNeedResponse: false)
     }
     
     /**
@@ -2064,21 +2207,20 @@ class BlueToothManager: NSObject {
                         reviceData!.replaceBytes(in: NSRange(location: 0, length: len + 6), withBytes: nil, length: 0)
                         //adaLog(@"recieveData == %@",toSendData);
                         if delegate != nil {
-                            if delegate!.responds(to: #selector(self.delegate?.blueToothManagerReceiveNotify(_:))) {
-                                delegate?.blueToothManagerReceiveNotify?(toSendData)
-                                
-                                let recieveByte = [UInt8](toSendData)
-                                let recieveCode = recieveByte[1] & 0x7f
-                                
-                                if sendingData != nil, sendingData?.count != 0 {
-                                    let sendingByte = [UInt8](sendingData!)
-                                    let sendCode = sendingByte[1]
-                                    if sendCode == recieveCode || recieveCode == 73 {
-                                        sendingData = nil
-                                    }
+                            
+                            delegate?.blueToothManagerReceiveNotify?(toSendData)
+                            
+                            let recieveByte = [UInt8](toSendData)
+                            let recieveCode = recieveByte[1] & 0x7f
+                            
+                            if sendingData != nil, sendingData?.count != 0 {
+                                let sendingByte = [UInt8](sendingData!)
+                                let sendCode = sendingByte[1]
+                                if sendCode == recieveCode || recieveCode == 73 {
+                                    sendingData = nil
                                 }
-                                blueToothWhriteTransData(nil, isNeedResponse: true)
                             }
+                            blueToothWhriteTransData(nil, isNeedResponse: true)
                         }
                     } else {
                         reviceData?.replaceBytes(in: NSRange(location: 0, length: 1), withBytes: nil, length: 0)
@@ -2099,10 +2241,12 @@ class BlueToothManager: NSObject {
     
     func setLanguageByte(_ state: Int) {
         var transData = [0x68, 0x02, 0x03, 0x00, 0x01, 0x06, state]
-        let data = NSData(bytes: &transData, length: ArraySize(transData))
-
-        //    interfaceLog(@"Language 1111 == %@",data);
-        appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
+        let data = Data(bytes: transData, count: transData.count)
+        appendingCheckNumData(data, isNeedResponse: false)
+//        let data = NSData(bytes: &transData, length: ArraySize(transData))
+//
+//        //    interfaceLog(@"Language 1111 == %@",data);
+//        appendingCheckNumData(Data(referencing: data), isNeedResponse: false)
     }
 
     func appendingCheckNumData(_ data: Data, isNeedResponse response: Bool) {
@@ -2113,17 +2257,27 @@ class BlueToothManager: NSObject {
         }
         checkNum = checkNum % UInt32(256)
         var tempData = [UInt8(checkNum), 0x16]
-        var lData: Data? = nil
-        lData = Data(base64Encoded: data)
-        lData?.append(&tempData, count: ArraySize(tempData))
+        var lData = data
+        lData.append(&tempData, count: tempData.count)
         blueToothWhriteTransData(lData, isNeedResponse: response)
     }
     
     // MARK:    - -- - - - - -  蓝牙的重发机制
     func blueToothWhriteTransData(_ lData: Data?, isNeedResponse response: Bool) {
-        if cbCenterManger == nil, cbPeripheral == nil, cbCenterManger?.state != .poweredOn {
+        
+        if cbCenterManger == nil {
             return
         }
+        if cbPeripheral == nil {
+            return
+        }
+        if cbCenterManger?.state != .poweredOn {
+            return
+        }
+        
+//        if cbCenterManger == nil, cbPeripheral == nil, cbCenterManger?.state != .poweredOn {
+//            return
+//        }
         print("🤬🤬  rdCharactic1 = \(rdCharactic1)")
         if rdCharactic1 != nil {
             print("🤬🤬🤬🤬🤬🤬🤬🤬")
@@ -2225,7 +2379,7 @@ class BlueToothManager: NSObject {
             return
         }
         
-        if connectUUID?.isEmpty == true, let uuid = connectUUID, GlobalProperty.currentWorkMode == 0, isConnecting == false {
+        if connectUUID?.isEmpty == false, let uuid = connectUUID, GlobalProperty.currentWorkMode == 0, isConnecting == false {
             connect(withUUID: uuid)
         }
         
@@ -2430,10 +2584,10 @@ extension BlueToothManager: CBCentralManagerDelegate {
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         
         let llString = peripheral.identifier.uuidString
-        
         let lastUUID = UserDefaults.standard.string(forKey: GlobalProperty.kLastDeviceUUID)
         print("llString = \(llString)")
         print("lastUUID = \(lastUUID)")
+        print("selfUUID = \(self.connectUUID ?? "nil")")
         print("isConnecting = \(isConnecting)")
         if lastUUID == nil {
             return
@@ -2681,4 +2835,7 @@ extension BlueToothManager: CBPeripheralDelegate {
         }
 
     }
+    
+    
+    
 }

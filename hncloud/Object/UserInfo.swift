@@ -250,15 +250,10 @@ class UserInfo: NSObject {
         
         return (self.keychain.get("deviceToken") ?? "") != "未綁定".localized()
     }
-    
-<<<<<<< HEAD
-    
-    var selectedDate: Date = Date()
-=======
+
     @objc dynamic var selectedDate: Date = Date()
     var walkTarget: Int = 10000
     var sleepTarget: Int = 8
->>>>>>> f44aae4c31629f75b0985ae554d246c651950590
     
     func update(json: JSON) {
         self.sid = json["sid"].string ?? ""

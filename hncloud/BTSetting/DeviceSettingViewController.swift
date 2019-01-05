@@ -41,15 +41,17 @@ class DeviceSettingViewController: UIViewController {
                            cancelTitle: "取消".localized()) { (_) in
                 
                 
-                CositeaBlueTooth.instance.disConnected(withUUID: CositeaBlueTooth.instance.connectUUID)
-                let ud = UserDefaults.standard
-                ud.set(nil, forKey: GlobalProperty.kLastDeviceUUID)
-                ud.removeObject(forKey: GlobalProperty.kLastDeviceNAME)
-                ud.removeObject(forKey: GlobalProperty.SUPPORTPAGEMANAGER)
-                
-                // 解除綁定
-                UserInfo.share.deviceToken = "未綁定".localized()
-                self.setDeviceStatus()
+                            CositeaBlueTooth.instance.disConnected(withUUID: CositeaBlueTooth.instance.connectUUID)
+                            let ud = UserDefaults.standard
+                            ud.set(nil, forKey: GlobalProperty.kLastDeviceUUID)
+                            ud.removeObject(forKey: GlobalProperty.kLastDeviceNAME)
+                            ud.removeObject(forKey: GlobalProperty.SUPPORTPAGEMANAGER)
+                            
+                            // 解除綁定
+                            UserInfo.share.deviceToken = "未綁定".localized()
+                            self.setDeviceStatus()
+                            
+                            UserDefaults.standard.removeObject(forKey: GlobalProperty.kLastDeviceUUID)
             }
             
         } else {
@@ -98,6 +100,8 @@ class DeviceSettingViewController: UIViewController {
                          SQLdataManger.getInstance().createTableTwo()
                          CoreDataManage.shareInstance().deleteData()
                          */
+                        
+                        UserDefaults.standard.removeObject(forKey: GlobalProperty.kLastDeviceUUID)
 
                         //数据全部清除了。要重新请求全天心率
                         HCHCommonManager.instance.queryHearRateSeconed = 0

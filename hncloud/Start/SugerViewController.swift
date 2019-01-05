@@ -35,17 +35,17 @@ class SugerViewController: UIViewController {
         self.recordButton.addTarget(self, action: #selector(update), for: .touchUpInside)
     }
     
-<<<<<<< HEAD
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        connectedBand()
+        
     }
     
-    @IBAction func bluetoothStateAction(_ sender: Any) {
-=======
+    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        connectedBand()
         self.observeDate = UserInfo.share.observe(\.selectedDate, changeHandler: { (user, date) in
             self.getSugur()
         })
@@ -83,7 +83,10 @@ class SugerViewController: UIViewController {
         super.viewWillDisappear(animated)
         self.observeDate?.invalidate()
         self.observeDate = nil
->>>>>>> f44aae4c31629f75b0985ae554d246c651950590
+
+    }
+    @IBAction func bluetoothStateAction(_ sender: Any) {
+        connectedBand()
     }
     
     @objc private func update() {

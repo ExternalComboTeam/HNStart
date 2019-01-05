@@ -224,7 +224,7 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
      
      */
     func connect(withUUID UUID: String?) {
-        guard let uuid = UUID else { return }
+        guard let uuid = UUID, uuid.notEmpty else { return }
         blueToothManager?.connect(withUUID: uuid)
     }
 

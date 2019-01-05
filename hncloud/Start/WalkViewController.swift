@@ -160,6 +160,7 @@ class WalkViewController: UIViewController {
             print("CositeaBlueTooth.instance.isConnected = \(CositeaBlueTooth.instance.isConnected)")
             hideBluetoothStateBtn()
             setAllValue()
+            CositeaBlueTooth.instance.stopScanDevice()
             return
         } else {
             self.bluetoothStateBtn.isHidden = false
