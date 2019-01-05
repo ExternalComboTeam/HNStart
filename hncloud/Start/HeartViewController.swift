@@ -78,7 +78,7 @@ class HeartViewController: UIViewController {
         set1.axisDependency = .left
         set1.setColor(.clear)
         set1.drawCircleHoleEnabled = false
-        let gradientColors = [#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).cgColor, #colorLiteral(red: 0.05903590565, green: 0, blue: 0.9331281676, alpha: 1).cgColor]
+        let gradientColors = [#colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.5).cgColor, #colorLiteral(red: 0, green: 0.25, blue: 1, alpha: 0.5).cgColor]
         let gradient = CGGradient(colorsSpace: nil, colors: gradientColors as CFArray, locations: nil)!
         
         set1.fillAlpha = 1
@@ -97,7 +97,7 @@ class HeartViewController: UIViewController {
         set3.axisDependency = .right
         set3.setColor(.clear)
         set3.drawCircleHoleEnabled = false
-        let gradientColors3 = [#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).cgColor, #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1).cgColor]
+        let gradientColors3 = [#colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.5).cgColor, #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 0.5).cgColor]
         let gradient3 = CGGradient(colorsSpace: nil, colors: gradientColors3 as CFArray, locations: nil)!
         
         set3.fillAlpha = 1

@@ -140,6 +140,13 @@ class UserInfoViewController: UIViewController {
     @objc private func unitAction(_ sender: UISegmentedControl) {
         self.weightUnit.text = sender.selectedSegmentIndex == 0 ? "kg" : "lb"
         self.heightUnit.text = sender.selectedSegmentIndex == 0 ? "cm" : "inch"
+        
+        guard let weight = self.weightTextField.text, let height = self.heightTextField.text else { return }
+        guard let weightF = Float(weight), let heightF = Float(height) else { return }
+        let newWidth = sender.selectedSegmentIndex == 0 ? (weightF / 2.20) : (weightF * 2.20)
+        let newHeight = sender.selectedSegmentIndex == 0 ? (heightF / 0.39) : (heightF * 0.3937)
+        self.weightTextField.text = "\(Int(newWidth))"
+        self.heightTextField.text = "\(Int(newHeight))"
     }
     @objc private func selectPicket() {
         let picketActionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)

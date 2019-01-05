@@ -13,7 +13,15 @@ class SwitchCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var switchBar: UISwitch!
     @IBAction func switchAction(_ sender: UISwitch) {
+        self.switchAction?(sender)
     }
+    
+    private var switchAction: ((UISwitch) -> Void)?
+    
+    func action(_ switchBack: ((UISwitch) -> Void)?) {
+        self.switchAction = switchBack
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

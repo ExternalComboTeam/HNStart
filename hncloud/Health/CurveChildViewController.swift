@@ -15,7 +15,9 @@ class CurveChildViewController: UIViewController {
     var index: Int = 0
     @IBOutlet weak var chartBackView: UIView!
     @IBOutlet weak var stepsChartView: BarChartView!
+    @IBOutlet weak var stepTitleView: UIView!
     @IBOutlet weak var sleepChartView: BarChartView!
+    @IBOutlet weak var sleepTitleView: UIView!
     
     private var isLoad: Bool = false
     
@@ -30,27 +32,37 @@ class CurveChildViewController: UIViewController {
         return (0...dayCount).map({ start.adding(.day, value: $0).string(withFormat: "MM/dd") })
     }()
     
+    private lazy var stepsView: StepsMarkerView = {
+        guard let view = StepsMarkerView.xib() else { return StepsMarkerView() }
+        view.unitLabel.text = "步".localized()
+        view.isHidden = true
+        return view
+    }()
+    private lazy var sleepView: SleepMarkerView = {
+        guard let view = SleepMarkerView.xib() else { return SleepMarkerView() }
+        view.isHidden = true
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setChart(self.stepsChartView)
         self.setChart(self.sleepChartView)
+        self.stepsChartView.addSubview(self.stepsView)
+        self.sleepChartView.addSubview(self.sleepView)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.chartBackView.gradientColors = [#colorLiteral(red: 0.4179144204, green: 0.683541894, blue: 0.6642404795, alpha: 1), #colorLiteral(red: 0.734546721, green: 0.4212638736, blue: 0.7398764491, alpha: 1)]
+        
+        self.stepTitleView.addBoard(.bottom, color: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), thickness: 1)
+        self.sleepTitleView.addBoard(.bottom, color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), thickness: 1)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-//        self.setData(self.stepsChartView)
-//        self.setData(self.sleepChartView)
         
         self.setStepsData()
         self.setSleepData()
@@ -88,6 +100,17 @@ class CurveChildViewController: UIViewController {
         
         let marker = MarkerView()
         marker.chartView = chartView
+        marker.tapBar { (point, entry) in
+            if let values = entry.yValues {
+                let gap = point.y - self.sleepView.height
+                let y = gap < 0 ? (self.sleepView.height / 2) : point.y - (self.sleepView.height / 2)
+                self.sleepView.setValue(point: CGPoint(x: point.x, y: y), values: values)
+            } else {
+                let gap = point.y - self.stepsView.height
+                let y = gap < 0 ? (self.stepsView.height / 2) : point.y - (self.stepsView.height / 2)
+                self.stepsView.setValue(point: CGPoint(x: point.x, y: y), steps: Int(entry.y))
+            }
+        }
         chartView.marker = marker
         
 //        self.setData(chartView)
@@ -113,13 +136,13 @@ class CurveChildViewController: UIViewController {
     private func setSleepData() {
         let count = self.index == 0 ? 8 : Int(self.monthDay)
         let yVals1 = (0..<count).map { (i) -> BarChartDataEntry in
-            let val = Double(arc4random_uniform(140) + 60)
-            let va2 = Double(arc4random_uniform(140) + 60)
-            let va3 = Double(arc4random_uniform(140) + 60)
+            let val = Double(arc4random_uniform(4000) + 60)
+            let va2 = Double(arc4random_uniform(5000) + 60)
+            let va3 = Double(arc4random_uniform(2000) + 60)
             return BarChartDataEntry(x: Double(i), yValues: i == 0 ? [0, 0, 0] : [val, va2, va3])
         }
         let barSet = BarChartDataSet(values: yVals1, label: "")
-        barSet.colors = [#colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1), #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1), #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1)]
+        barSet.colors = [#colorLiteral(red: 0, green: 0, blue: 1, alpha: 1), #colorLiteral(red: 0, green: 0.4980392157, blue: 1, alpha: 1), #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1)]
         barSet.highlightAlpha = 0
         let data = BarChartData(dataSet: barSet)
         data.barWidth = 0.2

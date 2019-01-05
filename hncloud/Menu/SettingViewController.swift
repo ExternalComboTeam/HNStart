@@ -68,7 +68,7 @@ class SettingViewController: UIViewController {
         self.setButtonIcon()
         self.myTableView.tableFooterView = UIView()
         self.buttonSet(self.clockButton, isSelected: true)
-        self.myTableView.register(xib: SwitchCell.xib, ShowCell.xib)
+        self.myTableView.register(xib: SwitchCell.xib, ShowCell.xib, SettingCell.xib)
         self.myTableView.dataSource = self
         self.myTableView.delegate = self
     }
@@ -104,7 +104,7 @@ extension SettingViewController: UITableViewDataSource {
         case .device:
             return 1
         case .setting:
-            return 8
+            return 1
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -123,17 +123,24 @@ extension SettingViewController: UITableViewDataSource {
         case .forget:
             let cell = SwitchCell.use(table: tableView, for: indexPath)
             cell.titleLabel.text = "防丟提醒".localized()
+            cell.action { (sender) in
+                print("onOff = \(sender.isOn)")
+            }
             return cell
         case .device:
             let cell = SwitchCell.use(table: tableView, for: indexPath)
             cell.titleLabel.text = "抬腕喚醒".localized()
+            cell.action { (sender) in
+                print("onOff = \(sender.isOn)")
+            }
             return cell
         case .setting:
+            let cell = SettingCell.use(table: tableView, for: indexPath)
+            return cell
+            /*
             switch indexPath.row {
             case 0:
-                let cell = ShowCell.use(table: tableView, for: indexPath)
-                cell.firstLabel.text = "選擇開關設備功能".localized()
-                cell.secondLabel.text = ""
+                let cell = SettingCell.use(table: tableView, for: indexPath)
                 return cell
             case 1:
                 let cell = SwitchCell.use(table: tableView, for: indexPath)
@@ -169,6 +176,7 @@ extension SettingViewController: UITableViewDataSource {
                 cell.secondLabel.text = ""
                 return cell
             }
+            */
         }
         return cell
     }

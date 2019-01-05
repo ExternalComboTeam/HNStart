@@ -18,6 +18,10 @@
 		9D1F890721D14BDE0033721E /* LoginMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1F890621D14BDE0033721E /* LoginMenuViewController.swift */; };
 		9D1F890921D1575E0033721E /* FoundPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1F890821D1575E0033721E /* FoundPasswordViewController.swift */; };
 		9D1F890B21D157B70033721E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1F890A21D157B70033721E /* RegisterViewController.swift */; };
+		9D2226A621E120BD0087B66A /* SleepMarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D2226A521E120BD0087B66A /* SleepMarkerView.xib */; };
+		9D2226A821E120CD0087B66A /* SleepMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2226A721E120CD0087B66A /* SleepMarkerView.swift */; };
+		9D2226AA21E12D060087B66A /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D2226A921E12D060087B66A /* SettingCell.xib */; };
+		9D2226AC21E12FEA0087B66A /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2226AB21E12FEA0087B66A /* SettingCell.swift */; };
 		9D297A1321D4AAC600E34260 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D297A1221D4AAC600E34260 /* ArrayExtension.swift */; };
 		9D297A1521D4AF4E00E34260 /* DS-DIGIB.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 9D297A1421D4AF4E00E34260 /* DS-DIGIB.TTF */; };
 		9D2B806721D7B39600F63685 /* SportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2B806621D7B39600F63685 /* SportCell.swift */; };
@@ -53,6 +57,8 @@
 		9D7D474221DF9DB900613C05 /* SearchMedicineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7D474121DF9DB900613C05 /* SearchMedicineViewController.swift */; };
 		9D7D474421DFA17200613C05 /* MedicineCellCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7D474321DFA17200613C05 /* MedicineCellCell.swift */; };
 		9D80783021E0B8E2007CF885 /* MarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D80782F21E0B8E2007CF885 /* MarkerView.swift */; };
+		9D80783221E0E729007CF885 /* StepsMarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D80783121E0E729007CF885 /* StepsMarkerView.xib */; };
+		9D80783421E0E7C3007CF885 /* StepsMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D80783321E0E7C3007CF885 /* StepsMarkerView.swift */; };
 		9D86988021D64AEC00892773 /* WalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D86987F21D64AEC00892773 /* WalkViewController.swift */; };
 		9D86988221D64AFD00892773 /* SportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D86988121D64AFD00892773 /* SportViewController.swift */; };
 		9D86988421D64B0700892773 /* SleepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D86988321D64B0700892773 /* SleepViewController.swift */; };
@@ -129,6 +135,10 @@
 		9D1F890621D14BDE0033721E /* LoginMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginMenuViewController.swift; sourceTree = "<group>"; };
 		9D1F890821D1575E0033721E /* FoundPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundPasswordViewController.swift; sourceTree = "<group>"; };
 		9D1F890A21D157B70033721E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		9D2226A521E120BD0087B66A /* SleepMarkerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SleepMarkerView.xib; sourceTree = "<group>"; };
+		9D2226A721E120CD0087B66A /* SleepMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepMarkerView.swift; sourceTree = "<group>"; };
+		9D2226A921E12D060087B66A /* SettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
+		9D2226AB21E12FEA0087B66A /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		9D297A1221D4AAC600E34260 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		9D297A1421D4AF4E00E34260 /* DS-DIGIB.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DS-DIGIB.TTF"; sourceTree = "<group>"; };
 		9D2B806621D7B39600F63685 /* SportCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportCell.swift; sourceTree = "<group>"; };
@@ -170,6 +180,8 @@
 		9D7D474121DF9DB900613C05 /* SearchMedicineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMedicineViewController.swift; sourceTree = "<group>"; };
 		9D7D474321DFA17200613C05 /* MedicineCellCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineCellCell.swift; sourceTree = "<group>"; };
 		9D80782F21E0B8E2007CF885 /* MarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerView.swift; sourceTree = "<group>"; };
+		9D80783121E0E729007CF885 /* StepsMarkerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StepsMarkerView.xib; sourceTree = "<group>"; };
+		9D80783321E0E7C3007CF885 /* StepsMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsMarkerView.swift; sourceTree = "<group>"; };
 		9D86987F21D64AEC00892773 /* WalkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkViewController.swift; sourceTree = "<group>"; };
 		9D86988121D64AFD00892773 /* SportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportViewController.swift; sourceTree = "<group>"; };
 		9D86988321D64B0700892773 /* SleepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepViewController.swift; sourceTree = "<group>"; };
@@ -325,6 +337,8 @@
 				9D5F394721DE4B5D0089C423 /* SwitchCell.swift */,
 				9D5F394921DE57890089C423 /* ShowCell.xib */,
 				9D5F394B21DE58360089C423 /* ShowCell.swift */,
+				9D2226A921E12D060087B66A /* SettingCell.xib */,
+				9D2226AB21E12FEA0087B66A /* SettingCell.swift */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
@@ -447,6 +461,10 @@
 				9DAF143D21DBE411009EDB72 /* SportItemCell.swift */,
 				9D7D474321DFA17200613C05 /* MedicineCellCell.swift */,
 				9D80782F21E0B8E2007CF885 /* MarkerView.swift */,
+				9D80783121E0E729007CF885 /* StepsMarkerView.xib */,
+				9D80783321E0E7C3007CF885 /* StepsMarkerView.swift */,
+				9D2226A521E120BD0087B66A /* SleepMarkerView.xib */,
+				9D2226A721E120CD0087B66A /* SleepMarkerView.swift */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
@@ -642,6 +660,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D2226A621E120BD0087B66A /* SleepMarkerView.xib in Resources */,
+				9D2226AA21E12D060087B66A /* SettingCell.xib in Resources */,
+				9D80783221E0E729007CF885 /* StepsMarkerView.xib in Resources */,
 				9DD4CBA421D2936600C15430 /* Menu.storyboard in Resources */,
 				9D1F890521D14B440033721E /* Login.storyboard in Resources */,
 				9D6E271D21D1072C00F22ABD /* LaunchScreen.storyboard in Resources */,
@@ -787,6 +808,7 @@
 			files = (
 				9D651FC121D9ADB500C47536 /* SportRecordViewController.swift in Sources */,
 				9D5F396721DE8E080089C423 /* RPluginTabBar.swift in Sources */,
+				9D2226AC21E12FEA0087B66A /* SettingCell.swift in Sources */,
 				9DAF143121DBCDC3009EDB72 /* LocalExtension.swift in Sources */,
 				9DD4CB9121D1A89C00C15430 /* BMIInfoViewController.swift in Sources */,
 				9D2B806721D7B39600F63685 /* SportCell.swift in Sources */,
@@ -815,6 +837,7 @@
 				9D5F396321DE8E080089C423 /* RSegmentCell.swift in Sources */,
 				9DD4CB9F21D2797700C15430 /* UITableViewExtension.swift in Sources */,
 				9D5F396921DE8E080089C423 /* RPagingViewControllerPlugin.swift in Sources */,
+				9D2226A821E120CD0087B66A /* SleepMarkerView.swift in Sources */,
 				9DED548B21D544600060B4B8 /* CameraViewController.swift in Sources */,
 				9DD4CB9821D2776200C15430 /* DeviceCell.swift in Sources */,
 				9D5F395F21DE8E080089C423 /* RPagingViewController.swift in Sources */,
@@ -833,6 +856,7 @@
 				9D5F396621DE8E080089C423 /* RPluginHeaderScroll.swift in Sources */,
 				9DA359B321D3C2920090A7DD /* UIViewExtension.swift in Sources */,
 				9D1F88F621D10EBD0033721E /* StartViewController.swift in Sources */,
+				9D80783421E0E7C3007CF885 /* StepsMarkerView.swift in Sources */,
 				9D5F396421DE8E080089C423 /* RSegment.swift in Sources */,
 				9D1F890721D14BDE0033721E /* LoginMenuViewController.swift in Sources */,
 				9D8E868721D4F53B00C0034D /* API.swift in Sources */,
