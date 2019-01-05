@@ -66,8 +66,9 @@ class CurveViewController: RPagingViewController {
         self.setBackButton(title: "")
         self.navigationItem.rightBarButtonItems = [self.shareButton]
         self.dataSource = self
-        
+        self.delegate = self
         self.scrollView.contentInsetAdjustmentBehavior = .never
+        
     }
 
 }
@@ -79,5 +80,10 @@ extension CurveViewController: RPagingViewControllerDataSource {
         let vc = CurveChildViewController.fromStoryboard()
         vc.index = index
         return vc
+    }
+}
+extension CurveViewController: RPagingViewControllerDelagate {
+    func RViewController(_ viewController: RPagingViewController, scrollViewDidScrollToIndex index: Int) {
+        self.titleView.selectedSegmentIndex = index
     }
 }

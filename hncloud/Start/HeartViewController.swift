@@ -72,40 +72,49 @@ class HeartViewController: UIViewController {
     private func setData() {
         let yVals1 = (0..<20).map { (i) -> ChartDataEntry in
             let val = Double(arc4random_uniform(140) + 60)
-            return ChartDataEntry(x: Double(i), y: val)
+            return ChartDataEntry(x: Double(i), y: val, icon: UIImage(named: "sport_button")?.scaled(toWidth: 10))
         }
         let yVals2 = (0..<20).map { (i) -> ChartDataEntry in
             return ChartDataEntry(x: Double(i), y: 0)
         }
         
         let yVals3 = (0..<20).map { (i) -> ChartDataEntry in
-            let val = Double(arc4random_uniform(140) + 60)
-            return ChartDataEntry(x: Double(i), y: val)
+            let val = Double(arc4random_uniform(60))
+            return ChartDataEntry(x: Double(i), y: val, icon: UIImage(named: "sport_button")?.scaled(toWidth: 10))
         }
         
         let set1 = LineChartDataSet(values: yVals1, label: "收縮壓")
         set1.axisDependency = .left
-        set1.setColor(.brown)
-        set1.setCircleColor(.blue)
-        set1.lineWidth = 1
-        set1.circleRadius = 1
+        set1.setColor(.clear)
         set1.drawCircleHoleEnabled = false
+        let gradientColors = [#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).cgColor, #colorLiteral(red: 0.05903590565, green: 0, blue: 0.9331281676, alpha: 1).cgColor]
+        let gradient = CGGradient(colorsSpace: nil, colors: gradientColors as CFArray, locations: nil)!
+        
+        set1.fillAlpha = 1
+        set1.fill = Fill(linearGradient: gradient, angle: 90)
+        
+        set1.drawFilledEnabled = true
+        set1.drawIconsEnabled = true
         
         let set2 = LineChartDataSet(values: yVals2, label: "")
         set2.axisDependency = .left
-        set2.setColor(.red)
-        set2.setCircleColor(.blue)
-        set2.lineWidth = 1
-        set2.circleRadius = 1
+        set2.setColor(.clear)
+        set2.setCircleColor(.clear)
         set2.drawCircleHoleEnabled = false
         
         let set3 = LineChartDataSet(values: yVals3, label: "舒張壓")
         set3.axisDependency = .right
-        set3.setColor(.green)
-        set3.setCircleColor(.blue)
-        set3.lineWidth = 1
-        set3.circleRadius = 1
+        set3.setColor(.clear)
         set3.drawCircleHoleEnabled = false
+        let gradientColors3 = [#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).cgColor, #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1).cgColor]
+        let gradient3 = CGGradient(colorsSpace: nil, colors: gradientColors3 as CFArray, locations: nil)!
+        
+        set3.fillAlpha = 1
+        set3.fill = Fill(linearGradient: gradient3, angle: 90)
+        set3.drawFilledEnabled = true
+        set3.drawIconsEnabled = true
+        
+        
         
         let data = LineChartData(dataSets: [set1, set2, set3])
         data.dataSets.forEach({ $0.drawValuesEnabled = false; $0.highlightEnabled = false })

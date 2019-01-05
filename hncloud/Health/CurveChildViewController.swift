@@ -49,8 +49,11 @@ class CurveChildViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.setData(self.stepsChartView)
-        self.setData(self.sleepChartView)
+//        self.setData(self.stepsChartView)
+//        self.setData(self.sleepChartView)
+        
+        self.setStepsData()
+        self.setSleepData()
         
         guard !self.isLoad else { return }
         self.isLoad = true
@@ -83,6 +86,10 @@ class CurveChildViewController: UIViewController {
         chartView.scaleXEnabled = true
         chartView.scaleYEnabled = false
         
+        let marker = MarkerView()
+        marker.chartView = chartView
+        chartView.marker = marker
+        
 //        self.setData(chartView)
     }
     private func setData(_ chartView: BarChartView) {
@@ -98,8 +105,48 @@ class CurveChildViewController: UIViewController {
         
         data.groupBars(fromX: 0.5, groupSpace: 0.6, barSpace: 0)
         data.dataSets.forEach({ $0.drawValuesEnabled = false; $0.highlightEnabled = false })
+        
         chartView.data = data
         chartView.animate(yAxisDuration: 1.5)
+    }
+    
+    private func setSleepData() {
+        let count = self.index == 0 ? 8 : Int(self.monthDay)
+        let yVals1 = (0..<count).map { (i) -> BarChartDataEntry in
+            let val = Double(arc4random_uniform(140) + 60)
+            let va2 = Double(arc4random_uniform(140) + 60)
+            let va3 = Double(arc4random_uniform(140) + 60)
+            return BarChartDataEntry(x: Double(i), yValues: i == 0 ? [0, 0, 0] : [val, va2, va3])
+        }
+        let barSet = BarChartDataSet(values: yVals1, label: "")
+        barSet.colors = [#colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1), #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1), #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1)]
+        barSet.highlightAlpha = 0
+        let data = BarChartData(dataSet: barSet)
+        data.barWidth = 0.2
+        
+        data.groupBars(fromX: 0.5, groupSpace: 0.6, barSpace: 0)
+        data.dataSets.forEach({ $0.drawValuesEnabled = false; $0.highlightEnabled = true })
+        self.sleepChartView.data = data
+        self.sleepChartView.animate(yAxisDuration: 1.5)
+    }
+    
+    private func setStepsData() {
+        let count = self.index == 0 ? 8 : Int(self.monthDay)
+        let yVals1 = (0..<count).map { (i) -> BarChartDataEntry in
+            let val = Double(arc4random_uniform(140) + 60)
+            return BarChartDataEntry(x: Double(i), y: i == 0 ? 0 : val)
+        }
+        let barSet = BarChartDataSet(values: yVals1, label: "")
+        barSet.setColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1))
+        barSet.highlightAlpha = 0
+        let data = BarChartData(dataSet: barSet)
+        data.barWidth = 0.2
+        
+        data.groupBars(fromX: 0.5, groupSpace: 0.6, barSpace: 0)
+        data.dataSets.forEach({ $0.drawValuesEnabled = false; $0.highlightEnabled = true })
+        
+        self.stepsChartView.data = data
+        self.stepsChartView.animate(yAxisDuration: 1.5)
     }
 }
 extension CurveChildViewController: IAxisValueFormatter {
