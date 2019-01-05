@@ -80,13 +80,7 @@ class BlueToothManager: NSObject {
     var cbCharacteristcs: CBCharacteristic?
     //    CBPeripheral *cbPeripheral;
     
-    var rdCharactic1: CBCharacteristic? {
-        didSet {
-            if rdCharactic1 != nil {
-                print("🍱🍔  rdCharactic1 did set.")
-            }
-        }
-    }
+    var rdCharactic1: CBCharacteristic?
     var notifyCharactic: CBCharacteristic?
     var heartRateNotifyCharactic: CBCharacteristic?
     var PairCharactic: CBCharacteristic?
@@ -2278,9 +2272,9 @@ class BlueToothManager: NSObject {
 //        if cbCenterManger == nil, cbPeripheral == nil, cbCenterManger?.state != .poweredOn {
 //            return
 //        }
-        print("🤬🤬  rdCharactic1 = \(rdCharactic1)")
+        
         if rdCharactic1 != nil {
-            print("🤬🤬🤬🤬🤬🤬🤬🤬")
+            
             if lData != nil && (lData?.count ?? 0) != 0 {
                 //            adaLog(@"self.dataArray = %@",self.dataArray);
                 if response {

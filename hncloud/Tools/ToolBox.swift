@@ -39,9 +39,6 @@ class ToolBox {
 //        let b6Range = macString.range(of: "B6")
         
         
-        print("🍌 \(#function) macString = \(macString ?? "nil")")
-        
-        
         let b7Range: NSRange? = (macString as NSString?)?.range(of: "B7", options: .caseInsensitive)
         let b6Range: NSRange? = (macString as NSString?)?.range(of: "B6", options: .caseInsensitive)
         if Int(b7Range?.location ?? 0) == NSNotFound {
@@ -320,8 +317,6 @@ class ToolBox {
         var tempArray: [PerModel] = []
         
         for model in deviceArray {
-            print("🌮 model.name = \(model.deviceName), model.type = \(model.type)")
-            
             if model.type != 4 {
                 tempArray.append(model)
             }
@@ -336,7 +331,6 @@ class ToolBox {
         var tempArray: [PerModel] = []
         
         for model in deviceArray {
-            print("🌮 model.name = \(model.deviceName), model.type = \(model.type)")
             if model.type == 4 {
                 tempArray.append(model)
             }
@@ -356,7 +350,7 @@ class ToolBox {
         
         
         #warning("SQLdataManger 尚未建立")
-        print("🍺🍺  \(#function)  🍺🍺")
+        
 //        let dictionary = SQLdataManger.getInstance().getPeripheralWith(uuid)
         let dictionary: [String]? = []
         
@@ -390,7 +384,7 @@ class ToolBox {
         
         
         #warning("SQLdataManger 尚未建立")
-        print("🍺🍺  #1 \(#function)  🍺🍺")
+        
 //        let peripheralArray = SQLdataManger.getInstance().queryALLData(withTable: Peripheral_Table)
         let peripheralArray = [[AnyHashable : Any]]()
         
@@ -423,7 +417,7 @@ class ToolBox {
         
         
         #warning("SQLdataManger 尚未建立")
-        print("🍺🍺  #2 \(#function)  🍺🍺")
+        
 //        deviceIdTemp = String(format: "%ld", SQLdataManger.getInstance().queryPeripheralALL())
         deviceIdTemp = ""
         
@@ -437,7 +431,7 @@ class ToolBox {
         
         
         #warning("SQLdataManger 尚未建立")
-        print("🍺🍺  #3 \(#function)  🍺🍺")
+        
 //        let insert = SQLdataManger.getInstance().insertSignalData(toTable: Peripheral_Table, withData: dict)
         let insert = true
         

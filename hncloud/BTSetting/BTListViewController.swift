@@ -59,10 +59,9 @@ class BTListViewController: UIViewController {
             
             for i in 0..<array!.count {
                 let item = (array as! [PerModel])[i]
-                print("🍚 model\(i)\nname = \(item.deviceName)\ndeviceID = \(item.deviceID)\nmacAddress = \(item.macAddress)\nperipheral = \(item.peripheral)")
             }
             
-//            print("🍚 array = \(array)")
+
             guard let array = array as? [PerModel] else { return }
             
             let devices = array
@@ -125,7 +124,6 @@ class BTListViewController: UIViewController {
 extension BTListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("🍕 deviceArray = \(deviceArray)")
         return deviceArray?.count ?? 1
     }
     

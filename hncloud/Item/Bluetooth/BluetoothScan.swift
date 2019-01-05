@@ -50,24 +50,14 @@ class BluetoothScan: NSObject, CBPeripheralDelegate {
             uuidArray = []
         }
         
-        if centralManager == nil {
-            print("🍥🍥🍥🍥🍥🍥")
-        }
-        
-//        if let array = centralManager?.ret {
-//            print("🍥 \(array)")
-//        } else {
-//            print("什麼都沒有，你還是吃屎吧！")
-//        }
         
         if let array = centralManager?.retrieveConnectedPeripherals(withServices: [CBUUID(string: "180d"), CBUUID(string: "1814")]) {
-            print("🍥 \(array)")
+            
             for item in array {
                 if self.addDevList(peripheral: item, RSSI: 1, advertisementData: nil) {
                     for i in 0..<uuidArray!.count {
                         let item = uuidArray![i]
                         print("""
-                            🍥🍥🍥🍥🍥
                             item\(i)
                             deviceID = \(item.deviceID)
                             deviceName = \(item.deviceName)
@@ -92,9 +82,6 @@ class BluetoothScan: NSObject, CBPeripheralDelegate {
 //                    }
                 }
             }
-        } else {
-            
-            print("🍣🍣🍣")
         }
     }
     
@@ -131,7 +118,7 @@ class BluetoothScan: NSObject, CBPeripheralDelegate {
         for model in uuidArray {
             
             let peripheralInArray = model.peripheral
-            print("🍎  addDevList: - models.peripheral.name = \(peripheralInArray.name ?? "未知")")
+            
             if peripheral.identifier.uuidString == peripheralInArray.identifier.uuidString {
                 isUpdate = false
                 break
@@ -257,16 +244,12 @@ extension BluetoothScan: CBCentralManagerDelegate {
 
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        
-//        if let name = peripheral.name {
-//            print("🍤  \(name), rssi = \(RSSI.intValue)")
-//        }
-//
+
         
         self.peripheral = peripheral
         
         if addDevList(peripheral: peripheral, RSSI: RSSI, advertisementData: advertisementData) {
-            print("🍤🍤 name = \(uuidArray![0].deviceName), deviceID = \(uuidArray![0].deviceID), peripheral = \(uuidArray![0].peripheral), macAddress = \(uuidArray![0].macAddress)")
+            print("🍤 name = \(uuidArray![0].deviceName), deviceID = \(uuidArray![0].deviceID), peripheral = \(uuidArray![0].peripheral), macAddress = \(uuidArray![0].macAddress)")
             self.delegate?.bluetoothScanDiscoverPeripheral(deviceArray: uuidArray)
             
 //            if self.delegate?.responds(to: #selector(self.delegate?.bluetoothScanDiscoverPeripheral(deviceArray:))) ?? false {
