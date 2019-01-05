@@ -52,6 +52,7 @@
 		9D6E273321D1072D00F22ABD /* hncloudUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6E273221D1072D00F22ABD /* hncloudUITests.swift */; };
 		9D7D474221DF9DB900613C05 /* SearchMedicineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7D474121DF9DB900613C05 /* SearchMedicineViewController.swift */; };
 		9D7D474421DFA17200613C05 /* MedicineCellCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7D474321DFA17200613C05 /* MedicineCellCell.swift */; };
+		9D80783021E0B8E2007CF885 /* MarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D80782F21E0B8E2007CF885 /* MarkerView.swift */; };
 		9D86988021D64AEC00892773 /* WalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D86987F21D64AEC00892773 /* WalkViewController.swift */; };
 		9D86988221D64AFD00892773 /* SportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D86988121D64AFD00892773 /* SportViewController.swift */; };
 		9D86988421D64B0700892773 /* SleepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D86988321D64B0700892773 /* SleepViewController.swift */; };
@@ -168,6 +169,7 @@
 		9D6E273421D1072D00F22ABD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D7D474121DF9DB900613C05 /* SearchMedicineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMedicineViewController.swift; sourceTree = "<group>"; };
 		9D7D474321DFA17200613C05 /* MedicineCellCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineCellCell.swift; sourceTree = "<group>"; };
+		9D80782F21E0B8E2007CF885 /* MarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerView.swift; sourceTree = "<group>"; };
 		9D86987F21D64AEC00892773 /* WalkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkViewController.swift; sourceTree = "<group>"; };
 		9D86988121D64AFD00892773 /* SportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportViewController.swift; sourceTree = "<group>"; };
 		9D86988321D64B0700892773 /* SleepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepViewController.swift; sourceTree = "<group>"; };
@@ -444,6 +446,7 @@
 			children = (
 				9DAF143D21DBE411009EDB72 /* SportItemCell.swift */,
 				9D7D474321DFA17200613C05 /* MedicineCellCell.swift */,
+				9D80782F21E0B8E2007CF885 /* MarkerView.swift */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
@@ -794,6 +797,7 @@
 				9D297A1321D4AAC600E34260 /* ArrayExtension.swift in Sources */,
 				9DC3B7D621D72D3B001DD0E4 /* BloodPressureViewController.swift in Sources */,
 				9DD4CBA821D294D300C15430 /* MainTabBarViewController.swift in Sources */,
+				9D80783021E0B8E2007CF885 /* MarkerView.swift in Sources */,
 				9D1F890321D14AFE0033721E /* LoginViewController.swift in Sources */,
 				9DED548721D500E30060B4B8 /* HealthAPI.swift in Sources */,
 				9DED548521D4FD050060B4B8 /* MedicineAPI.swift in Sources */,

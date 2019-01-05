@@ -163,18 +163,18 @@ class HeartCurveViewController: UIViewController {
     private func setData(_ view: LineChartView) {
         let yVals1 = (0..<20).map { (i) -> ChartDataEntry in
             let val = Double(arc4random_uniform(100))
-            return ChartDataEntry(x: Double(i), y: val)
+            return ChartDataEntry(x: Double(i), y: i == 0 ? 0 : val)
         }
         
         let set1 = LineChartDataSet(values: yVals1, label: "收縮壓")
         set1.axisDependency = .left
-        set1.setColor(.brown)
-        set1.setCircleColor(.blue)
-        set1.lineWidth = 1
+        set1.setColor(.red)
+        set1.setCircleColor(.red)
+        set1.lineWidth = 2
         set1.circleRadius = 3
         
         let data = LineChartData(dataSet: set1)
-        data.dataSets.forEach({ $0.drawValuesEnabled = false; $0.highlightEnabled = false })
+        data.dataSets.forEach({ $0.drawValuesEnabled = true; $0.highlightEnabled = false })
         view.data = data
     }
     

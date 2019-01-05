@@ -15,6 +15,7 @@ class BMIInfoViewController: UIViewController {
     }()
     @IBOutlet weak var BMILabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var weightRangeLabel: UILabel!
     
     @objc private func finished() {
         if UserInfo.share.isLogin {
@@ -44,6 +45,10 @@ class BMIInfoViewController: UIViewController {
         } else {
             self.statusLabel.text = "肥胖".localized()
         }
+        
+        let max = 25 * height * height / 10000
+        let min = 18.5 * height * height / 1000
+        self.weightRangeLabel.text = String(format: "%.1f", max) + " - " + String(format: "%.1f", min)
     }
 
 }
