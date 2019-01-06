@@ -65,7 +65,7 @@
                                     <constraint firstItem="qN4-e5-ItU" firstAttribute="width" secondItem="qN4-e5-ItU" secondAttribute="height" multiplier="8:1" id="AbZ-vg-EoJ"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aer-lG-zVD">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aer-lG-zVD">
                                 <rect key="frame" x="16" y="617" width="343" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
