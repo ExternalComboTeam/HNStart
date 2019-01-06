@@ -56,12 +56,13 @@ class SleepViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.targetLabel.text = "\(UserInfo.share.sleepTarget)h"
-        self.progressView?.progress = 0.75
+//        self.progressView?.progress = 0.75
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         connectedBand()
+        setSleepValue()
     }
     
     /// 設定時間
@@ -79,6 +80,33 @@ class SleepViewController: UIViewController {
                                            attributes: [.font: UIFont.systemFont(ofSize: 13),
                                                         .foregroundColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)])
         self.sleepTimeLabel.attributedText = h + sh + m + sm
+    }
+    
+    /// 設定深睡時間
+    func setWellSleepTime(_ hour: Int, min: Int) {
+        wellSleepLabel.text = "\(hour)h\(min)min\n深睡"
+    }
+    
+    /// 設定淺睡時間
+    func setShallowSleepTime(_ hour: Int, min: Int) {
+        shallowLabel.text = "\(hour)h\(min)min\n淺睡"
+    }
+    
+    /// 設定清醒時間
+    func setWakeTime(_ hour: Int, min: Int) {
+        wakeLabel.text = "\(hour)h\(min)min\n清醒"
+    }
+    
+    /// 設定睡眠品質
+    func setSleepState(sleepTotalCount: Int) {
+        let text = "\n睡眠品質"
+        if sleepTotalCount < 36 {
+            sleepStateLabel.text = "偏少" + text
+        } else if sleepTotalCount < 54 {
+            sleepStateLabel.text = "正常" + text
+        } else {
+            sleepStateLabel.text = "充裕" + text
+        }
     }
     
     func connectedBand() {
@@ -126,5 +154,61 @@ class SleepViewController: UIViewController {
     @objc func hideBluetoothStateBtn() {
         self.bluetoothStateBtn.isEnabled = false
         self.bluetoothStateBtn.isHidden = true
+    }
+    
+    func setSleepValue() {
+        
+        PZBlueToothManager.instance.checkTodaySleepState { (timeSeconds, sleepArray) in
+            
+            guard let sleepArray = ToolBox.filterSleep(toValid: sleepArray as? [Int]) else { return }
+            
+            var lightSleep: Int = 0
+            var awakeSleep: Int = 0
+            var deepSleep: Int = 0
+            var isBegin = false
+            var nightBeginTime: Int = 0
+            var nightEndTime: Int = 0
+            
+            for i in 0..<sleepArray.count {
+                var sleepState: Int = sleepArray[i]
+                if sleepState != 0 && sleepState != 3 {
+                    if isBegin == false {
+                        isBegin = true
+                        nightBeginTime = i
+                    }
+                    nightEndTime = i
+                }
+            }
+            if sleepArray.count != 0 {
+                if nightEndTime > nightBeginTime {
+                    for i in nightBeginTime...nightEndTime {
+                        var state: Int = sleepArray[i]
+                        if state == 2 {
+                            deepSleep += 1
+                        } else if state == 1 {
+                            lightSleep += 1
+                        } else if state == 0 || state == 3 {
+                            awakeSleep += 1
+                        }
+                    }
+                }
+            }
+            
+            let totalCount: Int = awakeSleep + lightSleep + deepSleep
+            
+            self.setTime(totalCount / 60, min: totalCount % 60)
+            self.setWellSleepTime((deepSleep * 10) / 60, min: (deepSleep * 10) % 60)
+            self.setShallowSleepTime((lightSleep * 10) / 60, min: (lightSleep * 10) % 60)
+            self.setWakeTime((awakeSleep * 10) / 60, min: (awakeSleep * 10) % 60)
+            
+            var sleepPlan = UserInfo.share.sleepTarget
+            self.targetLabel.text = "\(sleepPlan)h"
+            sleepPlan = sleepPlan == 0 ? 1: sleepPlan
+            let finished = CGFloat(totalCount) / CGFloat(sleepPlan)
+            
+            self.progressView?.progress = finished
+            
+            self.finishedLabel.text = "\(Int(finished * 100))%"
+        }
     }
 }

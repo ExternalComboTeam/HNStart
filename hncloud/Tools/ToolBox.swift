@@ -153,7 +153,8 @@ class ToolBox {
         let nsData = NSData(bytes: byte, length: byte.count)
         var newByte = nsData.bytes
         newByte += add
-        let data = Data(referencing: nsData)
+        let ii = NSData(bytes: newByte, length: byte.count)
+        let data = Data(referencing: ii)
         byte = data.bytes
         return byte
     }
@@ -444,6 +445,101 @@ class ToolBox {
         
         
         return insert
+    }
+
+    
+    /**
+     *      通过过滤，把有效的睡眠中的清醒转成浅睡。开始睡眠后 30分钟，就算开始。超过30分钟的清醒才是清醒，否则清醒转浅睡
+     *
+     **/
+    
+    class func filterSleep(toValid sleepArr: [Int]?) -> [Int]? {
+        
+        guard let sleepArray = sleepArr, sleepArray.count > 0 else {
+            return sleepArr
+        }
+        
+        var filter: Int = 0 //根据这个值判断是否开始过滤
+        var filtAwakeep: Int = 0 //根据这个值判断是否转化清醒
+        
+        var resultArr = sleepArray
+//        var resultArr: [Int]?
+//        if let sleepArr = sleepArr {
+//            resultArr = sleepArr as? [AnyHashable]
+//        }
+        
+        var lightSleep: Int = 0
+        var awakeSleep: Int = 0
+        var deepSleep: Int = 0
+        var isBegin = false
+        var nightBeginTime: Int = 0
+        var nightEndTime: Int = 0
+        var sixFiler: Int = 0 //总过滤器。要求六点前过滤
+        for i in 0..<sleepArray.count {
+            let sleepState = sleepArray[i]
+            if sleepState != 0, sleepState != 3 {
+                if isBegin == false {
+                    isBegin = true
+                    nightBeginTime = i
+                }
+                nightEndTime = i
+            }
+        }
+        
+        if nightEndTime > nightBeginTime {
+            for i in nightBeginTime...nightEndTime {
+                let state = sleepArray[i]
+                if state == 2 {
+                    if filtAwakeep > 0 && filtAwakeep < 4 && filter > 3 && sixFiler < 49 {
+                        awakeSleep -= filtAwakeep
+                        lightSleep += filtAwakeep
+                        for te in 1...filtAwakeep {
+                            let atIndex: Int = i - te
+                            resultArr[atIndex] = 1 //把清醒换成浅睡
+                        }
+                        filtAwakeep = 0
+                    } else {
+                        if filtAwakeep > 3 {
+                            filter = 1
+                            filtAwakeep = 0
+                        } else {
+                            filtAwakeep = 0
+                        }
+                    }
+                    deepSleep += 1
+                    //深睡
+                } else if state == 1 {
+                    if filtAwakeep > 0 && filtAwakeep < 4 && filter > 3 && sixFiler < 49 {
+                        awakeSleep -= filtAwakeep
+                        lightSleep += filtAwakeep
+                        for teb in 1...filtAwakeep {
+                            let atIndex: Int = i - teb
+                            resultArr[atIndex] = 1 //把清醒换成浅睡
+                        }
+                        filtAwakeep = 0
+                    } else {
+                        if filtAwakeep > 3 {
+                            filter = 1
+                            filtAwakeep = 0
+                        } else {
+                            filtAwakeep = 0
+                        }
+                    }
+                    lightSleep += 1
+                    //浅睡
+                } else if state == 0 || state == 3 {
+                    awakeSleep += 1
+                    filtAwakeep += 1
+                    //清醒
+                }
+                filter += 1
+                sixFiler += 1
+            }
+        } else {
+            return sleepArr
+        }
+        
+        return resultArr
     }
 
 }

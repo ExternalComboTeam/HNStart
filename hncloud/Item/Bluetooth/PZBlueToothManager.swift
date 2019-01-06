@@ -109,7 +109,7 @@ class PZBlueToothManager: NSObject {
             guard let model = model else { return }
             
             let dic = self?.saveAllDayData(with: model)
-            
+            print("\n🐷🐷🐷\ndic = \(dic)\n🐷🐷🐷\n")
             DispatchQueue.main.async(execute: {
                 if model.timeSeconds == Int(TimeCallManager.instance.getSecondsOfCurDay()) {
                     //if dayTotalDataBlock
@@ -614,11 +614,19 @@ class PZBlueToothManager: NSObject {
         if let sleepArary = model?.sleepArary {
             sleepData = NSKeyedArchiver.archivedData(withRootObject: sleepArary)
         }
+        
+        
         #warning("CoreDataManage 還未建立")
 //        var dic = CoreDataManage.shareInstance().querDayDetail(withTimeSeconds: model?.timeSeconds)
-        var dic = [String: Any]()
-        if dic != nil {
-            var multDic = dic
+        var dic: [String: Any]?
+//        if let timeSeconds = model?.timeSeconds {
+//            dic = UserDefaults.standard.dictionary(forKey: timeSeconds.string)
+//        }
+        
+        
+        
+        if var multDic = dic {
+            
             multDic[GlobalProperty.DataValue_SleepData_HCH] = sleepData
             multDic[GlobalProperty.kLightSleep] = model?.lightSleepTime ?? 0
             multDic[GlobalProperty.kDeepSleep] = model?.deepSleepTime ?? 0
@@ -636,8 +644,15 @@ class PZBlueToothManager: NSObject {
             //            }
             //            [multDic setValue:deviceId forKey:DEVICEID];
             //        }
+            
+            
+            
             #warning("CoreDataManage 還未建立")
 //            CoreDataManage.shareInstance().updataDayDetailTable(withDic: multDic)
+            
+            
+            
+            
         } else {
             let deviceType = String(format: "%03d", UserDefaults.standard.integer(forKey: GlobalProperty.AllDEVICETYPE))
             let deviceId = ToolBox.amendMacAddressGetAddress()
@@ -843,7 +858,7 @@ class PZBlueToothManager: NSObject {
         
         #warning("SQLdataManger 還未建立")
 //        var dic = SQLdataManger.getInstance().getTotalData(with: model?.timeSeconds)
-        var dic = [String: Any]()
+        var dic: [String: Any]?
         
         
         let deviceId = ToolBox.amendMacAddressGetAddress()
@@ -854,20 +869,22 @@ class PZBlueToothManager: NSObject {
         //        macAddress = DEFAULTDEVICEID;
         //    }
         if dic != nil {
-            dic[GlobalProperty.TotalSteps_DayData_HCH] = intToString(model.steps)
-            dic[GlobalProperty.TotalMeters_DayData_HCH] = intToString(model.meters)
-            dic[GlobalProperty.TotalCosts_DayData_HCH] = intToString(model.costs)
-            dic[GlobalProperty.Sleep_PlanTo_HCH] = intToString(HCHCommonManager.instance.sleepPlan)
-            dic[GlobalProperty.Steps_PlanTo_HCH] = intToString(HCHCommonManager.instance.stepsPlan)
-            dic[GlobalProperty.TotalDataActivityTime_DayData_HCH] = intToString(model.activityTime)
-            dic[GlobalProperty.TotalDataCalmTime_DayData_HCH] = intToString(model.calmTime)
-            dic[GlobalProperty.kTotalDayActivityCost] = intToString(model.activityCosts)
-            dic[GlobalProperty.kTotalDayCalmCost] = intToString(model.calmCosts)
+            dic?[GlobalProperty.TotalSteps_DayData_HCH] = intToString(model.steps)
+            dic?[GlobalProperty.TotalMeters_DayData_HCH] = intToString(model.meters)
+            dic?[GlobalProperty.TotalCosts_DayData_HCH] = intToString(model.costs)
+            dic?[GlobalProperty.Sleep_PlanTo_HCH] = intToString(HCHCommonManager.instance.sleepPlan)
+            dic?[GlobalProperty.Steps_PlanTo_HCH] = intToString(HCHCommonManager.instance.stepsPlan)
+            dic?[GlobalProperty.TotalDataActivityTime_DayData_HCH] = intToString(model.activityTime)
+            dic?[GlobalProperty.TotalDataCalmTime_DayData_HCH] = intToString(model.calmTime)
+            dic?[GlobalProperty.kTotalDayActivityCost] = intToString(model.activityCosts)
+            dic?[GlobalProperty.kTotalDayCalmCost] = intToString(model.calmCosts)
 
-            dic[GlobalProperty.DEVICETYPE] = String(format: "%03d", UserDefaults.standard.integer(forKey: GlobalProperty.AllDEVICETYPE))
-            dic[GlobalProperty.DEVICEID] = macAddress
-            dic[GlobalProperty.ISUP] = "0"
+            dic?[GlobalProperty.DEVICETYPE] = String(format: "%03d", UserDefaults.standard.integer(forKey: GlobalProperty.AllDEVICETYPE))
+            dic?[GlobalProperty.DEVICEID] = macAddress
+            dic?[GlobalProperty.ISUP] = "0"
         } else {
+            print("model.meter = \(model.meters) & \(intToString(model.meters))")
+            /*
             dic = [
             GlobalProperty.CurrentUserName_HCH : HCHCommonManager.instance.userAcount,
             GlobalProperty.DataTime_HCH : intToString(model.timeSeconds),
@@ -883,7 +900,24 @@ class PZBlueToothManager: NSObject {
             GlobalProperty.DEVICETYPE : String(format: "%03d", UserDefaults.standard.integer(forKey: GlobalProperty.AllDEVICETYPE)),
             GlobalProperty.DEVICEID : macAddress,
             GlobalProperty.ISUP : "0"
-        ]
+        ]*/
+            dic = [
+                GlobalProperty.CurrentUserName_HCH : HCHCommonManager.instance.userAcount,
+                GlobalProperty.DataTime_HCH : model.timeSeconds.string,
+                GlobalProperty.TotalSteps_DayData_HCH : model.steps.string,
+                GlobalProperty.TotalMeters_DayData_HCH : model.meters.string,
+                GlobalProperty.TotalCosts_DayData_HCH : model.costs.string,
+                GlobalProperty.Sleep_PlanTo_HCH : HCHCommonManager.instance.sleepPlan.string,
+                GlobalProperty.Steps_PlanTo_HCH : HCHCommonManager.instance.stepsPlan.string,
+                GlobalProperty.TotalDataActivityTime_DayData_HCH : model.activityTime.string,
+                GlobalProperty.TotalDataCalmTime_DayData_HCH : model.calmTime.string,
+                GlobalProperty.kTotalDayActivityCost : model.activityCosts.string,
+                GlobalProperty.kTotalDayCalmCost : model.calmCosts.string,
+                GlobalProperty.DEVICETYPE : String(format: "%03d", UserDefaults.standard.integer(forKey: GlobalProperty.AllDEVICETYPE)),
+                GlobalProperty.DEVICEID : macAddress,
+                GlobalProperty.ISUP : "0"
+            ]
+            print("")
         }
         
         

@@ -131,14 +131,17 @@ class WalkViewController: UIViewController {
         PZBlueToothManager.instance.chekCurDayAllData { (dic) in
             
             guard let dic = dic else { return }
-            
-            let activeTime = (dic["TotalDataActivityTime_DayData"] as? NSNumber ?? 0).intValue
+            print("\n🐷🐷🐷\ndic = \(dic)\n🐷🐷🐷\n")
+            let activeTime = (dic[GlobalProperty.TotalDataActivityTime_DayData_HCH] as? String ?? "0").int ?? 0
             let h = activeTime / 60
             let m = activeTime % 60
-            let costs = (dic["TotalCosts_DayData"] as? NSNumber ?? 0).intValue
-            let distance = Int((dic["TotalMeters_DayData"] as? NSNumber ?? 0).doubleValue / 1609.344)
-            let steps = (dic["TotalSteps_DayData"] as? NSNumber ?? 0).intValue
-            let stepPlan = (dic["stepsPlan"] as? NSNumber ?? 0).intValue
+            let costs = (dic[GlobalProperty.TotalCosts_DayData_HCH] as? String ?? "0").int ?? 0
+            let distance = Int(Double((dic[GlobalProperty.TotalMeters_DayData_HCH] as? String ?? "0").int ?? 0) / 1609.344)
+            let steps = (dic[GlobalProperty.TotalSteps_DayData_HCH] as? String ?? "0").int ?? 0
+            var stepPlan = (dic[GlobalProperty.Steps_PlanTo_HCH] as? String ?? "0").int ?? 0
+            if UserInfo.share.walkTarget != stepPlan {
+                stepPlan = UserInfo.share.walkTarget
+            }
             
             self.setTime(hour: h, min: m)
             self.setCal(value: costs)
@@ -149,6 +152,11 @@ class WalkViewController: UIViewController {
             let finished = stepPlan != 0 ? steps / stepPlan * 100 : 100
             
             self.finishedLabel.text = "完成度 \(finished)%"
+            self.progressView?.progress = CGFloat(finished) / 100
+        }
+        
+        PZBlueToothManager.instance.changeHeartState(withState: true) { (bpm) in
+            self.setHeart(value: bpm)
         }
     }
     
@@ -181,8 +189,9 @@ class WalkViewController: UIViewController {
                 }
                 
                 CositeaBlueTooth.instance.connect(withUUID: uuid)
-                self.setAllValue()
+                
                 CositeaBlueTooth.instance.connectedStateChanged(with: { (stateNum) in
+                    self.setAllValue()
                     if stateNum == 1 {
                         self.bluetoothStateBtn.setTitle("已連接", for: .normal)
                         self.perform(#selector(self.hideBluetoothStateBtn), with: nil, afterDelay: 1.0)

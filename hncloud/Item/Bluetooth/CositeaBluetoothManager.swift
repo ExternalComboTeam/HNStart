@@ -952,13 +952,13 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
     }
 
 // MARK: -- 处理数据工具方法
-    func combineData(withAddr addr: [UInt8], andLength len: UInt32) -> UInt32 {
+    func combineData(withAddr addr: [UInt8], andLength len: Int) -> UInt32 {
         var result: UInt32 = 0
         
         var byte = addr
         
-        for index in 0..<Int(len) {
-//            let index = UInt32(index)
+        for index in 0..<len {
+
             let i = UInt32(index)
             
             byte = ToolBox.byte(&byte, add: index)
@@ -966,12 +966,8 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
             let value = UInt32(bigEndian: data.withUnsafeBytes({ $0.pointee }))
             
             result = result | (value << (8 * i))
-//            result = Int(result ?? 0) | (ToolBox.byte(&addr, add: index) << (8 * index))
+
         }
-        //    if (result < 0)
-        //    {
-        //        result = 0;
-        //    }
         return result
     }
     
@@ -1252,25 +1248,26 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
             let curDate = TimeCallManager.instance.getSecondsOfCurDay()
             let dataDate = TimeCallManager.instance.getYYYYMMDDSeconds(with: data.subdata(in: 4..<7))
             
-            
+            // 包頭應為 0x00
             if transDat[7] == 0x00 {
                 let timeSeconds: UInt32 = UInt32(dataDate)
                 
                 #warning("不確定是否正確 - Not sure if it is correct.")
                 
-                var stepCount: UInt32 = self.combineData(withAddr: ToolBox.byte(&transDat, add: 8), andLength: 4)
+                var stepCount: UInt32 = UInt32(transDat[8..<12].reduce(0, +))
+//                var stepCount: UInt32 = self.combineData(withAddr: ToolBox.byte(&transDat, add: 8), andLength: 4)
 
-                var meterCount: UInt32 = self.combineData(withAddr: ToolBox.byte(&transDat, add: 16), andLength: 4)
+                var meterCount: UInt32 = UInt32(transDat[12..<16].reduce(0, +))
 
-                var costCount: UInt32 = self.combineData(withAddr: ToolBox.byte(&transDat, add: 12), andLength: 4)
+                var costCount: UInt32 = UInt32(transDat[16..<20].reduce(0, +))
                 
-                var activity: UInt32 = self.combineData(withAddr: ToolBox.byte(&transDat, add: 20), andLength: 4)
+                var activity: UInt32 = UInt32(transDat[20..<24].reduce(0, +))
                 
-                var activityCosts: UInt32 = self.combineData(withAddr: ToolBox.byte(&transDat, add: 24), andLength: 4)
+                var activityCosts: UInt32 = UInt32(transDat[24..<28].reduce(0, +))
                 
-                var calmtime: UInt32 = self.combineData(withAddr: ToolBox.byte(&transDat, add: 28), andLength: 4)
+                var calmtime: UInt32 = UInt32(transDat[28..<32].reduce(0, +))
                 
-                var calmtimeCosts: UInt32 = self.combineData(withAddr: ToolBox.byte(&transDat, add: 32), andLength: 4)
+                var calmtimeCosts: UInt32 = UInt32(transDat[32..<36].reduce(0, +))
 //                var stepCount: uint = self.combineData(withAddr: transDat + 8, andLength: 4)
 //                var meterCount: uint = self.combineData(withAddr: Int(transDat ?? 0) + 16, andLength: 4)
 //                var costCount: uint = self.combineData(withAddr: Int(transDat ?? 0) + 12, andLength: 4)
@@ -1326,12 +1323,24 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
                 var stepsArray: [UInt32] = []
                 var costsArray: [UInt32] = []
                 for i in 0..<24 {
+                
+                    var stepsValue = transDat[8 + 4 * i]
+                    stepsValue = transDat[8 + 4 * i + 1]
+                    stepsValue = transDat[8 + 4 * i + 2]
+                    stepsValue = transDat[8 + 4 * i + 3]
+//                    let offset = 4 * i
+//                    let range: Range? = Range(NSRange(location: 8 + offset, length: 4))
+//                    let stepsRange = (8 + offset)..<(8 + offset + 4)
+//                    var stepsValue = UInt32(transDat[stepsRange].reduce(0, +))
                     
-//                    transDat.append(UInt8(8 + 4 * i))
-                    var stepsValue: UInt32 = self.combineData(withAddr: ToolBox.byte(&transDat, add: 8 + 4 * i), andLength: 4)
+                    var costsValue = transDat[104 + 4 * i]
+                    costsValue = transDat[104 + 4 * i + 1]
+                    costsValue = transDat[104 + 4 * i + 2]
+                    costsValue = transDat[104 + 4 * i + 3]
                     
-//                    transDat.append(UInt8(104 + 4 * i))
-                    var costsValue: UInt32 = self.combineData(withAddr:ToolBox.byte(&transDat, add: 104 + 4 * i), andLength: 4)
+//                    let costsRange = (104 + offset)..<(104 + offset + 4)
+//                    var costsValue = UInt32(transDat[costsRange].reduce(0, +))
+                    
                     if Int(stepsValue) == -1 {
                         //                    NSAssert(stepsValue != -1,@"处理-1");
                         //                    NSAssert(stepsValue != 0xff,@"处理-1");
@@ -1342,8 +1351,8 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
                         //                    NSAssert(costsValue != 0xff,@"处理-1");
                         costsValue = 0
                     }
-                    stepsArray.append(stepsValue)
-                    costsArray.append(costsValue)
+                    stepsArray.append(UInt32(stepsValue))
+                    costsArray.append(UInt32(costsValue))
                 }
                 
                 if curDate == dataDate {
