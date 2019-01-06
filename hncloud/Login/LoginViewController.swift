@@ -49,8 +49,8 @@ class LoginViewController: UIViewController {
         self.passwordTextField.placeholder = "密碼的長度是 6 到 32 個字元".localized()
         
         #if DEBUG
-        self.accountTextField.text = "call0933"
-        self.passwordTextField.text = "635852"
+//        self.accountTextField.text = "call0933"
+//        self.passwordTextField.text = "635852"
         #endif
     }
 
