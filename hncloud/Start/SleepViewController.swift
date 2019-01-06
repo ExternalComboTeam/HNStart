@@ -36,6 +36,8 @@ class SleepViewController: UIViewController {
         self.push(vc: vc)
     }
     @IBAction func curve(_ sender: UIButton) {
+        let vc = SleepChartsViewController.fromStoryboard()
+        self.push(vc: vc)
     }
     
     override func viewDidLoad() {

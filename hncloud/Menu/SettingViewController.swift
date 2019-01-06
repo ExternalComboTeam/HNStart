@@ -68,7 +68,7 @@ class SettingViewController: UIViewController {
         self.setButtonIcon()
         self.myTableView.tableFooterView = UIView()
         self.buttonSet(self.clockButton, isSelected: true)
-        self.myTableView.register(xib: SwitchCell.xib, HeartCell.xib, SettingCell.xib, PhoneCell.xib, MessageCell.xib, SetRemindCell.xib)
+        self.myTableView.register(xib: SwitchCell.xib, HeartCell.xib, SettingCell.xib, PhoneCell.xib, MessageCell.xib, SetRemindCell.xib, ClockCell.xib)
         self.myTableView.dataSource = self
         self.myTableView.delegate = self
     }
@@ -90,7 +90,7 @@ extension SettingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch self.type {
         case .clock:
-            return 1
+            return 2
         case .phone, .message, .heart, .forget, .device, .setting:
             return 1
         case .sit:
@@ -100,9 +100,15 @@ extension SettingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch self.type {
         case .clock:
-            let cell = SetRemindCell.use(table: tableView, for: indexPath)
-            cell.type = self.type
-            return cell
+            if indexPath.row == 0 {
+                let cell = SetRemindCell.use(table: tableView, for: indexPath)
+                cell.type = self.type
+                return cell
+            } else {
+                let cell = ClockCell.use(table: tableView, for: indexPath)
+                
+                return cell
+            }
         case .phone:
             let cell = PhoneCell.use(table: tableView, for: indexPath)
             return cell

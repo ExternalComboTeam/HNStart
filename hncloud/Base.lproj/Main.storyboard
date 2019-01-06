@@ -1327,6 +1327,30 @@
             </objects>
             <point key="canvasLocation" x="1358" y="742"/>
         </scene>
+        <!--用藥安排-->
+        <scene sceneID="GDZ-4n-Jsj">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="ArrangeViewController" storyboardName="Health" referencedIdentifier="ArrangeViewController" id="0mK-1W-Y8x" userLabel="用藥安排" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BpS-uj-bEp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1357" y="785"/>
+        </scene>
+        <!--用藥管理-->
+        <scene sceneID="T2y-qg-xKa">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="ManagementViewController" storyboardName="Health" referencedIdentifier="ManagementViewController" id="ks0-kZ-pk1" userLabel="用藥管理" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gTW-wv-zuo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1357" y="827"/>
+        </scene>
+        <!--睡眠曲線圖-->
+        <scene sceneID="foB-Y8-VKM">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="SleepChartsViewController" storyboardName="Health" referencedIdentifier="SleepChartsViewController" id="cbd-35-302" userLabel="睡眠曲線圖" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9HW-ZU-zur" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1368" y="867"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="KZO-yX-LHd">
             <objects>
