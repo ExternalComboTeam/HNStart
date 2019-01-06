@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" restorationIdentifier="StepsMarkerView" id="iN0-l3-epB" customClass="StepsMarkerView" customModule="hncloud" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="60" height="70"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o9q-vB-RMh">
+                    <rect key="frame" x="12.5" y="23" width="35" height="13.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="步" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1w7-PF-WF5">
+                    <rect key="frame" x="26" y="36.5" width="8.5" height="10"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M98-tF-juD">
+                    <rect key="frame" x="0.0" y="0.0" width="60" height="70"/>
+                    <connections>
+                        <action selector="hideAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="jlZ-eZ-6Gb"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="M98-tF-juD" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="7fA-if-RUw"/>
+                <constraint firstItem="M98-tF-juD" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="HrC-gj-688"/>
+                <constraint firstItem="M98-tF-juD" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="MdP-mL-FxW"/>
+                <constraint firstItem="o9q-vB-RMh" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" multiplier="0.85" id="PTW-fL-fA7"/>
+                <constraint firstItem="1w7-PF-WF5" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="bDC-vG-dij"/>
+                <constraint firstItem="M98-tF-juD" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="hGd-H6-0ST"/>
+                <constraint firstItem="1w7-PF-WF5" firstAttribute="top" secondItem="o9q-vB-RMh" secondAttribute="bottom" id="inG-6Y-Ph6"/>
+                <constraint firstItem="o9q-vB-RMh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="mYQ-mw-znu"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="stepsLabel" destination="o9q-vB-RMh" id="Nfa-uz-Ghu"/>
+                <outlet property="unitLabel" destination="1w7-PF-WF5" id="BQw-b3-Eqa"/>
+            </connections>
+            <point key="canvasLocation" x="-91.200000000000003" y="-111.54422788605699"/>
+        </view>
+    </objects>
+</document>

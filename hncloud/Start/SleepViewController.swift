@@ -56,13 +56,13 @@ class SleepViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.targetLabel.text = "\(UserInfo.share.sleepTarget)h"
-//        self.progressView?.progress = 0.75
+        connectedBand()
+        setSleepValue()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        connectedBand()
-        setSleepValue()
+        
     }
     
     /// 設定時間

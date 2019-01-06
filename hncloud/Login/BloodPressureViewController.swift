@@ -51,6 +51,8 @@ class BloodPressureViewController: UIViewController {
         KRProgressHUD.show()
         #warning("血壓值於 UserInfoAPI.update 回傳值並未更動")
         HealthAPI.update(pressure: sysValue, dia: diaValue) { (json) in
+            UserInfo.share.sys = sysValue
+            UserInfo.share.dia = diaValue
             KRProgressHUD.dismiss()
             self.delegate?.savePressure(sys: sysValue, dia: diaValue)
             self.dismiss(animated: false, completion: nil)

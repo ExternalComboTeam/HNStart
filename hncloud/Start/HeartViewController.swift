@@ -41,9 +41,20 @@ class HeartViewController: UIViewController {
         self.setData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        CositeaBlueTooth.instance.readyReceive(1)
+        connectedBand()
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        connectedBand()
+        bloodPressureCheck()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        CositeaBlueTooth.instance.readyReceive(0)
     }
 
     @IBAction func bluetoothStateAction(_ sender: Any) {
@@ -70,6 +81,34 @@ class HeartViewController: UIViewController {
     }
     
     private func setData() {
+        
+        PZBlueToothManager.instance.checkBloodPressure { (bloodPre) in
+            
+            guard let bloodPre = bloodPre else { return }
+            
+            var dic: [String : Any] = [
+                GlobalProperty.BloodPressureID_def : bloodPre.bloodPressureID,
+                GlobalProperty.CurrentUserName_HCH : UserInfo.share.account,
+                GlobalProperty.BloodPressureDate_def : bloodPre.bloodPressureDate,
+                GlobalProperty.StartTime_def : bloodPre.startTime,
+                GlobalProperty.systolicPressure_def : bloodPre.systolicPressure,
+                GlobalProperty.diastolicPressure_def : bloodPre.diastolicPressure,
+                GlobalProperty.heartRateNumber_def : bloodPre.heartRate,
+                GlobalProperty.SPO2_def : bloodPre.spo2,
+                GlobalProperty.HRV_def : bloodPre.hrv,
+                GlobalProperty.ISUP : "0",
+                GlobalProperty.DEVICEID : ToolBox.amendMacAddressGetAddress(),
+                GlobalProperty.DEVICETYPE : UserInfo.share.deviceType.typeNumber
+                ]
+            
+        }
+        
+        
+        
+        
+        
+        
+        
         let yVals1 = (0..<20).map { (i) -> ChartDataEntry in
             let val = Double(arc4random_uniform(140) + 60)
             return ChartDataEntry(x: Double(i), y: val, icon: UIImage(named: "sport_button")?.scaled(toWidth: 10))
@@ -87,7 +126,7 @@ class HeartViewController: UIViewController {
         set1.axisDependency = .left
         set1.setColor(.clear)
         set1.drawCircleHoleEnabled = false
-        let gradientColors = [#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).cgColor, #colorLiteral(red: 0.05903590565, green: 0, blue: 0.9331281676, alpha: 1).cgColor]
+        let gradientColors = [#colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.5).cgColor, #colorLiteral(red: 0, green: 0.25, blue: 1, alpha: 0.5).cgColor]
         let gradient = CGGradient(colorsSpace: nil, colors: gradientColors as CFArray, locations: nil)!
         
         set1.fillAlpha = 1
@@ -106,7 +145,7 @@ class HeartViewController: UIViewController {
         set3.axisDependency = .right
         set3.setColor(.clear)
         set3.drawCircleHoleEnabled = false
-        let gradientColors3 = [#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).cgColor, #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1).cgColor]
+        let gradientColors3 = [#colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.5).cgColor, #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 0.5).cgColor]
         let gradient3 = CGGradient(colorsSpace: nil, colors: gradientColors3 as CFArray, locations: nil)!
         
         set3.fillAlpha = 1
@@ -176,5 +215,22 @@ class HeartViewController: UIViewController {
     @objc func hideBluetoothStateBtn() {
         self.bluetoothStateBtn.isEnabled = false
         self.bluetoothStateBtn.isHidden = true
+    }
+    
+    func bloodPressureCheck() {
+        
+        guard UserInfo.share.sys <= 0, UserInfo.share.dia <= 0 else { return }
+
+        let vc = BloodPressureViewController.fromStoryboard()
+        vc.delegate = self
+        self.present(vc, animated: false, completion: nil)
+        
+    }
+}
+
+
+extension HeartViewController: PressureDelegate {
+    func savePressure(sys: Int, dia: Int) {
+        CositeaBlueTooth.instance.setupCorrectNumber()
     }
 }

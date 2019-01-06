@@ -53,12 +53,7 @@ class BluetoothScan: NSObject, CBPeripheralDelegate {
         if centralManager == nil {
             print("🍥🍥🍥🍥🍥🍥")
         }
-        
-//        if let array = centralManager?.ret {
-//            print("🍥 \(array)")
-//        } else {
-//            print("什麼都沒有，你還是吃屎吧！")
-//        }
+    
         
         if let array = centralManager?.retrieveConnectedPeripherals(withServices: [CBUUID(string: "180d"), CBUUID(string: "1814")]) {
             print("🍥 \(array)")

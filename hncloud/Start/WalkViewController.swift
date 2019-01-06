@@ -69,12 +69,12 @@ class WalkViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.targetLabel.text = "\(UserInfo.share.walkTarget)"
-        self.progressView?.progress = 0.75
+        connectedBand()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        connectedBand()
+        
     }
 
     /// 設定心律

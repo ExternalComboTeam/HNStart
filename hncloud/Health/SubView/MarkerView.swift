@@ -19,7 +19,6 @@ class MarkerView: MarkerImage {
     }
     
     override func draw(context: CGContext, point: CGPoint) {
-        print("point = \(point)")
         guard let entry = self.entry else { return }
         self.action?(point, entry)
     }

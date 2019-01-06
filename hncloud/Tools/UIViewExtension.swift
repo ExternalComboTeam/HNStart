@@ -109,4 +109,15 @@ extension UIView {
         let renderer = UIGraphicsImageRenderer(bounds: bounds)
         return renderer.image { rendererContext in layer.render(in: rendererContext.cgContext) }
     }
+    
+    static func xib() -> Self? {
+        let name = String(describing: self)
+        return fromXibHelper(name)
+    }
+    
+    private class func fromXibHelper<T>(_ name: String) -> T? {
+        guard let view = Bundle.main.loadNibNamed(name, owner: nil, options: nil)?[0] else { return nil }
+        guard let value = view as? T else { return nil }
+        return value
+    }
 }
