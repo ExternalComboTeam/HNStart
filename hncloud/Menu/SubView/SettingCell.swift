@@ -10,6 +10,7 @@ import UIKit
 
 class SettingCell: UITableViewCell {
 
+    @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var sportLabel: UILabel!
     @IBOutlet weak var kmLabel: UILabel!
@@ -30,6 +31,8 @@ class SettingCell: UITableViewCell {
         self.setLabel.text = "設置".localized()
         self.boLabel.text = "血壓".localized()
         self.meLabel.text = "未讀消息".localized()
+        
+        self.stackView.arrangedSubviews.forEach({ $0.addBoard(.bottom, color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), thickness: 0.5) })
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

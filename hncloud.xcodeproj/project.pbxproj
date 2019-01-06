@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2611E1274A8A32DEAB526A5F /* Pods_hncloudTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDD6C5804E0659E8E99BB9C8 /* Pods_hncloudTests.framework */; };
+		9D11BF3A21E1C9CA0081A1C1 /* SetRemindCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D11BF3921E1C9CA0081A1C1 /* SetRemindCell.xib */; };
+		9D11BF3C21E1C9E60081A1C1 /* SetRemindCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D11BF3B21E1C9E60081A1C1 /* SetRemindCell.swift */; };
+		9D11BF3E21E1CC810081A1C1 /* ClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D11BF3D21E1CC810081A1C1 /* ClockViewController.swift */; };
+		9D11BF4021E1CD0A0081A1C1 /* ClockTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D11BF3F21E1CD0A0081A1C1 /* ClockTypeViewController.swift */; };
 		9D1F88F621D10EBD0033721E /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1F88F521D10EBD0033721E /* StartViewController.swift */; };
 		9D1F88F821D116880033721E /* DeviceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1F88F721D116880033721E /* DeviceListViewController.swift */; };
 		9D1F88FB21D116F60033721E /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1F88FA21D116F60033721E /* UIViewControllerExtension.swift */; };
@@ -27,8 +31,6 @@
 		9D2B806721D7B39600F63685 /* SportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2B806621D7B39600F63685 /* SportCell.swift */; };
 		9D5F394621DE4A030089C423 /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D5F394521DE4A030089C423 /* SwitchCell.xib */; };
 		9D5F394821DE4B5D0089C423 /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5F394721DE4B5D0089C423 /* SwitchCell.swift */; };
-		9D5F394A21DE57890089C423 /* ShowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D5F394921DE57890089C423 /* ShowCell.xib */; };
-		9D5F394C21DE58360089C423 /* ShowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5F394B21DE58360089C423 /* ShowCell.swift */; };
 		9D5F394E21DE755A0089C423 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5F394D21DE755A0089C423 /* CameraController.swift */; };
 		9D5F395021DE831E0089C423 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5F394F21DE831E0089C423 /* CalendarViewController.swift */; };
 		9D5F395F21DE8E080089C423 /* RPagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5F395221DE8E070089C423 /* RPagingViewController.swift */; };
@@ -45,6 +47,13 @@
 		9D5F396B21DE8E2E0089C423 /* CurveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5F396A21DE8E2E0089C423 /* CurveViewController.swift */; };
 		9D5F396D21DE8EBD0089C423 /* CurveChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5F396C21DE8EBD0089C423 /* CurveChildViewController.swift */; };
 		9D616CAB21DA7C3D00BB1C26 /* ModifyPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D616CAA21DA7C3D00BB1C26 /* ModifyPasswordViewController.swift */; };
+		9D6318A921E19A930073C1BD /* HeartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D6318A821E19A930073C1BD /* HeartCell.xib */; };
+		9D6318AB21E19AB40073C1BD /* HeartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6318AA21E19AB40073C1BD /* HeartCell.swift */; };
+		9D6318AD21E1A9A20073C1BD /* FrequencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6318AC21E1A9A20073C1BD /* FrequencyViewController.swift */; };
+		9D6318AF21E1B2C20073C1BD /* PhoneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D6318AE21E1B2C20073C1BD /* PhoneCell.xib */; };
+		9D6318B121E1B2D30073C1BD /* PhoneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6318B021E1B2D30073C1BD /* PhoneCell.swift */; };
+		9D6318B321E1B47D0073C1BD /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D6318B221E1B47D0073C1BD /* MessageCell.xib */; };
+		9D6318B521E1B4B70073C1BD /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6318B421E1B4B70073C1BD /* MessageCell.swift */; };
 		9D651FC121D9ADB500C47536 /* SportRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D651FC021D9ADB500C47536 /* SportRecordViewController.swift */; };
 		9D694E6321DD142B004D66DC /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D694E6221DD142B004D66DC /* CustomSlider.swift */; };
 		9D694E6521DD2E21004D66DC /* TargetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D694E6421DD2E21004D66DC /* TargetViewController.swift */; };
@@ -66,6 +75,9 @@
 		9D86988821D64B8700892773 /* SugerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D86988721D64B8700892773 /* SugerViewController.swift */; };
 		9D86988B21D65FD200892773 /* SugerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D86988A21D65FD200892773 /* SugerData.swift */; };
 		9D8E868721D4F53B00C0034D /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8E868621D4F53B00C0034D /* API.swift */; };
+		9D93F46221E1EAE800E34100 /* ClockTimeSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D93F46121E1EAE800E34100 /* ClockTimeSetViewController.swift */; };
+		9D93F46421E1EC8A00E34100 /* TimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D93F46321E1EC8A00E34100 /* TimeCell.swift */; };
+		9D93F46621E1F4DE00E34100 /* SedentaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D93F46521E1F4DE00E34100 /* SedentaryViewController.swift */; };
 		9DA359B121D3A7020090A7DD /* RSideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA359B021D3A7020090A7DD /* RSideViewController.swift */; };
 		9DA359B321D3C2920090A7DD /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA359B221D3C2920090A7DD /* UIViewExtension.swift */; };
 		9DA359B521D3C42E0090A7DD /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA359B421D3C42E0090A7DD /* AboutViewController.swift */; };
@@ -125,6 +137,10 @@
 		750F9C00256D612CA733412B /* Pods-hncloudTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hncloudTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hncloudTests/Pods-hncloudTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8DA28C34E687286295953C7E /* Pods-hncloudUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hncloudUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-hncloudUITests/Pods-hncloudUITests.release.xcconfig"; sourceTree = "<group>"; };
 		91ADE0113789BF5F1D218A7F /* Pods-hncloudUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hncloudUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hncloudUITests/Pods-hncloudUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9D11BF3921E1C9CA0081A1C1 /* SetRemindCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetRemindCell.xib; sourceTree = "<group>"; };
+		9D11BF3B21E1C9E60081A1C1 /* SetRemindCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetRemindCell.swift; sourceTree = "<group>"; };
+		9D11BF3D21E1CC810081A1C1 /* ClockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockViewController.swift; sourceTree = "<group>"; };
+		9D11BF3F21E1CD0A0081A1C1 /* ClockTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockTypeViewController.swift; sourceTree = "<group>"; };
 		9D1F88F521D10EBD0033721E /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		9D1F88F721D116880033721E /* DeviceListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceListViewController.swift; sourceTree = "<group>"; };
 		9D1F88FA21D116F60033721E /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -144,8 +160,6 @@
 		9D2B806621D7B39600F63685 /* SportCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportCell.swift; sourceTree = "<group>"; };
 		9D5F394521DE4A030089C423 /* SwitchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchCell.xib; sourceTree = "<group>"; };
 		9D5F394721DE4B5D0089C423 /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
-		9D5F394921DE57890089C423 /* ShowCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShowCell.xib; sourceTree = "<group>"; };
-		9D5F394B21DE58360089C423 /* ShowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCell.swift; sourceTree = "<group>"; };
 		9D5F394D21DE755A0089C423 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		9D5F394F21DE831E0089C423 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		9D5F395221DE8E070089C423 /* RPagingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RPagingViewController.swift; sourceTree = "<group>"; };
@@ -162,6 +176,13 @@
 		9D5F396A21DE8E2E0089C423 /* CurveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurveViewController.swift; sourceTree = "<group>"; };
 		9D5F396C21DE8EBD0089C423 /* CurveChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurveChildViewController.swift; sourceTree = "<group>"; };
 		9D616CAA21DA7C3D00BB1C26 /* ModifyPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyPasswordViewController.swift; sourceTree = "<group>"; };
+		9D6318A821E19A930073C1BD /* HeartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeartCell.xib; sourceTree = "<group>"; };
+		9D6318AA21E19AB40073C1BD /* HeartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartCell.swift; sourceTree = "<group>"; };
+		9D6318AC21E1A9A20073C1BD /* FrequencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrequencyViewController.swift; sourceTree = "<group>"; };
+		9D6318AE21E1B2C20073C1BD /* PhoneCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhoneCell.xib; sourceTree = "<group>"; };
+		9D6318B021E1B2D30073C1BD /* PhoneCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneCell.swift; sourceTree = "<group>"; };
+		9D6318B221E1B47D0073C1BD /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
+		9D6318B421E1B4B70073C1BD /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		9D651FC021D9ADB500C47536 /* SportRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportRecordViewController.swift; sourceTree = "<group>"; };
 		9D694E6221DD142B004D66DC /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
 		9D694E6421DD2E21004D66DC /* TargetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetViewController.swift; sourceTree = "<group>"; };
@@ -189,6 +210,9 @@
 		9D86988721D64B8700892773 /* SugerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SugerViewController.swift; sourceTree = "<group>"; };
 		9D86988A21D65FD200892773 /* SugerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SugerData.swift; sourceTree = "<group>"; };
 		9D8E868621D4F53B00C0034D /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		9D93F46121E1EAE800E34100 /* ClockTimeSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockTimeSetViewController.swift; sourceTree = "<group>"; };
+		9D93F46321E1EC8A00E34100 /* TimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCell.swift; sourceTree = "<group>"; };
+		9D93F46521E1F4DE00E34100 /* SedentaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SedentaryViewController.swift; sourceTree = "<group>"; };
 		9DA359B021D3A7020090A7DD /* RSideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSideViewController.swift; sourceTree = "<group>"; };
 		9DA359B221D3C2920090A7DD /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		9DA359B421D3C42E0090A7DD /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -313,13 +337,6 @@
 			path = SubView;
 			sourceTree = "<group>";
 		};
-		9D46B05F21DF8ECD00A9BE3B /* ChildViewController */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ChildViewController;
-			sourceTree = "<group>";
-		};
 		9D5680117C82023491467B70 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -335,10 +352,17 @@
 			children = (
 				9D5F394521DE4A030089C423 /* SwitchCell.xib */,
 				9D5F394721DE4B5D0089C423 /* SwitchCell.swift */,
-				9D5F394921DE57890089C423 /* ShowCell.xib */,
-				9D5F394B21DE58360089C423 /* ShowCell.swift */,
 				9D2226A921E12D060087B66A /* SettingCell.xib */,
 				9D2226AB21E12FEA0087B66A /* SettingCell.swift */,
+				9D6318A821E19A930073C1BD /* HeartCell.xib */,
+				9D6318AA21E19AB40073C1BD /* HeartCell.swift */,
+				9D6318AE21E1B2C20073C1BD /* PhoneCell.xib */,
+				9D6318B021E1B2D30073C1BD /* PhoneCell.swift */,
+				9D6318B221E1B47D0073C1BD /* MessageCell.xib */,
+				9D6318B421E1B4B70073C1BD /* MessageCell.swift */,
+				9D11BF3921E1C9CA0081A1C1 /* SetRemindCell.xib */,
+				9D11BF3B21E1C9E60081A1C1 /* SetRemindCell.swift */,
+				9D93F46321E1EC8A00E34100 /* TimeCell.swift */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
@@ -524,7 +548,6 @@
 		9DD4CBA021D27A3600C15430 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				9D46B05F21DF8ECD00A9BE3B /* ChildViewController */,
 				9D5F394421DE49DC0089C423 /* SubView */,
 				9DD4CBA321D2936600C15430 /* Menu.storyboard */,
 				9DD4CBA521D2938A00C15430 /* MenuViewController.swift */,
@@ -532,6 +555,11 @@
 				9DED548A21D544600060B4B8 /* CameraViewController.swift */,
 				9DC3B7DC21D76618001DD0E4 /* SettingViewController.swift */,
 				9D5F394F21DE831E0089C423 /* CalendarViewController.swift */,
+				9D6318AC21E1A9A20073C1BD /* FrequencyViewController.swift */,
+				9D11BF3D21E1CC810081A1C1 /* ClockViewController.swift */,
+				9D11BF3F21E1CD0A0081A1C1 /* ClockTypeViewController.swift */,
+				9D93F46121E1EAE800E34100 /* ClockTimeSetViewController.swift */,
+				9D93F46521E1F4DE00E34100 /* SedentaryViewController.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -662,6 +690,7 @@
 			files = (
 				9D2226A621E120BD0087B66A /* SleepMarkerView.xib in Resources */,
 				9D2226AA21E12D060087B66A /* SettingCell.xib in Resources */,
+				9D6318A921E19A930073C1BD /* HeartCell.xib in Resources */,
 				9D80783221E0E729007CF885 /* StepsMarkerView.xib in Resources */,
 				9DD4CBA421D2936600C15430 /* Menu.storyboard in Resources */,
 				9D1F890521D14B440033721E /* Login.storyboard in Resources */,
@@ -672,9 +701,11 @@
 				9D5F396121DE8E080089C423 /* RSegmentCell.xib in Resources */,
 				9DC3B7D921D73C6F001DD0E4 /* Health.storyboard in Resources */,
 				9DD4CB9D21D278AC00C15430 /* BTDevice.storyboard in Resources */,
+				9D11BF3A21E1C9CA0081A1C1 /* SetRemindCell.xib in Resources */,
+				9D6318B321E1B47D0073C1BD /* MessageCell.xib in Resources */,
+				9D6318AF21E1B2C20073C1BD /* PhoneCell.xib in Resources */,
 				9DD4CB9621D275D900C15430 /* DeviceCell.xib in Resources */,
 				9D5F394621DE4A030089C423 /* SwitchCell.xib in Resources */,
-				9D5F394A21DE57890089C423 /* ShowCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -809,29 +840,34 @@
 				9D651FC121D9ADB500C47536 /* SportRecordViewController.swift in Sources */,
 				9D5F396721DE8E080089C423 /* RPluginTabBar.swift in Sources */,
 				9D2226AC21E12FEA0087B66A /* SettingCell.swift in Sources */,
+				9D11BF3E21E1CC810081A1C1 /* ClockViewController.swift in Sources */,
 				9DAF143121DBCDC3009EDB72 /* LocalExtension.swift in Sources */,
 				9DD4CB9121D1A89C00C15430 /* BMIInfoViewController.swift in Sources */,
+				9D93F46621E1F4DE00E34100 /* SedentaryViewController.swift in Sources */,
 				9D2B806721D7B39600F63685 /* SportCell.swift in Sources */,
 				9DD4CB9321D1A8CE00C15430 /* UserInfoViewController.swift in Sources */,
 				9D7D474221DF9DB900613C05 /* SearchMedicineViewController.swift in Sources */,
 				9DA359BB21D3ECF10090A7DD /* BTListViewController.swift in Sources */,
 				9D5F395021DE831E0089C423 /* CalendarViewController.swift in Sources */,
 				9D297A1321D4AAC600E34260 /* ArrayExtension.swift in Sources */,
+				9D6318B521E1B4B70073C1BD /* MessageCell.swift in Sources */,
+				9D11BF3C21E1C9E60081A1C1 /* SetRemindCell.swift in Sources */,
 				9DC3B7D621D72D3B001DD0E4 /* BloodPressureViewController.swift in Sources */,
 				9DD4CBA821D294D300C15430 /* MainTabBarViewController.swift in Sources */,
 				9D80783021E0B8E2007CF885 /* MarkerView.swift in Sources */,
+				9D6318AB21E19AB40073C1BD /* HeartCell.swift in Sources */,
 				9D1F890321D14AFE0033721E /* LoginViewController.swift in Sources */,
 				9DED548721D500E30060B4B8 /* HealthAPI.swift in Sources */,
 				9DED548521D4FD050060B4B8 /* MedicineAPI.swift in Sources */,
 				9DED548321D4F9640060B4B8 /* UserInfoAPI.swift in Sources */,
 				9D86988821D64B8700892773 /* SugerViewController.swift in Sources */,
 				9D86988B21D65FD200892773 /* SugerData.swift in Sources */,
-				9D5F394C21DE58360089C423 /* ShowCell.swift in Sources */,
 				9DA359B121D3A7020090A7DD /* RSideViewController.swift in Sources */,
 				9D1F890B21D157B70033721E /* RegisterViewController.swift in Sources */,
 				9DAF143521DBD69C009EDB72 /* DateExtension.swift in Sources */,
 				9D86988221D64AFD00892773 /* SportViewController.swift in Sources */,
 				9D86988421D64B0700892773 /* SleepViewController.swift in Sources */,
+				9D11BF4021E1CD0A0081A1C1 /* ClockTypeViewController.swift in Sources */,
 				9DD4CBA221D27A9100C15430 /* UIWindowExtension.swift in Sources */,
 				9D1F88F821D116880033721E /* DeviceListViewController.swift in Sources */,
 				9D5F396321DE8E080089C423 /* RSegmentCell.swift in Sources */,
@@ -840,6 +876,7 @@
 				9D2226A821E120CD0087B66A /* SleepMarkerView.swift in Sources */,
 				9DED548B21D544600060B4B8 /* CameraViewController.swift in Sources */,
 				9DD4CB9821D2776200C15430 /* DeviceCell.swift in Sources */,
+				9D93F46221E1EAE800E34100 /* ClockTimeSetViewController.swift in Sources */,
 				9D5F395F21DE8E080089C423 /* RPagingViewController.swift in Sources */,
 				9D1F88FB21D116F60033721E /* UIViewControllerExtension.swift in Sources */,
 				9D5F396221DE8E080089C423 /* RSegmentOption.swift in Sources */,
@@ -853,14 +890,17 @@
 				9D5F396521DE8E080089C423 /* RSegmentProtocol.swift in Sources */,
 				9DAF143E21DBE411009EDB72 /* SportItemCell.swift in Sources */,
 				9DD4CBA621D2938A00C15430 /* MenuViewController.swift in Sources */,
+				9D6318B121E1B2D30073C1BD /* PhoneCell.swift in Sources */,
 				9D5F396621DE8E080089C423 /* RPluginHeaderScroll.swift in Sources */,
 				9DA359B321D3C2920090A7DD /* UIViewExtension.swift in Sources */,
 				9D1F88F621D10EBD0033721E /* StartViewController.swift in Sources */,
 				9D80783421E0E7C3007CF885 /* StepsMarkerView.swift in Sources */,
 				9D5F396421DE8E080089C423 /* RSegment.swift in Sources */,
 				9D1F890721D14BDE0033721E /* LoginMenuViewController.swift in Sources */,
+				9D6318AD21E1A9A20073C1BD /* FrequencyViewController.swift in Sources */,
 				9D8E868721D4F53B00C0034D /* API.swift in Sources */,
 				9DAF143721DBDEF7009EDB72 /* SoprtType.swift in Sources */,
+				9D93F46421E1EC8A00E34100 /* TimeCell.swift in Sources */,
 				9D5F396021DE8E080089C423 /* PagingProtocal.swift in Sources */,
 				9D1F88FD21D11E1B0033721E /* UIImageExtension.swift in Sources */,
 				9DAF143921DBE235009EDB72 /* SportSelectedViewController.swift in Sources */,

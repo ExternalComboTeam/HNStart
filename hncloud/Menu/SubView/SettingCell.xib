@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="SettingCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingCell" rowHeight="530" id="1yw-Q9-UnB" customClass="SettingCell" customModule="hncloud" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="SettingCell" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SettingCell" rowHeight="530" id="1yw-Q9-UnB" customClass="SettingCell" customModule="hncloud" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="530"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1yw-Q9-UnB" id="nSU-xm-Gvy">
@@ -280,6 +280,7 @@
                 <outlet property="setLabel" destination="KbW-9B-QPS" id="oqi-wQ-fFW"/>
                 <outlet property="slLabel" destination="CcO-QP-11l" id="1hM-15-Oa3"/>
                 <outlet property="sportLabel" destination="eg6-gt-e29" id="FFl-oV-RnU"/>
+                <outlet property="stackView" destination="JFH-Kl-SLm" id="JRr-Ea-sxC"/>
                 <outlet property="titleLabel" destination="ePO-fr-HWR" id="1z2-L3-Kys"/>
             </connections>
             <point key="canvasLocation" x="-2.3999999999999999" y="99.850074962518747"/>

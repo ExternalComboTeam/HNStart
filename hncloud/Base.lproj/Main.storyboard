@@ -1247,6 +1247,38 @@
             </objects>
             <point key="canvasLocation" x="1146" y="665"/>
         </scene>
+        <!--心律預警設定-->
+        <scene sceneID="5OD-PI-jSh">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="FrequencyViewController" storyboardName="Menu" referencedIdentifier="FrequencyViewController" id="JDN-RL-AfH" userLabel="心律預警設定" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GLY-SB-WIJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1165" y="702"/>
+        </scene>
+        <!--鬧鐘設置-->
+        <scene sceneID="fpk-dv-cyU">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="ClockViewController" storyboardName="Menu" referencedIdentifier="ClockViewController" id="6AD-Un-tLX" userLabel="鬧鐘設置" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jqx-RT-6pw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1146" y="741"/>
+        </scene>
+        <!--鬧鐘時間設定-->
+        <scene sceneID="UnT-YF-Ixl">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="ClockTimeSetViewController" storyboardName="Menu" referencedIdentifier="ClockTimeSetViewController" id="UeM-Xw-ECO" userLabel="鬧鐘時間設定" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CJF-mg-xYQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1165" y="786"/>
+        </scene>
+        <!--久坐提醒-->
+        <scene sceneID="27l-BB-gsl">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="SedentaryViewController" storyboardName="Menu" referencedIdentifier="SedentaryViewController" id="xTb-H5-qXc" userLabel="久坐提醒" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mC3-wv-hBN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1146" y="827"/>
+        </scene>
         <!--運動紀錄-->
         <scene sceneID="7NF-Mc-mQn">
             <objects>

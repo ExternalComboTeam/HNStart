@@ -69,7 +69,7 @@ class SportRecordViewController: UIViewController {
         let u = NSMutableAttributedString(string: "千卡".localized(),
                                           attributes: [.font: UIFont.systemFont(ofSize: 13),
                                                        .foregroundColor: #colorLiteral(red: 0.1784672141, green: 0.2162371576, blue: 0.3614119291, alpha: 1)])
-        self.rateLabel.attributedText = h + " " + u
+        self.heatLabel.attributedText = h + " " + u
     }
     
     override func viewDidLoad() {
