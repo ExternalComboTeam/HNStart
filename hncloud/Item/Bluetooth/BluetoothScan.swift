@@ -138,7 +138,9 @@ class BluetoothScan: NSObject, CBPeripheralDelegate {
             var type = 0
             
             let data = advertisementData?[CBAdvertisementDataManufacturerDataKey] as? NSData
+            print("🦉\ndata = \(data?.uint8Byte ?? [])\n🦉")
             
+            /*
             if let name = advertisementData?[CBAdvertisementDataLocalNameKey] as? String {
                 
                 let model = name.components(separatedBy: "_")[0]
@@ -158,15 +160,8 @@ class BluetoothScan: NSObject, CBPeripheralDelegate {
                     type = 1000
                 }
             }
+            */
             
-            
-            
-            
-            
-            
-            /*
-             
-            let data = advertisementData?[CBAdvertisementDataManufacturerDataKey] as? NSData
              
             if let _data = data, _data.length != 0 {
                 
@@ -186,7 +181,7 @@ class BluetoothScan: NSObject, CBPeripheralDelegate {
                     type = 1000
                 }
             }
-            */
+            
             let model = PerModel(peripheral: peripheral, rssi: RSSI.intValue, type: type, macAddress: ToolBox.macData(toString: data))
             
             if model.macAddress == "B60421" {

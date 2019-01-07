@@ -50,7 +50,8 @@ class SleepViewController: UIViewController {
         
         guard let progressView = self.progressView else { return }
         self.progressContainer.addSubview(progressView)
-        
+        progressView.progress = 0
+        progressView.prepareToShow = true
     }
 
     override func viewWillAppear(_ animated: Bool) {

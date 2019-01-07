@@ -323,7 +323,7 @@ class ToolBox {
         for model in deviceArray {
             print("🌮 model.name = \(model.deviceName), model.type = \(model.type)")
             
-            if model.type != 4 {
+            if model.type == 8 {
                 tempArray.append(model)
             }
         }
@@ -338,7 +338,7 @@ class ToolBox {
         
         for model in deviceArray {
             print("🌮 model.name = \(model.deviceName), model.type = \(model.type)")
-            if model.type == 4 {
+            if model.type != 8 {
                 tempArray.append(model)
             }
         }

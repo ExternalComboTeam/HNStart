@@ -8,6 +8,9 @@ PODS:
     - Charts/Core (= 3.2.1)
   - Charts/Core (3.2.1)
   - CVCalendar (1.6.1)
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
   - IQKeyboardManagerSwift (6.2.0)
   - JMDropMenu (0.1.1)
   - KeychainSwift (13.0.0)
@@ -48,6 +51,7 @@ DEPENDENCIES:
   - Alamofire-SwiftyJSON
   - Charts
   - CVCalendar
+  - FMDB
   - IQKeyboardManagerSwift
   - JMDropMenu
   - KeychainSwift
@@ -66,6 +70,7 @@ SPEC REPOS:
     - Alamofire-SwiftyJSON
     - Charts
     - CVCalendar
+    - FMDB
     - IQKeyboardManagerSwift
     - JMDropMenu
     - KeychainSwift
@@ -85,6 +90,7 @@ SPEC CHECKSUMS:
   Alamofire-SwiftyJSON: 2b3649d57dc7bb2880fb8b86f8bb969397666916
   Charts: f122fb70b19847fa5817d018b77d6c5a2296ab25
   CVCalendar: 505c11b11a088b43f159806e791eba1c2540853b
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
   JMDropMenu: 91bc440a85a7a9aa546283b4d16a0134d9fe261c
   KeychainSwift: 23d6c16cbc33f20fafa30c3d783241b4b87d998c
@@ -98,6 +104,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   ZZCircleProgress: bda14bac390f6c96efcb72f7617bef66c7f2d2d0
 
-PODFILE CHECKSUM: 4c4960eb390424c210ceea3eac7c850439c57d98
+PODFILE CHECKSUM: 69469e8818b1b7c5b5e807f665a6b2782b7acaf0
 
 COCOAPODS: 1.5.2

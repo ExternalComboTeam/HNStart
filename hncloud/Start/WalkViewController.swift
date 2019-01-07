@@ -32,6 +32,8 @@ class WalkViewController: UIViewController {
         view?.pointImage.image = UIImage(named: "pointer_active")
         view?.pointImage.size = CGSize(width: 35, height: 35)
         view?.showProgressText = false
+        view?.progress = 0
+        view?.prepareToShow = true
         return view
     }()
     
@@ -58,7 +60,6 @@ class WalkViewController: UIViewController {
         
         guard let progressView = self.progressView else { return }
         self.progressContainer.addSubview(progressView)
-        
     }
     
     override func viewDidLayoutSubviews() {

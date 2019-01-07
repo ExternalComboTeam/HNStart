@@ -21,6 +21,7 @@ target 'hncloud' do
   pod 'CVCalendar'
   pod 'SwiftMessages'
   pod 'JMDropMenu'
+  pod 'FMDB'
 
   target 'hncloudTests' do
     inherit! :search_paths
