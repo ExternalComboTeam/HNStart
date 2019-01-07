@@ -1199,6 +1199,14 @@
             </objects>
             <point key="canvasLocation" x="872" y="590"/>
         </scene>
+        <!--QRCode掃描-->
+        <scene sceneID="ZVh-6v-rxD">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="QRCodeScanViewController" storyboardName="BTDevice" referencedIdentifier="QRCodeScanViewController" id="KAD-Tq-B2v" userLabel="QRCode掃描" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LA7-Ae-Vlt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="872" y="629"/>
+        </scene>
         <!--目錄-->
         <scene sceneID="Ufn-pn-eF0">
             <objects>
@@ -1350,6 +1358,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9HW-ZU-zur" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1368" y="867"/>
+        </scene>
+        <!--走路記錄-->
+        <scene sceneID="JMo-BJ-Ige">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="WalkChartViewController" storyboardName="Health" referencedIdentifier="WalkChartViewController" id="hGQ-uD-zJ2" userLabel="走路記錄" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MoT-fB-uFd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1358" y="907"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KZO-yX-LHd">

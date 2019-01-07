@@ -122,7 +122,8 @@ extension CalendarViewController: JMDropMenuDelegate {
             let vc = SearchMedicineViewController.fromStoryboard()
             self.push(vc: vc)
         } else {
-            
+            let vc = QRCodeScanViewController.fromStoryboard()
+            self.push(vc: vc)
         }
     }
 }

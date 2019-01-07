@@ -12,6 +12,7 @@
 		9D11BF3C21E1C9E60081A1C1 /* SetRemindCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D11BF3B21E1C9E60081A1C1 /* SetRemindCell.swift */; };
 		9D11BF3E21E1CC810081A1C1 /* ClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D11BF3D21E1CC810081A1C1 /* ClockViewController.swift */; };
 		9D11BF4021E1CD0A0081A1C1 /* ClockTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D11BF3F21E1CD0A0081A1C1 /* ClockTypeViewController.swift */; };
+		9D1426C421E3888C0093A492 /* MedicineData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1426C321E3888C0093A492 /* MedicineData.swift */; };
 		9D19B7F721E2642B00D1BB8B /* ClockCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D19B7F621E2642B00D1BB8B /* ClockCell.xib */; };
 		9D19B7F921E2644B00D1BB8B /* ClockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D19B7F821E2644B00D1BB8B /* ClockCell.swift */; };
 		9D19B7FB21E266DA00D1BB8B /* ArrangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D19B7FA21E266DA00D1BB8B /* ArrangeViewController.swift */; };
@@ -95,6 +96,11 @@
 		9DAF143721DBDEF7009EDB72 /* SoprtType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAF143621DBDEF7009EDB72 /* SoprtType.swift */; };
 		9DAF143921DBE235009EDB72 /* SportSelectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAF143821DBE235009EDB72 /* SportSelectedViewController.swift */; };
 		9DAF143E21DBE411009EDB72 /* SportItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAF143D21DBE411009EDB72 /* SportItemCell.swift */; };
+		9DB6ED4B21E392AE000C68BF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9DB6ED4D21E392AE000C68BF /* Localizable.strings */; };
+		9DB6ED5121E3CB0C000C68BF /* WalkChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB6ED5021E3CB0C000C68BF /* WalkChartViewController.swift */; };
+		9DB6ED5321E3D3F3000C68BF /* QRCodeScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB6ED5221E3D3F3000C68BF /* QRCodeScanViewController.swift */; };
+		9DB6ED5521E3D4E6000C68BF /* QRCodeReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB6ED5421E3D4E6000C68BF /* QRCodeReader.swift */; };
+		9DB6ED5721E3DE02000C68BF /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB6ED5621E3DE02000C68BF /* StringExtension.swift */; };
 		9DC3B7D621D72D3B001DD0E4 /* BloodPressureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC3B7D521D72D3B001DD0E4 /* BloodPressureViewController.swift */; };
 		9DC3B7D921D73C6F001DD0E4 /* Health.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DC3B7D821D73C6F001DD0E4 /* Health.storyboard */; };
 		9DC3B7DB21D73C95001DD0E4 /* HeartCurveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC3B7DA21D73C95001DD0E4 /* HeartCurveViewController.swift */; };
@@ -146,6 +152,7 @@
 		9D11BF3B21E1C9E60081A1C1 /* SetRemindCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetRemindCell.swift; sourceTree = "<group>"; };
 		9D11BF3D21E1CC810081A1C1 /* ClockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockViewController.swift; sourceTree = "<group>"; };
 		9D11BF3F21E1CD0A0081A1C1 /* ClockTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockTypeViewController.swift; sourceTree = "<group>"; };
+		9D1426C321E3888C0093A492 /* MedicineData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineData.swift; sourceTree = "<group>"; };
 		9D19B7F621E2642B00D1BB8B /* ClockCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClockCell.xib; sourceTree = "<group>"; };
 		9D19B7F821E2644B00D1BB8B /* ClockCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockCell.swift; sourceTree = "<group>"; };
 		9D19B7FA21E266DA00D1BB8B /* ArrangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrangeViewController.swift; sourceTree = "<group>"; };
@@ -235,6 +242,15 @@
 		9DAF143621DBDEF7009EDB72 /* SoprtType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoprtType.swift; sourceTree = "<group>"; };
 		9DAF143821DBE235009EDB72 /* SportSelectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportSelectedViewController.swift; sourceTree = "<group>"; };
 		9DAF143D21DBE411009EDB72 /* SportItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportItemCell.swift; sourceTree = "<group>"; };
+		9DB6ED4721E3914F000C68BF /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		9DB6ED4821E39158000C68BF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		9DB6ED4C21E392AE000C68BF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9DB6ED4E21E392B0000C68BF /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		9DB6ED4F21E392B3000C68BF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		9DB6ED5021E3CB0C000C68BF /* WalkChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkChartViewController.swift; sourceTree = "<group>"; };
+		9DB6ED5221E3D3F3000C68BF /* QRCodeScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeScanViewController.swift; sourceTree = "<group>"; };
+		9DB6ED5421E3D4E6000C68BF /* QRCodeReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeReader.swift; sourceTree = "<group>"; };
+		9DB6ED5621E3DE02000C68BF /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		9DC3B7D521D72D3B001DD0E4 /* BloodPressureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodPressureViewController.swift; sourceTree = "<group>"; };
 		9DC3B7D821D73C6F001DD0E4 /* Health.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Health.storyboard; sourceTree = "<group>"; };
 		9DC3B7DA21D73C95001DD0E4 /* HeartCurveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartCurveViewController.swift; sourceTree = "<group>"; };
@@ -298,6 +314,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		9D1426C221E3886B0093A492 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				9D1426C321E3888C0093A492 /* MedicineData.swift */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
 		9D1F88F921D116BF0033721E /* Tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -310,6 +334,7 @@
 				9DAF143021DBCDC3009EDB72 /* LocalExtension.swift */,
 				9DAF143221DBCF81009EDB72 /* UITextFieldExtension.swift */,
 				9DAF143421DBD69C009EDB72 /* DateExtension.swift */,
+				9DB6ED5621E3DE02000C68BF /* StringExtension.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -508,6 +533,7 @@
 		9DC3B7D721D73BA9001DD0E4 /* Health */ = {
 			isa = PBXGroup;
 			children = (
+				9D1426C221E3886B0093A492 /* DataModel */,
 				9DAF143A21DBE2A6009EDB72 /* SubView */,
 				9DC3B7D821D73C6F001DD0E4 /* Health.storyboard */,
 				9DC3B7DA21D73C95001DD0E4 /* HeartCurveViewController.swift */,
@@ -520,6 +546,7 @@
 				9D19B7FA21E266DA00D1BB8B /* ArrangeViewController.swift */,
 				9D19B7FC21E26D9B00D1BB8B /* ManagementViewController.swift */,
 				9D3671FF21E2765D003228E4 /* SleepChartsViewController.swift */,
+				9DB6ED5021E3CB0C000C68BF /* WalkChartViewController.swift */,
 			);
 			path = Health;
 			sourceTree = "<group>";
@@ -532,6 +559,7 @@
 				9D1F88F721D116880033721E /* DeviceListViewController.swift */,
 				9DA359B621D3CB600090A7DD /* DeviceSettingViewController.swift */,
 				9DA359BA21D3ECF10090A7DD /* BTListViewController.swift */,
+				9DB6ED5221E3D3F3000C68BF /* QRCodeScanViewController.swift */,
 			);
 			path = BTSetting;
 			sourceTree = "<group>";
@@ -554,8 +582,10 @@
 				9DA359B021D3A7020090A7DD /* RSideViewController.swift */,
 				9DA359B821D3CD830090A7DD /* UserInfo.swift */,
 				9DAF143621DBDEF7009EDB72 /* SoprtType.swift */,
+				9DB6ED5421E3D4E6000C68BF /* QRCodeReader.swift */,
 				9D694E6221DD142B004D66DC /* CustomSlider.swift */,
 				9D5F394D21DE755A0089C423 /* CameraController.swift */,
+				9DB6ED4D21E392AE000C68BF /* Localizable.strings */,
 			);
 			path = Object;
 			sourceTree = "<group>";
@@ -685,6 +715,8 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hant",
+				"zh-Hans",
 			);
 			mainGroup = 9D6E270621D1072B00F22ABD;
 			productRefGroup = 9D6E271021D1072B00F22ABD /* Products */;
@@ -708,6 +740,7 @@
 				9D6318A921E19A930073C1BD /* HeartCell.xib in Resources */,
 				9D80783221E0E729007CF885 /* StepsMarkerView.xib in Resources */,
 				9DD4CBA421D2936600C15430 /* Menu.storyboard in Resources */,
+				9DB6ED4B21E392AE000C68BF /* Localizable.strings in Resources */,
 				9D1F890521D14B440033721E /* Login.storyboard in Resources */,
 				9D6E271D21D1072C00F22ABD /* LaunchScreen.storyboard in Resources */,
 				9D297A1521D4AF4E00E34260 /* DS-DIGIB.TTF in Resources */,
@@ -889,12 +922,14 @@
 				9D5F396321DE8E080089C423 /* RSegmentCell.swift in Sources */,
 				9DD4CB9F21D2797700C15430 /* UITableViewExtension.swift in Sources */,
 				9D5F396921DE8E080089C423 /* RPagingViewControllerPlugin.swift in Sources */,
+				9DB6ED5321E3D3F3000C68BF /* QRCodeScanViewController.swift in Sources */,
 				9D2226A821E120CD0087B66A /* SleepMarkerView.swift in Sources */,
 				9D19B7FD21E26D9B00D1BB8B /* ManagementViewController.swift in Sources */,
 				9DED548B21D544600060B4B8 /* CameraViewController.swift in Sources */,
 				9DD4CB9821D2776200C15430 /* DeviceCell.swift in Sources */,
 				9D93F46221E1EAE800E34100 /* ClockTimeSetViewController.swift in Sources */,
 				9D5F395F21DE8E080089C423 /* RPagingViewController.swift in Sources */,
+				9DB6ED5721E3DE02000C68BF /* StringExtension.swift in Sources */,
 				9D1F88FB21D116F60033721E /* UIViewControllerExtension.swift in Sources */,
 				9D5F396221DE8E080089C423 /* RSegmentOption.swift in Sources */,
 				9DC3B7DB21D73C95001DD0E4 /* HeartCurveViewController.swift in Sources */,
@@ -919,15 +954,18 @@
 				9D6318AD21E1A9A20073C1BD /* FrequencyViewController.swift in Sources */,
 				9D8E868721D4F53B00C0034D /* API.swift in Sources */,
 				9D19B7FB21E266DA00D1BB8B /* ArrangeViewController.swift in Sources */,
+				9D1426C421E3888C0093A492 /* MedicineData.swift in Sources */,
 				9DAF143721DBDEF7009EDB72 /* SoprtType.swift in Sources */,
 				9D93F46421E1EC8A00E34100 /* TimeCell.swift in Sources */,
 				9D5F396021DE8E080089C423 /* PagingProtocal.swift in Sources */,
+				9DB6ED5121E3CB0C000C68BF /* WalkChartViewController.swift in Sources */,
 				9D1F88FD21D11E1B0033721E /* UIImageExtension.swift in Sources */,
 				9DAF143921DBE235009EDB72 /* SportSelectedViewController.swift in Sources */,
 				9D5F396D21DE8EBD0089C423 /* CurveChildViewController.swift in Sources */,
 				9D1F890021D13FAE0033721E /* AppDelegate+Basic.swift in Sources */,
 				9D5F396821DE8E080089C423 /* PagingExtension.swift in Sources */,
 				9D694E6321DD142B004D66DC /* CustomSlider.swift in Sources */,
+				9DB6ED5521E3D4E6000C68BF /* QRCodeReader.swift in Sources */,
 				9D5F396B21DE8E2E0089C423 /* CurveViewController.swift in Sources */,
 				9DA359B521D3C42E0090A7DD /* AboutViewController.swift in Sources */,
 				9D694E6521DD2E21004D66DC /* TargetViewController.swift in Sources */,
@@ -984,8 +1022,20 @@
 			isa = PBXVariantGroup;
 			children = (
 				9D6E271C21D1072C00F22ABD /* Base */,
+				9DB6ED4721E3914F000C68BF /* zh-Hant */,
+				9DB6ED4821E39158000C68BF /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		9DB6ED4D21E392AE000C68BF /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9DB6ED4C21E392AE000C68BF /* en */,
+				9DB6ED4E21E392B0000C68BF /* zh-Hant */,
+				9DB6ED4F21E392B3000C68BF /* zh-Hans */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

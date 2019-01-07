@@ -38,6 +38,8 @@ class WalkViewController: UIViewController {
         self.push(vc: vc)
     }
     @IBAction func walkRecord(_ sender: Any) {
+        let vc = WalkChartViewController.fromStoryboard()
+        self.push(vc: vc)
     }
     
     override func viewDidLoad() {
