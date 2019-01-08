@@ -971,7 +971,9 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
         return result
     }
     
-    
+    func combine(_ data: [UInt8], range: Range<Int>) -> UInt32 {
+        return data[range].reduce(0) { UInt32($0) + UInt32($1) }
+    }
     
     
     
@@ -1050,7 +1052,8 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
             receiveOffLineData(with: dat)
             var len: Int = 0
             //Byte *transDat = (Byte *)[Dat bytes];
-            let numberLength: uint = combineData(withAddr: ToolBox.byte(&transDat, add: 2), andLength: 2)
+            let numberLength = combine(transDat, range: 2..<4)
+//            let numberLength: uint = combineData(withAddr: ToolBox.byte(&transDat, add: 2), andLength: 2)
             if Int(numberLength) > 17 {
                 if transDat[12] == 0x04 {
                     len = 9
@@ -1509,8 +1512,9 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
         
         var dat = data
         
+        let length = combine(dat, range: 2..<4)
+//        let length = combineData(withAddr: ToolBox.byte(&dat, add: 2), andLength: 2)
         
-        let length = combineData(withAddr: ToolBox.byte(&dat, add: 2), andLength: 2)
         if length == 3 {
             let hardVersion = dat[4]
             let softVersion = dat[6]
@@ -1532,7 +1536,8 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
         var transDat = data.bytes
         #warning("不確定是否正確")
         
-        let totalData = combineData(withAddr: ToolBox.byte(&transDat, add: 2), andLength: 2)
+        let totalData = combine(transDat, range: 2..<4)
+//        let totalData = combineData(withAddr: ToolBox.byte(&transDat, add: 2), andLength: 2)
         if Int(totalData) == 0 {
             return
         } else {
@@ -1606,7 +1611,8 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
         
         var transDat = data.bytes
         if transDat.item(at: 4) == 0 {
-            let length: uint = combineData(withAddr: ToolBox.byte(&transDat, add: 2), andLength: 2)
+            let length = combine(transDat, range: 2..<4)
+//            let length: uint = combineData(withAddr: ToolBox.byte(&transDat, add: 2), andLength: 2)
             var mutaArray: [AnyHashable] = []
             for i in 0..<Int(length) / 7 {
                 let index: Int = 5 + i * 7
@@ -1692,8 +1698,12 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
             blueToothManager?.updateHardWaer(withPack: 1)
             packNumber = 1
         } else if transDat[4] == 0x01 {
-            let totalPack: uint = combineData(withAddr: ToolBox.byte(&transDat, add: 5), andLength: 2)
-            let pack: uint = combineData(withAddr: ToolBox.byte(&transDat, add: 7), andLength: 2)
+            
+            let totalPack = combine(transDat, range: 5..<7)
+            let pack = combine(transDat, range: 7..<9)
+            
+//            let totalPack: uint = combineData(withAddr: ToolBox.byte(&transDat, add: 5), andLength: 2)
+//            let pack: uint = combineData(withAddr: ToolBox.byte(&transDat, add: 7), andLength: 2)
             
             var progress: Float = 0
             let fPack = Float(pack)
@@ -1744,11 +1754,20 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
             //当前里程  4  mileageNumber
             //当前消耗热量    4  kcalNumber
             //当前步速  1   stepSpeed
-            let heartRate: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 5), andLength: 1)
-            let stepNumber: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 6), andLength: 4)
-            let mileageNumber: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 10), andLength: 4)
-            let kcalNumber: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 14), andLength: 4)
-            let stepSpeed: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 18), andLength: 1)
+            
+            let heartRate = combine(byteout, range: 5..<6)
+            let stepNumber = combine(byteout, range: 6..<10)
+            let mileageNumber = combine(byteout, range: 10..<14)
+            let kcalNumber = combine(byteout, range: 14..<18)
+            let stepSpeed = combine(byteout, range: 18..<19)
+            
+//            let heartRate: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 5), andLength: 1)
+//            let stepNumber: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 6), andLength: 4)
+//            let mileageNumber: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 10), andLength: 4)
+//            let kcalNumber: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 14), andLength: 4)
+//            let stepSpeed: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 18), andLength: 1)
+            
+            
             //adaLog(@"heartRate率 =  %d -stepSpeed = %d ",heartRate,stepSpeed);
             let sport = SportModelMap()
             sport.heartRate = "\(heartRate)"
@@ -1791,7 +1810,10 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
             //1    心率
             //1    SPO2
             //1    HRV
-            let dataNum: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 2), andLength: 2)
+            
+            let dataNum = combine(byteout, range: 2..<4)
+//            let dataNum: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 2), andLength: 2)
+            
             let dataNumber = (Int(dataNum) - 1) / 9
             
             
@@ -1809,7 +1831,9 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
                 var testTime = ""
                 for i in 0..<dataNumber {
                     systemTimeOffset = NSTimeZone.system.secondsFromGMT()
-                    time = UInt32(Int(combineData(withAddr: ToolBox.byte(&byteout, add: 5 + 9 * i), andLength: 4)) - systemTimeOffset)
+                    let offset = 5 + 9 * i
+                    
+                    time = combine(byteout, range: offset..<(offset + 4)) - UInt32(systemTimeOffset)
                     testTime = TimeCallManager.instance.getTimeString(withSeconds: Int(time), andFormat: "yyyy-MM-dd HH:mm:ss")
                     var isHave = false
                     if bloodArr != nil {
@@ -1821,11 +1845,20 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
                     }
                     
                     if !isHave {
-                        let shrink: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 9 + 9 * i), andLength: 1)
-                        let Diastole: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 10 + 9 * i), andLength: 1)
-                        let heartRate: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 11 + 9 * i), andLength: 1)
-                        let spo2: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 12 + 9 * i), andLength: 1)
-                        let hrv: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 13 + 9 * i), andLength: 1)
+                        
+                        let x = 9 * i
+                        
+                        let shrink = combine(byteout, range: (9 + x)..<(9 + x + 1))
+                        let Diastole = combine(byteout, range: (10 + x)..<(10 + x + 1))
+                        let heartRate = combine(byteout, range: (11 + x)..<(11 + x + 1))
+                        let spo2 = combine(byteout, range: (12 + x)..<(12 + x + 1))
+                        let hrv = combine(byteout, range: (13 + x)..<(13 + x + 1))
+                        
+//                        let shrink: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 9 + 9 * i), andLength: 1)
+//                        let Diastole: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 10 + 9 * i), andLength: 1)
+//                        let heartRate: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 11 + 9 * i), andLength: 1)
+//                        let spo2: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 12 + 9 * i), andLength: 1)
+//                        let hrv: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 13 + 9 * i), andLength: 1)
                         
                         //adaLog(@"time = %d,shrink = %d,Diastole = %d,heartRate = %d,spo2 = %d, hrv= %d,",time,shrink,Diastole,heartRate,spo2,hrv);
                         let bloodPre = BloodPressureModel()
@@ -1851,7 +1884,8 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
                 }
             } else if dataNumber == 1 {
                 var systemTimeOffset: Int = NSTimeZone.system.secondsFromGMT()
-                var time: UInt32 = combineData(withAddr: ToolBox.byte(&byteout, add: 5), andLength: 4) - UInt32(systemTimeOffset)
+                
+                var time: UInt32 = combine(byteout, range: 5..<9) - UInt32(systemTimeOffset)
                 var testTime = TimeCallManager.instance.getTimeString(withSeconds: Int(time), andFormat: "yyyy-MM-dd HH:mm:ss")
                 var isHave = false
                 for dictionary: [AnyHashable : Any] in bloodArr as? [[AnyHashable : Any]] ?? [] {
@@ -1860,11 +1894,11 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
                     }
                 }
                 if !isHave {
-                    let shrink: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 9), andLength: 1)
-                    let Diastole: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 10), andLength: 1)
-                    let heartRate: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 11), andLength: 1)
-                    let spo2: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 12), andLength: 1)
-                    let hrv: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 13), andLength: 1)
+                    let shrink = combine(byteout, range: 9..<10)
+                    let Diastole = combine(byteout, range: 10..<11)
+                    let heartRate = combine(byteout, range: 11..<12)
+                    let spo2 = combine(byteout, range: 12..<13)
+                    let hrv = combine(byteout, range: 13..<14)
                     
                     //adaLog(@"time = %d,shrink = %d,Diastole = %d,heartRate = %d,spo2 = %d, hrv= %d,",time,shrink,Diastole,heartRate,spo2,hrv);
                     let bloodPre = BloodPressureModel()
@@ -1990,13 +2024,13 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
         if byteout[4] == 2 {
             //           interfaceLog(@"page 读取设备页面的配置 bra answer %@",data);
             
-            let numberTwo: UInt32 = combineData(withAddr: ToolBox.byte(&byteout, add: 5), andLength: 4)
+            let numberTwo: UInt32 = combine(byteout, range: 5..<9)
             UserDefaults.standard.set("\(numberTwo)", forKey: GlobalProperty.SHOWPAGEMANAGER)
             
             pageManager?(numberTwo)
         } else if byteout[4] == 3 {
             //         interfaceLog(@"page  APP读取设备支持的页面配置 answer %@",data);
-            let number: UInt32 = combineData(withAddr: ToolBox.byte(&byteout, add: 5), andLength: 4)
+            let number: UInt32 = combine(byteout, range: 5..<9)
             UserDefaults.standard.set("\(number)", forKey: GlobalProperty.SHOWPAGEMANAGER)
             supportPage?(number)
         } else if byteout[4] == 1 {
@@ -2065,7 +2099,7 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
         }
         
         var byteout = data.bytes
-        let code: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 4), andLength: 1)
+        let code = combine(byteout, range: 4..<5)
         if Int(code) == 1 {
             //        interfaceLog(@"CompletionDegree  222   == DEV - inquiry %@",data);
             
@@ -2096,41 +2130,41 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
         }
         
         var byteout = data.bytes
-        let code: UInt32 = combineData(withAddr: ToolBox.byte(&byteout, add: 4), andLength: 1)
+        let code: UInt32 = combine(byteout, range: 4..<5)
         if Int(code) == 1 {
             //        adaLog(@" APP查询功能支持码    answer%@",data);
-            let heartContinuity: UInt32 = combineData(withAddr: ToolBox.byte(&byteout, add: 5), andLength: 1)
-            let supportCode: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 6), andLength: 1)
+            let heartContinuity = combine(byteout, range: 5..<6)
+            let supportCode = combine(byteout, range: 6..<7)
             supportQuery(Int(heartContinuity), support: Int(supportCode))
             
-            let newAlarm: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 7), andLength: 1)
-            let supportCodeAlarm: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 8), andLength: 1)
+            let newAlarm = combine(byteout, range: 7..<8)
+            let supportCodeAlarm = combine(byteout, range: 8..<9)
             supportQuery(Int(newAlarm), support: Int(supportCodeAlarm))
             
-            let weatherID: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 9), andLength: 1)
-            let weatherCode: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 10), andLength: 1)
+            let weatherID = combine(byteout, range: 9..<10)
+            let weatherCode = combine(byteout, range: 10..<11)
             supportQuery(Int(weatherID), support: Int(weatherCode))
         } else if Int(code) == 2 {
             //         interfaceLog(@"  APP查询设备能支持的参数 answer%@",data);
             
-            let remindLength: UInt32 = combineData(withAddr: ToolBox.byte(&byteout, add: 5), andLength: 1)
+            let remindLength: UInt32 = combine(byteout, range: 5..<6)
             if Int(remindLength) == 1 {
-                let remind: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 6), andLength: 1)
+                let remind = combine(byteout, range: 6..<7)
                 UserDefaults.standard.set("\(remind)", forKey: GlobalProperty.REMINDLENGTH)
 //                ADASaveDefaluts[REMINDLENGTH] = "\(remind)"
             } else if Int(remindLength) == 2 {
-                let remind: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 6), andLength: 1)
+                let remind = combine(byteout, range: 6..<7)
                 UserDefaults.standard.set("\(remind)", forKey: GlobalProperty.CUSTOMREMINDLENGTH)
 //                ADASaveDefaluts[CUSTOMREMINDLENGTH] = "\(remind)"
             }
             
-            let customRemindLength: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 7), andLength: 1)
+            let customRemindLength = combine(byteout, range: 7..<8)
             if Int(customRemindLength) == 1 {
-                let customRemind: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 8), andLength: 1)
+                let customRemind = combine(byteout, range: 8..<9)
                 UserDefaults.standard.set("\(customRemind)", forKey: GlobalProperty.REMINDLENGTH)
 //                ADASaveDefaluts[REMINDLENGTH] = "\(customRemind)"
             } else if Int(customRemindLength) == 2 {
-                let customRemind: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 8), andLength: 1)
+                let customRemind = combine(byteout, range: 8..<9)
                 UserDefaults.standard.set("\(customRemind)", forKey: GlobalProperty.CUSTOMREMINDLENGTH)
 //                ADASaveDefaluts[CUSTOMREMINDLENGTH] = "\(customRemind)"
             }
@@ -2175,8 +2209,8 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
         
         //     interfaceLog(@"手环设置APP参数 bra ask %@",data);
         var byteout = data.bytes
-        let code: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 4), andLength: 1)
-        let remind: uint = combineData(withAddr: ToolBox.byte(&byteout, add: 5), andLength: 1)
+        let code = combine(byteout, range: 4..<5)
+        let remind = combine(byteout, range: 5..<6)
         if Int(code) == 1 {
             UserDefaults.standard.set("\(remind)", forKey: GlobalProperty.REMINDLENGTH)
 //            ADASaveDefaluts[REMINDLENGTH] = "\(remind)"
@@ -2207,21 +2241,21 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
         
         var transDat = data.bytes
         let systemTimeOffset: Int = NSTimeZone.system.secondsFromGMT()
-        let numberLength: uint = combineData(withAddr: ToolBox.byte(&transDat, add: 2), andLength: 2)
+        let numberLength = combine(transDat, range: 2..<4)
         if Int(numberLength) > 17 {
             if transDat[12] == 0x04 {
-                var nums = combineData(withAddr: ToolBox.byte(&transDat, add: 4), andLength: 4) - UInt32(systemTimeOffset) //秒数
+                var nums = combine(transDat, range: 4..<8) - UInt32(systemTimeOffset) //秒数
                 let timeSeconds = TimeCallManager.instance.getYYYYMMDDSecondsSince1970(with: TimeInterval(nums)) //日期
                 let start_Seconds = Int(nums)
                 let startTimeSeconds = Int(nums)
                 
-                nums = combineData(withAddr: ToolBox.byte(&transDat, add: 8), andLength: 4) - UInt32(systemTimeOffset)
+                nums = combine(transDat, range: 8..<12) - UInt32(systemTimeOffset)
                 let stopSeconds = Int(nums)
                 let stopTimeSeconds = Int(nums)
                 
-                let sportType: UInt32 = combineData(withAddr: ToolBox.byte(&transDat, add: 13), andLength: 1) //手表已经有运动类型
-                let costs: UInt32 = combineData(withAddr: ToolBox.byte(&transDat, add: 14), andLength: 4)
-                let steps: UInt32 = combineData(withAddr: ToolBox.byte(&transDat, add: 18), andLength: 4)
+                let sportType: UInt32 = combine(transDat, range: 13..<14) //手表已经有运动类型
+                let costs: UInt32 = combine(transDat, range: 14..<18)
+                let steps: UInt32 = combine(transDat, range: 18..<22)
                 
                 
                 let sport = SportModelMap()
@@ -2270,15 +2304,15 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
                 //        model.stopSeconds = stopSeconds;
                 //        model.steps = steps;
                 //        model.costs = costs;
-                var nums = combineData(withAddr: ToolBox.byte(&transDat, add: 4), andLength: 4) - UInt32(systemTimeOffset)
+                var nums = combine(transDat, range: 4..<8) - UInt32(systemTimeOffset)
                 let timeSeconds: UInt32 = UInt32(TimeCallManager.instance.getYYYYMMDDSecondsSince1970(with: TimeInterval(nums)))
                 let start_Seconds = nums
                 let startTimeSeconds = nums
-                nums = combineData(withAddr: ToolBox.byte(&transDat, add: 8), andLength: 4) - UInt32(systemTimeOffset)
+                nums = combine(transDat, range: 8..<12) - UInt32(systemTimeOffset)
                 let stopSeconds = nums
                 let stopTimeSeconds = nums
-                let steps = combineData(withAddr: ToolBox.byte(&transDat, add: 17), andLength: 4)
-                let costs = combineData(withAddr: ToolBox.byte(&transDat, add: 13), andLength: 4)
+                let steps = combine(transDat, range: 17..<21)
+                let costs = combine(transDat, range: 13..<17)
                 
                 let sport = SportModelMap()
                 

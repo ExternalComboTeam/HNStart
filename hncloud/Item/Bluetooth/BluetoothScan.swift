@@ -64,9 +64,9 @@ class BluetoothScan: NSObject, CBPeripheralDelegate {
                         print("""
                             🍥🍥🍥🍥🍥
                             item\(i)
-                            deviceID = \(item.deviceID)
-                            deviceName = \(item.deviceName)
-                            deviceName = \(item.macAddress)
+                            deviceID = \(item.deviceID ?? "nil")
+                            deviceName = \(item.deviceName ?? "nil")
+                            deviceName = \(item.macAddress ?? "nil")
                             deviceName = \(item.peripheral)
                             """)
                     }

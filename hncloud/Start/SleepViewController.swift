@@ -171,7 +171,7 @@ class SleepViewController: UIViewController {
             var nightEndTime: Int = 0
             
             for i in 0..<sleepArray.count {
-                var sleepState: Int = sleepArray[i]
+                let sleepState: Int = sleepArray[i]
                 if sleepState != 0 && sleepState != 3 {
                     if isBegin == false {
                         isBegin = true
@@ -183,7 +183,7 @@ class SleepViewController: UIViewController {
             if sleepArray.count != 0 {
                 if nightEndTime > nightBeginTime {
                     for i in nightBeginTime...nightEndTime {
-                        var state: Int = sleepArray[i]
+                        let state: Int = sleepArray[i]
                         if state == 2 {
                             deepSleep += 1
                         } else if state == 1 {

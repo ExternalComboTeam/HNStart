@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import KRProgressHUD
 
 class MenuViewController: UIViewController {
+    
+    // MARK: Connected state.
+    var isConnected = false
     
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userNickName: UILabel!
@@ -23,6 +27,7 @@ class MenuViewController: UIViewController {
         UserInfo.share.clear()
         self.dismiss(animated: false, completion: nil)
     }
+    
     @IBAction func userInfoAction(_ sender: Any) {
         let vc = UserInfoViewController.fromStoryboard()
         vc.isEdit = false
@@ -83,8 +88,7 @@ class MenuViewController: UIViewController {
             self.setMenuArray(with: user.deviceType)
         }
         (self.parent as? RSideViewController)?.open({
-            self.checkBandPower()
-            self.bandConnecticCheck()
+            self.bandConnectedCheck()
         })
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -116,22 +120,38 @@ class MenuViewController: UIViewController {
         side.push(vc: vc)
     }
     
-    func checkBandPower() {
-        PZBlueToothManager.instance.checkBandPower { (power) in
-            print("🔋🔋🔋  bandPower = \(power)")
-            
-            guard let batteryState = BatteryState(power) else { return }
-            
-            self.batteryImageView.image = batteryState.image
-            self.batteryLabel.text = "\(power)%"
+    private func checkBandPower(_ isConnect: Bool) {
+        if isConnect {
+            PZBlueToothManager.instance.checkBandPower { (power) in
+                print("🔋🔋🔋  bandPower = \(power)")
+                
+                guard let batteryState = BatteryState(power) else { return }
+                
+                self.batteryImageView.image = batteryState.image
+                self.batteryLabel.text = "\(power)%"
+            }
+        } else {
+            self.batteryImageView.image = BatteryState.full.image
+            self.batteryLabel.text = "X"
         }
     }
-    func bandConnecticCheck() {
+    
+    private func bandConnectedCheck() {
+        isConnected = CositeaBlueTooth.instance.isConnected
         var btState = "未連接".localized()
-        if CositeaBlueTooth.instance.isConnected {
+        if isConnected {
             btState = "已連接".localized()
         }
+        checkBandPower(isConnected)
         self.btStateLabel.text = btState
+    }
+    
+    private func checkBeforeTheShow(_ view: UIViewController) {
+        if isConnected {
+            self.pushed(view)
+        } else {
+            KRProgressHUD.showMessage("未連接".localized())
+        }
     }
 }
 extension MenuViewController: UITableViewDataSource {
@@ -154,9 +174,9 @@ extension MenuViewController: UITableViewDelegate {
         case .capsule:
             self.pushed(CalendarViewController.fromStoryboard())
         case .camera:
-            self.pushed(CameraViewController.fromStoryboard())
+            self.checkBeforeTheShow(CameraViewController.fromStoryboard())
         case .setting:
-            self.pushed(SettingViewController.fromStoryboard())
+            self.checkBeforeTheShow(SettingViewController.fromStoryboard())
         case .about:
             self.pushed(AboutViewController.fromStoryboard())
         }
