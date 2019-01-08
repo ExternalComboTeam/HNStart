@@ -70,6 +70,7 @@
 		9D6E271D21D1072C00F22ABD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D6E271B21D1072C00F22ABD /* LaunchScreen.storyboard */; };
 		9D6E272821D1072C00F22ABD /* hncloudTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6E272721D1072C00F22ABD /* hncloudTests.swift */; };
 		9D6E273321D1072D00F22ABD /* hncloudUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6E273221D1072D00F22ABD /* hncloudUITests.swift */; };
+		9D7CBE8821E4EE8D0062DA1D /* PrescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7CBE8721E4EE8D0062DA1D /* PrescriptionViewController.swift */; };
 		9D7D474221DF9DB900613C05 /* SearchMedicineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7D474121DF9DB900613C05 /* SearchMedicineViewController.swift */; };
 		9D7D474421DFA17200613C05 /* MedicineCellCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7D474321DFA17200613C05 /* MedicineCellCell.swift */; };
 		9D80783021E0B8E2007CF885 /* MarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D80782F21E0B8E2007CF885 /* MarkerView.swift */; };
@@ -241,6 +242,7 @@
 		9D6E272E21D1072D00F22ABD /* hncloudUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hncloudUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D6E273221D1072D00F22ABD /* hncloudUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hncloudUITests.swift; sourceTree = "<group>"; };
 		9D6E273421D1072D00F22ABD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9D7CBE8721E4EE8D0062DA1D /* PrescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrescriptionViewController.swift; sourceTree = "<group>"; };
 		9D7D474121DF9DB900613C05 /* SearchMedicineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMedicineViewController.swift; sourceTree = "<group>"; };
 		9D7D474321DFA17200613C05 /* MedicineCellCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineCellCell.swift; sourceTree = "<group>"; };
 		9D80782F21E0B8E2007CF885 /* MarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerView.swift; sourceTree = "<group>"; };
@@ -614,6 +616,7 @@
 				9DA359B621D3CB600090A7DD /* DeviceSettingViewController.swift */,
 				9DA359BA21D3ECF10090A7DD /* BTListViewController.swift */,
 				9DB6ED5221E3D3F3000C68BF /* QRCodeScanViewController.swift */,
+				9D7CBE8721E4EE8D0062DA1D /* PrescriptionViewController.swift */,
 			);
 			path = BTSetting;
 			sourceTree = "<group>";
@@ -1057,6 +1060,7 @@
 				9D2226A821E120CD0087B66A /* SleepMarkerView.swift in Sources */,
 				9D19B7FD21E26D9B00D1BB8B /* ManagementViewController.swift in Sources */,
 				9DED548B21D544600060B4B8 /* CameraViewController.swift in Sources */,
+				9D7CBE8821E4EE8D0062DA1D /* PrescriptionViewController.swift in Sources */,
 				9DD4CB9821D2776200C15430 /* DeviceCell.swift in Sources */,
 				9D93F46221E1EAE800E34100 /* ClockTimeSetViewController.swift in Sources */,
 				9D5F395F21DE8E080089C423 /* RPagingViewController.swift in Sources */,

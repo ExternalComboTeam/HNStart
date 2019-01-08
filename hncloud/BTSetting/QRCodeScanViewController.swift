@@ -7,10 +7,16 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class QRCodeScanViewController: UIViewController {
 
     @IBOutlet weak var scanView: QRCodeReader!
+    
+    private let noArray: [String] = ["AD", "AS", "AU", "ET", "GAR", "HD", "ID", "IA", "IE", "IM", "IV", "IP", "ICV", "IMP", "INHL", "IS", "IT", "IVA", "IVD", "IVI", "IVP", "LA", "LI", "NA", "OD", "OS", "OU", "PO", "SC", "SCI", "SKIN", "SL", "SPI", "RECT", "TOPI", "TPN", "VAG", "IRRI", "EXT", "XX"]
+    private let wayArray: [String] = ["右耳", "左耳", "每耳", "氣切內", "漱口用", "皮下灌注", "皮內注射", "動脈注射", "脊髓硬膜內注射", "肌肉注射", "靜脈注射", "腹腔注射", "腦室注射", "植入", "吸入", "滑膜內注射", "椎骨內注射", "靜脈添加", "靜脈點滴滴入", "玻璃體內注射", "靜脈注入", "局部麻醉", "局部注射", "鼻用", "右眼", "左眼", "每眼", "口服", "皮下注射", "結膜下注射", "皮膚用", "舌下", "脊髓", "肛門用", "局部塗擦", "全靜脈營養劑", "陰道用", "沖洗", "外用", "其他"]
+    
+    private var countNumber: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -223,6 +229,7 @@ extension QRCodeScanViewController: QRCodeReaderDelegate {
         qrcodeReader.stop()
         let medicineArray: [String] = data[0].value.components(separatedBy: ";")
         guard medicineArray.count >= 18 else { return }
+        
         // 姓名
         let name = medicineArray[3]
         // 拿藥日期
@@ -230,23 +237,104 @@ extension QRCodeScanViewController: QRCodeReaderDelegate {
         let month = (getDate as NSString).substring(with: NSMakeRange(3,2))
         let day = String(getDate.suffix(2))
         let date = "\((Int(getDate.prefix(3)) ?? 0) + 1911)-\(month)-\(day)"
+        
+        var array: [Medicine] = []
+        var insurance: String = ""
+        var dosage: String = ""
+        var frequency: String = ""
+        var use: String = ""
         (14..<medicineArray.count).forEach { (index) in
+            
             if (index - 14) % 5 == 0 {
                 /// 藥品健保碼
-                print("\(medicineArray[index])")
+                insurance = medicineArray[index]
             } else if (index - 14) % 5 == 1 {
                 /// 用量
-                print("\(medicineArray[index])")
+                dosage = medicineArray[index]
             } else if (index - 14) % 5 == 2 {
                 /// 用藥頻率
-                print("\(frequencyString(medicineArray[index]))")
+                frequency = frequencyString(medicineArray[index])
             } else if (index - 14) % 5 == 3 {
                 /// 用途
-                print("\(medicineArray[index])")
+                use = ""
+                let no = medicineArray[index]
+                if let row = self.noArray.firstIndex(of: no) {
+                    use = self.wayArray[row]
+                }
             } else if (index - 14) % 5 == 4 {
                 /// 藥品總數量
-                print("\(medicineArray[index])")
+                let value = Medicine()
+                value.insurance = insurance
+                value.dosage = dosage
+                value.frequency = frequency
+                value.use = use
+                value.number = medicineArray[index]
+                array.append(value)
+            }
+        }
+        let pre = Prescription(name: name, date: date, medicine: medicineArray[9], array: array)
+        self.countNumber = 0
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.toPrescription(pre: pre)
+        }
+    }
+    
+    private func toPrescription(pre: Prescription) {
+        guard self.countNumber < 10 else {
+            self.scanView.reStart()
+            return
+        }
+        let filter = pre.array.filter({ $0.json == .null })
+        print("show value =\(pre.array.count) \(filter.count)")
+        if filter.count == 0 {
+            let vc = PrescriptionViewController.fromStoryboard()
+            vc.pre = pre
+            self.push(vc: vc)
+        } else {
+            self.countNumber = self.countNumber + 1
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.toPrescription(pre: pre)
             }
         }
     }
+}
+
+struct Prescription {
+    var name: String
+    
+    var doctorDate: String
+    
+    var takeMedicine: String
+    
+    var array: [Medicine]
+    
+    init(name: String, date: String, medicine: String, array: [Medicine]) {
+        self.name = name
+        self.doctorDate = date
+        self.takeMedicine = date.date(withFormat: "yyyy-MM-dd")?.adding(.day, value: Int(medicine) ?? 0).string(withFormat: "yyyy/MM/dd") ?? ""
+        self.array = array
+    }
+}
+
+class Medicine {
+    var json: JSON = .null
+    /// 藥品健保碼
+    var insurance: String = "" {
+        didSet {
+            guard !self.insurance.isEmpty else { return }
+            MedicineAPI.health(no: self.insurance) { (json) in
+                self.json = json["data"]
+            }
+        }
+    }
+    /// 用量
+    var dosage: String = ""
+    /// 用藥頻率
+    var frequency: String = ""
+    /// 用途
+    var use: String = ""
+    /// 數量
+    var number: String = ""
+    
+    init() { }
 }
