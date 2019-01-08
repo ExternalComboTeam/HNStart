@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwifterSwift
 
 enum SettingType: Int {
     case clock = 11
@@ -34,10 +35,51 @@ class SettingViewController: UIViewController {
     
     private var type: SettingType = .clock
     
+    private var isPhoneAlarmOpen = false
+    
     @IBAction func buttonAction(_ sender: UIButton) {
         self.settingStackView.arrangedSubviews.forEach({ self.buttonSet($0 as! UIButton, isSelected: false) })
         self.type = SettingType.init(rawValue: sender.tag) ?? .clock
         self.buttonSet(sender, isSelected: true)
+        
+//        // MARK: Cell bluetooth setting.
+//        switch self.type {
+//        case .clock:
+//        // TODO: - 鬧鐘
+//            break
+//        case .phone:
+//            
+//            if CositeaBlueTooth.instance.isConnected {
+//                
+//                CositeaBlueTooth.instance.checkSystemAlarm(withType: .Phone) { (index, states) in
+//                    
+//                    if SystemAlarmType(rawValue: index) == .Phone {
+//                        
+//                        self.isPhoneAlarmOpen = states != 0
+//                        
+//                    }
+//                    
+//                }
+//                
+//            }
+//            
+//            
+//            
+//        case .message:
+//            <#code#>
+//        case .sit:
+//            <#code#>
+//        case .heart:
+//            <#code#>
+//        case .forget:
+//            <#code#>
+//        case .device:
+//            <#code#>
+//        case .setting:
+//            <#code#>
+//        }
+        
+        
         self.myTableView.reloadData()
     }
     
@@ -111,6 +153,7 @@ extension SettingViewController: UITableViewDataSource {
             }
         case .phone:
             let cell = PhoneCell.use(table: tableView, for: indexPath)
+            
             return cell
         case .message:
             let cell = MessageCell.use(table: tableView, for: indexPath)

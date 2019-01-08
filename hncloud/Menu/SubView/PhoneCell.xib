@@ -103,6 +103,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="myStackView" destination="lEW-Dd-7p2" id="yQ7-tr-AnJ"/>
+                <outlet property="phoneSwitchOutlet" destination="gv5-RK-9h1" id="TLG-fO-vDi"/>
                 <outlet property="remindLabel" destination="aGR-Tr-NM3" id="Lm9-M0-b7L"/>
             </connections>
             <point key="canvasLocation" x="168.80000000000001" y="45.42728635682159"/>

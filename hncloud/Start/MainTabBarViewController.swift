@@ -8,6 +8,7 @@
 
 import UIKit
 import ActionSheetPicker_3_0
+import CoreBluetooth
 
 class MainTabBarViewController: UITabBarController {
 
@@ -123,6 +124,9 @@ class MainTabBarViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
         self.navigationItem.titleView = self.titleView
         self.navigationItem.leftBarButtonItems = [self.menuButton]
         self.navigationItem.rightBarButtonItems = [self.shareButton, self.curveButton]

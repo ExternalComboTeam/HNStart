@@ -19,7 +19,11 @@ class SportViewController: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var sportTableView: UITableView!
     
+
+    @IBOutlet weak var bluetoothStateBtn: UIButton!
+
     private var sportType: SportType = .walk
+
     
     private lazy var progressView: ZZCircleProgress? = {
         let width: CGFloat = UIScreen.main.bounds.width * 0.5
@@ -93,6 +97,58 @@ class SportViewController: UIViewController {
         }
     }
     
+
+    @IBAction func bluetoothStateAction(_ sender: Any) {
+        connectedBand()
+    }
+    
+    func connectedBand() {
+        
+        bluetoothStateBtn.isEnabled = false
+        
+        if CositeaBlueTooth.instance.isConnected {
+            print("CositeaBlueTooth.instance.isConnected = \(CositeaBlueTooth.instance.isConnected)")
+            hideBluetoothStateBtn()
+            return
+        } else {
+            self.bluetoothStateBtn.isHidden = false
+        }
+        
+        CositeaBlueTooth.instance.checkCBCentralManagerState { (state) in
+            
+            switch state {
+                
+            case .poweredOn:
+                self.bluetoothStateBtn.setTitle("連接中...", for: .normal)
+                
+                guard let uuid = UserDefaults.standard.string(forKey: GlobalProperty.kLastDeviceUUID) else {
+                    
+                    self.bluetoothStateBtn.isEnabled = true
+                    self.bluetoothStateBtn.setTitle("未綁定", for: .normal)
+                    return
+                }
+                
+                CositeaBlueTooth.instance.connect(withUUID: uuid)
+                
+                CositeaBlueTooth.instance.connectedStateChanged(with: { (stateNum) in
+                    if stateNum == 1 {
+                        self.bluetoothStateBtn.setTitle("已連接", for: .normal)
+                        self.perform(#selector(self.hideBluetoothStateBtn), with: nil, afterDelay: 1.0)
+                    }
+                })
+            default:
+                self.bluetoothStateBtn.isEnabled = true
+                self.bluetoothStateBtn.setTitle("未綁定", for: .normal)
+                
+            }
+        }
+    }
+    
+    @objc func hideBluetoothStateBtn() {
+        self.bluetoothStateBtn.isEnabled = false
+        self.bluetoothStateBtn.isHidden = true
+    }
+
     private func runTiming() {
         guard self.isStart else { return }
         self.timing = self.timing + 1
@@ -100,6 +156,7 @@ class SportViewController: UIViewController {
             self.runTiming()
         }
     }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,7 +173,11 @@ class SportViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        connectedBand()
     }
 }
 extension SportViewController: UITableViewDataSource {

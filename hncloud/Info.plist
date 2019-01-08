@@ -22,6 +22,8 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>say yes</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>DS-DIGIB.TTF</string>

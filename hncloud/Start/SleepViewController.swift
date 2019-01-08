@@ -21,6 +21,8 @@ class SleepViewController: UIViewController {
     @IBOutlet weak var sleepTimeLabel: UILabel!
     @IBOutlet weak var finishedLabel: UILabel!
     
+    @IBOutlet weak var bluetoothStateBtn: UIButton!
+    
     private lazy var progressView: ZZCircleProgress? = {
         let width: CGFloat = UIScreen.main.bounds.width * 0.55
         let frame = CGRect(x: 0, y: 0, width: width, height: width)
@@ -40,6 +42,9 @@ class SleepViewController: UIViewController {
         self.push(vc: vc)
     }
     
+    @IBAction func bluetoothStateAction(_ sender: Any) {
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,13 +52,20 @@ class SleepViewController: UIViewController {
         
         guard let progressView = self.progressView else { return }
         self.progressContainer.addSubview(progressView)
-        
+        progressView.progress = 0
+        progressView.prepareToShow = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.targetLabel.text = "\(UserInfo.share.sleepTarget)h"
-        self.progressView?.progress = 0.75
+        connectedBand()
+        setSleepValue()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
     }
     
     /// 設定時間
@@ -71,5 +83,135 @@ class SleepViewController: UIViewController {
                                            attributes: [.font: UIFont.systemFont(ofSize: 13),
                                                         .foregroundColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)])
         self.sleepTimeLabel.attributedText = h + sh + m + sm
+    }
+    
+    /// 設定深睡時間
+    func setWellSleepTime(_ hour: Int, min: Int) {
+        wellSleepLabel.text = "\(hour)h\(min)min\n深睡"
+    }
+    
+    /// 設定淺睡時間
+    func setShallowSleepTime(_ hour: Int, min: Int) {
+        shallowLabel.text = "\(hour)h\(min)min\n淺睡"
+    }
+    
+    /// 設定清醒時間
+    func setWakeTime(_ hour: Int, min: Int) {
+        wakeLabel.text = "\(hour)h\(min)min\n清醒"
+    }
+    
+    /// 設定睡眠品質
+    func setSleepState(sleepTotalCount: Int) {
+        let text = "\n睡眠品質"
+        if sleepTotalCount < 36 {
+            sleepStateLabel.text = "偏少" + text
+        } else if sleepTotalCount < 54 {
+            sleepStateLabel.text = "正常" + text
+        } else {
+            sleepStateLabel.text = "充裕" + text
+        }
+    }
+    
+    func connectedBand() {
+        
+        bluetoothStateBtn.isEnabled = false
+        
+        if CositeaBlueTooth.instance.isConnected {
+            print("CositeaBlueTooth.instance.isConnected = \(CositeaBlueTooth.instance.isConnected)")
+            hideBluetoothStateBtn()
+            return
+        } else {
+            self.bluetoothStateBtn.isHidden = false
+        }
+        
+        CositeaBlueTooth.instance.checkCBCentralManagerState { (state) in
+            
+            switch state {
+                
+            case .poweredOn:
+                self.bluetoothStateBtn.setTitle("連接中...", for: .normal)
+                
+                guard let uuid = UserDefaults.standard.string(forKey: GlobalProperty.kLastDeviceUUID) else {
+                    
+                    self.bluetoothStateBtn.isEnabled = true
+                    self.bluetoothStateBtn.setTitle("未綁定", for: .normal)
+                    return
+                }
+                
+                CositeaBlueTooth.instance.connect(withUUID: uuid)
+                
+                CositeaBlueTooth.instance.connectedStateChanged(with: { (stateNum) in
+                    if stateNum == 1 {
+                        self.bluetoothStateBtn.setTitle("已連接", for: .normal)
+                        self.perform(#selector(self.hideBluetoothStateBtn), with: nil, afterDelay: 1.0)
+                    }
+                })
+            default:
+                self.bluetoothStateBtn.isEnabled = true
+                self.bluetoothStateBtn.setTitle("未綁定", for: .normal)
+                
+            }
+        }
+    }
+    
+    @objc func hideBluetoothStateBtn() {
+        self.bluetoothStateBtn.isEnabled = false
+        self.bluetoothStateBtn.isHidden = true
+    }
+    
+    func setSleepValue() {
+        
+        PZBlueToothManager.instance.checkTodaySleepState { (timeSeconds, sleepArray) in
+            
+            guard let sleepArray = ToolBox.filterSleep(toValid: sleepArray as? [Int]) else { return }
+            
+            var lightSleep: Int = 0
+            var awakeSleep: Int = 0
+            var deepSleep: Int = 0
+            var isBegin = false
+            var nightBeginTime: Int = 0
+            var nightEndTime: Int = 0
+            
+            for i in 0..<sleepArray.count {
+                let sleepState: Int = sleepArray[i]
+                if sleepState != 0 && sleepState != 3 {
+                    if isBegin == false {
+                        isBegin = true
+                        nightBeginTime = i
+                    }
+                    nightEndTime = i
+                }
+            }
+            if sleepArray.count != 0 {
+                if nightEndTime > nightBeginTime {
+                    for i in nightBeginTime...nightEndTime {
+                        let state: Int = sleepArray[i]
+                        if state == 2 {
+                            deepSleep += 1
+                        } else if state == 1 {
+                            lightSleep += 1
+                        } else if state == 0 || state == 3 {
+                            awakeSleep += 1
+                        }
+                    }
+                }
+            }
+            
+            let totalCount: Int = awakeSleep + lightSleep + deepSleep
+            
+            self.setTime(totalCount / 60, min: totalCount % 60)
+            self.setWellSleepTime((deepSleep * 10) / 60, min: (deepSleep * 10) % 60)
+            self.setShallowSleepTime((lightSleep * 10) / 60, min: (lightSleep * 10) % 60)
+            self.setWakeTime((awakeSleep * 10) / 60, min: (awakeSleep * 10) % 60)
+            
+            var sleepPlan = UserInfo.share.sleepTarget
+            self.targetLabel.text = "\(sleepPlan)h"
+            sleepPlan = sleepPlan == 0 ? 1: sleepPlan
+            let finished = CGFloat(totalCount) / CGFloat(sleepPlan)
+            
+            self.progressView?.progress = finished
+            
+            self.finishedLabel.text = "\(Int(finished * 100))%"
+        }
     }
 }

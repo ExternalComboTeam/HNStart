@@ -12,7 +12,10 @@ import Photos
 class CameraViewController: UIViewController {
 
     @IBOutlet weak var capturePreview: UIView!
+    @IBOutlet weak var captureButtonOutlet: UIButton!
+    
     private let cameraController = CameraController()
+    
     @IBAction func captureAction(_ sender: UIButton) {
         cameraController.captureImage {(image, error) in
             guard let image = image else {
@@ -25,6 +28,7 @@ class CameraViewController: UIViewController {
             }
         }
     }
+    
     @IBAction func toggleCamera(_ sender: UIButton) {
         do {
             try cameraController.switchCameras()
@@ -53,6 +57,13 @@ class CameraViewController: UIViewController {
         }
         
         configureCameraController()
+        
+        
+        // MARK: Bluetooth shutter control
+        CositeaBlueTooth.instance.changeTakePhotoState(true)
+        CositeaBlueTooth.instance.recieveTakePhotoMessage { (_) in
+            self.captureAction(self.captureButtonOutlet)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,8 +77,10 @@ class CameraViewController: UIViewController {
         self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         self.navigationController?.navigationBar.shadowImage = nil
     }
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        CositeaBlueTooth.instance.changeTakePhotoState(false)
         self.cameraController.stop()
     }
 }

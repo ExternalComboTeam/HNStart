@@ -21,6 +21,8 @@ class HeartViewController: UIViewController {
     @IBOutlet weak var ratLabel: UILabel!
     @IBOutlet weak var spoLabel: UILabel!
     
+    @IBOutlet weak var bluetoothStateBtn: UIButton!
+    
     @IBAction func curveAction(_ sender: Any) {
         let vc = HeartCurveViewController.fromStoryboard()
         self.push(vc: vc)
@@ -38,7 +40,25 @@ class HeartViewController: UIViewController {
         self.setChart()
         self.setData()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        CositeaBlueTooth.instance.readyReceive(1)
+        connectedBand()
+    }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        bloodPressureCheck()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        CositeaBlueTooth.instance.readyReceive(0)
+    }
+
+    @IBAction func bluetoothStateAction(_ sender: Any) {
+    }
     
     private func setChart() {
         let leftAxis = chartView.leftAxis
@@ -61,6 +81,34 @@ class HeartViewController: UIViewController {
     }
     
     private func setData() {
+        
+        PZBlueToothManager.instance.checkBloodPressure { (bloodPre) in
+            
+            guard let bloodPre = bloodPre else { return }
+            
+            var dic: [String : Any] = [
+                GlobalProperty.BloodPressureID_def : bloodPre.bloodPressureID,
+                GlobalProperty.CurrentUserName_HCH : UserInfo.share.account,
+                GlobalProperty.BloodPressureDate_def : bloodPre.bloodPressureDate,
+                GlobalProperty.StartTime_def : bloodPre.startTime,
+                GlobalProperty.systolicPressure_def : bloodPre.systolicPressure,
+                GlobalProperty.diastolicPressure_def : bloodPre.diastolicPressure,
+                GlobalProperty.heartRateNumber_def : bloodPre.heartRate,
+                GlobalProperty.SPO2_def : bloodPre.spo2,
+                GlobalProperty.HRV_def : bloodPre.hrv,
+                GlobalProperty.ISUP : "0",
+                GlobalProperty.DEVICEID : ToolBox.amendMacAddressGetAddress(),
+                GlobalProperty.DEVICETYPE : UserInfo.share.deviceType.typeNumber
+                ]
+            
+        }
+        
+        
+        
+        
+        
+        
+        
         let yVals1 = (0..<20).map { (i) -> ChartDataEntry in
             let val = Double(arc4random_uniform(140) + 60)
             return ChartDataEntry(x: Double(i), y: val, icon: UIImage(named: "sport_button")?.scaled(toWidth: 10))
@@ -120,5 +168,69 @@ class HeartViewController: UIViewController {
                                           attributes: [.font: UIFont.systemFont(ofSize: 17),
                                                        .foregroundColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)])
         self.spoLabel.attributedText = u + " " + v
+    }
+    
+    func connectedBand() {
+        
+        bluetoothStateBtn.isEnabled = false
+        
+        if CositeaBlueTooth.instance.isConnected {
+            print("CositeaBlueTooth.instance.isConnected = \(CositeaBlueTooth.instance.isConnected)")
+            hideBluetoothStateBtn()
+            return
+        } else {
+            self.bluetoothStateBtn.isHidden = false
+        }
+        
+        CositeaBlueTooth.instance.checkCBCentralManagerState { (state) in
+            
+            switch state {
+                
+            case .poweredOn:
+                self.bluetoothStateBtn.setTitle("連接中...", for: .normal)
+                
+                guard let uuid = UserDefaults.standard.string(forKey: GlobalProperty.kLastDeviceUUID) else {
+                    
+                    self.bluetoothStateBtn.isEnabled = true
+                    self.bluetoothStateBtn.setTitle("未綁定", for: .normal)
+                    return
+                }
+                
+                CositeaBlueTooth.instance.connect(withUUID: uuid)
+                
+                CositeaBlueTooth.instance.connectedStateChanged(with: { (stateNum) in
+                    if stateNum == 1 {
+                        self.bluetoothStateBtn.setTitle("已連接", for: .normal)
+                        self.perform(#selector(self.hideBluetoothStateBtn), with: nil, afterDelay: 1.0)
+                    }
+                })
+            default:
+                self.bluetoothStateBtn.isEnabled = true
+                self.bluetoothStateBtn.setTitle("未綁定", for: .normal)
+                
+            }
+        }
+    }
+    
+    @objc func hideBluetoothStateBtn() {
+        self.bluetoothStateBtn.isEnabled = false
+        self.bluetoothStateBtn.isHidden = true
+    }
+    
+    func bloodPressureCheck() {
+        
+        guard UserInfo.share.sys <= 0, UserInfo.share.dia <= 0 else { return }
+
+        let vc = BloodPressureViewController.fromStoryboard()
+        vc.delegate = self
+        self.present(vc, animated: false, completion: nil)
+        
+    }
+}
+
+
+extension HeartViewController: PressureDelegate {
+    func savePressure(sys: Int, dia: Int) {
+        CositeaBlueTooth.instance.setupCorrectNumber()
     }
 }

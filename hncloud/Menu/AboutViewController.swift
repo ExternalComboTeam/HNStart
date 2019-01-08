@@ -38,6 +38,8 @@ class AboutViewController: UIViewController {
         self.deviceVersion.leftView = deviceLabel
         self.deviceVersion.leftViewMode = .always
         
+        self.setBandFirmwareVersion()
+        
         let descriptionLabel: UILabel = UILabel(text: "產品說明")
         descriptionLabel.sizeToFit()
         descriptionLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
@@ -52,5 +54,23 @@ class AboutViewController: UIViewController {
         self.appVersion.addBoard(.bottom, color: #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1), thickness: 0.5)
         self.deviceVersion.addBoard(.bottom, color: #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1), thickness: 0.5)
         self.descriptionText.addBoard(.bottom, color: #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1), thickness: 0.5)
+    }
+    
+    private func setBandFirmwareVersion() {
+        guard CositeaBlueTooth.instance.isConnected else {
+            self.deviceVersion.text = "未連接".localized()
+            return
+        }
+        PZBlueToothManager.instance.checkVerSion { [weak self] (firstFirmwareVersion, secondFirmwareVersion, softwareVersion, bluetoothVersion) in
+            var deviceVersionText = ""
+            if softwareVersion == 161616 {
+                deviceVersionText = String(format: "%02x.%02x.%02x", firstFirmwareVersion, bluetoothVersion, softwareVersion)
+            } else {
+                deviceVersionText = String(format: "%02x%02x.%02x.%02x", secondFirmwareVersion, firstFirmwareVersion, bluetoothVersion, softwareVersion)
+            }
+            DispatchQueue.main.async {
+                self?.deviceVersion.text = deviceVersionText
+            }
+        }
     }
 }

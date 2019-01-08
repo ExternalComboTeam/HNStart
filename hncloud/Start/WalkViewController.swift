@@ -22,6 +22,9 @@ class WalkViewController: UIViewController {
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     
+    @IBOutlet weak var bluetoothStateBtn: UIButton!
+    
+    
     private lazy var progressView: ZZCircleProgress? = {
         let width: CGFloat = UIScreen.main.bounds.width * 0.55
         let frame = CGRect(x: 0, y: 0, width: width, height: width)
@@ -29,6 +32,8 @@ class WalkViewController: UIViewController {
         view?.pointImage.image = UIImage(named: "pointer_active")
         view?.pointImage.size = CGSize(width: 35, height: 35)
         view?.showProgressText = false
+        view?.progress = 0
+        view?.prepareToShow = true
         return view
     }()
     
@@ -41,6 +46,11 @@ class WalkViewController: UIViewController {
         let vc = WalkChartViewController.fromStoryboard()
         self.push(vc: vc)
     }
+    
+    @IBAction func bluetoothStateAction(_ sender: Any) {
+        connectedBand()
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +72,12 @@ class WalkViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.targetLabel.text = "\(UserInfo.share.walkTarget)"
-        self.progressView?.progress = 0.75
+        connectedBand()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
     }
 
     /// 設定心律
@@ -90,7 +105,7 @@ class WalkViewController: UIViewController {
         let d = NSMutableAttributedString(string: value,
             attributes: [.font: UIFont.boldSystemFont(ofSize: 20),
                          .foregroundColor: #colorLiteral(red: 0.1784672141, green: 0.2162371576, blue: 0.3614119291, alpha: 1)])
-        let u = NSMutableAttributedString(string: "km",
+        let u = NSMutableAttributedString(string: UserInfo.share.distansUnit,
                                           attributes: [.font: UIFont.systemFont(ofSize: 13),
                                                        .foregroundColor: #colorLiteral(red: 0.1784672141, green: 0.2162371576, blue: 0.3614119291, alpha: 1)])
         self.distanceLabel.attributedText = d + " " + u
@@ -110,5 +125,91 @@ class WalkViewController: UIViewController {
                                            attributes: [.font: UIFont.systemFont(ofSize: 13),
                                                         .foregroundColor: #colorLiteral(red: 0.1784672141, green: 0.2162371576, blue: 0.3614119291, alpha: 1)])
         self.timeLabel.attributedText = h + " " + uh + " " + m + " " + um
+    }
+    
+    func setAllValue() {
+        
+        guard CositeaBlueTooth.instance.isConnected else { return }
+        
+        PZBlueToothManager.instance.chekCurDayAllData { (dic) in
+            
+            guard let dic = dic else { return }
+            print("\n🐷🐷🐷\ndic = \(dic)\n🐷🐷🐷\n")
+            let activeTime = (dic[GlobalProperty.TotalDataActivityTime_DayData_HCH] as? String ?? "0").int ?? 0
+            let h = activeTime / 60
+            let m = activeTime % 60
+            let costs = (dic[GlobalProperty.TotalCosts_DayData_HCH] as? String ?? "0").int ?? 0
+            let distance = Int(Double((dic[GlobalProperty.TotalMeters_DayData_HCH] as? String ?? "0").int ?? 0) / 1609.344)
+            let steps = (dic[GlobalProperty.TotalSteps_DayData_HCH] as? String ?? "0").int ?? 0
+            var stepPlan = (dic[GlobalProperty.Steps_PlanTo_HCH] as? String ?? "0").int ?? 0
+            if UserInfo.share.walkTarget != stepPlan {
+                stepPlan = UserInfo.share.walkTarget
+            }
+            
+            self.setTime(hour: h, min: m)
+            self.setCal(value: costs)
+            self.setDistance(value: "\(distance)")
+            self.setpsLabel.text = "\(steps)"
+            self.targetLabel.text = "\(stepPlan)"
+            
+            let finished = stepPlan != 0 ? steps / stepPlan * 100 : 100
+            
+            self.finishedLabel.text = "完成度 \(finished)%"
+            self.progressView?.progress = CGFloat(finished) / 100
+        }
+        
+        PZBlueToothManager.instance.changeHeartState(withState: true) { (bpm) in
+            self.setHeart(value: bpm)
+        }
+    }
+    
+    func connectedBand() {
+        
+        bluetoothStateBtn.isEnabled = false
+        
+        if CositeaBlueTooth.instance.isConnected {
+            print("CositeaBlueTooth.instance.isConnected = \(CositeaBlueTooth.instance.isConnected)")
+            hideBluetoothStateBtn()
+            setAllValue()
+            CositeaBlueTooth.instance.stopScanDevice()
+            return
+        } else {
+            self.bluetoothStateBtn.isHidden = false
+        }
+        
+        CositeaBlueTooth.instance.checkCBCentralManagerState { (state) in
+            
+            switch state {
+                
+            case .poweredOn:
+                self.bluetoothStateBtn.setTitle("連接中...", for: .normal)
+                
+                guard let uuid = UserDefaults.standard.string(forKey: GlobalProperty.kLastDeviceUUID) else {
+                    
+                    self.bluetoothStateBtn.isEnabled = true
+                    self.bluetoothStateBtn.setTitle("未綁定", for: .normal)
+                    return
+                }
+                
+                CositeaBlueTooth.instance.connect(withUUID: uuid)
+                
+                CositeaBlueTooth.instance.connectedStateChanged(with: { (stateNum) in
+                    self.setAllValue()
+                    if stateNum == 1 {
+                        self.bluetoothStateBtn.setTitle("已連接", for: .normal)
+                        self.perform(#selector(self.hideBluetoothStateBtn), with: nil, afterDelay: 1.0)
+                    }
+                })
+            default:
+                self.bluetoothStateBtn.isEnabled = true
+                self.bluetoothStateBtn.setTitle("未綁定", for: .normal)
+                
+            }
+        }
+    }
+    
+    @objc func hideBluetoothStateBtn() {
+        self.bluetoothStateBtn.isEnabled = false
+        self.bluetoothStateBtn.isHidden = true
     }
 }

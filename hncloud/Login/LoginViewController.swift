@@ -47,6 +47,11 @@ class LoginViewController: UIViewController {
         self.registerButton.setTitle("新用戶註冊".localized(), for: .normal)
         self.accountTextField.placeholder = "帳號的長度是 4 到 32 個字元".localized()
         self.passwordTextField.placeholder = "密碼的長度是 6 到 32 個字元".localized()
+        
+        #if DEBUG
+//        self.accountTextField.text = "call0933"
+//        self.passwordTextField.text = "635852"
+        #endif
     }
 
 }

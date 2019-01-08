@@ -12,7 +12,7 @@ class RSideViewController: UIViewController, UIGestureRecognizerDelegate {
 
     private var leftViewController: UIViewController?
     private var mainViewController: UIViewController?
-    
+    private var complete: (() -> Void)?
     private var originalPoint: CGPoint = .zero
     
     private lazy var menuWidth: CGFloat = {
@@ -147,6 +147,8 @@ class RSideViewController: UIViewController, UIGestureRecognizerDelegate {
         guard let main = self.mainViewController else { return }
         if open {
             self.coverView.isHidden = !open
+            self.complete?()
+//            self.leftViewController
         }
         let x = open ? self.view.frame.width * 0.5 + self.menuWidth : main.view.frame.width * 0.5
         UIView.animate(withDuration: 0.25, animations: {
@@ -155,5 +157,8 @@ class RSideViewController: UIViewController, UIGestureRecognizerDelegate {
         }) { (finished) in
             self.coverView.isHidden = !open
         }
+    }
+    func open(_ complete: (() -> Void)?) {
+        self.complete = complete
     }
 }

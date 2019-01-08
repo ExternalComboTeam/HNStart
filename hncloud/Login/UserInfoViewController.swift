@@ -187,6 +187,9 @@ class UserInfoViewController: UIViewController {
         UserInfoAPI.update(nickName: name, gender: sexSegment.selectedSegmentIndex == 0 ? .male : .women, birthday: birthday, height: Int(height) ?? 0, width: Int(width) ?? 0, unit: unitSegment.selectedSegmentIndex == 0 ? "0" : "1") { (json) in
             KRProgressHUD.dismiss()
             UserInfo.share.update(json: json)
+            
+            PZBlueToothManager.instance.setBindDatepz()
+            
             let vc = BMIInfoViewController.fromStoryboard()
             self.push(vc: vc)
         }
@@ -239,10 +242,9 @@ extension UserInfoViewController: UITextFieldDelegate {
 }
 extension UserInfoViewController: PressureDelegate {
     func savePressure(sys: Int, dia: Int) {
-        UserInfo.share.sys = sys
-        UserInfo.share.dia = dia
         self.sysTextField.text = "\(sys)"
         self.diaTextField.text = "\(dia)"
+        CositeaBlueTooth.instance.setupCorrectNumber()
     }
 }
 extension UserInfoViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

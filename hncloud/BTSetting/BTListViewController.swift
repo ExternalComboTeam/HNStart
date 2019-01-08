@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import CoreBluetooth
+import KRProgressHUD
 
 class BTListViewController: UIViewController {
+    
+    var deviceArray: [PerModel]?
+    
 
     @IBOutlet weak var myTableView: UITableView!
     @IBOutlet weak var loadingView: UIView!
@@ -39,8 +44,45 @@ class BTListViewController: UIViewController {
         self.myTableView.dataSource = self
         self.myTableView.delegate = self
         self.startSearch()
-        guard UserInfo.share.deviceToken.isEmpty else { return }
+//        guard UserInfo.share.deviceToken.isEmpty else { return }
         self.navigationItem.rightBarButtonItems = [self.skipButton]
+        
+        // Check bluetooth
+        if HCHCommonManager.instance.blueToothState != .poweredOn {
+            
+            KRProgressHUD.showMessage("請打開藍牙".localized())
+            
+            return
+        }
+        
+        CositeaBlueTooth.instance.scanDevices { [weak self] (array) in
+            
+            for i in 0..<array!.count {
+                let item = (array as! [PerModel])[i]
+                print("🍚 model\(i)\nname = \(item.deviceName)\ndeviceID = \(item.deviceID)\nmacAddress = \(item.macAddress)\nperipheral = \(item.peripheral)")
+            }
+            
+//            print("🍚 array = \(array)")
+            guard let array = array as? [PerModel] else { return }
+            
+            let devices = array
+            
+            switch UserInfo.share.deviceType {
+            case .Wristband:
+                self?.deviceArray = ToolBox.checkBracelet(devices)
+            case .Watch:
+                self?.deviceArray = ToolBox.checkWatch(devices)
+            case .none:
+                break
+            }
+            
+            self?.myTableView.reloadData()
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        
     }
     
     private func stopSearch() {
@@ -52,6 +94,21 @@ class BTListViewController: UIViewController {
         self.loadingView.isHidden = false
         self.activityIndicator.startAnimating()
         self.actionButton.setTitle("取消搜尋".localized(), for: .normal)
+    }
+    
+    @objc private func connectSuccessTimeOut() {
+        KRProgressHUD.showSuccess(withMessage: "連接成功".localized())
+        KRProgressHUD.set(duration: 0.75)
+        if self.parent?.parent is RSideViewController {
+            self.pop()
+        } else {
+            let left = MenuViewController.fromStoryboard()
+            let main = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainNavigation")
+            let vc = RSideViewController(leftViewController: left, mainViewController: main)
+            self.present(vc, animated: false, completion: nil)
+        }
+        
+        
     }
     
     private func TestAnimation() {
@@ -66,24 +123,95 @@ class BTListViewController: UIViewController {
     }
 }
 extension BTListViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        print("🍕 deviceArray = \(deviceArray)")
+        return deviceArray?.count ?? 1
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "bluetoothCell", for: indexPath)
-        cell.textLabel?.text = "XXXXXXX"
+        
+        if let deviceArray = deviceArray {
+            cell.textLabel?.text = deviceArray[indexPath.row].peripheral.name ?? "未知裝置"
+            
+        } else {
+            cell.textLabel?.text = "找不到裝置"
+        }
+        
         return cell
     }
 }
 extension BTListViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if UserInfo.share.deviceToken.isEmpty {
-            UserInfo.share.deviceToken = "77乳加巧克力"
-            self.dismiss(animated: false, completion: nil)
-        } else {
-            UserInfo.share.deviceToken = "77乳加巧克力"
-            self.pop()
+        
+        guard let model = self.deviceArray?.item(at: indexPath.row) else {
+            return
         }
+        
+        let llString = model.peripheral.identifier.uuidString
+        
+        if let macAddress = model.macAddress {
+            
+            UserDefaults.standard.set(macAddress, forKey: GlobalProperty.kLastDeviceMACADDRESS)
+            
+        } else {
+            
+            if ToolBox.setMacaddress(llString) {
+                #if DEBUG
+                print("\(#function)\nsetMacaddress success.")
+                #endif
+            } else {
+                #if DEBUG
+                print("\(#function)\nsetMacaddress fail.")
+                #endif
+            }
+        }
+        
+        if let name = model.peripheral.name {
+            UserDefaults.standard.set(model.type, forKey: name)
+        }
+
+        KRProgressHUD.set(duration: 5)
+        KRProgressHUD.show(withMessage: "正在連接...", completion: nil)
+        
+        
+        CositeaBlueTooth.instance.connect(withUUID: llString)
+        if ToolBox.savePeripheral(model) {
+            
+            print("""
+                🍾🍾
+                deviceID = \(model.deviceID ?? "no id")
+                deviceName = \(model.deviceName ?? "no name")
+                macAddress = \(model.macAddress ?? "no macAddr")
+                peripheral = \(model.peripheral)
+                """)
+            
+            let userInfo = UserInfo.share
+            
+            userInfo.deviceToken = model.deviceName ?? "未知裝置"
+            
+            perform(#selector(self.connectSuccessTimeOut), with: nil, afterDelay: 5.0)
+            
+        } else {
+            KRProgressHUD.showError(withMessage: "錯誤")
+        }
+        
+//
+//
+//
+//        if UserInfo.share.deviceToken.isEmpty {
+//            UserInfo.share.deviceToken = "77乳加巧克力"
+//            self.dismiss(animated: false, completion: nil)
+//        } else {
+//            UserInfo.share.deviceToken = "77乳加巧克力"
+//            self.pop()
+//        }
     }
 }
+
+
+
+

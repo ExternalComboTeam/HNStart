@@ -286,6 +286,9 @@
                                 <state key="normal" title="未綁定">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="bluetoothStateAction:" destination="BtW-7n-wF6" eventType="touchUpInside" id="xWF-Yg-VPA"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -323,6 +326,7 @@
                     </tabBarItem>
                     <navigationItem key="navigationItem" id="zee-IF-wRD"/>
                     <connections>
+                        <outlet property="bluetoothStateBtn" destination="sig-7O-pit" id="Hza-VL-IdI"/>
                         <outlet property="calLabel" destination="Nnh-WK-cuQ" id="Am7-J8-CGl"/>
                         <outlet property="distanceLabel" destination="FTx-0y-e6K" id="3Oy-pM-avz"/>
                         <outlet property="finishedLabel" destination="RcI-Oh-Ewa" id="8XD-EI-vRO"/>
@@ -536,6 +540,9 @@
                                 <state key="normal" title="未綁定">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="bluetoothStateAction:" destination="bve-hi-SRK" eventType="touchUpInside" id="syS-C9-Z9B"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bZS-0M-s2Y">
                                 <rect key="frame" x="44" y="350" width="1" height="268"/>
@@ -837,6 +844,7 @@
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <connections>
+                        <outlet property="bluetoothStateBtn" destination="cDe-HQ-gHT" id="o0v-tF-TOP"/>
                         <outlet property="progressContainer" destination="dEY-la-wFT" id="kcT-O2-n0O"/>
                         <outlet property="sportTableView" destination="uyJ-ob-faz" id="MMh-sA-hWv"/>
                         <outlet property="statusStackView" destination="2DA-5F-qxa" id="J5d-46-Wss"/>
@@ -941,6 +949,9 @@
                                 <state key="normal" title="未綁定">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="bluetoothStateAction:" destination="xzF-JN-tCL" eventType="touchUpInside" id="oAQ-tw-pth"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="CXZ-zV-jj4">
                                 <rect key="frame" x="10" y="403.5" width="355" height="180"/>
@@ -1097,6 +1108,7 @@
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <connections>
+                        <outlet property="bluetoothStateBtn" destination="qZK-Xd-kWe" id="B4e-XM-J7S"/>
                         <outlet property="finishedLabel" destination="7ft-x1-zCK" id="Ncv-FE-Bxm"/>
                         <outlet property="progressContainer" destination="A9I-0d-KLc" id="Zf7-Qn-jhV"/>
                         <outlet property="shallowLabel" destination="qgU-I2-2FP" id="OvC-qO-4yG"/>
@@ -1766,6 +1778,9 @@
                                 <state key="normal" title="未綁定">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="bluetoothStateAction:" destination="6fT-y9-Lk2" eventType="touchUpInside" id="OQR-Qx-HZb"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="97a-ej-L3U">
                                 <rect key="frame" x="0.0" y="423" width="375" height="195"/>
@@ -1808,6 +1823,7 @@
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <connections>
+                        <outlet property="bluetoothStateBtn" destination="s7u-O0-twa" id="igr-Br-s1i"/>
                         <outlet property="chartView" destination="baK-Ik-C1u" id="gmu-8L-SUC"/>
                         <outlet property="diaLabel" destination="J05-83-Zto" id="To1-bY-dBx"/>
                         <outlet property="diaTitleLabel" destination="OIZ-wF-c2k" id="CBv-Rq-Hv7"/>
@@ -1855,6 +1871,9 @@
                                 <state key="normal" title="未綁定">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="bluetoothStateAction:" destination="7Pd-ht-oco" eventType="touchUpInside" id="6By-mU-fJq"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hiS-ox-H37">
                                 <rect key="frame" x="290" y="390.5" width="75" height="35"/>
@@ -2210,6 +2229,7 @@
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <connections>
+                        <outlet property="bluetoothStateBtn" destination="Bd8-av-qvO" id="IqE-ny-iIE"/>
                         <outlet property="chartView" destination="RvU-RC-z72" id="DcZ-gK-Pem"/>
                         <outlet property="dAfterTextField" destination="Lg2-Bt-Km4" id="9pM-QM-oOq"/>
                         <outlet property="dFastingTextField" destination="bIL-KI-kdG" id="waK-wz-DGu"/>

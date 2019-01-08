@@ -10,6 +10,7 @@ import UIKit
 import Foundation
 import Localize_Swift
 import IQKeyboardManagerSwift
+import KRProgressHUD
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,8 +23,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.customizeNavigation()
         Localize.setCurrentLanguage("tw")
 //        Localize.resetCurrentLanguageToDefault()
+        
+        KRProgressHUD.set(duration: 0.75)
+        
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
+        
+        
+        let _ = BlueToothManager.instance
+        let _ = PZBlueToothManager.instance
+        let _ = HCHCommonManager.instance
         
         return true
     }

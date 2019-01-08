@@ -58,10 +58,21 @@ enum DeviceType {
             return .none
         }
     }
+    
+    var typeNumber: Int {
+        switch self {
+        case .Wristband:
+            return 2
+        case .Watch:
+            return 1
+        case .none:
+            return 0
+        }
+    }
 }
 
-enum SexType {
-    case male
+enum SexType: Int {
+    case male = 0
     case women
     
     var apiValue: String {
@@ -72,6 +83,18 @@ enum SexType {
             return "Female"
         }
     }
+    
+    /// 原專案中，錯誤使用 male 單字，此處應為性別，
+    /// EX: 男性 male = false = 0, 女性 female = true = 1
+    var maleBool: Bool {
+        switch self {
+        case .male:
+            return false
+        case .women:
+            return true
+        }
+    }
+    
     static func get(api: String) -> SexType {
         switch api {
         case "Female":
@@ -88,6 +111,7 @@ class UserInfo: NSObject {
     }
     
     private let keychain = KeychainSwift()
+    private let ud = UserDefaults.standard
     
     var sid: String {
         set {
@@ -168,6 +192,17 @@ class UserInfo: NSObject {
         }
     }
     
+    /// 公制 = false, 英制 = true
+    var unitState: Bool {
+        get {
+            return unit == "1"
+        }
+    }
+    
+    var distansUnit: String {
+        return unitState ? "mile" : "km"
+    }
+    
     var sys: Int {
         set {
             self.keychain.set("\(newValue)", forKey: "sys")
@@ -206,9 +241,16 @@ class UserInfo: NSObject {
         }
     }
     var isConnect: Bool {
+        
+        if CositeaBlueTooth.instance.isConnected {
+            print("          userInfo.isConnected = true")
+        } else {
+            print("          userInfo.isConnected = false")
+        }
+        
         return (self.keychain.get("deviceToken") ?? "") != "未綁定".localized()
     }
-    
+
     @objc dynamic var selectedDate: Date = Date()
     var walkTarget: Int = 10000
     var sleepTarget: Int = 8
@@ -245,3 +287,6 @@ class UserInfo: NSObject {
         self.keychain.clear()
     }
 }
+
+
+

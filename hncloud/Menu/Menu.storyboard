@@ -141,6 +141,7 @@
                         <viewLayoutGuide key="safeArea" id="dBs-Zx-fum"/>
                     </view>
                     <connections>
+                        <outlet property="batteryImageView" destination="LTy-5Y-C41" id="yUH-Se-mgA"/>
                         <outlet property="batteryLabel" destination="cPE-iV-4Oz" id="ulA-VS-eea"/>
                         <outlet property="btStateLabel" destination="NMy-WN-5If" id="cvF-kE-O4Q"/>
                         <outlet property="logoutButton" destination="NXV-sL-Kdy" id="lzR-ta-jJl"/>
@@ -480,6 +481,7 @@
                         <viewLayoutGuide key="safeArea" id="SqL-OO-JEg"/>
                     </view>
                     <connections>
+                        <outlet property="captureButtonOutlet" destination="3m8-YY-miV" id="zgT-Xu-1pF"/>
                         <outlet property="capturePreview" destination="Y85-8e-L43" id="b2F-xY-gOQ"/>
                     </connections>
                 </viewController>
