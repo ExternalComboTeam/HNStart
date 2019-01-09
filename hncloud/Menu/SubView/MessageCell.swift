@@ -9,7 +9,10 @@
 import UIKit
 
 class MessageCell: UITableViewCell {
+    
+    var isMessageAlarmOpen = false
 
+    @IBOutlet weak var openSwitchOL: UISwitch!
     @IBOutlet weak var myStackView: UIStackView!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,4 +25,13 @@ class MessageCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBAction func KRProgressHUDdismissselfmyTableViewreloadData(_ sender: UISwitch) {
+        (self.parentViewController as? SettingViewController)?.isMessageAlarmOpen = sender.isOn
+        CositeaBlueTooth.instance.setSystemAlarmWithType(.SMS, state: sender.isOn.int)
+    }
+    
+    func set(isOn: Bool) {
+        self.openSwitchOL.isOn = isOn
+    }
+    
 }

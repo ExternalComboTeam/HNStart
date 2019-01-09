@@ -123,7 +123,7 @@ class MenuViewController: UIViewController {
     private func checkBandPower(_ isConnect: Bool) {
         if isConnect {
             PZBlueToothManager.instance.checkBandPower { (power) in
-                print("🔋🔋🔋  bandPower = \(power)")
+//                print("🔋🔋🔋  bandPower = \(power)")
                 
                 guard let batteryState = BatteryState(power) else { return }
                 

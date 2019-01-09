@@ -132,7 +132,7 @@ class WalkViewController: UIViewController {
         PZBlueToothManager.instance.chekCurDayAllData { (dic) in
             
             guard let dic = dic else { return }
-            print("\n🐷🐷🐷\ndic = \(dic)\n🐷🐷🐷\n")
+//            print("\n🐷🐷🐷\ndic = \(dic)\n🐷🐷🐷\n")
             let activeTime = (dic[GlobalProperty.TotalDataActivityTime_DayData_HCH] as? String ?? "0").int ?? 0
             let h = activeTime / 60
             let m = activeTime % 60

@@ -9,6 +9,10 @@
 import UIKit
 
 class SetRemindCell: UITableViewCell {
+    
+    
+    var exitArray: [String] = []
+    
 
     @IBOutlet weak var myStackView: UIStackView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -21,6 +25,7 @@ class SetRemindCell: UITableViewCell {
             break
         case .sit:
             let vc = SedentaryViewController.fromStoryboard()
+            vc.exitArray = self.exitArray
             self.parentViewController?.push(vc: vc)
             break
         default:

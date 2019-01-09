@@ -133,6 +133,8 @@
 		B302549721DD092400A2AB89 /* WeatherDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = B302548121DD092400A2AB89 /* WeatherDays.swift */; };
 		B302549821DD092400A2AB89 /* WeatherDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = B302548221DD092400A2AB89 /* WeatherDay.swift */; };
 		B302549921DD092400A2AB89 /* PZWeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B302548321DD092400A2AB89 /* PZWeatherModel.swift */; };
+		B30A854A21E61EFD00C2DC00 /* SedentaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30A854821E61EFD00C2DC00 /* SedentaryCell.swift */; };
+		B30A854B21E61EFD00C2DC00 /* SedentaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B30A854921E61EFD00C2DC00 /* SedentaryCell.xib */; };
 		B322199A21E0D3F9000BF41B /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B322199921E0D3F9000BF41B /* StringExtension.swift */; };
 		C3AE5E9795ADE7C7E338C963 /* Pods_hncloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 161B2F5FB10DFE3167099D5D /* Pods_hncloud.framework */; };
 		E61EC6C206348E36F10E557A /* Pods_hncloudUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D90FFE7834698DED6988CFE5 /* Pods_hncloudUITests.framework */; };
@@ -294,6 +296,8 @@
 		B302548121DD092400A2AB89 /* WeatherDays.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherDays.swift; sourceTree = "<group>"; };
 		B302548221DD092400A2AB89 /* WeatherDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherDay.swift; sourceTree = "<group>"; };
 		B302548321DD092400A2AB89 /* PZWeatherModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PZWeatherModel.swift; sourceTree = "<group>"; };
+		B30A854821E61EFD00C2DC00 /* SedentaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SedentaryCell.swift; sourceTree = "<group>"; };
+		B30A854921E61EFD00C2DC00 /* SedentaryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SedentaryCell.xib; sourceTree = "<group>"; };
 		B322199921E0D3F9000BF41B /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		D90FFE7834698DED6988CFE5 /* Pods_hncloudUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hncloudUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDD6C5804E0659E8E99BB9C8 /* Pods_hncloudTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hncloudTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -418,6 +422,8 @@
 				9D6318B421E1B4B70073C1BD /* MessageCell.swift */,
 				9D11BF3921E1C9CA0081A1C1 /* SetRemindCell.xib */,
 				9D11BF3B21E1C9E60081A1C1 /* SetRemindCell.swift */,
+				B30A854921E61EFD00C2DC00 /* SedentaryCell.xib */,
+				B30A854821E61EFD00C2DC00 /* SedentaryCell.swift */,
 				9D93F46321E1EC8A00E34100 /* TimeCell.swift */,
 			);
 			path = SubView;
@@ -814,6 +820,7 @@
 				9D1F890521D14B440033721E /* Login.storyboard in Resources */,
 				9D6E271D21D1072C00F22ABD /* LaunchScreen.storyboard in Resources */,
 				9D297A1521D4AF4E00E34260 /* DS-DIGIB.TTF in Resources */,
+				B30A854B21E61EFD00C2DC00 /* SedentaryCell.xib in Resources */,
 				9D6E271A21D1072C00F22ABD /* Assets.xcassets in Resources */,
 				9D6E271821D1072B00F22ABD /* Main.storyboard in Resources */,
 				9D5F396121DE8E080089C423 /* RSegmentCell.xib in Resources */,
@@ -987,6 +994,7 @@
 				9DED548721D500E30060B4B8 /* HealthAPI.swift in Sources */,
 				B302549121DD092400A2AB89 /* SedentaryModel.swift in Sources */,
 				9DED548521D4FD050060B4B8 /* MedicineAPI.swift in Sources */,
+				B30A854A21E61EFD00C2DC00 /* SedentaryCell.swift in Sources */,
 				9DED548321D4F9640060B4B8 /* UserInfoAPI.swift in Sources */,
 				B302548D21DD092400A2AB89 /* ddd.swift in Sources */,
 				9D86988821D64B8700892773 /* SugerViewController.swift in Sources */,

@@ -109,7 +109,7 @@ class PZBlueToothManager: NSObject {
             guard let model = model else { return }
             
             let dic = self?.saveAllDayData(with: model)
-            print("\n🐷🐷🐷\ndic = \(dic)\n🐷🐷🐷\n")
+//            print("\n🐷🐷🐷\ndic = \(dic)\n🐷🐷🐷\n")
             DispatchQueue.main.async(execute: {
                 if model.timeSeconds == Int(TimeCallManager.instance.getSecondsOfCurDay()) {
                     //if dayTotalDataBlock

@@ -1004,7 +1004,6 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
     
     
     
-    
 
     
     // MARK: -- 接收蓝牙数据
@@ -1257,20 +1256,20 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
                 
                 #warning("不確定是否正確 - Not sure if it is correct.")
                 
-                var stepCount: UInt32 = UInt32(transDat[8..<12].reduce(0, +))
+                var stepCount: UInt32 = combine(transDat, range: 8..<12)
 //                var stepCount: UInt32 = self.combineData(withAddr: ToolBox.byte(&transDat, add: 8), andLength: 4)
 
-                var meterCount: UInt32 = UInt32(transDat[12..<16].reduce(0, +))
+                var meterCount: UInt32 = combine(transDat, range: 12..<16)
 
-                var costCount: UInt32 = UInt32(transDat[16..<20].reduce(0, +))
+                var costCount: UInt32 = combine(transDat, range: 16..<20)
                 
-                var activity: UInt32 = UInt32(transDat[20..<24].reduce(0, +))
+                var activity: UInt32 = combine(transDat, range: 20..<24)
                 
-                var activityCosts: UInt32 = UInt32(transDat[24..<28].reduce(0, +))
+                var activityCosts: UInt32 = combine(transDat, range: 24..<28)
                 
-                var calmtime: UInt32 = UInt32(transDat[28..<32].reduce(0, +))
+                var calmtime: UInt32 = combine(transDat, range: 28..<32)
                 
-                var calmtimeCosts: UInt32 = UInt32(transDat[32..<36].reduce(0, +))
+                var calmtimeCosts: UInt32 = combine(transDat, range: 32..<36)
 //                var stepCount: uint = self.combineData(withAddr: transDat + 8, andLength: 4)
 //                var meterCount: uint = self.combineData(withAddr: Int(transDat ?? 0) + 16, andLength: 4)
 //                var costCount: uint = self.combineData(withAddr: Int(transDat ?? 0) + 12, andLength: 4)

@@ -66,6 +66,9 @@
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a9r-by-YS8">
                                         <rect key="frame" x="310" y="39" width="51" height="31"/>
                                         <color key="onTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="KRProgressHUDdismissselfmyTableViewreloadData:" destination="3h6-Ny-KKE" eventType="valueChanged" id="jkd-Xg-yUQ"/>
+                                        </connections>
                                     </switch>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -89,6 +92,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="myStackView" destination="3Vs-mK-JtS" id="SwT-Gb-pEv"/>
+                <outlet property="openSwitchOL" destination="a9r-by-YS8" id="1xa-of-cis"/>
             </connections>
             <point key="canvasLocation" x="173.59999999999999" y="246.9265367316342"/>
         </tableViewCell>
