@@ -40,12 +40,12 @@ class AboutViewController: UIViewController {
         
         self.setBandFirmwareVersion()
         
-        let descriptionLabel: UILabel = UILabel(text: "產品說明")
+        let descriptionLabel: UILabel = UILabel(text: "說明".localized())
         descriptionLabel.sizeToFit()
         descriptionLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         self.descriptionText.leftView = descriptionLabel
         self.descriptionText.leftViewMode = .always
-        
+        self.descriptionText.delegate = self
         self.appVersion.text = self.version
     }
 
@@ -72,5 +72,12 @@ class AboutViewController: UIViewController {
                 self?.deviceVersion.text = deviceVersionText
             }
         }
+    }
+}
+extension AboutViewController: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        return false
     }
 }

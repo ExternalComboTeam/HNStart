@@ -81,6 +81,7 @@ class MenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.logoutButton.setTitle("登出".localized(), for: .normal)
         self.menuTableView.dataSource = self
         self.menuTableView.delegate = self
         self.setMenuArray(with: UserInfo.share.deviceType)

@@ -27,7 +27,7 @@ class LoginMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.loginButton.setTitle("登入".localized(), for: .normal)
+        self.loginButton.setTitle("登錄".localized(), for: .normal)
         self.registerButton.setTitle("註冊".localized(), for: .normal)
     }
     override func viewWillAppear(_ animated: Bool) {

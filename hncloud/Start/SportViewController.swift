@@ -124,7 +124,7 @@ class SportViewController: UIViewController {
                 guard let uuid = UserDefaults.standard.string(forKey: GlobalProperty.kLastDeviceUUID) else {
                     
                     self.bluetoothStateBtn.isEnabled = true
-                    self.bluetoothStateBtn.setTitle("未綁定", for: .normal)
+                    self.bluetoothStateBtn.setTitle("未綁定".localized(), for: .normal)
                     return
                 }
                 
@@ -132,13 +132,13 @@ class SportViewController: UIViewController {
                 
                 CositeaBlueTooth.instance.connectedStateChanged(with: { (stateNum) in
                     if stateNum == 1 {
-                        self.bluetoothStateBtn.setTitle("已連接", for: .normal)
+                        self.bluetoothStateBtn.setTitle("已連接".localized(), for: .normal)
                         self.perform(#selector(self.hideBluetoothStateBtn), with: nil, afterDelay: 1.0)
                     }
                 })
             default:
                 self.bluetoothStateBtn.isEnabled = true
-                self.bluetoothStateBtn.setTitle("未綁定", for: .normal)
+                self.bluetoothStateBtn.setTitle("未綁定".localized(), for: .normal)
                 
             }
         }

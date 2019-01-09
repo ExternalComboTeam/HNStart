@@ -15,6 +15,7 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var calendarTitle: UILabel!
     @IBOutlet weak var menuView: CVCalendarMenuView!
     @IBOutlet weak var calendarView: CVCalendarView!
+    @IBOutlet weak var myTableView: UITableView!
     
     private var currentCalendar: Calendar?
     
@@ -56,6 +57,8 @@ class CalendarViewController: UIViewController {
         self.menuView.delegate = self
         self.calendarView.delegate = self
         self.calendarTitle.text = CVDate(date: Date()).convertedDate()?.string(withFormat: "yyyy / MM")
+        
+        self.myTableView.dataSource = self
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -115,14 +118,36 @@ extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDele
             self.view.insertSubview(updatedMonthLabel, aboveSubview: self.calendarTitle)
         }
     }
+    func didSelectDayView(_ dayView: DayView, animationDidFinish: Bool) {
+        self.myTableView.isHidden = !self.myTableView.isHidden
+    }
 }
 extension CalendarViewController: JMDropMenuDelegate {
     func didSelectRow(at index: Int, title: String!, image: String!) {
         if index == 0 {
-            let vc = SearchMedicineViewController.fromStoryboard()
-            self.push(vc: vc)
+            let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            alert.addAction(title: "自訂用藥".localized(), style: .default, isEnabled: true) { (sender) in
+                let vc = SearchMedicineViewController.fromStoryboard()
+                self.push(vc: vc)
+            }
+            alert.addAction(title: "QR Code".localized(), style: .default, isEnabled: true) { (sender) in
+                let vc = QRCodeScanViewController.fromStoryboard()
+                self.push(vc: vc)
+            }
+            alert.addAction(title: "取消".localized(), style: .cancel, isEnabled: true, handler: nil)
+            self.present(alert, animated: true, completion: nil)
         } else {
             
         }
+    }
+}
+extension CalendarViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "useCell", for: indexPath)
+        
+        return cell
     }
 }

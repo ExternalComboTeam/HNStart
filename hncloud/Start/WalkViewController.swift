@@ -43,6 +43,8 @@ class WalkViewController: UIViewController {
         self.push(vc: vc)
     }
     @IBAction func walkRecord(_ sender: Any) {
+        let vc = WalkChartViewController.fromStoryboard()
+        self.push(vc: vc)
     }
     
     @IBAction func bluetoothStateAction(_ sender: Any) {
@@ -57,7 +59,7 @@ class WalkViewController: UIViewController {
         self.setCal(value: 0)
         self.setDistance(value: "0")
         self.setTime(hour: 0, min: 0)
-        
+        self.finishedLabel.text = "完成度".localized() + " 0%"
         guard let progressView = self.progressView else { return }
         self.progressContainer.addSubview(progressView)
     }
@@ -152,7 +154,7 @@ class WalkViewController: UIViewController {
             
             let finished = stepPlan != 0 ? steps / stepPlan * 100 : 100
             
-            self.finishedLabel.text = "完成度 \(finished)%"
+            self.finishedLabel.text = "完成度".localized() + " \(finished)%"
             self.progressView?.progress = CGFloat(finished) / 100
         }
         
@@ -180,12 +182,12 @@ class WalkViewController: UIViewController {
             switch state {
                 
             case .poweredOn:
-                self.bluetoothStateBtn.setTitle("連接中...", for: .normal)
+                self.bluetoothStateBtn.setTitle("連接中...".localized(), for: .normal)
                 
                 guard let uuid = UserDefaults.standard.string(forKey: GlobalProperty.kLastDeviceUUID) else {
                     
                     self.bluetoothStateBtn.isEnabled = true
-                    self.bluetoothStateBtn.setTitle("未綁定", for: .normal)
+                    self.bluetoothStateBtn.setTitle("未綁定".localized(), for: .normal)
                     return
                 }
                 
@@ -194,13 +196,13 @@ class WalkViewController: UIViewController {
                 CositeaBlueTooth.instance.connectedStateChanged(with: { (stateNum) in
                     self.setAllValue()
                     if stateNum == 1 {
-                        self.bluetoothStateBtn.setTitle("已連接", for: .normal)
+                        self.bluetoothStateBtn.setTitle("已連接".localized(), for: .normal)
                         self.perform(#selector(self.hideBluetoothStateBtn), with: nil, afterDelay: 1.0)
                     }
                 })
             default:
                 self.bluetoothStateBtn.isEnabled = true
-                self.bluetoothStateBtn.setTitle("未綁定", for: .normal)
+                self.bluetoothStateBtn.setTitle("未綁定".localized(), for: .normal)
                 
             }
         }

@@ -33,7 +33,7 @@ class HeartViewController: UIViewController {
 
         self.sysTitleLabel.text = "收縮壓".localized()
         self.diaTitleLabel.text = "舒張壓".localized()
-        self.ratTitleLabel.text = "心律".localized()
+        self.ratTitleLabel.text = "心率".localized()
         
         self.setSPO(value: 0)
         
@@ -122,7 +122,7 @@ class HeartViewController: UIViewController {
             return ChartDataEntry(x: Double(i), y: val, icon: UIImage(named: "sport_button")?.scaled(toWidth: 10))
         }
         
-        let set1 = LineChartDataSet(values: yVals1, label: "收縮壓")
+        let set1 = LineChartDataSet(values: yVals1, label: "收縮壓".localized())
         set1.axisDependency = .left
         set1.setColor(.clear)
         set1.drawCircleHoleEnabled = false
@@ -141,7 +141,7 @@ class HeartViewController: UIViewController {
         set2.setCircleColor(.clear)
         set2.drawCircleHoleEnabled = false
         
-        let set3 = LineChartDataSet(values: yVals3, label: "舒張壓")
+        let set3 = LineChartDataSet(values: yVals3, label: "舒張壓".localized())
         set3.axisDependency = .right
         set3.setColor(.clear)
         set3.drawCircleHoleEnabled = false
@@ -187,12 +187,12 @@ class HeartViewController: UIViewController {
             switch state {
                 
             case .poweredOn:
-                self.bluetoothStateBtn.setTitle("連接中...", for: .normal)
+                self.bluetoothStateBtn.setTitle("連接中...".localized(), for: .normal)
                 
                 guard let uuid = UserDefaults.standard.string(forKey: GlobalProperty.kLastDeviceUUID) else {
                     
                     self.bluetoothStateBtn.isEnabled = true
-                    self.bluetoothStateBtn.setTitle("未綁定", for: .normal)
+                    self.bluetoothStateBtn.setTitle("未綁定".localized(), for: .normal)
                     return
                 }
                 
@@ -200,13 +200,13 @@ class HeartViewController: UIViewController {
                 
                 CositeaBlueTooth.instance.connectedStateChanged(with: { (stateNum) in
                     if stateNum == 1 {
-                        self.bluetoothStateBtn.setTitle("已連接", for: .normal)
+                        self.bluetoothStateBtn.setTitle("已連接".localized(), for: .normal)
                         self.perform(#selector(self.hideBluetoothStateBtn), with: nil, afterDelay: 1.0)
                     }
                 })
             default:
                 self.bluetoothStateBtn.isEnabled = true
-                self.bluetoothStateBtn.setTitle("未綁定", for: .normal)
+                self.bluetoothStateBtn.setTitle("未綁定".localized(), for: .normal)
                 
             }
         }

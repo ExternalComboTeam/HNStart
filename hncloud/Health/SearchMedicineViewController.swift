@@ -48,6 +48,8 @@ extension SearchMedicineViewController: UITableViewDataSource{
 }
 extension SearchMedicineViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let vc = ArrangeViewController.fromStoryboard()
+        vc.medicineValue = self.array[indexPath.row]
+        self.push(vc: vc)
     }
 }

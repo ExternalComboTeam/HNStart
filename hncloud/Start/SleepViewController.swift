@@ -38,6 +38,8 @@ class SleepViewController: UIViewController {
         self.push(vc: vc)
     }
     @IBAction func curve(_ sender: UIButton) {
+        let vc = SleepChartsViewController.fromStoryboard()
+        self.push(vc: vc)
     }
     
     @IBAction func bluetoothStateAction(_ sender: Any) {
@@ -85,28 +87,28 @@ class SleepViewController: UIViewController {
     
     /// 設定深睡時間
     func setWellSleepTime(_ hour: Int, min: Int) {
-        wellSleepLabel.text = "\(hour)h\(min)min\n深睡"
+        wellSleepLabel.text = "\(hour)h\(min)min\n" + "深睡".localized()
     }
     
     /// 設定淺睡時間
     func setShallowSleepTime(_ hour: Int, min: Int) {
-        shallowLabel.text = "\(hour)h\(min)min\n淺睡"
+        shallowLabel.text = "\(hour)h\(min)min\n" + "淺睡".localized()
     }
     
     /// 設定清醒時間
     func setWakeTime(_ hour: Int, min: Int) {
-        wakeLabel.text = "\(hour)h\(min)min\n清醒"
+        wakeLabel.text = "\(hour)h\(min)min\n" + "清醒".localized()
     }
     
     /// 設定睡眠品質
     func setSleepState(sleepTotalCount: Int) {
-        let text = "\n睡眠品質"
+        let text = "\n" + "睡眠品質".localized()
         if sleepTotalCount < 36 {
-            sleepStateLabel.text = "偏少" + text
+            sleepStateLabel.text = "偏少".localized() + text
         } else if sleepTotalCount < 54 {
-            sleepStateLabel.text = "正常" + text
+            sleepStateLabel.text = "正常".localized() + text
         } else {
-            sleepStateLabel.text = "充裕" + text
+            sleepStateLabel.text = "充裕".localized() + text
         }
     }
     
@@ -127,12 +129,12 @@ class SleepViewController: UIViewController {
             switch state {
                 
             case .poweredOn:
-                self.bluetoothStateBtn.setTitle("連接中...", for: .normal)
+                self.bluetoothStateBtn.setTitle("連接中...".localized(), for: .normal)
                 
                 guard let uuid = UserDefaults.standard.string(forKey: GlobalProperty.kLastDeviceUUID) else {
                     
                     self.bluetoothStateBtn.isEnabled = true
-                    self.bluetoothStateBtn.setTitle("未綁定", for: .normal)
+                    self.bluetoothStateBtn.setTitle("未綁定".localized(), for: .normal)
                     return
                 }
                 
@@ -140,13 +142,13 @@ class SleepViewController: UIViewController {
                 
                 CositeaBlueTooth.instance.connectedStateChanged(with: { (stateNum) in
                     if stateNum == 1 {
-                        self.bluetoothStateBtn.setTitle("已連接", for: .normal)
+                        self.bluetoothStateBtn.setTitle("已連接".localized(), for: .normal)
                         self.perform(#selector(self.hideBluetoothStateBtn), with: nil, afterDelay: 1.0)
                     }
                 })
             default:
                 self.bluetoothStateBtn.isEnabled = true
-                self.bluetoothStateBtn.setTitle("未綁定", for: .normal)
+                self.bluetoothStateBtn.setTitle("未綁定".localized(), for: .normal)
                 
             }
         }
