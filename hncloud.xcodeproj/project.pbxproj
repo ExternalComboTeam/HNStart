@@ -36,6 +36,7 @@
 		9D297A1521D4AF4E00E34260 /* DS-DIGIB.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 9D297A1421D4AF4E00E34260 /* DS-DIGIB.TTF */; };
 		9D2B806721D7B39600F63685 /* SportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2B806621D7B39600F63685 /* SportCell.swift */; };
 		9D36720021E2765D003228E4 /* SleepChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3671FF21E2765D003228E4 /* SleepChartsViewController.swift */; };
+		9D5BEFFC21E64152002FA27B /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5BEFFB21E64152002FA27B /* UILabelExtension.swift */; };
 		9D5F394621DE4A030089C423 /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D5F394521DE4A030089C423 /* SwitchCell.xib */; };
 		9D5F394821DE4B5D0089C423 /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5F394721DE4B5D0089C423 /* SwitchCell.swift */; };
 		9D5F394E21DE755A0089C423 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5F394D21DE755A0089C423 /* CameraController.swift */; };
@@ -202,6 +203,7 @@
 		9D297A1421D4AF4E00E34260 /* DS-DIGIB.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DS-DIGIB.TTF"; sourceTree = "<group>"; };
 		9D2B806621D7B39600F63685 /* SportCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportCell.swift; sourceTree = "<group>"; };
 		9D3671FF21E2765D003228E4 /* SleepChartsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepChartsViewController.swift; sourceTree = "<group>"; };
+		9D5BEFFB21E64152002FA27B /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
 		9D5F394521DE4A030089C423 /* SwitchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchCell.xib; sourceTree = "<group>"; };
 		9D5F394721DE4B5D0089C423 /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
 		9D5F394D21DE755A0089C423 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
@@ -377,6 +379,7 @@
 		9D1F88F921D116BF0033721E /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				9D5BEFFB21E64152002FA27B /* UILabelExtension.swift */,
 				9D202F4A21E4DD3C005A42CA /* StringExtension.swift */,
 				B302546521DD090F00A2AB89 /* AllTool.swift */,
 				B302546421DD090F00A2AB89 /* BLETool.swift */,
@@ -1022,6 +1025,7 @@
 				B302546721DD090F00A2AB89 /* BLETool.swift in Sources */,
 				9DD4CB9321D1A8CE00C15430 /* UserInfoViewController.swift in Sources */,
 				9D7D474221DF9DB900613C05 /* SearchMedicineViewController.swift in Sources */,
+				9D5BEFFC21E64152002FA27B /* UILabelExtension.swift in Sources */,
 				9DA359BB21D3ECF10090A7DD /* BTListViewController.swift in Sources */,
 				9D5F395021DE831E0089C423 /* CalendarViewController.swift in Sources */,
 				9D297A1321D4AAC600E34260 /* ArrayExtension.swift in Sources */,

@@ -21,7 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         self.customizeNavigation()
-        Localize.setCurrentLanguage("tw")
+        print(Localize.availableLanguages())
+//        Localize.setCurrentLanguage("en")
 //        Localize.resetCurrentLanguageToDefault()
         
         KRProgressHUD.set(duration: 0.75)

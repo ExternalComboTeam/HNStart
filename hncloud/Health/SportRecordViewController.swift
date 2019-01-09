@@ -19,12 +19,22 @@ class SportRecordViewController: UIViewController {
     @IBOutlet weak var heatLabel: UILabel!
     @IBOutlet weak var powerTitleLabel: UILabel!
     @IBOutlet weak var powerLabel: UILabel!
+    @IBOutlet weak var totalTimeTitleLabel: UILabel!
     @IBOutlet weak var sportTimeLabel: UILabel!
+    @IBOutlet weak var title_1: UILabel!
+    @IBOutlet weak var title_2: UILabel!
+    @IBOutlet weak var title_3: UILabel!
+    @IBOutlet weak var title_4: UILabel!
     
+    @IBOutlet weak var label_1: UILabel!
     @IBOutlet weak var rate_1: UILabel!
+    @IBOutlet weak var label_2: UILabel!
     @IBOutlet weak var rate_2: UILabel!
+    @IBOutlet weak var label_3: UILabel!
     @IBOutlet weak var rate_3: UILabel!
+    @IBOutlet weak var label_4: UILabel!
     @IBOutlet weak var rate_4: UILabel!
+    @IBOutlet weak var label_5: UILabel!
     @IBOutlet weak var rate_5: UILabel!
     
     private lazy var progressView: ZZCircleProgress? = {
@@ -78,9 +88,21 @@ class SportRecordViewController: UIViewController {
         self.setBackButton(title: "")
         self.setRate()
         
-        self.avgRateTitleLabel.text = "平均心律".localized()
-        self.heatTitleLabel.text = "熱量".localized()
-        self.sportTimeLabel.text = "運動強度".localized()
+        self.avgRateTitleLabel.text = "平均心率".localized()
+        self.heatTitleLabel.text = "熱耗".localized()
+        self.powerTitleLabel.text = "運動強度".localized()
+        
+        self.totalTimeTitleLabel.text = "總運動持續時間".localized()
+        self.title_1.text = "運動強度".localized()
+        self.title_2.text = "心率區間".localized()
+        self.title_3.text = "時長".localized()
+        self.title_4.text = "百分比".localized()
+        
+        self.label_1.text = "熱身".localized()
+        self.label_2.text = "脂肪燃燒".localized()
+        self.label_3.text = "有氧".localized()
+        self.label_4.text = "無氧".localized()
+        self.label_5.text = "極限".localized()
         
         self.setAvgRate(value: 0)
         self.setHeat(value: 0)

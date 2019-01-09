@@ -156,7 +156,7 @@ class UserInfoViewController: UIViewController {
         picketActionSheet.addAction(title: "相機".localized()) { (sender) in
             self.initCameraPicker()
         }
-        picketActionSheet.addAction(title: "取消", style: .cancel)
+        picketActionSheet.addAction(title: "取消".localized(), style: .cancel)
         self.present(picketActionSheet, animated: true, completion: nil)
     }
     private func initPhotoPicker() {

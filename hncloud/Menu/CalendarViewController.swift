@@ -130,10 +130,11 @@ extension CalendarViewController: JMDropMenuDelegate {
                 let vc = SearchMedicineViewController.fromStoryboard()
                 self.push(vc: vc)
             }
-            alert.addAction(title: "QR Code", style: .default, isEnabled: true) { (sender) in
+            alert.addAction(title: "QR Code".localized(), style: .default, isEnabled: true) { (sender) in
                 let vc = QRCodeScanViewController.fromStoryboard()
                 self.push(vc: vc)
             }
+            alert.addAction(title: "取消".localized(), style: .cancel, isEnabled: true, handler: nil)
             self.present(alert, animated: true, completion: nil)
         } else {
             

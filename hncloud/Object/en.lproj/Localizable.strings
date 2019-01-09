@@ -88,8 +88,8 @@
 "已連接"="Connected";
 "未連接"="Not connected";
 "安全、 方便、 穩定的智慧運動手鐲"="Safe, convenient, and stable smart sport APP";
-"App版本︰"="APP V:";
-"韌體版本︰"="Firmware V:";
+"App版本"="APP V:";
+"韌體版本"="Firmware V:";
 "檢查升級"="check update";
 "設置相應的目標，根據個人的資料"="Set up the corresponding goal according to personal data";
 "移動目標"="steps target";
@@ -254,7 +254,7 @@
 "遠程拍照"="Remote camera";
 "生日"="Birthday";
 "舒張壓"="diastolic pressure";
-"收缩壓"="systolic pressure";
+"收縮壓"="systolic pressure";
 "健康"="Healthy";
 "是否保存運動"="save movement data or not?";
 "請選擇設備類型"="choose device type";
@@ -302,3 +302,4 @@
 "姓名："="Name:";
 "門診日期："="Medical treatment date:";
 "下次領藥時間："="Next Time:";
+"今日"="Today";
