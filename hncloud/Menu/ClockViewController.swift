@@ -80,7 +80,20 @@ extension ClockViewController: ClockTypeDelegate {
     func selectType(_ type: ClockType) {
         switch type {
         case .custom:
-            self.clockTypeLabel.text = "自訂"
+            let alert = UIAlertController(title: "自訂".localized(), message: nil, preferredStyle: .alert)
+            alert.addTextField { (textField) in
+            }
+            alert.addAction(title: "確定".localized(), style: .default, isEnabled: true) { (sender) in
+                self.clockTypeLabel.text = alert.textFields?.first?.text ?? ""
+            }
+            alert.addAction(title: "取消".localized(), style: .default, isEnabled: true) { (sender) in
+                
+            }
+            DispatchQueue.main.async {
+                self.present(alert, animated: true, completion: nil)
+            }
+            
+            //self.clockTypeLabel.text = "自訂"
         default:
             self.clockTypeLabel.text = type.name
         }
