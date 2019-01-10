@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2611E1274A8A32DEAB526A5F /* Pods_hncloudTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDD6C5804E0659E8E99BB9C8 /* Pods_hncloudTests.framework */; };
+		9D07242321E7819500D592C7 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D07242221E7819500D592C7 /* DBManager.swift */; };
 		9D11BF3A21E1C9CA0081A1C1 /* SetRemindCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D11BF3921E1C9CA0081A1C1 /* SetRemindCell.xib */; };
 		9D11BF3C21E1C9E60081A1C1 /* SetRemindCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D11BF3B21E1C9E60081A1C1 /* SetRemindCell.swift */; };
 		9D11BF3E21E1CC810081A1C1 /* ClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D11BF3D21E1CC810081A1C1 /* ClockViewController.swift */; };
@@ -148,7 +149,6 @@
 		B302549921DD092400A2AB89 /* PZWeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B302548321DD092400A2AB89 /* PZWeatherModel.swift */; };
 		B30A854A21E61EFD00C2DC00 /* SedentaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30A854821E61EFD00C2DC00 /* SedentaryCell.swift */; };
 		B30A854B21E61EFD00C2DC00 /* SedentaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B30A854921E61EFD00C2DC00 /* SedentaryCell.xib */; };
-		B322199A21E0D3F9000BF41B /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B322199921E0D3F9000BF41B /* StringExtension.swift */; };
 		C3AE5E9795ADE7C7E338C963 /* Pods_hncloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 161B2F5FB10DFE3167099D5D /* Pods_hncloud.framework */; };
 		E61EC6C206348E36F10E557A /* Pods_hncloudUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D90FFE7834698DED6988CFE5 /* Pods_hncloudUITests.framework */; };
 /* End PBXBuildFile section */
@@ -178,6 +178,7 @@
 		750F9C00256D612CA733412B /* Pods-hncloudTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hncloudTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hncloudTests/Pods-hncloudTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8DA28C34E687286295953C7E /* Pods-hncloudUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hncloudUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-hncloudUITests/Pods-hncloudUITests.release.xcconfig"; sourceTree = "<group>"; };
 		91ADE0113789BF5F1D218A7F /* Pods-hncloudUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hncloudUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hncloudUITests/Pods-hncloudUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9D07242221E7819500D592C7 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		9D11BF3921E1C9CA0081A1C1 /* SetRemindCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetRemindCell.xib; sourceTree = "<group>"; };
 		9D11BF3B21E1C9E60081A1C1 /* SetRemindCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetRemindCell.swift; sourceTree = "<group>"; };
 		9D11BF3D21E1CC810081A1C1 /* ClockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockViewController.swift; sourceTree = "<group>"; };
@@ -328,7 +329,6 @@
 		B302548321DD092400A2AB89 /* PZWeatherModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PZWeatherModel.swift; sourceTree = "<group>"; };
 		B30A854821E61EFD00C2DC00 /* SedentaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SedentaryCell.swift; sourceTree = "<group>"; };
 		B30A854921E61EFD00C2DC00 /* SedentaryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SedentaryCell.xib; sourceTree = "<group>"; };
-		B322199921E0D3F9000BF41B /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		D90FFE7834698DED6988CFE5 /* Pods_hncloudUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hncloudUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDD6C5804E0659E8E99BB9C8 /* Pods_hncloudTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hncloudTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -372,6 +372,14 @@
 				8DA28C34E687286295953C7E /* Pods-hncloudUITests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		9D07242121E7817F00D592C7 /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				9D07242221E7819500D592C7 /* DBManager.swift */,
+			);
+			path = DB;
 			sourceTree = "<group>";
 		};
 		9D1426C221E3886B0093A492 /* DataModel */ = {
@@ -529,6 +537,7 @@
 		9D6E271121D1072B00F22ABD /* hncloud */ = {
 			isa = PBXGroup;
 			children = (
+				9D07242121E7817F00D592C7 /* DB */,
 				9DC3B7D721D73BA9001DD0E4 /* Health */,
 				9DD4CBA921D294F300C15430 /* Start */,
 				9DD4CBA021D27A3600C15430 /* Menu */,
@@ -1023,6 +1032,7 @@
 				B302549921DD092400A2AB89 /* PZWeatherModel.swift in Sources */,
 				9D5F396721DE8E080089C423 /* RPluginTabBar.swift in Sources */,
 				9D2226AC21E12FEA0087B66A /* SettingCell.swift in Sources */,
+				9D07242321E7819500D592C7 /* DBManager.swift in Sources */,
 				9D11BF3E21E1CC810081A1C1 /* ClockViewController.swift in Sources */,
 				9DAF143121DBCDC3009EDB72 /* LocalExtension.swift in Sources */,
 				B302548F21DD092400A2AB89 /* CustomAlarmModel.swift in Sources */,

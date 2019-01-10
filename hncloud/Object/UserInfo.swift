@@ -121,7 +121,14 @@ class UserInfo: NSObject {
             return self.keychain.get("sid") ?? ""
         }
     }
-    
+    var count: String {
+        set {
+            self.keychain.set(newValue, forKey: "count")
+        }
+        get {
+            return self.keychain.get("count") ?? ""
+        }
+    }
     var gender: SexType {
         set {
             self.keychain.set(newValue.apiValue, forKey: "gender")
@@ -281,6 +288,7 @@ class UserInfo: NSObject {
         self.unit = json["data"]["unit"].string ?? ""
         self.sys = json["data"]["sys"].int ?? json["data"]["sys"].string?.int ?? 0
         self.dia = json["data"]["dia"].int ?? json["data"]["dia"].string?.int ?? 0
+        self.count = json["data"]["id"].string ?? json["data"]["id"].int?.string ?? ""
     }
     
     func clear() {

@@ -33,6 +33,7 @@ class RegisterViewController: UIViewController {
             UserInfo.share.account = account
             UserInfo.share.email = mail
             UserInfo.share.sid = json["sid"].string ?? ""
+            UserInfo.share.count = json["id"].string ?? ""
             let vc = UserInfoViewController.fromStoryboard()
             self.push(vc: vc)
         }
