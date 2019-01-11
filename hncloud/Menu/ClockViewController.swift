@@ -154,7 +154,7 @@ extension ClockViewController: ClockTypeDelegate {
             alert.addAction(title: "確定".localized(), style: .default, isEnabled: true) { (sender) in
                 self.clockTypeLabel.text = alert.textFields?.first?.text ?? ""
             }
-            alert.addAction(title: "取消".localized(), style: .default, isEnabled: true) { (sender) in
+            alert.addAction(title: "取消".localized(), style: .default, isEnŻbled: true) { (sender) in
                 
             }
             DispatchQueue.main.async {
