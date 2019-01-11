@@ -149,6 +149,7 @@
 		B302549921DD092400A2AB89 /* PZWeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B302548321DD092400A2AB89 /* PZWeatherModel.swift */; };
 		B30A854A21E61EFD00C2DC00 /* SedentaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30A854821E61EFD00C2DC00 /* SedentaryCell.swift */; };
 		B30A854B21E61EFD00C2DC00 /* SedentaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B30A854921E61EFD00C2DC00 /* SedentaryCell.xib */; };
+		B3B90E9C21E88D0B0053CD59 /* DBObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B90E9B21E88D0B0053CD59 /* DBObject.swift */; };
 		C3AE5E9795ADE7C7E338C963 /* Pods_hncloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 161B2F5FB10DFE3167099D5D /* Pods_hncloud.framework */; };
 		E61EC6C206348E36F10E557A /* Pods_hncloudUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D90FFE7834698DED6988CFE5 /* Pods_hncloudUITests.framework */; };
 /* End PBXBuildFile section */
@@ -329,6 +330,7 @@
 		B302548321DD092400A2AB89 /* PZWeatherModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PZWeatherModel.swift; sourceTree = "<group>"; };
 		B30A854821E61EFD00C2DC00 /* SedentaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SedentaryCell.swift; sourceTree = "<group>"; };
 		B30A854921E61EFD00C2DC00 /* SedentaryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SedentaryCell.xib; sourceTree = "<group>"; };
+		B3B90E9B21E88D0B0053CD59 /* DBObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBObject.swift; sourceTree = "<group>"; };
 		D90FFE7834698DED6988CFE5 /* Pods_hncloudUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hncloudUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDD6C5804E0659E8E99BB9C8 /* Pods_hncloudTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hncloudTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -378,6 +380,7 @@
 			isa = PBXGroup;
 			children = (
 				9D07242221E7819500D592C7 /* DBManager.swift */,
+				B3B90E9B21E88D0B0053CD59 /* DBObject.swift */,
 			);
 			path = DB;
 			sourceTree = "<group>";
@@ -1081,6 +1084,7 @@
 				9DD4CB9F21D2797700C15430 /* UITableViewExtension.swift in Sources */,
 				9D5F396921DE8E080089C423 /* RPagingViewControllerPlugin.swift in Sources */,
 				9DB6ED5321E3D3F3000C68BF /* QRCodeScanViewController.swift in Sources */,
+				B3B90E9C21E88D0B0053CD59 /* DBObject.swift in Sources */,
 				9D2226A821E120CD0087B66A /* SleepMarkerView.swift in Sources */,
 				9D19B7FD21E26D9B00D1BB8B /* ManagementViewController.swift in Sources */,
 				9DED548B21D544600060B4B8 /* CameraViewController.swift in Sources */,

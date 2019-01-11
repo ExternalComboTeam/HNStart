@@ -22,152 +22,6 @@ import FMDB
 //DEVICETYPE
 //DEVICEID
 
-enum Table: Int {
-    case personInfo = 0
-    case dayTotalData
-    case bloodPressure
-    case peripheral
-
-    var name: String {
-        switch self {
-        case .personInfo:
-            return "PersonInfo"
-        case .dayTotalData:
-            return "DayTotalData"
-        case .bloodPressure:
-            return "BloodPressure"
-        case .peripheral:
-            return "Peripheral"
-
-        }
-    }
-}
-
-enum DBPersonInfo {
-    case token
-    case headImageURL
-    case bornDate
-    case sex
-    case high
-    case weight
-    
-    var key: String {
-        switch self {
-        case .token:
-            return "token"
-        case .headImageURL:
-            return "headImageURL"
-        case .bornDate:
-            return "bornDate"
-        case .sex:
-            return "sex"
-        case .high:
-            return "high"
-        case .weight:
-            return "weight"
-        }
-    }
-}
-
-enum DBDayTotalData {
-    case userName
-    case dateDate
-    case steps
-    case distance
-    case costs
-    case stepsPlan
-    case sleepPlan
-    case deepSleep
-    case lightSleep
-    case wakeSleep
-    case sleepCount
-    case dayEventCount
-    case dataWeekIndex
-    case dataActivityTime
-    case dataCalmTime
-    case dayActivityCost
-    case dayCalmCost
-    case deviceType
-    var key: String {
-        switch self {
-        case .userName:
-            return "userName"
-        case .dateDate:
-            return "dateDate"
-        case .steps:
-            return "steps"
-        case .distance:
-            return "distance"
-        case .costs:
-            return "costs"
-        case .stepsPlan:
-            return "stepsPlan"
-        case .sleepPlan:
-            return "sleepPlan"
-        case .deepSleep:
-            return "deepSleep"
-        case .lightSleep:
-            return "lightSleep"
-        case .wakeSleep:
-            return "wakeSleep"
-        case .sleepCount:
-            return "sleepCount"
-        case .dayEventCount:
-            return "dayEventCount"
-        case .dataWeekIndex:
-            return "dataWeekIndex"
-        case .dataActivityTime:
-            return "dataActivityTime"
-        case .dataCalmTime:
-            return "dataCalmTime"
-        case .dayActivityCost:
-            return "dayActivityCost"
-        case .dayCalmCost:
-            return "dayCalmCost"
-        case .deviceType:
-            return "deviceType"
-        }
-    }
-}
-
-enum DBBloodPressure {
-    case bloodPressureID
-    case currentUserName
-    case bloodPressureDate
-    case startTime
-    case systolicPressure
-    case diastolicPressure
-    case heartRateNumber
-    case spo2
-    case hrv
-    case deviceType
-    var key: String {
-        switch self {
-        case .bloodPressureID:
-            return "bloodPressureID"
-        case .currentUserName:
-            return "currentUserName"
-        case .bloodPressureDate:
-            return "bloodPressureDate"
-        case .startTime:
-            return "startTime"
-        case .systolicPressure:
-            return "systolicPressure"
-        case .diastolicPressure:
-            return "diastolicPressure"
-        case .heartRateNumber:
-            return "heartRateNumber"
-        case .spo2:
-            return "spo2"
-        case .hrv:
-            return "hrv"
-        case .deviceType:
-            return "deviceType"
-        }
-    }
-}
-
-
 
 
 class DBManager: NSObject {
@@ -212,6 +66,15 @@ class DBManager: NSObject {
     
     /// 生成 .sqlite 檔案並創建表格，只有在 .sqlite 不存在時才會建立
     func createTable() {
+        createTable(type: .personInfo)
+        createTable(type: .dayTotalData)
+        createTable(type: .bloodPressure)
+        createTable(type: .peripheral)
+        createTable(type: .onlineSport)
+    }
+    
+    private func createTable(type: Table) {
+        
         let fileManager: FileManager = FileManager.default
         
         // 判斷documents是否已存在該檔案
@@ -219,24 +82,26 @@ class DBManager: NSObject {
             
             // 開啟連線
             if self.openConnection() {
-                let createTableSQL = """
-                    CREATE TABLE \(self.dayDetail) (
-                    \(self.userNumber) TEXT,
-                    \(self.second) integer,
-                    \(self.costsData) blob,
-                    \(self.deepSleep) integer,
-                    \(self.isUp) TEXT,
-                    \(self.lightSleep) integer,
-                    \(self.pilaoData) blob,
-                    \(self.sleepData) blob,
-                    \(self.stepData) blob,
-                    \(self.heartData) blob)
-                """
+                
+                var createTableSQL: String {
+                    switch type {
+                    case .personInfo:
+                        return TableCreateData.personInfo
+                    case .dayTotalData:
+                        return TableCreateData.dayTotalData
+                    case .bloodPressure:
+                        return TableCreateData.bloodPressure
+                    case .peripheral:
+                        return TableCreateData.peripheral
+                    case .onlineSport:
+                        return TableCreateData.onlineSport
+                    }
+                }
                 self.database.executeStatements(createTableSQL)
-                print("file copy to: \(self.filePath)")
+                print("\(type.name) file copy to: \(self.filePath)")
             }
         } else {
-            print("file allready exists at path:\(self.filePath)")
+            print("\(type.name) file allready exists at path:\(self.filePath)")
         }
     }
     
@@ -261,10 +126,14 @@ class DBManager: NSObject {
     /// 新增
     func insertData(second: Int, lightSleep: Int) {
         
+        // 檢查是否存在
         if self.querySameData(second: second) {
             print("update = \(UserInfo.share.count)")
+            // 更新
            self.updateData(by: second, lightSleep: lightSleep)
         } else {
+            
+            // 新增
             print("insert = \(UserInfo.share.count)")
             guard self.openConnection() else { return }
             let insertSQL: String = "INSERT INTO \(self.dayDetail) (\(self.userNumber), \(self.second), \(self.lightSleep)) VALUES(?, ?, ?)"
@@ -276,6 +145,20 @@ class DBManager: NSObject {
             self.database.close()
         }
     }
+    
+    func insertData(with table: Table, data: [String: Any]) {
+        
+        var insertSQL: String {
+            switch table {
+            case .dayTotalData:
+                return InsertData.dayTotalData
+            default:
+                return ""
+            }
+        }
+    }
+    
+    
     /// 更新
     func updateData(by second: Int, lightSleep: Int) {
         guard self.openConnection() else { return }

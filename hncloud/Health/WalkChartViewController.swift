@@ -10,6 +10,13 @@ import UIKit
 import Charts
 
 class WalkChartViewController: UIViewController {
+    
+    var stepArray: [Double] = []
+    var kcalArray: [Double] = []
+    var heartRateArray: [Double] = []
+    var hrvArray: [Double] = []
+    
+    
 
     lazy private var shareButton: UIBarButtonItem = {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
@@ -154,6 +161,23 @@ class WalkChartViewController: UIViewController {
         super.viewDidLayoutSubviews()
         self.stepTopView.addBoard(.bottom, color: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), thickness: 1)
     }
+    
+    func runBluetooth() {
+        
+        guard CositeaBlueTooth.instance.isConnected else { return }
+
+        PZBlueToothManager.instance.checkHourStepsAndCosts { (steps, kcals) in
+            guard let steps = steps as? [Int], let kcals = kcals as? [Int] else {
+                return
+            }
+            self.stepArray = steps.map { Double($0) }
+            self.kcalArray = kcals.map { Double($0) }
+            self.setStepChart()
+        }
+        
+        PZBlueToothManager.instance.
+    }
+    
 
     private func setStepChart() {
         let leftAxis = stepChartView.leftAxis
