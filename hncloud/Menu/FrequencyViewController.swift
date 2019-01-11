@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KRProgressHUD
 
 protocol FrequencyDelegate {
     func finishEdit(up: String, lower: String)
@@ -33,7 +34,23 @@ class FrequencyViewController: UIViewController {
     
     @objc private func finishedEdit() {
         self.delegate?.finishEdit(up: self.upTextField.text ?? "", lower: self.lowerTextField.text ?? "")
-        self.pop()
+        
+        if let max = Int(self.upTextField.text ?? ""), let min = Int(self.lowerTextField.text ?? "") {
+            if max < 40 || max > 180 {
+                KRProgressHUD.showMessage("輸入的心率必須在40到180之間")
+                return
+            } else if min < 40 || min > 180 {
+                KRProgressHUD.showMessage("輸入的心率必須在40到180之間")
+                return
+            } else {
+                if max - min < 30 {
+                    KRProgressHUD.showMessage("最大心率值必須大於最小心率值30")
+                    return
+                }
+            }
+            self.pop()
+            return
+        }
     }
     
     override func viewDidLoad() {

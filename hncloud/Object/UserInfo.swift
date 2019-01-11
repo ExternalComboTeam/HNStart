@@ -221,6 +221,24 @@ class UserInfo: NSObject {
         }
     }
     
+    var warningMax: Int {
+        set {
+            self.keychain.set("\(newValue)", forKey: "warningMax")
+        }
+        get {
+            return Int(self.keychain.get("warningMax") ?? "") ?? 0
+        }
+    }
+    
+    var warningMin: Int {
+        set {
+            self.keychain.set("\(newValue)", forKey: "warningMin")
+        }
+        get {
+            return Int(self.keychain.get("warningMin") ?? "") ?? 0
+        }
+    }
+    
     @objc dynamic var deviceChange: Bool = false
     var deviceType: DeviceType {
         set {

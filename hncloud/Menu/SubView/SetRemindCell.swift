@@ -22,6 +22,7 @@ class SetRemindCell: UITableViewCell {
         case .clock:
             let vc = ClockViewController.fromStoryboard()
             self.parentViewController?.push(vc: vc)
+            vc.clockAlarmExitArray = self.exitArray
             break
         case .sit:
             let vc = SedentaryViewController.fromStoryboard()

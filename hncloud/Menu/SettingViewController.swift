@@ -41,6 +41,7 @@ class SettingViewController: UIViewController {
     
     // MARK: Clock alarm.
     var clockAlarmDataArray: [CustomAlarmModel] = []
+    var clockAlarmExitArray = ["", "", "", "", "", "", "", ""]
     
     // MARK: Phone alarm.
     var isPhoneAlarmOpen = false
@@ -52,7 +53,12 @@ class SettingViewController: UIViewController {
     
     // MARK: Sedentary remind.
     var sedentaryDataArray: [SedentaryModel] = []
-    var exitArray = ["", "", "", ""]
+    var sedentaryExitArray = ["", "", "", ""]
+    
+    // MARK: Heart rate.
+    var hrMonitorStatus = false
+    var hrMonitorMinuteIndex = 0
+    var hrAlarmStatus = false
     
     // MARK: Forget remind.
     var isForgetRemindOpen = false
@@ -80,14 +86,29 @@ class SettingViewController: UIViewController {
         case .clock:
             
             KRProgressHUD.show()
-            perform(#selector(dismissHUD), with: nil, afterDelay: 5)
+            perform(#selector(dismissHUD), with: nil, afterDelay: 3)
             
             if CositeaBlueTooth.instance.isConnected {
                 
                 CositeaBlueTooth.instance.checkAlarm { (model) in
                     if let model = model {
-                        self.clockAlarmDataArray.append(model)
-                        self.clockAlarmCheck()
+                        
+                        if self.clockAlarmExitArray[model.index].isEmpty {
+                            self.clockAlarmDataArray.append(model)
+                            self.clockAlarmExitArray[model.index] = "\(model.index)"
+                        } else {
+                            for i in 0..<self.clockAlarmDataArray.count {
+                                if self.clockAlarmDataArray[i].index == model.index {
+                                    self.clockAlarmDataArray[i] = model
+                                }
+                            }
+                        }
+                        
+                        
+//                        self.clockAlarmCheck()
+                        KRProgressHUD.dismiss()
+                        self.fisrtCellIsCompleted = false
+                        self.myTableView.reloadData()
                     }
                 }
             }
@@ -165,7 +186,7 @@ class SettingViewController: UIViewController {
                     
                     self.sedentaryDataArray = modelArray as? [SedentaryModel] ?? []
                     for i in 0..<self.sedentaryDataArray.count {
-                        self.exitArray[i] = "\(self.sedentaryDataArray[i].index)"
+                        self.sedentaryExitArray[i] = "\(self.sedentaryDataArray[i].index)"
                     }
                     KRProgressHUD.dismiss()
                     self.fisrtCellIsCompleted = false
@@ -175,7 +196,41 @@ class SettingViewController: UIViewController {
             
             
         case .heart:
-            break
+            
+            KRProgressHUD.show()
+            perform(#selector(dismissHUD), with: nil, afterDelay: 5)
+            
+            if CositeaBlueTooth.instance.isConnected {
+                
+                CositeaBlueTooth.instance.checkHeartTateMonitorwithBlock { (minute, monitorStatus) in
+                    
+                    CositeaBlueTooth.instance.checkHeartRateAlarm(with: { (alarmStatus, max, min) in
+                        var minuteIndex: Int {
+                            if minute <= 1 {
+                                return 2
+                            } else if minute <= 10 {
+                                return 0
+                            } else {
+                                return 1
+                            }
+                        }
+                        
+                        self.hrMonitorMinuteIndex = minuteIndex
+                        self.hrMonitorStatus = monitorStatus != 0
+                        
+                        self.hrAlarmStatus = alarmStatus == 0
+                        
+                        UserInfo.share.warningMax = max
+                        UserInfo.share.warningMin = min
+                        
+                        KRProgressHUD.dismiss()
+                        self.myTableView.reloadData()
+                    })
+                }
+            }
+            
+            
+            
         case .forget:
             
             KRProgressHUD.show()
@@ -255,6 +310,79 @@ class SettingViewController: UIViewController {
         button.setImage(selected?.scaled(toHeight: 25), for: .selected)
     }
     
+    func getAlarmTimeString(withData array: [String]) -> String {
+        var str = ""
+        
+        for i in 0..<array.count {
+            let tempStr = array[i]
+            str = (str == "") ? tempStr : "\(str)/\(tempStr)"
+        }
+        
+        return str
+    }
+    
+    func getAlarmRepeateString(withData repeatArray: [Int]) -> String {
+        var str = ""
+        let array = [NSLocalizedString("周日", comment: ""), NSLocalizedString("周一", comment: ""), NSLocalizedString("周二", comment: ""), NSLocalizedString("周三", comment: ""), NSLocalizedString("周四", comment: ""), NSLocalizedString("周五", comment: ""), NSLocalizedString("周六", comment: ""), NSLocalizedString("仅一次", comment: ""), NSLocalizedString("每天", comment: ""), NSLocalizedString("工作日", comment: ""), NSLocalizedString("周末", comment: "")]
+        
+        var dayArray: [AnyHashable] = []
+        for i in 0..<7 {
+            let isSelected: Bool = repeatArray[i] != 0
+            if isSelected == true {
+                dayArray.append(array[i])
+            }
+        }
+        if dayArray.count == 0 {
+            str = array[7]
+        } else if dayArray.count == 2 && dayArray.contains(array[0]) && dayArray.contains(array[6]) {
+            str = array[10]
+        } else if dayArray.count == 5 && !dayArray.contains(array[0]) && !dayArray.contains(array[6]) {
+            str = array[9]
+        } else if dayArray.count == 7 {
+            str = array[8]
+        } else {
+            var textString = ""
+            for string: String in dayArray as? [String] ?? [] {
+                textString += "\(string) "
+            }
+            str = textString
+        }
+        
+        return str
+    }
+
+
+    func set(cell: ClockCell,with model: CustomAlarmModel) {
+        
+        let alarmIndex = model.index
+        let i = model.type.rawValue - 1
+        let alarmType = ClockType(rawValue: i)!
+        cell.label?.text = alarmType != .custom ? alarmType.name : (model.noticeString ?? "")
+        
+        let timeString = getAlarmTimeString(withData: model.timeArray)
+        let repetString = getAlarmRepeateString(withData: model.repeatArray)
+        let detailText = "\(timeString)\n\(repetString)"
+        cell.detailLabel?.text = detailText
+        
+        cell.imgView?.image = alarmType.image
+        
+        
+        var needUpdate = false
+        
+        for item in clockAlarmDataArray {
+            if item.index == alarmIndex {
+                needUpdate = true
+            }
+        }
+        
+        
+        if needUpdate {
+            
+            clockAlarmExitArray[alarmType.rawValue] = "\(alarmType.rawValue)"
+        }
+    }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -310,10 +438,13 @@ extension SettingViewController: UITableViewDataSource {
             if indexPath.row == 0 {
                 let cell = SetRemindCell.use(table: tableView, for: indexPath)
                 cell.type = self.type
+                cell.exitArray = self.clockAlarmExitArray
                 return cell
             } else {
                 let cell = ClockCell.use(table: tableView, for: indexPath)
-                
+                let model = self.clockAlarmDataArray[indexPath.row - 1]
+                set(cell: cell, with: model)
+                cell.clockAlarmExitArray = self.clockAlarmExitArray
                 return cell
             }
         case .phone:
@@ -337,12 +468,13 @@ extension SettingViewController: UITableViewDataSource {
                 fisrtCellIsCompleted = true
                 let cell = SetRemindCell.use(table: tableView, for: indexPath)
                 cell.type = self.type
-                cell.exitArray = self.exitArray
+                cell.exitArray = self.sedentaryExitArray
                 return cell
             }
             
         case .heart:
             let cell = HeartCell.use(table: tableView, for: indexPath)
+            cell.set(montiorStatus: self.hrMonitorStatus, montiorIndex: self.hrMonitorMinuteIndex, alarmStatus: self.hrAlarmStatus)
             return cell
         case .forget:
             let cell = SwitchCell.use(table: tableView, for: indexPath)
@@ -382,7 +514,21 @@ extension SettingViewController: UITableViewDelegate {
         
         if cell is SedentaryCell {
             let vc = SedentaryViewController.fromStoryboard()
-            vc.exitArray = self.exitArray
+            vc.exitArray = self.sedentaryExitArray
+            self.push(vc: vc)
+        }
+        
+        if cell is ClockCell {
+            let vc = ClockViewController.fromStoryboard()
+            
+            vc.clockAlarmExitArray = self.clockAlarmExitArray
+            let model = self.clockAlarmDataArray[indexPath.row - 1]
+            vc.index = model.index
+            vc.type = model.type
+            vc.timeArray = model.timeArray
+            vc.repeatArray = model.repeatArray
+            vc.noticeString = model.noticeString
+            
             self.push(vc: vc)
         }
     }
@@ -391,6 +537,26 @@ extension SettingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
         switch self.type {
+        case .clock:
+            
+            let i = indexPath.row - 1
+            guard  i <= 0 else {
+                return nil
+            }
+            
+            let action = UITableViewRowAction(style: .normal, title: "刪除") { (action, indexPath) in
+                let index = self.clockAlarmDataArray[i].index
+                self.clockAlarmDataArray.remove(at: i)
+                self.clockAlarmExitArray[i] = ""
+               
+                CositeaBlueTooth.instance.deleteAlarm(withAlarmIndex: index)
+                self.btnAction()
+            }
+            action.backgroundColor = .red
+            return [action]
+            
+            
+            
         case .sit:
             
             let i = indexPath.row - 1
@@ -401,7 +567,7 @@ extension SettingViewController: UITableViewDelegate {
             let action = UITableViewRowAction(style: .normal, title: "刪除") { (action, indexPath) in
                 let index = self.sedentaryDataArray[i].index
                 self.sedentaryDataArray.remove(at: i)
-                self.exitArray[i] = ""
+                self.sedentaryExitArray[i] = ""
                 CositeaBlueTooth.instance.deleteSedentaryAlarm(with: index)
                 self.btnAction()
             }
@@ -416,10 +582,19 @@ extension SettingViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         switch self.type {
-        case .sit:
+        case .sit, .clock:
             return indexPath.row != 0
         default:
             return false
         }
     }
+    
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        switch self.type {
+//        case .clock:
+//            return 52
+//        default:
+//            return tableView.cellForRow(at: indexPath)?.height ?? 52
+//        }
+//    }
 }

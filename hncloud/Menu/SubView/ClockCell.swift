@@ -9,6 +9,12 @@
 import UIKit
 
 class ClockCell: UITableViewCell {
+    
+    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var detailLabel: UILabel!
+    @IBOutlet weak var imgView: UIImageView!
+    
+    var clockAlarmExitArray: [String] = []
 
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -318,12 +318,13 @@ class BlueToothManager: NSObject {
      *
      */
     @objc func synsCurTime() {
-        
+        #warning("UInt32")
         let seconds = UInt32(Date().timeIntervalSince1970) + UInt32(NSTimeZone.system.secondsFromGMT())
         //    UInt32 seconds = [[TimeCallManager getInstance]getYYYYMMDDHHmmSecondsWith:@"2014-12-24 23:58"] + 8*60*60;
         var checkNum: UInt32 = 0x68 + UInt32(BlueToothFunctionIndexEnum.timeSync.rawValue) + (seconds & 255) + ((seconds >> 8) & 255) + ((seconds >> 16) & 255) + ((seconds >> 24) & 255) + 0x04
         checkNum = checkNum % 256
-        let transData = [0x68, UInt32(BlueToothFunctionIndexEnum.timeSync.rawValue), 0x04, 0x00, seconds, seconds >> 8, seconds >> 16, seconds >> 24, checkNum, 0x16]
+        let transData = [0x68, UInt32(BlueToothFunctionIndexEnum.timeSync.rawValue), 0x04, 0x00, seconds, seconds >> 8, seconds >> 16, seconds >> 24, checkNum, 0x16].map { UInt32($0) }
+        
         let lData = Data(bytes: transData, count: transData.count)
         blueToothWhriteTransData(lData, isNeedResponse: false)
 //        let lData = NSData(bytes: &transData, length: ArraySize(transData))
@@ -409,7 +410,7 @@ class BlueToothManager: NSObject {
      */
     @objc func checkPower() {
 
-        var transData = [0x68, BlueToothFunctionIndexEnum.checkPower.rawValue, 0x00, 0x00, 0x6b, 0x16].map { UInt8($0) }
+        let transData = [0x68, BlueToothFunctionIndexEnum.checkPower.rawValue, 0x00, 0x00, 0x6b, 0x16].map { UInt8($0) }
         
         let data = Data(bytes: transData, count: transData.count)
         blueToothWhriteTransData(data, isNeedResponse: false)
@@ -508,18 +509,25 @@ class BlueToothManager: NSObject {
         }
         
         var checkNum: Int = 0x68 + BlueToothFunctionIndexEnum.customAlarm.rawValue + len + status + alarmIndex + alarmCount + alarmType
-        var transData = [0x68, BlueToothFunctionIndexEnum.customAlarm.rawValue, len, 0x00, status, alarmIndex, alarmType, alarmCount]
-        let lData = NSMutableData(bytes: &transData, length: ArraySize(transData))
+        let transData = [0x68, BlueToothFunctionIndexEnum.customAlarm.rawValue, len, 0x00, status, alarmIndex, alarmType, alarmCount].map { UInt8($0) }
+        var lData = Data(bytes: transData, count: transData.count)
+        
+        print("💥 1. \(lData.bytes) 💥")
+        
         for index in 0..<alarmtimeArray.count {
             
             let hour = (alarmtimeArray[index] as NSString).intValue
             let min = ((alarmtimeArray[index] as NSString).substring(from: 3) as NSString).intValue
             
-            var timeData = [hour, min]
+            let timeData = [hour, min].map { UInt8($0) }
             checkNum = checkNum + Int(hour) + Int(min)
 
-            lData.append(&timeData, length: ArraySize(timeData))
+            lData.append(timeData, count: timeData.count)
+//            lData.append(&timeData, length: ArraySize(timeData))
         }
+        
+        print("💥 2. \(lData.bytes) 💥")
+        
         checkNum = checkNum + `repeat`
         if alarmType == 6 {
             if let data = strData {
@@ -531,19 +539,28 @@ class BlueToothManager: NSObject {
         }
         
         checkNum = checkNum % 256
-        lData.append(&`repeat`, length: 1)
+        lData.append([UInt8(`repeat`)], count: 1)
         if alarmType == 6 {
             if let data = strData {
                 lData.append(data)
             }
         }
-        lData.append(&checkNum, length: 1)
-        var endData: [UInt8] = [0x16]
-        lData.append(&endData, length: 1)
+        
+        print("💥 3. \(lData.bytes) 💥")
+        
+        lData.append([UInt8(checkNum)], count: 1)
+        
+        print("💥 4. \(lData.bytes) 💥")
+        
+        let endData: [UInt8] = [0x16]
+        lData.append(endData, count: 1)
+        
+        print("💥 5. \(lData.bytes) 💥")
+        
         if rdCharactic1 != nil {
-            if lData.length > 20 {
-                let cishu: Int = lData.length / 20
-                var cache: Data = lData as Data
+            if lData.count > 20 {
+                let cishu: Int = lData.count / 20
+                var cache: Data = lData
                 for _ in 0...cishu {
                     if cache.count > 20 {
                         #if DEBUG
@@ -564,38 +581,11 @@ class BlueToothManager: NSObject {
                 }
             } else {
                 print("📝 \(#function) #3 writeValue")
-                cbPeripheral?.writeValue(Data(referencing: lData), for: rdCharactic1!, type: .withoutResponse)
+                print("💥 6. \(lData.bytes) 💥")
+                cbPeripheral?.writeValue(lData, for: rdCharactic1!, type: .withoutResponse)
                 cbPeripheral?.readValue(for: rdCharactic1!)
             }
         }
-        
-        //    [self  sendupdateData:lData];
-        //    if (rdCharactic1) {
-        //        if (lData.length > 20)
-        //        {
-        //            [cbPeripheral writeValue:[lData subdataWithRange:NSMakeRange(0, 20)] forCharacteristic:rdCharactic1 type:CBCharacteristicWriteWithoutResponse];
-        //            NSData *cache = [lData subdataWithRange:NSMakeRange(20, lData.length - 20)];
-        //            if ([cache length] > 20)
-        //            {
-        //                [cbPeripheral writeValue:[cache subdataWithRange:NSMakeRange(0, 20)] forCharacteristic:rdCharactic1 type:CBCharacteristicWriteWithoutResponse];
-        //                cache = [cache subdataWithRange:NSMakeRange(20, cache.length - 20)];
-        //                if (cache.length > 20)
-        //                {
-        //                    [cbPeripheral writeValue:cache forCharacteristic:rdCharactic1 type:CBCharacteristicWriteWithoutResponse];
-        //                }
-        //                else
-        //                {
-        //                }
-        //            }
-        //            else
-        //            {
-        //                [cbPeripheral writeValue:cache forCharacteristic:rdCharactic1 type:CBCharacteristicWriteWithoutResponse];
-        //            }
-        //
-        //        }else {
-        //            [cbPeripheral writeValue:lData forCharacteristic:rdCharactic1 type:CBCharacteristicWriteWithoutResponse];
-        //        }
-        //    }
     }
     
     /**
@@ -695,7 +685,9 @@ class BlueToothManager: NSObject {
      *
      */
     @objc func queryHeartAlarm() {
-        let transData = [0x68, BlueToothFunctionIndexEnum.heartRateAlarm.rawValue, 0x01, 0x00, 0x02, 0x7b, 0x16].map { UInt8($0) }
+        var checkNum = 0x68 + BlueToothFunctionIndexEnum.heartRateAlarm.rawValue + 0x01 + 0x00 + 0x02
+        checkNum = checkNum % 256
+        let transData = [0x68, BlueToothFunctionIndexEnum.heartRateAlarm.rawValue, 0x01, 0x00, 0x02, checkNum, 0x16].map { UInt8($0) }
         let data = Data(bytes: transData, count: transData.count)
         blueToothWhriteTransData(data, isNeedResponse: false)
 //        let lData = NSData(bytes: &transData, length: ArraySize(transData))
@@ -709,18 +701,11 @@ class BlueToothManager: NSObject {
      */
     func setHeartAlarmWithMin(_ minHeart: Int, andMax maxHeart: Int, andState state: Int) {
         
-        var newState: Int {
-            switch state {
-            case 0:
-                return 1
-            case 1:
-                return 0
-            default:
-                return 0
-            }
-        }
+        var newState: Int = state == 0 ? 1 : 0
         
-        let checkNum: Int = 0x68 + BlueToothFunctionIndexEnum.heartRateAlarm.rawValue + 0x04 + 0x01 + newState + maxHeart + minHeart
+        
+        var checkNum: Int = 0x68 + BlueToothFunctionIndexEnum.heartRateAlarm.rawValue + 0x04 + 0x01 + newState + maxHeart + minHeart
+        checkNum = checkNum % 256
         let transData = [0x68, BlueToothFunctionIndexEnum.heartRateAlarm.rawValue, 0x04, 0x00, 0x01, newState, maxHeart, minHeart, checkNum, 0x16].map { UInt8($0) }
         let lData = Data(bytes: transData, count: transData.count)
         blueToothWhriteTransData(lData, isNeedResponse: false)
@@ -1123,7 +1108,7 @@ class BlueToothManager: NSObject {
      *
      */
     func timerGetHeartRateData() {
-        var transData = [0x68, BlueToothFunctionIndexEnum.getActualData.rawValue, 0x01, 0x00, 0x00, 0x6f, 0x16]
+        var transData = [0x68, BlueToothFunctionIndexEnum.getActualData.rawValue, 0x01, 0x00, 0x00, 0x6f, 0x16].map { UInt8($0) }
         let lData = Data(bytes: transData, count: transData.count)
 //        let lData = NSData(bytes: &transData, length: ArraySize(transData))
         //    [self appendingCheckNumData:lData isNeedResponse:NO];
@@ -1814,8 +1799,8 @@ class BlueToothManager: NSObject {
 //        let startIndex = (index - 1) * 200
         let romData = data.subdata(with: NSRange(location: (index - 1) * 200, length: length))
         
-        var transDate = [0x68, BlueToothFunctionIndexEnum.updateHardWare.rawValue, (length + 5) & 0xff, (length + 5) >> 8 & 0xff, 0x01, totalPack & 0xff, totalPack >> 8 & 0xff, index & 0xff, index >> 8 & 0xff]
-        
+        let array = [0x68, BlueToothFunctionIndexEnum.updateHardWare.rawValue, (length + 5) & 0xff, (length + 5) >> 8 & 0xff, 0x01, totalPack & 0xff, totalPack >> 8 & 0xff, index & 0xff, index >> 8 & 0xff]
+        let transDate = array.map { UInt32($0) }
         var lData = Data(bytes: transDate, count: transDate.count)
         lData.append(romData)
         
@@ -1959,7 +1944,7 @@ class BlueToothManager: NSObject {
      *
      */
     func answerTakePhoto() {
-        let transData: [UInt8] = [0x68, 0x0e, 0x00, 0x00]
+        let transData: [UInt8] = [0x68, 0x0e, 0x00, 0x00].map { UInt8($0) }
         let data = Data(bytes: transData, count: transData.count)
         appendingCheckNumData(data, isNeedResponse: false)
 //        let data = NSData(bytes: &transData, length: ArraySize(transData))
@@ -2169,10 +2154,10 @@ class BlueToothManager: NSObject {
         if reviceData?.length == 0 || reviceData == nil {
             return
         }
-        var headTransDat: [UInt8] = [0x68]
-        let headData = NSData(bytes: &headTransDat, length: ArraySize(headTransDat))
+        let headTransDat: [UInt8] = [0x68]
+        let headData = Data(bytes: headTransDat, count: headTransDat.count)
         
-        if let length = reviceData?.length, let range = reviceData?.range(of: Data(referencing: headData), options: .backwards, in: NSRange(location: 0, length: length)) {
+        if let length = reviceData?.length, let range = reviceData?.range(of: headData, options: .backwards, in: NSRange(location: 0, length: length)) {
             
             
             
@@ -2274,6 +2259,7 @@ class BlueToothManager: NSObject {
     // MARK:    - -- - - - - -  蓝牙的重发机制
     func blueToothWhriteTransData(_ lData: Data?, isNeedResponse response: Bool) {
         let byte = lData?.bytes
+        print(byte)
         if cbCenterManger == nil {
             return
         }
@@ -2303,7 +2289,7 @@ class BlueToothManager: NSObject {
                 } else {
                     //                adaLog(@"shotSendData  - -- %@",lData);
                     if let data = lData, rdCharactic1 != nil {
-                        print("📝 \(#function) #1 writeValue\nrdCharactic1 = \(rdCharactic1)")
+                        print("📝 \(#function) #1 writeValue\nrdCharactic1 = \(rdCharactic1 ?? nil)")
                         cbPeripheral?.writeValue(data, for: rdCharactic1!, type: .withoutResponse)
                         cbPeripheral?.readValue(for: rdCharactic1!)
                     }
@@ -2599,7 +2585,7 @@ extension BlueToothManager: CBCentralManagerDelegate {
         let llString = peripheral.identifier.uuidString
         let lastUUID = UserDefaults.standard.string(forKey: GlobalProperty.kLastDeviceUUID)
         print("llString = \(llString)")
-        print("lastUUID = \(lastUUID)")
+        print("lastUUID = \(lastUUID ?? "nil")")
         print("selfUUID = \(self.connectUUID ?? "nil")")
         print("isConnecting = \(isConnecting)")
         if lastUUID == nil {
@@ -2796,10 +2782,11 @@ extension BlueToothManager: CBPeripheralDelegate {
         
         var string = "\(characteristic.uuid)"
         
-//        let byte = characteristic.value?.bytes
+        let byte = characteristic.value?.bytes
         
-//        print("!!! \(byte ?? []) !!!")
-//        if byte?[1] == 0x09 {
+        
+        if byte?[1] == 0x10 || byte?[1] == 0x90 {
+            print("!!! \(byte ?? []) !!!")
 //            print("\n")
 //            print("!!! \(byte ?? []) !!!")
 //            print("\n")
@@ -2807,7 +2794,7 @@ extension BlueToothManager: CBPeripheralDelegate {
 //            print("\n")
 //            print("!!! \(byte ?? []) !!!")
 //            print("\n")
-//        }
+        }
         
         string = getIOS6UUID(string)
         

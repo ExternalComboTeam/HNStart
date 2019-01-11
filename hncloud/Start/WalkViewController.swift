@@ -80,7 +80,7 @@ class WalkViewController: UIViewController {
         
     }
 
-    /// 設定心律
+    /// 設定心率
     private func setHeart(value: Int) {
         let h = NSMutableAttributedString(string: value == 0 ? "--" : "\(value)",
                                           attributes: [.font: UIFont.boldSystemFont(ofSize: 20),

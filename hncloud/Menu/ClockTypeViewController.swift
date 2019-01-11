@@ -9,12 +9,13 @@
 import UIKit
 import SwiftMessages
 
-enum ClockType {
-    case sport
-    case medicine
-    case drink
-    case sleep
+enum ClockType: Int {
+    
+    case sport = 0
     case date
+    case drink
+    case medicine
+    case sleep
     case custom
     
     static func getType(by: Int) -> ClockType {
@@ -22,13 +23,13 @@ enum ClockType {
         case 1:
             return .sport
         case 2:
-            return .medicine
+            return .date
         case 3:
             return .drink
         case 4:
-            return .sleep
+            return .medicine
         case 5:
-            return .date
+            return .sleep
         default:
             return .custom
         }
@@ -38,13 +39,13 @@ enum ClockType {
         switch self {
         case .sport:
             return 1
-        case .medicine:
+        case .date:
             return 2
         case .drink:
             return 3
-        case .sleep:
+        case .medicine:
             return 4
-        case .date:
+        case .sleep:
             return 5
         case .custom:
             return 6
@@ -67,6 +68,24 @@ enum ClockType {
             return ""
         }
     }
+    
+    var image: UIImage? {
+        switch self {
+        case .sport:
+            return #imageLiteral(resourceName: "running")
+        case .medicine:
+            return #imageLiteral(resourceName: "medicine")
+        case .drink:
+            return #imageLiteral(resourceName: "dringk")
+        case .sleep:
+            return #imageLiteral(resourceName: "sleep")
+        case .date:
+            return #imageLiteral(resourceName: "appo")
+        case .custom:
+            return #imageLiteral(resourceName: "running")
+        }
+    }
+    
 }
 
 class ClockTypeViewController: UIViewController {
@@ -93,8 +112,16 @@ class ClockTypeViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func customAction(_ sender: UIButton) {
-        self.delegate?.selectType(.custom)
-        self.dismiss(animated: true, completion: nil)
+        
+        let alert = UIAlertController(title: "提醒的名稱", message: nil, preferredStyle: .alert)
+        alert.addTextField(configurationHandler: nil)
+        alert.addAction(title: "取消".localized(), style: .cancel, isEnabled: true, handler: nil)
+        alert.addAction(title: "確定".localized(), style: .default, isEnabled: true) { (_alert) in
+            self.delegate?.selectType(.custom)
+            self.delegate?.setCustomString(alert.textFields?.first?.text ?? "")
+            self.dismiss(animated: true, completion: nil)
+        }
+        
     }
     
     
@@ -108,6 +135,7 @@ class ClockTypeViewController: UIViewController {
 
 protocol ClockTypeDelegate {
     func selectType(_ type: ClockType)
+    func setCustomString(_ text: String)
 }
 
 class SwiftMessagesBottomSegue: SwiftMessagesSegue {

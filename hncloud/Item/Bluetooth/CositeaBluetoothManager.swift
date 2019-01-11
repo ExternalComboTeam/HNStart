@@ -1671,7 +1671,7 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
         
         let transDat = data.bytes
         if transDat[4] == 2 {
-            let state = transDat.item(at: 5) != nil ? 0 : 1
+            let state = Int(transDat[5])
             let max = Int(transDat[6])
             let min = Int(transDat[7])
             heartRateAlarmBlock?(state, max, min)
@@ -2371,7 +2371,7 @@ class CositeaBlueToothManager: NSObject, BlueToothManagerDelegate, BluetoothScan
     func getRepeatStatus(withArray repeatArray: [Int]) -> Int {
         var status: Int = 0
         for i in 0..<7 {
-            if repeatArray.item(at: i) != nil {
+            if repeatArray.item(at: i) != 0 {
                 status = status | (0x01 << (i))
             }
         }

@@ -48,7 +48,7 @@ class HealthAPI: API {
     /// 上傳整天心率(24小時) add_heartrate24.php
     class func heartrate(date: String, rate: [String], _ completionHandler: ((JSON) -> Void)?) {
         if rate.count != 24 {
-            KRProgressHUD.showMessage("心律小於24組")
+            KRProgressHUD.showMessage("心率小於24組")
             return
         }
         let url = domain + "search_bloodsugar.php"
