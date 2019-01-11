@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print(Localize.availableLanguages())
 //        Localize.setCurrentLanguage("en")
 //        Localize.resetCurrentLanguageToDefault()
-        
+        DBManager.share.createTable()
         KRProgressHUD.set(duration: 0.75)
         
         IQKeyboardManager.shared.enable = true
